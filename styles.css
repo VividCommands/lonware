@@ -15,9 +15,19 @@
   padding: 0;
 }
 
+/* Root variables for consistent colour palette */
+:root {
+  --primary-col: #577aff;
+  --primary-col-light: #88c7ff;
+  --background-col: #070c1f;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-col: #ffffff;
+  --muted-col: #cccccc;
+}
+
 body {
-  background: #0a0a0a;
-  color: #ffffff;
+  background: var(--background-col);
+  color: var(--text-col);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   min-height: 100vh;
@@ -395,6 +405,101 @@ footer {
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-top: 2rem;
+}
+
+/* Performance comparison styles */
+.performance-comparison {
+  max-width: 500px;
+  margin: 2rem auto 1.5rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.performance-comparison .row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.performance-comparison .fps {
+  color: var(--primary-col);
+}
+
+.performance-comparison .bar {
+  position: relative;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+
+.performance-comparison .bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--pct, 0%);
+  background: linear-gradient(90deg, var(--primary-col), var(--primary-col-light));
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+.performance-comparison .bar.without {
+  --pct: 60%;
+}
+.performance-comparison .bar.with {
+  --pct: 100%;
+}
+
+.performance-comparison .boost {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--primary-col-light);
+  margin-top: -0.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+/* Call-to-action buttons */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 0.7rem 1.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, var(--primary-col), var(--primary-col-light));
+  color: #ffffff;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.15);
+}
+
+.btn.secondary {
+  border: 1px solid var(--primary-col);
+  color: var(--primary-col);
+  background: transparent;
+}
+
+.btn.secondary:hover {
+  background: var(--primary-col);
+  color: #ffffff;
 }
 
 .feature {

@@ -25,8 +25,27 @@
   <main>
     <!-- Hero landing section inspired by RisxnTweaks -->
     <section class="landing">
-      <h1>Optimize Your Game</h1>
-      <p>Eliminate lag, boost FPS and crush ping. Lon's My Space delivers cutting‑edge tweaks for PC, console and controller that unlock your hardware’s hidden potential.</p>
+      <h1>Unlock Maximum Gaming Performance</h1>
+      <p>Professional‑grade tweaks used by pro gamers and streamers. Get higher FPS, lower latency and a competitive edge.</p>
+      <!-- Performance comparison inspired by LLTweaks -->
+      <div class="performance-comparison">
+        <div class="row">
+          <span>Without Lon's My Space</span>
+          <span class="fps">133 FPS</span>
+        </div>
+        <div class="bar without"></div>
+        <div class="row">
+          <span>With Lon's My Space</span>
+          <span class="fps">229 FPS</span>
+        </div>
+        <div class="bar with"></div>
+        <div class="boost">+96 FPS Boost!</div>
+      </div>
+      <div class="cta-buttons">
+        <a href="#shop" class="btn primary">Get Started – From $6.99</a>
+        <a href="contact.html" class="btn secondary">Contact Us</a>
+      </div>
+      <!-- Features row (unchanged) -->
       <div class="features-row">
         <div class="feature">
           <div class="icon">⚡</div>
@@ -46,7 +65,7 @@
     <section class="product-grid">
       <!-- Product card: Ping Optimizations -->
       <a class="card" href="ping-optimizations.html">
-        <img src="img/ping.png" alt="Ping Optimizations" class="card-image" />
+        <img src="ping.png" alt="Ping Optimizations" class="card-image" />
         <div class="card-content">
           <h3>Ping Optimizations</h3>
           <div class="price">$16.99</div>
@@ -56,7 +75,7 @@
       </a>
       <!-- Product card: Console Tweaks -->
       <a class="card" href="console-tweaks.html">
-        <img src="img/console.png" alt="Console Tweaks" class="card-image" />
+        <img src="console.png" alt="Console Tweaks" class="card-image" />
         <div class="card-content">
           <h3>Console Tweaks</h3>
           <div class="price">$9.99</div>
@@ -66,7 +85,7 @@
       </a>
       <!-- Product card: PC Optimizations -->
       <a class="card has-video" href="pc-optimizations.html" data-video-id="DZIQNHpkyBM">
-        <img src="img/pc.png" alt="PC Optimizations" class="card-image" />
+        <img src="pc.png" alt="PC Optimizations" class="card-image" />
         <div class="video-overlay"></div>
         <div class="card-content">
           <h3>PC Optimizations</h3>
@@ -77,7 +96,7 @@
       </a>
       <!-- Product card: Controller/KBM Macro -->
       <a class="card has-video" href="controller-macro.html" data-video-id="JDGbfd0nYDc">
-        <img src="img/macro.png" alt="Controller/KBM Macro" class="card-image" />
+        <img src="macro.png" alt="Controller/KBM Macro" class="card-image" />
         <div class="video-overlay"></div>
         <div class="card-content">
           <h3>Controller/KBM Macro</h3>
@@ -88,7 +107,7 @@
       </a>
       <!-- Product card: Ultimate Bundle (fifth product) -->
       <a class="card" href="ultimate-bundle.html">
-        <img src="img/bundle.png" alt="Ultimate Bundle" class="card-image" />
+        <img src="bundle.png" alt="Ultimate Bundle" class="card-image" />
         <div class="card-content">
           <h3>Ultimate Bundle</h3>
           <div class="price">$29.99</div>
@@ -150,7 +169,8 @@
         if (videoId && overlay) {
           // Create an iframe for YouTube preview
           const iframe = document.createElement('iframe');
-          iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=${videoId}`;
+          // Use YouTube parameters to hide controls, branding and related videos
+          iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=${videoId}`;
           iframe.setAttribute('allow', 'autoplay; muted');
           iframe.style.width = '100%';
           iframe.style.height = '100%';
