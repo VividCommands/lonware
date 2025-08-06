@@ -17,8 +17,9 @@
 
 /* Root variables for consistent colour palette */
 :root {
-  --primary-col: #577aff;
-  --primary-col-light: #88c7ff;
+  /* Updated palette to a brighter neon blue */
+  --primary-col: #0095ff;
+  --primary-col-light: #66e0ff;
   --background-col: #070c1f;
   --card-bg: rgba(255, 255, 255, 0.05);
   --text-col: #ffffff;
@@ -49,6 +50,30 @@ body::before {
   opacity: 0.5;
 }
 
+/* Floating particles overlay for subtle depth */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0.5px, rgba(255, 255, 255, 0) 1px) 0 0 / 4px 4px;
+  opacity: 0.1;
+  animation: moveDots 60s linear infinite;
+  z-index: -2;
+}
+
+@keyframes moveDots {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-1000px, -1000px);
+  }
+}
+
 @keyframes moveBg {
   0% {
     transform: translate(0, 0);
@@ -62,17 +87,31 @@ body::before {
 }
 
 /* Top notification bar for discount code */
+/*
+ * The announcement bar should immediately grab attention.  We invert
+ * the colour scheme here: a crisp white bar with black text and a
+ * gentle sliding animation that moves the message left and right.
+ * On top of that, we add a subtle blue glow to help tie the element
+ * into the overall colour palette.  The animation is defined
+ * further below.
+ */
 .banner {
-  /* Lively discount banner to draw attention */
-  /* Give the banner a semi‑transparent white background with a blue glow. */
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000000;
   font-size: 0.9rem;
   padding: 0.6rem 1.2rem;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 15px rgba(102, 178, 255, 0.6), 0 0 30px rgba(102, 178, 255, 0.4);
-  animation: pulse 4s infinite;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(102, 178, 255, 0.6), 0 0 30px rgba(102, 178, 255, 0.3);
+}
+
+/* Inner container for banner text to allow scrolling animation */
+.banner .banner-content {
+  white-space: nowrap;
+  display: inline-block;
+  animation: slideText 12s linear infinite;
+  padding-left: 100%;
 }
 
 header {
@@ -90,6 +129,18 @@ header {
 header .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary-col);
+}
+
+/* Logo emblem icon */
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: inline-block;
 }
 
 nav a {
@@ -212,9 +263,15 @@ nav a:hover {
 }
 
 .product-image {
-  flex: 1 1 300px;
+  /* Keep video and images at a pleasant 16:9 ratio and prevent them from
+     becoming excessively tall.  The flex-basis ensures a reasonable width
+     while the max-width and min-width keep the card responsive. */
+  flex: 1 1 45%;
+  max-width: 500px;
+  min-width: 300px;
   position: relative;
   width: 100%;
+  height: 0;
   padding-top: 56.25%; /* 16:9 aspect ratio */
   overflow: hidden;
   border-radius: 10px;
@@ -352,11 +409,13 @@ nav a:hover {
 
 /* Terms of service section */
 .terms {
-  margin-top: 2rem;
+  margin: 3rem auto;
   padding-top: 2rem;
   border-top: 1px solid #222222;
-  font-size: 0.85rem;
-  color: #bbbbbb;
+  font-size: 0.8rem;
+  color: #999999;
+  max-width: 800px;
+  line-height: 1.4;
 }
 
 .terms h2 {
@@ -397,6 +456,27 @@ footer {
   margin: 0 auto;
   color: #cccccc;
   font-size: 1.1rem;
+}
+
+/* Scrolling text within the hero section */
+.scroll-text {
+  margin: 1rem auto 2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 90%;
+  color: #88c7ff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .features-row {
@@ -591,6 +671,7 @@ footer {
 .reviews {
   padding: 3rem 1rem;
   text-align: center;
+  overflow: hidden;
 }
 
 .reviews h2 {
@@ -605,6 +686,21 @@ footer {
   gap: 1.5rem;
 }
 
+/* When reviews are set up as a carousel, animate them horizontally */
+.review-grid.carousel {
+  flex-wrap: nowrap;
+  animation: scrollReviews 40s linear infinite;
+}
+
+@keyframes scrollReviews {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .review {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -615,7 +711,17 @@ footer {
   color: #dddddd;
 }
 
-/* Pulse animation for the discount banner */
+/* Sliding animation for banner text */
+@keyframes slideText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Retain pulse animation for any other callouts if needed */
 @keyframes pulse {
   0%, 100% {
     box-shadow: 0 0 10px rgba(102, 178, 255, 0.5), 0 0 20px rgba(102, 178, 255, 0.3);
