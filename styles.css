@@ -24,6 +24,8 @@
   --card-bg: rgba(255, 255, 255, 0.05);
   --text-col: #ffffff;
   --muted-col: #cccccc;
+  /* Additional colours for review names and hero art */
+  --review-name: #66b2ff;
 }
 
 body {
@@ -104,13 +106,15 @@ body::after {
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 15px rgba(102, 178, 255, 0.6), 0 0 30px rgba(102, 178, 255, 0.3);
+  text-align: center;
 }
 
 /* Inner container for banner text to allow scrolling animation */
 .banner .banner-content {
   white-space: nowrap;
   display: inline-block;
-  animation: slideText 12s linear infinite;
+  /* Bounce the announcement text back and forth across the bar */
+  animation: slideText 12s ease-in-out infinite;
   padding-left: 100%;
 }
 
@@ -262,17 +266,24 @@ nav a:hover {
   padding: 2.5rem 1rem;
 }
 
+/*
+ * Product image container
+ *
+ * On the product pages the preview video or static graphic should be wide and
+ * cinematic rather than tall.  Changing the padding‑top from the classic
+ * 16:9 (56.25%) to a lower value (40%) yields a more letterbox‑like shape
+ * that better suits landscape game footage.  Flex settings keep the
+ * container responsive while preserving aspect ratio.  Height is kept at
+ * zero to allow the padding trick to control vertical space.
+ */
 .product-image {
-  /* Keep video and images at a pleasant 16:9 ratio and prevent them from
-     becoming excessively tall.  The flex-basis ensures a reasonable width
-     while the max-width and min-width keep the card responsive. */
   flex: 1 1 45%;
   max-width: 500px;
   min-width: 300px;
   position: relative;
   width: 100%;
   height: 0;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
+  padding-top: 40%; /* wider 2.5:1 ratio for a more cinematic feel */
   overflow: hidden;
   border-radius: 10px;
 }
@@ -409,18 +420,24 @@ nav a:hover {
 
 /* Terms of service section */
 .terms {
+  /* Present the terms section as a centred card.  We remove the top border
+     and instead wrap the content in a lightly translucent box to
+     separate it from the rest of the page.  A narrower width and small
+     font size keep the text unobtrusive while still readable. */
   margin: 3rem auto;
-  padding-top: 2rem;
-  border-top: 1px solid #222222;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
   font-size: 0.8rem;
-  color: #999999;
-  max-width: 800px;
-  line-height: 1.4;
+  color: #bbbbbb;
+  max-width: 700px;
+  line-height: 1.5;
+  text-align: left;
 }
 
 .terms h2 {
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
   color: #ffffff;
 }
 
@@ -689,7 +706,7 @@ footer {
 /* When reviews are set up as a carousel, animate them horizontally */
 .review-grid.carousel {
   flex-wrap: nowrap;
-  animation: scrollReviews 40s linear infinite;
+  animation: scrollReviews 80s linear infinite;
 }
 
 @keyframes scrollReviews {
@@ -713,11 +730,15 @@ footer {
 
 /* Sliding animation for banner text */
 @keyframes slideText {
+  /* Start with the text off to the right, slide left, then return to the start */
   0% {
     transform: translateX(0);
   }
+  50% {
+    transform: translateX(-50%);
+  }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
 }
 
@@ -728,6 +749,28 @@ footer {
   }
   50% {
     box-shadow: 0 0 20px rgba(102, 178, 255, 0.8), 0 0 40px rgba(102, 178, 255, 0.6);
+  }
+}
+
+/* Rotating neon cube hero art */
+.hero-art {
+  width: 320px;
+  height: 320px;
+  margin: 2rem auto;
+  background-image: url('hero_art.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: spinCube 20s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes spinCube {
+  from {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(360deg);
   }
 }
 
