@@ -1,0 +1,441 @@
+/*
+ * Global stylesheet for the recreated Lon's My Space website.
+ *
+ * This design takes inspiration from the original Payhip store but
+ * modernises it with clean typography, soft-glass cards and a dark
+ * aesthetic. It is completely responsive and uses pure CSS for
+ * layout so there are no external dependencies. Feel free to tweak
+ * colours and spacing to suit your brand.
+ */
+
+/* Reset some default browser styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top notification bar for discount code */
+.banner {
+  background: #111111;
+  color: #bbbbbb;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav a {
+  margin-left: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #66b2ff;
+}
+
+/* Container for the hero section that lists products */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 3rem 1rem;
+}
+
+/* Product card styling */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 260px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.card .price {
+  color: #999999;
+  text-decoration: line-through;
+  font-size: 0.9rem;
+}
+
+.card .sale-price {
+  color: #66b2ff;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card .button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  background: #66b2ff;
+  transition: background 0.2s ease;
+}
+
+.card .button:hover {
+  background: #88c7ff;
+}
+
+/* Product page layout */
+.product-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2.5rem 1rem;
+}
+
+.product-image {
+  flex: 1 1 300px;
+}
+
+.product-image iframe,
+.product-image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Placeholder for product images (when no image is provided) */
+.placeholder {
+  width: 100%;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.product-details {
+  flex: 1 1 300px;
+}
+
+.product-details h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-details .prices {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.product-details .old-price {
+  color: #777777;
+  text-decoration: line-through;
+  margin-right: 0.5rem;
+}
+
+.product-details .sale-price {
+  color: #66b2ff;
+  font-weight: bold;
+}
+
+.product-details .actions a {
+  display: inline-block;
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.product-details .actions .buy {
+  background: #66b2ff;
+  color: #ffffff;
+}
+
+.product-details .actions .buy:hover {
+  background: #88c7ff;
+}
+
+.product-details .actions .view {
+  background: #ffffff;
+  color: #000000;
+}
+
+.product-details .actions .view:hover {
+  background: #dddddd;
+}
+
+.product-details ul {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+}
+
+.product-details ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Contact page styles */
+.contact-wrapper {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.contact-wrapper h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.contact-wrapper label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.contact-wrapper input,
+.contact-wrapper textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid #333333;
+  background: #222222;
+  color: #ffffff;
+}
+
+.contact-wrapper button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background: #66b2ff;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.contact-wrapper button:hover {
+  background: #88c7ff;
+}
+
+/* Terms of service section */
+.terms {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #222222;
+  font-size: 0.85rem;
+  color: #bbbbbb;
+}
+
+.terms h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.terms ul {
+  padding-left: 1.2rem;
+}
+
+.terms ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Simple footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #777777;
+}
+
+/* Landing / hero section styling */
+.landing {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+}
+
+.landing h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.landing p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #cccccc;
+  font-size: 1.1rem;
+}
+
+.features-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  width: 120px;
+  text-align: center;
+}
+
+.feature .icon {
+  font-size: 1.6rem;
+  color: #66b2ff;
+  margin-bottom: 0.5rem;
+  /* Subtle bounce animation for visual interest */
+  animation: bounce 2s infinite ease-in-out alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+.feature h4 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Product grid section overrides */
+.product-grid {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem 3rem;
+}
+
+/* Why choose section */
+.why-choose {
+  padding: 3rem 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid #111111;
+  border-bottom: 1px solid #111111;
+}
+
+.why-choose h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat .number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #66b2ff;
+}
+
+.stat .label {
+  color: #bbbbbb;
+  font-size: 0.9rem;
+}
+
+.why-choose p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #cccccc;
+  font-size: 1rem;
+}
+
+/* Reviews section */
+.reviews {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.reviews h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.review-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.review {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 300px;
+  font-style: italic;
+  color: #dddddd;
+}
+
+.reviewer {
+  display: block;
+  margin-top: 0.8rem;
+  font-style: normal;
+  font-weight: bold;
+  color: #66b2ff;
+}
