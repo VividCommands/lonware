@@ -25,13 +25,44 @@ body {
   flex-direction: column;
 }
 
+/* Animated background gradient for subtle motion */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, #0a1931, #0b253e, #001f3f, #0b253e, #0a1931);
+  animation: moveBg 40s linear infinite;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+@keyframes moveBg {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-25%, -25%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 /* Top notification bar for discount code */
 .banner {
-  background: #111111;
-  color: #bbbbbb;
+  /* Lively discount banner to draw attention */
+  /* Give the banner a semi‑transparent white background with a blue glow. */
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
   font-size: 0.9rem;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 15px rgba(102, 178, 255, 0.6), 0 0 30px rgba(102, 178, 255, 0.4);
+  animation: pulse 4s infinite;
 }
 
 header {
@@ -78,17 +109,55 @@ nav a:hover {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 0;
   width: 260px;
   text-align: center;
   text-decoration: none;
   color: #ffffff;
   transition: transform 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
+  /* Add a soft blue glow on hover */
+  box-shadow: 0 0 20px rgba(102, 178, 255, 0.5), 0 0 40px rgba(102, 178, 255, 0.3);
+}
+
+/* Card image for product grid */
+.card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: block;
+}
+
+.card-content {
+  padding: 1.2rem;
+}
+
+/* Video overlay shown on hover for cards that have videos */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.has-video:hover .video-overlay {
+  opacity: 1;
+}
+
+.has-video:hover .card-image {
+  filter: brightness(0.4);
 }
 
 .card h3 {
@@ -134,11 +203,20 @@ nav a:hover {
 
 .product-image {
   flex: 1 1 300px;
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .product-image iframe,
 .product-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
   border-radius: 10px;
 }
 
@@ -430,6 +508,16 @@ footer {
   width: 300px;
   font-style: italic;
   color: #dddddd;
+}
+
+/* Pulse animation for the discount banner */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(102, 178, 255, 0.5), 0 0 20px rgba(102, 178, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(102, 178, 255, 0.8), 0 0 40px rgba(102, 178, 255, 0.6);
+  }
 }
 
 .reviewer {

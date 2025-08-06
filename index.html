@@ -14,7 +14,8 @@
   </div>
   <!-- Site header with logo and navigation -->
   <header>
-    <div class="logo">Lon's My Space</div>
+    <!-- Logo links back to home -->
+    <a href="index.html" class="logo">Lon's My Space</a>
     <nav>
       <a href="index.html">Home</a>
       <a href="contact.html">Contact</a>
@@ -45,31 +46,55 @@
     <section class="product-grid">
       <!-- Product card: Ping Optimizations -->
       <a class="card" href="ping-optimizations.html">
-        <h3>Ping Optimizations</h3>
-        <div class="price">$16.99</div>
-        <div class="sale-price">$6.99</div>
-        <div class="button">View Product</div>
+        <img src="img/ping.png" alt="Ping Optimizations" class="card-image" />
+        <div class="card-content">
+          <h3>Ping Optimizations</h3>
+          <div class="price">$16.99</div>
+          <div class="sale-price">$6.99</div>
+          <div class="button">View Product</div>
+        </div>
       </a>
       <!-- Product card: Console Tweaks -->
       <a class="card" href="console-tweaks.html">
-        <h3>Console Tweaks</h3>
-        <div class="price">$9.99</div>
-        <div class="sale-price">$5.99</div>
-        <div class="button">View Product</div>
+        <img src="img/console.png" alt="Console Tweaks" class="card-image" />
+        <div class="card-content">
+          <h3>Console Tweaks</h3>
+          <div class="price">$9.99</div>
+          <div class="sale-price">$5.99</div>
+          <div class="button">View Product</div>
+        </div>
       </a>
       <!-- Product card: PC Optimizations -->
-      <a class="card" href="pc-optimizations.html">
-        <h3>PC Optimizations</h3>
-        <div class="price">$16.99</div>
-        <div class="sale-price">$6.99</div>
-        <div class="button">View Product</div>
+      <a class="card has-video" href="pc-optimizations.html" data-video-id="DZIQNHpkyBM">
+        <img src="img/pc.png" alt="PC Optimizations" class="card-image" />
+        <div class="video-overlay"></div>
+        <div class="card-content">
+          <h3>PC Optimizations</h3>
+          <div class="price">$16.99</div>
+          <div class="sale-price">$6.99</div>
+          <div class="button">View Product</div>
+        </div>
       </a>
       <!-- Product card: Controller/KBM Macro -->
-      <a class="card" href="controller-macro.html">
-        <h3>Controller/KBM Macro</h3>
-        <div class="price">$18.99</div>
-        <div class="sale-price">$10.98</div>
-        <div class="button">View Product</div>
+      <a class="card has-video" href="controller-macro.html" data-video-id="JDGbfd0nYDc">
+        <img src="img/macro.png" alt="Controller/KBM Macro" class="card-image" />
+        <div class="video-overlay"></div>
+        <div class="card-content">
+          <h3>Controller/KBM Macro</h3>
+          <div class="price">$18.99</div>
+          <div class="sale-price">$10.98</div>
+          <div class="button">View Product</div>
+        </div>
+      </a>
+      <!-- Product card: Ultimate Bundle (fifth product) -->
+      <a class="card" href="ultimate-bundle.html">
+        <img src="img/bundle.png" alt="Ultimate Bundle" class="card-image" />
+        <div class="card-content">
+          <h3>Ultimate Bundle</h3>
+          <div class="price">$29.99</div>
+          <div class="sale-price">$12.99</div>
+          <div class="button">View Product</div>
+        </div>
       </a>
     </section>
     <!-- Why choose section -->
@@ -111,7 +136,29 @@
     </section>
   </main>
   <footer>
-    &copy; 2025 Lon's My Space. This is a recreated store powered by Payhip links.
+    &copy; 2025 Lon's My Space. All rights reserved.
   </footer>
+
+  <!-- Video preview script -->
+  <script>
+    // Add video overlays to cards with data-video-id
+    document.addEventListener('DOMContentLoaded', function() {
+      const videoCards = document.querySelectorAll('.card.has-video');
+      videoCards.forEach(card => {
+        const videoId = card.getAttribute('data-video-id');
+        const overlay = card.querySelector('.video-overlay');
+        if (videoId && overlay) {
+          // Create an iframe for YouTube preview
+          const iframe = document.createElement('iframe');
+          iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=${videoId}`;
+          iframe.setAttribute('allow', 'autoplay; muted');
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
+          iframe.style.border = 'none';
+          overlay.appendChild(iframe);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
