@@ -263,6 +263,163 @@ nav a:hover {
   min-width: 300px;
 }
 
+/* New slider styling for product media on macro page */
+.video-slider {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+
+.video-slider .slides {
+  position: relative;
+}
+
+/* Each slide maintains a 16:9 aspect ratio using the padding‑top trick */
+.video-slider .slide {
+  display: none;
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+/* The embedded video or iframe fills the slide */
+.video-slider .slide video,
+.video-slider .slide iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Navigation arrows for the video slider */
+.video-slider .prev-slide,
+.video-slider .next-slide {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.video-slider .prev-slide { left: 10px; }
+.video-slider .next-slide { right: 10px; }
+
+/* Review section enhancements */
+.reviews {
+  margin-top: 4rem;
+  position: relative;
+}
+
+/* Section title with lines on either side */
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #66b2ff;
+  opacity: 0.5;
+}
+
+.section-title span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Horizontal slider for reviews */
+.reviews-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.reviews-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.reviews-track::-webkit-scrollbar {
+  display: none;
+}
+
+.review {
+  flex: 0 0 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  color: #ffffff;
+  scroll-snap-align: center;
+}
+
+.review .stars {
+  color: #ffd700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.reviews-slider .prev-review,
+.reviews-slider .next-review {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #ffffff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.reviews-slider .prev-review { left: -45px; }
+.reviews-slider .next-review { right: -45px; }
+
+@media (max-width: 768px) {
+  .reviews-slider .prev-review,
+  .reviews-slider .next-review {
+    display: none;
+  }
+}
+
+/* Make the plans grid more uniform and side‑by‑side */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
 /*
  * Each video box in the product media grid is designed to be perfectly square
  * on desktop and tablet screens while automatically scaling down on mobile.
