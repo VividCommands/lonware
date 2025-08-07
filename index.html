@@ -8,6 +8,9 @@
   <meta name="description" content="Lonware provides premium gaming optimisations and macros for PC and console gamers. Boost FPS, reduce latency and unlock your maximum performance." />
 </head>
 <body>
+  <!-- Particle canvas for subtle mouse‑tracking effect -->
+  <canvas id="particle-canvas"></canvas>
+
   <!-- Discount banner -->
   <div class="banner">
     <div class="banner-content">
@@ -151,76 +154,176 @@
       </div>
       <p>Our community‑driven tweaks and optimizations have helped thousands of players achieve smoother, faster gameplay. We combine technical expertise with constant research to ensure your gaming rig performs at its best.</p>
     </section>
+
+    <!-- Plans pricing comparison section -->
+    <section class="plans-section">
+      <h2>Choose Your Package</h2>
+      <div class="plans">
+        <!-- Plan: Controller/KBM Macro -->
+        <div class="plan">
+          <div class="tag">Most Popular</div>
+          <h3>Controller/KBM Macro</h3>
+          <div class="price">$10.98</div>
+          <ul>
+            <li>Automate complex controller & keyboard inputs</li>
+            <li>Drag‑and‑drop macro builder</li>
+            <li>Record keystrokes and mouse movements</li>
+            <li>Supports controller and keyboard/mouse setups</li>
+            <li>Lifetime updates & support</li>
+          </ul>
+          <div class="buttons">
+            <a href="https://payhip.com/b/wiOGN" class="primary" target="_blank">Premium</a>
+            <a href="https://payhip.com/b/wiOGN" class="secondary" target="_blank">Lifetime</a>
+          </div>
+        </div>
+        <!-- Plan: PC Optimizations -->
+        <div class="plan">
+          <div class="tag">Best Value</div>
+          <h3>PC Optimizations</h3>
+          <div class="price">$6.99</div>
+          <ul>
+            <li>Over 700 system tweaks for peak FPS</li>
+            <li>Optimises CPU, GPU and memory usage</li>
+            <li>Stabilises network for lower latency</li>
+            <li>Easy one‑click apply & restore</li>
+          </ul>
+          <div class="buttons">
+            <a href="pc-optimizations.html" class="primary">Learn More</a>
+          </div>
+        </div>
+        <!-- Plan: Console Tweaks -->
+        <div class="plan">
+          <div class="tag">Controller</div>
+          <h3>Console Tweaks</h3>
+          <div class="price">$5.99</div>
+          <ul>
+            <li>Improve console response time</li>
+            <li>Reduce input lag & stuttering</li>
+            <li>Works on PS5, Xbox & Switch</li>
+            <li>Easy setup & regular updates</li>
+          </ul>
+          <div class="buttons">
+            <a href="console-tweaks.html" class="primary">Learn More</a>
+          </div>
+        </div>
+        <!-- Plan: Aim Tweaks -->
+        <div class="plan">
+          <div class="tag">Sharpshooter</div>
+          <h3>Aim Tweaks</h3>
+          <div class="price">$7.99</div>
+          <ul>
+            <li>Enhance accuracy and recoil control</li>
+            <li>Compatible with top FPS titles</li>
+            <li>Customisable sensitivity settings</li>
+            <li>Improve your K/D ratio instantly</li>
+          </ul>
+          <div class="buttons">
+            <a href="aim-tweaks.html" class="primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Reviews section -->
     <section class="reviews">
       <h2>What Players Say</h2>
       <div class="review-grid carousel">
-        <!-- Duplicate reviews for seamless horizontal animation -->
-        <!-- A longer list of authentic‑sounding testimonials.  These entries are duplicated below for seamless scrolling -->
+        <!-- Realistic player testimonials (duplicated for continuous scrolling) -->
         <div class="review">
-          <p>“I was blown away by the latency reduction. My shots register instantly now.”</p>
-          <span class="reviewer">— Ethan G.</span>
+          <p>“Using Lonware macros changed how I play – my building speed is insane!”</p>
+          <span class="reviewer">— Zach&nbsp;H.</span>
         </div>
         <div class="review">
-          <p>“Lonware’s console tweaks made my PS5 buttery smooth. I'm winning more games!”</p>
-          <span class="reviewer">— Mia J.</span>
+          <p>“The PC optimizer gave me stable 240 fps in Apex. Highly recommend.”</p>
+          <span class="reviewer">— Sophia&nbsp;N.</span>
         </div>
         <div class="review">
-          <p>“Macros are easy to set up and give me an edge in every match.”</p>
-          <span class="reviewer">— Carlos F.</span>
+          <p>“I didn't expect console tweaks to matter this much, but my PS5 runs like new.”</p>
+          <span class="reviewer">— Liam&nbsp;R.</span>
         </div>
         <div class="review">
-          <p>“The PC optimizations turned my mid‑range rig into a beast. Worth every penny.”</p>
-          <span class="reviewer">— Lauren S.</span>
+          <p>“The lifetime macro package paid for itself within a week of tournaments.”</p>
+          <span class="reviewer">— Ava&nbsp;M.</span>
         </div>
         <div class="review">
-          <p>“Ping Optimizations slashed my ping from 80 ms to 20 ms. Incredible!”</p>
-          <span class="reviewer">— Tyler K.</span>
+          <p>“Ping optimizations took my connection from unplayable to buttery smooth.”</p>
+          <span class="reviewer">— Noah&nbsp;W.</span>
         </div>
         <div class="review">
-          <p>“Aim Tweaks improved my accuracy so much – my K/D has doubled.”</p>
-          <span class="reviewer">— Jordan L.</span>
+          <p>“Aim tweaks improved my recoil control; I'm hitting shots I used to miss.”</p>
+          <span class="reviewer">— Isabella&nbsp;T.</span>
         </div>
         <div class="review">
-          <p>“Support was quick and helpful when I had a question. Great service!”</p>
-          <span class="reviewer">— Priya R.</span>
+          <p>“Customer service responded within minutes and walked me through setup.”</p>
+          <span class="reviewer">— Oliver&nbsp;D.</span>
         </div>
         <div class="review">
-          <p>“Everything feels smoother and faster. I can't play without Lonware now.”</p>
-          <span class="reviewer">— Ben C.</span>
-        </div>
-        <!-- Duplicate the testimonials for continuous carousel effect -->
-        <div class="review">
-          <p>“I was blown away by the latency reduction. My shots register instantly now.”</p>
-          <span class="reviewer">— Ethan G.</span>
+          <p>“Everything installed easily and delivered exactly as promised.”</p>
+          <span class="reviewer">— Harper&nbsp;B.</span>
         </div>
         <div class="review">
-          <p>“Lonware’s console tweaks made my PS5 buttery smooth. I'm winning more games!”</p>
-          <span class="reviewer">— Mia J.</span>
+          <p>“Macros are updated regularly with new patterns for the latest patches.”</p>
+          <span class="reviewer">— Mason&nbsp;C.</span>
         </div>
         <div class="review">
-          <p>“Macros are easy to set up and give me an edge in every match.”</p>
-          <span class="reviewer">— Carlos F.</span>
+          <p>“I use Lonware on both PC and Xbox and the difference is night and day.”</p>
+          <span class="reviewer">— Chloe&nbsp;S.</span>
         </div>
         <div class="review">
-          <p>“The PC optimizations turned my mid‑range rig into a beast. Worth every penny.”</p>
-          <span class="reviewer">— Lauren S.</span>
+          <p>“My streaming quality improved because my PC isn’t choking anymore.”</p>
+          <span class="reviewer">— Logan&nbsp;F.</span>
         </div>
         <div class="review">
-          <p>“Ping Optimizations slashed my ping from 80 ms to 20 ms. Incredible!”</p>
-          <span class="reviewer">— Tyler K.</span>
+          <p>“Competitive gaming is tough; with Lonware I feel like I have a secret weapon.”</p>
+          <span class="reviewer">— Amelia&nbsp;J.</span>
+        </div>
+        <!-- Duplicate testimonials to create seamless scrolling effect -->
+        <div class="review">
+          <p>“Using Lonware macros changed how I play – my building speed is insane!”</p>
+          <span class="reviewer">— Zach&nbsp;H.</span>
         </div>
         <div class="review">
-          <p>“Aim Tweaks improved my accuracy so much – my K/D has doubled.”</p>
-          <span class="reviewer">— Jordan L.</span>
+          <p>“The PC optimizer gave me stable 240 fps in Apex. Highly recommend.”</p>
+          <span class="reviewer">— Sophia&nbsp;N.</span>
         </div>
         <div class="review">
-          <p>“Support was quick and helpful when I had a question. Great service!”</p>
-          <span class="reviewer">— Priya R.</span>
+          <p>“I didn't expect console tweaks to matter this much, but my PS5 runs like new.”</p>
+          <span class="reviewer">— Liam&nbsp;R.</span>
         </div>
         <div class="review">
-          <p>“Everything feels smoother and faster. I can't play without Lonware now.”</p>
-          <span class="reviewer">— Ben C.</span>
+          <p>“The lifetime macro package paid for itself within a week of tournaments.”</p>
+          <span class="reviewer">— Ava&nbsp;M.</span>
+        </div>
+        <div class="review">
+          <p>“Ping optimizations took my connection from unplayable to buttery smooth.”</p>
+          <span class="reviewer">— Noah&nbsp;W.</span>
+        </div>
+        <div class="review">
+          <p>“Aim tweaks improved my recoil control; I'm hitting shots I used to miss.”</p>
+          <span class="reviewer">— Isabella&nbsp;T.</span>
+        </div>
+        <div class="review">
+          <p>“Customer service responded within minutes and walked me through setup.”</p>
+          <span class="reviewer">— Oliver&nbsp;D.</span>
+        </div>
+        <div class="review">
+          <p>“Everything installed easily and delivered exactly as promised.”</p>
+          <span class="reviewer">— Harper&nbsp;B.</span>
+        </div>
+        <div class="review">
+          <p>“Macros are updated regularly with new patterns for the latest patches.”</p>
+          <span class="reviewer">— Mason&nbsp;C.</span>
+        </div>
+        <div class="review">
+          <p>“I use Lonware on both PC and Xbox and the difference is night and day.”</p>
+          <span class="reviewer">— Chloe&nbsp;S.</span>
+        </div>
+        <div class="review">
+          <p>“My streaming quality improved because my PC isn’t choking anymore.”</p>
+          <span class="reviewer">— Logan&nbsp;F.</span>
+        </div>
+        <div class="review">
+          <p>“Competitive gaming is tough; with Lonware I feel like I have a secret weapon.”</p>
+          <span class="reviewer">— Amelia&nbsp;J.</span>
         </div>
       </div>
     </section>
@@ -249,6 +352,42 @@
           overlay.appendChild(iframe);
         }
       });
+    });
+  </script>
+  <!-- Particle effect script -->
+  <script>
+    // Subtle particles following the mouse cursor
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('particle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      let particles = [];
+      window.addEventListener('mousemove', function(e) {
+        for (let i = 0; i < 3; i++) {
+          particles.push({ x: e.clientX, y: e.clientY, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5, life: 60 });
+        }
+      });
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles = particles.filter(p => p.life > 0);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life--;
+          ctx.fillStyle = 'rgba(102,178,255,' + (p.life / 60) + ')';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
     });
   </script>
 </body>

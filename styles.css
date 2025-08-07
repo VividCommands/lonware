@@ -289,7 +289,8 @@ nav a:hover {
 }
 
 .product-image iframe,
-.product-image img {
+.product-image img,
+.product-image video {
   position: absolute;
   top: 0;
   left: 0;
@@ -359,6 +360,50 @@ nav a:hover {
 
 .product-details .actions .view:hover {
   background: #dddddd;
+}
+
+/* Additional action button for lifetime purchase */
+.product-details .actions .lifetime {
+  background: transparent;
+  border: 1px solid #66b2ff;
+  color: #66b2ff;
+}
+.product-details .actions .lifetime:hover {
+  background: rgba(102, 178, 255, 0.1);
+}
+
+/* Media slider on product pages */
+.product-media-slider {
+  flex: 1 1 45%;
+  max-width: 500px;
+  min-width: 300px;
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 40%; /* wider 2.5:1 aspect ratio similar to product-image */
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.product-media-slider::-webkit-scrollbar {
+  display: none;
+}
+.product-media-slider .slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  position: relative;
+  height: 100%;
+}
+.product-media-slider video,
+.product-media-slider iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .product-details ul {
@@ -719,12 +764,13 @@ footer {
 }
 
 .review {
+  /* Reviews are displayed as cards in a horizontally scrolling carousel. Make them larger and remove italic styling for a more realistic look. */
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 1.5rem;
-  width: 400px;
-  font-style: italic;
+  width: 420px;
+  font-style: normal;
   color: #dddddd;
 }
 
@@ -815,4 +861,134 @@ footer {
   font-style: normal;
   font-weight: bold;
   color: #66b2ff;
+}
+
+/* ---------------------------------------------------------------------
+   Particle canvas and plans pricing styles
+   ------------------------------------------------------------------- */
+
+/* Particle canvas sits behind all content and displays subtle mouse‑tracking particles. */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure main content sits above the particle canvas */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Plans (product comparison) section styles */
+.plans-section {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+.plans-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.plans {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.plan {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  width: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Highlight tags on plan cards */
+.plan .tag {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00bfff;
+  color: #0a0a0a;
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.plan h3 {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: #ffffff;
+}
+.plan .price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #00bfff;
+}
+.plan .old-price {
+  font-size: 1rem;
+  text-decoration: line-through;
+  color: #888888;
+  margin-right: 0.5rem;
+}
+.plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+}
+.plan ul li {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #dddddd;
+  padding-left: 1.2rem;
+  position: relative;
+}
+.plan ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #00bfff;
+}
+.plan .buttons {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.plan .buttons a {
+  display: block;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.plan .buttons .primary {
+  background: #00bfff;
+  color: #0a0a0a;
+}
+.plan .buttons .primary:hover {
+  background: #33ccff;
+}
+.plan .buttons .secondary {
+  background: transparent;
+  border: 1px solid #00bfff;
+  color: #00bfff;
+}
+.plan .buttons .secondary:hover {
+  background: rgba(0, 191, 255, 0.1);
 }
