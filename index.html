@@ -338,6 +338,11 @@
            * object‑fit: cover (set in the CSS).
            */
           overlay.appendChild(video);
+          // Ensure the preview actually starts playing.  Some browsers
+          // require an explicit play() call on dynamically created video
+          // elements even when the autoplay attribute is present.  We catch
+          // any errors silently because some browsers block autoplay.
+          video.play().catch(() => {});
         } else if (videoId && overlay) {
           // Create an iframe for YouTube preview
           const iframe = document.createElement('iframe');
