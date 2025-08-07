@@ -177,8 +177,10 @@
             <li>Lifetime updates & support</li>
           </ul>
           <div class="buttons">
-            <a href="https://payhip.com/b/wiOGN" class="primary" target="_blank">Buy Now</a>
-            <a href="https://payhip.com/b/wiOGN" class="secondary" target="_blank">Lifetime</a>
+            <!-- Primary purchase action: simple "Buy" takes user directly to checkout -->
+            <a href="https://payhip.com/b/wiOGN" class="primary" target="_blank">Buy</a>
+            <!-- Secondary button offers a premium version instead of a lifetime option -->
+            <a href="https://payhip.com/b/wiOGN" class="secondary" target="_blank">Premium</a>
           </div>
         </div>
         <!-- Plan: PC Optimizations -->
@@ -357,6 +359,8 @@
           video.style.width = '100%';
           video.style.height = '100%';
           video.style.objectFit = 'cover';
+          // Centre the preview video to ensure even cropping on all sides
+          video.style.objectPosition = 'center';
           overlay.appendChild(video);
         } else if (videoId && overlay) {
           // Create an iframe for YouTube preview
