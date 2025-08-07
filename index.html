@@ -23,6 +23,7 @@
     <a href="index.html" class="logo"><img src="logo.png" alt="Lonware logo" class="logo-icon" /> Lonware</a>
     <nav>
       <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
@@ -356,8 +357,8 @@
   </script>
   <!-- Particle effect script -->
   <script>
-    // Subtle particles following the mouse cursor
-    document.addEventListener('DOMContentLoaded', function() {
+    // Floating particle effect: slow, pulsating dots that gravitate toward the mouse.
+    document.addEventListener('DOMContentLoaded', () => {
       const canvas = document.getElementById('particle-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
@@ -365,29 +366,64 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
-      window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
-      let particles = [];
-      window.addEventListener('mousemove', function(e) {
-        for (let i = 0; i < 3; i++) {
-          particles.push({ x: e.clientX, y: e.clientY, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5, life: 60 });
-        }
+      window.addEventListener('resize', resizeCanvas);
+      // create a fixed number of particles with random positions and velocities
+      const particles = [];
+      // Number of particles – lower to keep the effect subtle
+      const NUM = 60;
+      for (let i = 0; i < NUM; i++) {
+        particles.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          baseSize: 1 + Math.random() * 2,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+      const mouse = { x: null, y: null };
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
       });
-      function animate() {
+      function update() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles = particles.filter(p => p.life > 0);
-        particles.forEach(p => {
+        const time = Date.now();
+        particles.forEach((p, idx) => {
+          // natural drift
           p.x += p.vx;
           p.y += p.vy;
-          p.life--;
-          ctx.fillStyle = 'rgba(102,178,255,' + (p.life / 60) + ')';
+          // wrap around edges
+          if (p.x > canvas.width) p.x = 0;
+          if (p.x < 0) p.x = canvas.width;
+          if (p.y > canvas.height) p.y = 0;
+          if (p.y < 0) p.y = canvas.height;
+          // attraction to mouse if within a certain radius
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = mouse.x - p.x;
+            const dy = mouse.y - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 150) {
+              const force = (150 - dist) / 150 * 0.05;
+              p.vx += (dx / dist) * force;
+              p.vy += (dy / dist) * force;
+            }
+          }
+          // slight damping to keep movement slow
+          p.vx *= 0.98;
+          p.vy *= 0.98;
+          // pulsate size
+          const size = p.baseSize + Math.sin(time / 600 + p.phase) * 0.5;
+          // Use semi‑transparent white for a soft glow
+          ctx.fillStyle = 'rgba(255,255,255,0.5)';
           ctx.beginPath();
-          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
           ctx.fill();
         });
-        requestAnimationFrame(animate);
+        requestAnimationFrame(update);
       }
-      animate();
+      update();
     });
   </script>
 </body>
