@@ -33,7 +33,6 @@ body {
   color: var(--text-col);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
- 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -69,8 +68,7 @@ body::after {
 }
 
 @keyframes moveDots {
-  0
-  % {
+  0% {
     transform: translate(0, 0);
   }
   100% {
@@ -402,7 +400,10 @@ nav a:hover {
   position: relative;
   width: 100%;
   height: 0;
-  padding-top: 40%; /* wider 2.5:1 aspect ratio similar to product-image */
+  /* Use a 16:9 aspect ratio for preview media to ensure more of the video is visible
+     while still cropping evenly on the sides. This helps pre‑videos like macros
+     and PC optimisations appear correctly without cutting off important parts. */
+  padding-top: 56.25%;
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -455,6 +456,15 @@ nav a:hover {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+}
+
+/* Ensure product videos and iframes inside the plain product-image container
+   also fill their container while cropping evenly. Without this, some previews
+   may appear letterboxed or off‑centre. */
+.product-image video,
+.product-image iframe {
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Crop video to fill its slide for a better preview while keeping quality */
@@ -805,7 +815,8 @@ footer {
   flex-wrap: wrap;
   /* Increase spacing between review cards for better readability */
   /* Space them further apart so each card has room to breathe */
-  gap: 6rem;
+  /* Increase gap further so cards have more breathing room */
+  gap: 8rem;
 }
 
 /* When reviews are set up as a carousel, animate them horizontally */
@@ -832,8 +843,9 @@ footer {
   /* Provide ample padding for readability */
   padding: 1.2rem 1.6rem;
   /* Make cards wider and slightly shorter for a more proportionate look */
-  width: 480px;
-  min-height: 280px;
+  /* Make review cards wider and slightly taller for a more balanced, square look */
+  width: 520px;
+  min-height: 300px;
   height: auto;
   font-style: normal;
   color: #dddddd;
@@ -863,6 +875,15 @@ footer {
   50% {
     box-shadow: 0 0 20px rgba(102, 178, 255, 0.8), 0 0 40px rgba(102, 178, 255, 0.6);
   }
+}
+
+/* Ensure video overlays within product cards maintain a proper crop */
+.card .video-overlay video,
+.card .video-overlay iframe {
+  /* Fill the overlay area while cropping excess content */
+  object-fit: cover;
+  /* Centre the video horizontally and vertically */
+  object-position: center;
 }
 
 /* Prevent horizontal scrolling on any device */
@@ -1118,16 +1139,4 @@ nav a.cta {
 nav a.cta:hover {
   box-shadow: 0 4px 12px rgba(0, 188, 212, 0.6);
   transform: translateY(-2px);
-}
-
-/* Override product media slider aspect ratio and crop product videos */
-.product-media-slider {
-  padding-top: 56.25%;
-}
-
-/* Ensure videos and iframes within the standard product-image container fill and crop evenly */
-.product-image video,
-.product-image iframe {
-  object-fit: cover;
-  object-position: center;
 }
