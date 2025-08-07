@@ -100,8 +100,9 @@ body::after {
 .banner {
   background: rgba(255, 255, 255, 0.9);
   color: #000000;
-  font-size: 0.9rem;
-  padding: 0.6rem 1.2rem;
+  /* Reduce the font size and vertical padding further to create a thinner announcement bar */
+  font-size: 0.7rem;
+  padding: 0.15rem 1rem;
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -402,8 +403,8 @@ nav a:hover {
   z-index: 10;
 }
 
-.reviews-slider .prev-review { left: -45px; }
-.reviews-slider .next-review { right: -45px; }
+.reviews-slider .prev-review { left: 0.5rem; }
+.reviews-slider .next-review { right: 0.5rem; }
 
 @media (max-width: 768px) {
   .reviews-slider .prev-review,
