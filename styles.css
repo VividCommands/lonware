@@ -822,11 +822,13 @@ footer {
   /* Give the cards a more square profile with generous padding. */
   padding: 1.2rem 1.6rem;
   width: 320px;
-  height: 220px;
+  /* Allow the testimonial to expand vertically */
+  min-height: 220px;
+  height: auto;
   font-style: normal;
   color: #dddddd;
-  /* Hide overflowing text and allow scrolling within the card if necessary. */
-  overflow-y: auto;
+  /* Show the full testimonial text without internal scrolling */
+  overflow-y: visible;
 }
 
 /* Sliding animation for banner text */
@@ -851,6 +853,11 @@ footer {
   50% {
     box-shadow: 0 0 20px rgba(102, 178, 255, 0.8), 0 0 40px rgba(102, 178, 255, 0.6);
   }
+}
+
+/* Prevent horizontal scrolling on any device */
+html, body {
+  overflow-x: hidden;
 }
 
 /* Rotating neon cube hero art */
