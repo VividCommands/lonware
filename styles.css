@@ -455,6 +455,13 @@ nav a:hover {
   border-radius: 10px;
 }
 
+/* Crop video to fill its slide for a better preview while keeping quality */
+.product-media-slider video {
+  object-fit: cover;
+  /* Centre the video within its container so cropping is even on all sides */
+  object-position: center;
+}
+
 .product-details ul {
   margin-top: 1rem;
   padding-left: 1.2rem;
@@ -795,14 +802,15 @@ footer {
   justify-content: center;
   flex-wrap: wrap;
   /* Increase spacing between review cards for better readability */
-  gap: 3rem;
+  /* Space them further apart so each card has room to breathe */
+  gap: 5rem;
 }
 
 /* When reviews are set up as a carousel, animate them horizontally */
 .review-grid.carousel {
   flex-wrap: nowrap;
   /* Speed up the scrolling animation so cards move across the screen faster */
-  animation: scrollReviews 30s linear infinite;
+  animation: scrollReviews 35s linear infinite;
 }
 
 @keyframes scrollReviews {
@@ -815,15 +823,16 @@ footer {
 }
 
 .review {
-  /* Reviews are displayed as cards in a horizontally scrolling carousel.  */
+  /* Reviews are displayed as cards in a horizontally scrolling carousel. */
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  /* Give the cards a more square profile with generous padding. */
+  /* Provide ample padding for readability */
   padding: 1.2rem 1.6rem;
-  width: 320px;
-  /* Allow the testimonial to expand vertically */
-  min-height: 220px;
+  /* Make cards larger and more square for better legibility */
+  /* Increase the width and height to create a more balanced, square card */
+  width: 420px;
+  min-height: 350px;
   height: auto;
   font-style: normal;
   color: #dddddd;
