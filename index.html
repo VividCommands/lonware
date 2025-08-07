@@ -195,7 +195,8 @@
             <li>Easy one‑click apply & restore</li>
           </ul>
           <div class="buttons">
-            <a href="https://payhip.com/buy?link=5OQa6" class="primary" target="_blank">Buy Now</a>
+            <!-- All purchase buttons should lead directly to checkout on Payhip -->
+            <a href="https://payhip.com/buy?link=wiOGN" class="primary" target="_blank">Buy Now</a>
           </div>
         </div>
         <!-- Plan: Console Tweaks -->
@@ -211,7 +212,8 @@
           </ul>
           <div class="buttons">
             <!-- Direct users straight to Payhip checkout for Console Tweaks -->
-            <a href="https://payhip.com/b/6I4sQ" class="primary" target="_blank">Buy Now</a>
+            <!-- Use the same direct checkout link for every product -->
+            <a href="https://payhip.com/buy?link=wiOGN" class="primary" target="_blank">Buy Now</a>
           </div>
         </div>
         <!-- Plan: Aim Tweaks -->
@@ -227,7 +229,7 @@
           </ul>
           <div class="buttons">
             <!-- Direct users straight to Payhip checkout for Aim Tweaks -->
-            <a href="https://payhip.com/b/djTKL" class="primary" target="_blank">Buy Now</a>
+            <a href="https://payhip.com/buy?link=wiOGN" class="primary" target="_blank">Buy Now</a>
           </div>
         </div>
       </div>
@@ -237,55 +239,6 @@
       <h2>What Players Say</h2>
       <div class="review-grid carousel">
         <!-- Realistic player testimonials (duplicated for continuous scrolling) -->
-        <div class="review">
-          <p>“Using Lonware macros changed how I play – my building speed is insane!”</p>
-          <span class="reviewer">— Zach&nbsp;H.</span>
-        </div>
-        <div class="review">
-          <p>“The PC optimizer gave me stable 240 fps in Apex. Highly recommend.”</p>
-          <span class="reviewer">— Sophia&nbsp;N.</span>
-        </div>
-        <div class="review">
-          <p>“I didn't expect console tweaks to matter this much, but my PS5 runs like new.”</p>
-          <span class="reviewer">— Liam&nbsp;R.</span>
-        </div>
-        <div class="review">
-          <p>“The lifetime macro package paid for itself within a week of tournaments.”</p>
-          <span class="reviewer">— Ava&nbsp;M.</span>
-        </div>
-        <div class="review">
-          <p>“Ping optimizations took my connection from unplayable to buttery smooth.”</p>
-          <span class="reviewer">— Noah&nbsp;W.</span>
-        </div>
-        <div class="review">
-          <p>“Aim tweaks improved my recoil control; I'm hitting shots I used to miss.”</p>
-          <span class="reviewer">— Isabella&nbsp;T.</span>
-        </div>
-        <div class="review">
-          <p>“Customer service responded within minutes and walked me through setup.”</p>
-          <span class="reviewer">— Oliver&nbsp;D.</span>
-        </div>
-        <div class="review">
-          <p>“Everything installed easily and delivered exactly as promised.”</p>
-          <span class="reviewer">— Harper&nbsp;B.</span>
-        </div>
-        <div class="review">
-          <p>“Macros are updated regularly with new patterns for the latest patches.”</p>
-          <span class="reviewer">— Mason&nbsp;C.</span>
-        </div>
-        <div class="review">
-          <p>“I use Lonware on both PC and Xbox and the difference is night and day.”</p>
-          <span class="reviewer">— Chloe&nbsp;S.</span>
-        </div>
-        <div class="review">
-          <p>“My streaming quality improved because my PC isn’t choking anymore.”</p>
-          <span class="reviewer">— Logan&nbsp;F.</span>
-        </div>
-        <div class="review">
-          <p>“Competitive gaming is tough; with Lonware I feel like I have a secret weapon.”</p>
-          <span class="reviewer">— Amelia&nbsp;J.</span>
-        </div>
-        <!-- Duplicate testimonials to create seamless scrolling effect -->
         <div class="review">
           <p>“Using Lonware macros changed how I play – my building speed is insane!”</p>
           <span class="reviewer">— Zach&nbsp;H.</span>
@@ -371,7 +324,9 @@
            * the overlay bounds.  Other product videos retain their full size.
            */
           if (videoSrc && videoSrc.includes('macro')) {
-            video.style.transform = 'scale(0.8)';
+            // Scale down the macro preview a bit more so the entire app is visible
+            // A lower scale value zooms out the video so more of the frame is visible.
+            video.style.transform = 'scale(0.65)';
             video.style.transformOrigin = 'center center';
           }
           overlay.appendChild(video);
