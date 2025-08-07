@@ -387,6 +387,35 @@ nav a:hover {
   border-radius: 10px;
   overflow: hidden;
 }
+
+/* Controls for product media slider */
+.slider-controls {
+  position: relative;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none; /* allow clicks only on buttons */
+}
+.slider-controls button {
+  pointer-events: auto;
+  background: rgba(0, 191, 255, 0.4);
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.slider-controls button:hover {
+  background: rgba(0, 191, 255, 0.6);
+}
 .product-media-slider::-webkit-scrollbar {
   display: none;
 }
@@ -768,10 +797,14 @@ footer {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 1.5rem;
-  width: 420px;
+  /* Reduce the padding and increase width to make review cards wider but shorter. */
+  padding: 1rem 1.25rem;
+  width: 450px;
   font-style: normal;
   color: #dddddd;
+  /* Limit the maximum height so the cards aren’t overly tall. */
+  max-height: 180px;
+  overflow-y: auto;
 }
 
 /* Sliding animation for banner text */
@@ -893,13 +926,15 @@ main {
   font-size: 2rem;
   margin-bottom: 2rem;
 }
-.plans {
+.plans,
+.plans-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
 }
-.plan {
+.plan,
+.plan-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
@@ -909,9 +944,16 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add a subtle glow on hover for plan cards */
+.plan-card:hover {
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
 }
 /* Highlight tags on plan cards */
-.plan .tag {
+.plan .tag,
+.plan-card .tag {
   position: absolute;
   top: -0.75rem;
   left: 50%;
@@ -924,51 +966,59 @@ main {
   text-transform: uppercase;
   font-weight: bold;
 }
-.plan h3 {
+.plan h3,
+.plan-card h3 {
   margin-top: 1rem;
   font-size: 1.4rem;
   color: #ffffff;
 }
-.plan .price {
+.plan .price,
+.plan-card .price {
   font-size: 2rem;
   font-weight: bold;
   margin: 0.5rem 0;
   color: #00bfff;
 }
-.plan .old-price {
+.plan .old-price,
+.plan-card .old-price {
   font-size: 1rem;
   text-decoration: line-through;
   color: #888888;
   margin-right: 0.5rem;
 }
-.plan ul {
+.plan ul,
+.plan-card ul {
   list-style: none;
   padding: 0;
   margin: 1rem 0;
   text-align: left;
 }
-.plan ul li {
+.plan ul li,
+.plan-card ul li {
   margin: 0.5rem 0;
   font-size: 0.95rem;
   color: #dddddd;
   padding-left: 1.2rem;
   position: relative;
 }
-.plan ul li::before {
+.plan ul li::before,
+.plan-card ul li::before {
   content: '✓';
   position: absolute;
   left: 0;
   top: 0;
   color: #00bfff;
 }
-.plan .buttons {
+.plan .buttons,
+.plan-card .buttons {
   margin-top: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.plan .buttons a {
+.plan .buttons a,
+.plan-card .buttons a {
   display: block;
   text-align: center;
   padding: 0.75rem 1rem;
@@ -977,18 +1027,22 @@ main {
   font-weight: bold;
   transition: background 0.2s;
 }
-.plan .buttons .primary {
+.plan .buttons .primary,
+.plan-card .buttons .primary {
   background: #00bfff;
   color: #0a0a0a;
 }
-.plan .buttons .primary:hover {
+.plan .buttons .primary:hover,
+.plan-card .buttons .primary:hover {
   background: #33ccff;
 }
-.plan .buttons .secondary {
+.plan .buttons .secondary,
+.plan-card .buttons .secondary {
   background: transparent;
   border: 1px solid #00bfff;
   color: #00bfff;
 }
-.plan .buttons .secondary:hover {
+.plan .buttons .secondary:hover,
+.plan-card .buttons .secondary:hover {
   background: rgba(0, 191, 255, 0.1);
 }
