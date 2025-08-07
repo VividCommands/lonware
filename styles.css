@@ -353,6 +353,17 @@ nav a:hover {
   background: #88c7ff;
 }
 
+/* Styling for the secondary Learn More button on product pages */
+.product-details .actions .learn-more {
+  background: transparent;
+  border: 1px solid #66b2ff;
+  color: #66b2ff;
+}
+
+.product-details .actions .learn-more:hover {
+  background: rgba(102, 178, 255, 0.1);
+}
+
 .product-details .actions .view {
   background: #ffffff;
   color: #000000;
@@ -360,6 +371,15 @@ nav a:hover {
 
 .product-details .actions .view:hover {
   background: #dddddd;
+}
+
+/* Subtitles for product page headings */
+.subtitle {
+  color: #b0c5e7;
+  font-size: 1rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
 }
 
 /* Additional action button for lifetime purchase */
@@ -780,7 +800,8 @@ footer {
 /* When reviews are set up as a carousel, animate them horizontally */
 .review-grid.carousel {
   flex-wrap: nowrap;
-  animation: scrollReviews 80s linear infinite;
+  /* Increase the scroll speed so testimonials move across the screen a little faster. */
+  animation: scrollReviews 40s linear infinite;
 }
 
 @keyframes scrollReviews {
@@ -793,17 +814,17 @@ footer {
 }
 
 .review {
-  /* Reviews are displayed as cards in a horizontally scrolling carousel. Make them larger and remove italic styling for a more realistic look. */
+  /* Reviews are displayed as cards in a horizontally scrolling carousel.  */
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  /* Reduce the padding and increase width to make review cards wider but shorter. */
-  padding: 1rem 1.25rem;
-  width: 450px;
+  /* Give the cards a more square profile with generous padding. */
+  padding: 1rem 1.5rem;
+  width: 350px;
+  height: 200px;
   font-style: normal;
   color: #dddddd;
-  /* Limit the maximum height so the cards aren’t overly tall. */
-  max-height: 180px;
+  /* Hide overflowing text and allow scrolling within the card if necessary. */
   overflow-y: auto;
 }
 
@@ -1045,4 +1066,35 @@ main {
 .plan .buttons .secondary:hover,
 .plan-card .buttons .secondary:hover {
   background: rgba(0, 191, 255, 0.1);
+}
+
+/* Shop hero alignment */
+.shop-hero {
+  text-align: center;
+  margin: 3rem auto 2rem;
+  max-width: 700px;
+}
+
+/* Ensure the plans grid doesn’t collide with the hero text */
+.plans-grid {
+  margin-top: 1rem;
+}
+
+/*
+ * Navigation CTA styling
+ * Highlight the Shop link in the navigation bar so it stands out as a call‑to‑action.
+ */
+nav a.cta {
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-left: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+nav a.cta:hover {
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.6);
+  transform: translateY(-2px);
 }
