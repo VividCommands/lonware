@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lonware – Gaming Optimisations</title>
   <link rel="stylesheet" href="styles.css" />
+  <!-- Favicon for browser tab -->
+  <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
   <meta name="description" content="Lonware provides premium gaming optimisations and macros for PC and console gamers. Boost FPS, reduce latency and unlock your maximum performance." />
 </head>
 <body>
@@ -84,7 +86,7 @@
     <!-- Product grid section -->
     <section class="product-grid">
       <!-- Product card: Controller/KBM Macro (now first) -->
-      <a class="card has-video" href="controller-macro.html" data-video-id="JDGbfd0nYDc">
+      <a class="card has-video" href="controller-macro.html" data-video-src="macro.mp4">
         <img src="macro.png" alt="Controller/KBM Macro" class="card-image" />
         <div class="video-overlay"></div>
         <div class="card-content">
@@ -115,7 +117,7 @@
         </div>
       </a>
       <!-- Product card: PC Optimizations -->
-      <a class="card has-video" href="pc-optimizations.html" data-video-id="DZIQNHpkyBM">
+      <a class="card has-video" href="pc-optimizations.html" data-video-src="pc_opimiz.mp4">
         <img src="pc.png" alt="PC Optimizations" class="card-image" />
         <div class="video-overlay"></div>
         <div class="card-content">
@@ -173,7 +175,7 @@
             <li>Lifetime updates & support</li>
           </ul>
           <div class="buttons">
-            <a href="https://payhip.com/b/wiOGN" class="primary" target="_blank">Premium</a>
+            <a href="https://payhip.com/b/wiOGN" class="primary" target="_blank">Buy Now</a>
             <a href="https://payhip.com/b/wiOGN" class="secondary" target="_blank">Lifetime</a>
           </div>
         </div>
@@ -189,7 +191,7 @@
             <li>Easy one‑click apply & restore</li>
           </ul>
           <div class="buttons">
-            <a href="pc-optimizations.html" class="primary">Learn More</a>
+            <a href="https://payhip.com/b/5OQa6" class="primary" target="_blank">Buy Now</a>
           </div>
         </div>
         <!-- Plan: Console Tweaks -->
@@ -204,7 +206,7 @@
             <li>Easy setup & regular updates</li>
           </ul>
           <div class="buttons">
-            <a href="console-tweaks.html" class="primary">Learn More</a>
+            <a href="console-tweaks.html" class="primary">Buy Now</a>
           </div>
         </div>
         <!-- Plan: Aim Tweaks -->
@@ -219,7 +221,7 @@
             <li>Improve your K/D ratio instantly</li>
           </ul>
           <div class="buttons">
-            <a href="aim-tweaks.html" class="primary">Learn More</a>
+            <a href="aim-tweaks.html" class="primary">Buy Now</a>
           </div>
         </div>
       </div>
@@ -335,13 +337,26 @@
 
   <!-- Video preview script -->
   <script>
-    // Add video overlays to cards with data-video-id
+    // Add video overlays to cards that specify a local video (data-video-src) or a YouTube ID (data-video-id)
     document.addEventListener('DOMContentLoaded', function() {
       const videoCards = document.querySelectorAll('.card.has-video');
       videoCards.forEach(card => {
+        const videoSrc = card.getAttribute('data-video-src');
         const videoId = card.getAttribute('data-video-id');
         const overlay = card.querySelector('.video-overlay');
-        if (videoId && overlay) {
+        if (videoSrc && overlay) {
+          // Use a local video preview for product cards
+          const video = document.createElement('video');
+          video.src = videoSrc;
+          video.autoplay = true;
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          video.style.width = '100%';
+          video.style.height = '100%';
+          video.style.objectFit = 'cover';
+          overlay.appendChild(video);
+        } else if (videoId && overlay) {
           // Create an iframe for YouTube preview
           const iframe = document.createElement('iframe');
           // Use YouTube parameters to hide controls, branding and related videos
