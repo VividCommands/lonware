@@ -210,7 +210,8 @@
             <li>Easy setup & regular updates</li>
           </ul>
           <div class="buttons">
-            <a href="console-tweaks.html" class="primary">Buy Now</a>
+            <!-- Direct users straight to Payhip checkout for Console Tweaks -->
+            <a href="https://payhip.com/b/6I4sQ" class="primary" target="_blank">Buy Now</a>
           </div>
         </div>
         <!-- Plan: Aim Tweaks -->
@@ -225,7 +226,8 @@
             <li>Improve your K/D ratio instantly</li>
           </ul>
           <div class="buttons">
-            <a href="aim-tweaks.html" class="primary">Buy Now</a>
+            <!-- Direct users straight to Payhip checkout for Aim Tweaks -->
+            <a href="https://payhip.com/b/djTKL" class="primary" target="_blank">Buy Now</a>
           </div>
         </div>
       </div>
@@ -361,6 +363,17 @@
           video.style.objectFit = 'cover';
           // Centre the preview video to ensure even cropping on all sides
           video.style.objectPosition = 'center';
+          /*
+           * Scale down the macro preview so that the application stays in frame.
+           * Without scaling, the macro overlay appears zoomed in and crops off
+           * important UI elements.  By scaling it down and keeping the transform
+           * origin centered, we preserve clarity while fitting the app within
+           * the overlay bounds.  Other product videos retain their full size.
+           */
+          if (videoSrc && videoSrc.includes('macro')) {
+            video.style.transform = 'scale(0.8)';
+            video.style.transformOrigin = 'center center';
+          }
           overlay.appendChild(video);
         } else if (videoId && overlay) {
           // Create an iframe for YouTube preview

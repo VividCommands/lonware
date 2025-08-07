@@ -816,7 +816,8 @@ footer {
   /* Increase spacing between review cards for better readability */
   /* Space them further apart so each card has room to breathe */
   /* Increase gap further so cards have more breathing room */
-  gap: 8rem;
+  /* Reduce gap so testimonials have more room to breathe and look less cramped */
+  gap: 4rem;
 }
 
 /* When reviews are set up as a carousel, animate them horizontally */
@@ -844,7 +845,8 @@ footer {
   padding: 1.2rem 1.6rem;
   /* Make cards wider and slightly shorter for a more proportionate look */
   /* Make review cards wider and slightly taller for a more balanced, square look */
-  width: 520px;
+  /* Increase the width of testimonial cards so longer comments don’t wrap unnecessarily */
+  width: 600px;
   min-height: 300px;
   height: auto;
   font-style: normal;
