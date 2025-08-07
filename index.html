@@ -178,7 +178,8 @@
           </ul>
           <div class="buttons">
             <!-- Primary purchase action: direct checkout via Payhip (skips cart) -->
-            <a href="https://payhip.com/buy?link=wiOGN" class="primary" target="_blank">Buy</a>
+            <!-- Each product directs to its own Payhip checkout link -->
+            <a href="https://payhip.com/buy/wiOGN" class="primary" target="_blank">Buy</a>
             <!-- Secondary button links to the product page for more information -->
             <a href="controller-macro.html" class="secondary">Premium</a>
           </div>
@@ -197,7 +198,8 @@
           <div class="buttons">
             <!-- All purchase buttons should lead directly to checkout on Payhip -->
             
-                    <a href="https://payhip.com/buy?link=sOQa6" class="primary" target="_blank">Buy Now</a>
+                    <a href="https://payhip.com/buy/sOQa6" class="primary" target="_blank">Buy Now</a>
+                    <a href="pc-optimizations.html" class="secondary">Premium</a>
         </div>
         <!-- Plan: Console Tweaks -->
         <div class="plan">
@@ -213,7 +215,8 @@
           <div class="buttons">
             <!-- Direct users straight to Payhip checkout for Console Tweaks -->
             <!-- Use the same direct checkout link for every product -->
-                      <a href="https://payhip.com/buy?link=6l4sQ" class="primary" target="_blank">Buy Now</a>
+                      <a href="https://payhip.com/buy/6l4sQ" class="primary" target="_blank">Buy Now</a>
+                      <a href="console-tweaks.html" class="secondary">Premium</a>
           </div>
         </div>
         <!-- Plan: Aim Tweaks -->
@@ -229,7 +232,8 @@
           </ul>
           <div class="buttons">
             <!-- Direct users straight to Payhip checkout for Aim Tweaks -->
-                    <a href="https://payhip.com/buy?link=dJTKL" class="primary" target="_blank">Buy Now</a>
+                    <a href="https://payhip.com/buy/dJTKL" class="primary" target="_blank">Buy Now</a>
+                    <a href="aim-tweaks.html" class="secondary">Premium</a>
           </div>
         </div>
       </div>
@@ -237,14 +241,14 @@
     <!-- Reviews section -->
     <section class="reviews">
       <h2>What Players Say</h2>
-      <div class="review-grid carousel">
-        <!-- Realistic player testimonials (duplicated for continuous scrolling) -->
+      <div class="review-grid">
+        <!-- Realistic player testimonials rendered as individual cards -->
         <div class="review">
           <p>“Using Lonware macros changed how I play – my building speed is insane!”</p>
           <span class="reviewer">— Zach&nbsp;H.</span>
-                  
+        </div>
         <div class="review">
-          <p>“The PC optimizer gave me stable 240 fps in Apex. Highly recommend.”</p>
+          <p>“The PC optimizer gave me stable&nbsp;240 fps in Apex. Highly recommend.”</p>
           <span class="reviewer">— Sophia&nbsp;N.</span>
         </div>
         <div class="review">
@@ -317,18 +321,11 @@
           // Centre the preview video to ensure even cropping on all sides
           video.style.objectPosition = 'center';
           /*
-           * Scale down the macro preview so that the application stays in frame.
-           * Without scaling, the macro overlay appears zoomed in and crops off
-           * important UI elements.  By scaling it down and keeping the transform
-           * origin centered, we preserve clarity while fitting the app within
-           * the overlay bounds.  Other product videos retain their full size.
+           * The video preview should cover the entire card area.  We removed
+           * the previous scaling logic so that both macro and PC preview videos
+           * fill the overlay consistently.  Each video will auto‑crop via
+           * object‑fit: cover (set in the CSS).
            */
-          if (videoSrc && videoSrc.includes('macro')) {
-            // Scale down the macro preview a bit more so the entire app is visible
-            // A lower scale value zooms out the video so more of the frame is visible.
-            video.style.transform = 'scale(0.65)';
-            video.style.transformOrigin = 'center center';
-          }
           overlay.appendChild(video);
         } else if (videoId && overlay) {
           // Create an iframe for YouTube preview

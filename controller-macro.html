@@ -23,19 +23,21 @@
     </nav>
   </header>
   <main class="product-wrapper">
-    <!-- Simple slider controls -->
-    <div class="slider-controls">
-      <button class="prev" aria-label="Previous media">‹</button>
-      <button class="next" aria-label="Next media">›</button>
-    </div>
-    <div class="product-media-slider">
-      <div class="slide">
+    <!-- Media grid: local demonstration and YouTube preview side‑by‑side -->
+    <div class="product-video-grid">
+      <div class="video-box">
         <!-- Local preview video -->
         <video src="macro.mp4" controls preload="metadata"></video>
       </div>
-      <div class="slide">
-        <!-- YouTube preview video as second slide (controls visible) -->
-        <iframe src="https://www.youtube.com/embed/JDGbfd0nYDc?mute=1&controls=1&rel=0&modestbranding=1&showinfo=0&loop=0&playlist=JDGbfd0nYDc" title="Controller/KBM Macro Preview" frameborder="0" allowfullscreen></iframe>
+      <div class="video-box">
+        <!-- YouTube preview video: updated to use the high‑quality demonstration provided by the user.  
+             The embed parameters hide YouTube UI controls and ensure the video loops muted by default. -->
+        <iframe
+          src="https://www.youtube.com/embed/DZIQNHpkyBM?mute=1&amp;controls=1&amp;rel=0&amp;modestbranding=1&amp;showinfo=0&amp;loop=1&amp;playlist=DZIQNHpkyBM&amp;vq=hd1080"
+          title="Controller/KBM Macro Preview"
+          frameborder="0"
+          allow="autoplay; fullscreen; encrypted-media"
+          allowfullscreen></iframe>
       </div>
     </div>
     <div class="product-details">
@@ -47,7 +49,8 @@
       </div>
       <div class="actions">
         <!-- Direct all purchases to the single checkout link -->
-        <a href="https://payhip.com/buy?link=wiOGN" class="buy" target="_blank">Buy</a>
+        <!-- Direct purchase goes to the Macro product checkout on Payhip -->
+        <a href="https://payhip.com/buy/wiOGN" class="buy" target="_blank">Buy</a>
         <!-- A secondary button for additional info; does not navigate off‑site -->
         <a href="#features" class="learn-more">Learn More</a>
         <!-- Removed lifetime option: customers are directed straight to checkout -->
@@ -86,21 +89,6 @@
     &copy; 2025 Lonware. All rights reserved.
   </footer>
 
-  <!-- Slider navigation for media -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const slider = document.querySelector('.product-media-slider');
-      const prevBtn = document.querySelector('.slider-controls .prev');
-      const nextBtn = document.querySelector('.slider-controls .next');
-      if (slider && prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-          slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
-        });
-        nextBtn.addEventListener('click', () => {
-          slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
-        });
-      }
-    });
-  </script>
+  <!-- No slider navigation is required on this page; media elements are displayed in a grid. -->
 </body>
 </html>

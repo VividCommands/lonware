@@ -217,6 +217,117 @@ nav a:hover {
   pointer-events: none;
 }
 
+/*
+ * Ensure preview videos and YouTube iframes fill their overlays
+ *
+ * Without explicitly setting width/height and object-fit on the
+ * elements themselves the browser may letterbox the preview.  By
+ * forcing them to cover the available space and centering their
+ * contents we guarantee a consistent, edge‑to‑edge preview on
+ * product cards.
+ */
+.video-overlay video,
+.video-overlay iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+/*
+ * Grid of product videos on product pages.
+ *
+ * When multiple media elements are displayed on a single page (for
+ * example, the controller/KBM macro page now shows both a local
+ * demonstration and a YouTube preview) they are wrapped in a
+ * responsive grid.  Each video is constrained to a square shape
+ * with equal width and height, and the grid automatically wraps on
+ * smaller screens.
+ */
+.product-video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  /*
+   * Allow the video grid to occupy space alongside the product details.  Using
+   * flex settings similar to .product-image ensures the grid has an initial
+   * width of roughly half the page on desktop, but it will shrink and wrap
+   * responsively on smaller screens.  Without an explicit flex basis the
+   * grid could collapse to zero width when wrapped in a flex container.
+   */
+  flex: 1 1 45%;
+  max-width: 500px;
+  min-width: 300px;
+}
+
+/*
+ * Each video box in the product media grid is designed to be perfectly square
+ * on desktop and tablet screens while automatically scaling down on mobile.
+ * The width is specified as a percentage of the available container to
+ * ensure the boxes sit side‑by‑side when there is room.  Increasing the
+ * width from 300 px to a flexible unit makes the previews larger and
+ * prevents them from appearing tiny on high‑resolution monitors.
+ */
+.product-video-grid .video-box {
+  /*
+   * Allow two videos to sit side by side inside the media grid.  Using a
+   * percentage-based flex-basis ensures that two boxes occupy approximately
+   * half of the available space (minus the gap).  On narrower screens the
+   * items will stack automatically.  The aspect-ratio property keeps
+   * each preview perfectly square regardless of its width.
+   */
+  flex: 1 1 calc(50% - 0.5rem);
+  aspect-ratio: 1 / 1;
+  max-width: none;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/*
+ * Videos and iframes fill their container completely.  Using absolute
+ * positioning with 100% width and height ensures they crop evenly from the
+ * centre.  We also specify object‑fit: cover so the video fills the box
+ * without letterboxing.
+ */
+.product-video-grid video,
+.product-video-grid iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+/*
+ * Extra media container for optional secondary videos on product pages.
+ *
+ * If only a single embedded video is required this class isn’t used, but
+ * when a secondary media element such as a YouTube embed is added after
+ * the main details this wrapper centres it on the page and limits its
+ * width to avoid overwhelming the layout.
+ */
+.extra-media {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.extra-media iframe {
+  width: 100%;
+  max-width: 500px;
+  height: 281px; /* Maintain a 16:9 aspect ratio */
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+}
+
 .has-video:hover .video-overlay {
   opacity: 1;
 }
@@ -809,16 +920,18 @@ footer {
   margin-bottom: 1.5rem;
 }
 
+/*
+ * The testimonials container now uses CSS Grid so that reviews are arranged
+ * in neat rows and columns.  On larger screens multiple testimonials will
+ * appear side‑by‑side, while on smaller devices the grid automatically
+ * stacks them gracefully.  The gap property controls the spacing between
+ * cards both horizontally and vertically.
+ */
 .review-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  /* Increase spacing between review cards for better readability */
-  /* Space them further apart so each card has room to breathe */
-  /* Increase gap further so cards have more breathing room */
-  /* Reduce gap so testimonials have more room to breathe and look less cramped */
-  /* Increase horizontal spacing slightly but keep more room for content */
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  justify-items: center;
+  gap: 2rem;
 }
 
 /* When reviews are set up as a carousel, animate them horizontally */
@@ -848,8 +961,11 @@ footer {
   /* Make review cards wider and slightly taller for a more balanced, square look */
   /* Increase the width of testimonial cards so longer comments don’t wrap unnecessarily */
   /* Widen testimonial cards so comments have ample room */
-  width: 700px;
-  min-height: 300px;
+  /* Reduce the size of testimonial cards so they sit comfortably side‑by‑side
+     on desktop and stack neatly on mobile.  A width around 300 px and a
+     minimum height around 220 px creates a balanced, almost square shape. */
+  width: 300px;
+  min-height: 220px;
   height: auto;
   font-style: normal;
   color: #dddddd;
