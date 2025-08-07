@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop – Lonware</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Browse and select from Lonware’s range of gaming optimisation packages. Choose the perfect plan for your setup with premium and lifetime options." />
+</head>
+<body>
+  <!-- Announcement banner -->
+  <div class="banner">
+    <div class="banner-content">
+      Use code <strong>Lxn2x</strong> for 20% off your order! Don't miss out on exclusive savings today. &nbsp;&nbsp;
+    </div>
+  </div>
+  <!-- Header with navigation -->
+  <header>
+    <a href="index.html" class="logo"><img src="logo.png" alt="Lonware logo" class="logo-icon" /> Lonware</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main class="shop-wrapper">
+    <section class="shop-hero">
+      <h1>Choose Your Package</h1>
+      <p>Pick the optimisation plan that best suits your gaming needs.</p>
+    </section>
+    <section class="plans-grid">
+      <!-- Macro plan -->
+      <div class="plan-card">
+        <div class="tag">Most Popular</div>
+        <h3>Controller/KBM Macro</h3>
+        <div class="price">$10.98</div>
+        <ul>
+          <li>Automate complex controller & keyboard inputs</li>
+          <li>Drag‑and‑drop macro builder</li>
+          <li>Record keystrokes and mouse movements</li>
+          <li>Supports controller and keyboard/mouse setups</li>
+          <li>Lifetime updates & support</li>
+        </ul>
+        <div class="buttons">
+          <a href="https://payhip.com/b/wiOGN" class="primary" target="_blank">Premium</a>
+          <a href="https://payhip.com/b/wiOGN" class="secondary" target="_blank">Lifetime</a>
+        </div>
+      </div>
+      <!-- PC Optimizations plan -->
+      <div class="plan-card">
+        <div class="tag">Best Value</div>
+        <h3>PC Optimizations</h3>
+        <div class="price">$6.99</div>
+        <ul>
+          <li>Over 700 system tweaks for peak FPS</li>
+          <li>Optimises CPU, GPU and memory usage</li>
+          <li>Stabilises network for lower latency</li>
+          <li>Easy one‑click apply & restore</li>
+        </ul>
+        <div class="buttons">
+          <a href="pc-optimizations.html" class="primary">Learn More</a>
+        </div>
+      </div>
+      <!-- Console Tweaks plan -->
+      <div class="plan-card">
+        <div class="tag">Controller</div>
+        <h3>Console Tweaks</h3>
+        <div class="price">$5.99</div>
+        <ul>
+          <li>Improve console response time</li>
+          <li>Reduce input lag and enhance stability</li>
+          <li>Easy install with simple instructions</li>
+          <li>Works on PlayStation and Xbox</li>
+        </ul>
+        <div class="buttons">
+          <a href="console-tweaks.html" class="primary">Learn More</a>
+        </div>
+      </div>
+      <!-- Aim Tweaks plan -->
+      <div class="plan-card">
+        <div class="tag">Sharpshooter</div>
+        <h3>Aim Tweaks</h3>
+        <div class="price">$7.99</div>
+        <ul>
+          <li>Enhance aim accuracy and consistency</li>
+          <li>Custom tuning for sensitivity and acceleration</li>
+          <li>Compatible with major FPS titles</li>
+          <li>Instantly downloadable configuration files</li>
+        </ul>
+        <div class="buttons">
+          <a href="aim-tweaks.html" class="primary">Learn More</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Lonware. All rights reserved.
+  </footer>
+  <!-- Tilt effect for plan cards -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.plan-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = -(y - centerY) / 15;
+          const rotateY = (x - centerX) / 15;
+          card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+          card.style.transition = 'transform 0.1s ease-out';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.transition = 'transform 0.3s ease';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
