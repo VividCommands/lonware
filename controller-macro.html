@@ -18,10 +18,16 @@
     <a href="index.html" class="logo"><img src="logo.png" alt="Lonware logo" class="logo-icon" /> Lonware</a>
     <nav>
       <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
   <main class="product-wrapper">
+    <!-- Simple slider controls -->
+    <div class="slider-controls">
+      <button class="prev" aria-label="Previous media">‹</button>
+      <button class="next" aria-label="Next media">›</button>
+    </div>
     <div class="product-media-slider">
       <div class="slide">
         <!-- Local preview video -->
@@ -39,8 +45,8 @@
         <span class="sale-price">$10.98</span>
       </div>
       <div class="actions">
+        <a href="https://payhip.com/b/wiOGN" class="buy" target="_blank">Buy</a>
         <a href="https://payhip.com/b/wiOGN" class="buy" target="_blank">Buy Premium</a>
-        <a href="https://payhip.com/b/wiOGN" class="lifetime" target="_blank">Lifetime</a>
       </div>
       <section>
         <h2>Overview</h2>
@@ -75,5 +81,22 @@
   <footer>
     &copy; 2025 Lonware. All rights reserved.
   </footer>
+
+  <!-- Slider navigation for media -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slider = document.querySelector('.product-media-slider');
+      const prevBtn = document.querySelector('.slider-controls .prev');
+      const nextBtn = document.querySelector('.slider-controls .next');
+      if (slider && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+          slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
