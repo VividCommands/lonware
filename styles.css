@@ -33,6 +33,7 @@ body {
   color: var(--text-col);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
+ 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -68,7 +69,8 @@ body::after {
 }
 
 @keyframes moveDots {
-  0% {
+  0
+  % {
     transform: translate(0, 0);
   }
   100% {
@@ -1116,4 +1118,16 @@ nav a.cta {
 nav a.cta:hover {
   box-shadow: 0 4px 12px rgba(0, 188, 212, 0.6);
   transform: translateY(-2px);
+}
+
+/* Override product media slider aspect ratio and crop product videos */
+.product-media-slider {
+  padding-top: 56.25%;
+}
+
+/* Ensure videos and iframes within the standard product-image container fill and crop evenly */
+.product-image video,
+.product-image iframe {
+  object-fit: cover;
+  object-position: center;
 }
