@@ -803,7 +803,7 @@ footer {
   flex-wrap: wrap;
   /* Increase spacing between review cards for better readability */
   /* Space them further apart so each card has room to breathe */
-  gap: 5rem;
+  gap: 6rem;
 }
 
 /* When reviews are set up as a carousel, animate them horizontally */
@@ -829,10 +829,9 @@ footer {
   border-radius: 12px;
   /* Provide ample padding for readability */
   padding: 1.2rem 1.6rem;
-  /* Make cards larger and more square for better legibility */
-  /* Increase the width and height to create a more balanced, square card */
-  width: 420px;
-  min-height: 350px;
+  /* Make cards wider and slightly shorter for a more proportionate look */
+  width: 480px;
+  min-height: 280px;
   height: auto;
   font-style: normal;
   color: #dddddd;
