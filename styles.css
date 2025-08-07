@@ -794,14 +794,15 @@ footer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2.5rem;
+  /* Increase spacing between review cards for better readability */
+  gap: 3rem;
 }
 
 /* When reviews are set up as a carousel, animate them horizontally */
 .review-grid.carousel {
   flex-wrap: nowrap;
-  /* Increase the scroll speed so testimonials move across the screen a little faster. */
-  animation: scrollReviews 40s linear infinite;
+  /* Speed up the scrolling animation so cards move across the screen faster */
+  animation: scrollReviews 30s linear infinite;
 }
 
 @keyframes scrollReviews {
@@ -819,9 +820,9 @@ footer {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   /* Give the cards a more square profile with generous padding. */
-  padding: 1rem 1.5rem;
-  width: 350px;
-  height: 200px;
+  padding: 1.2rem 1.6rem;
+  width: 320px;
+  height: 220px;
   font-style: normal;
   color: #dddddd;
   /* Hide overflowing text and allow scrolling within the card if necessary. */
@@ -1071,7 +1072,8 @@ main {
 /* Shop hero alignment */
 .shop-hero {
   text-align: center;
-  margin: 3rem auto 2rem;
+  /* Add extra top margin so the hero text sits comfortably above the plans grid */
+  margin: 4rem auto 2rem;
   max-width: 700px;
 }
 
@@ -1087,8 +1089,10 @@ main {
 nav a.cta {
   background: linear-gradient(90deg, #00bcd4, #0097a7);
   color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  /* Increase padding and font size to make the Shop button more prominent */
+  padding: 0.6rem 1.3rem;
+  font-size: 1rem;
+  border-radius: 8px;
   font-weight: 600;
   margin-left: 1rem;
   box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
