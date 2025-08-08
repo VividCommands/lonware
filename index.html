@@ -209,6 +209,8 @@
                     <a href="https://payhip.com/buy?link=sOQa6" class="primary" target="_blank">Buy Now</a>
                     <!-- Removed the secondary button for PC optimizations to keep the plans neat -->
         </div>
+        <!-- Close the PC Optimizations plan wrapper -->
+        </div>
         <!-- Plan: Console Tweaks -->
         <div class="plan">
           <div class="tag">Controller</div>
@@ -328,8 +330,13 @@
       const videoCards = document.querySelectorAll('.card.has-video');
       videoCards.forEach(card => {
         const videoSrc = card.getAttribute('data-video-src');
-        const videoId = card.getAttribute('data-video-id');
         const overlay = card.querySelector('.video-overlay');
+        // Retrieve a YouTube video ID from either the card or its overlay.  The
+        // overlay fallback allows us to specify the ID on the overlay element
+        // when the anchor contains a huge base64 data-video-src string (as on
+        // the PC Optimizations card).  Without this, the script would ignore
+        // the videoId and attempt to load the local MP4.
+        const videoId = card.getAttribute('data-video-id') || (overlay ? overlay.getAttribute('data-video-id') : null);
         // Prefer YouTube preview if a data-video-id is specified.  Some
         // products embed a huge base64 video which may not play reliably on
         // GitHub Pages.  When a YouTube ID is present we embed an iframe
