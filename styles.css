@@ -97,17 +97,34 @@ body::after {
  * into the overall colour palette.  The animation is defined
  * further below.
  */
+/*
+ * Announcement banner
+ *
+ * Make the discount message more legible by increasing the font size and weight
+ * while preserving the slim look of the bar. Padding is slightly larger to
+ * accommodate the bigger type. All other styling (background, shadow, etc.)
+ * remains unchanged so the bar still ties into the overall theme.
+ */
 .banner {
   background: rgba(255, 255, 255, 0.9);
   color: #000000;
-  /* Reduce the font size and vertical padding further to create a thinner announcement bar */
-  font-size: 0.7rem;
-  padding: 0.15rem 1rem;
+  /* Increase the font size and weight for better visibility */
+  font-size: 0.9rem;
+  font-weight: 600;
+  /* Slightly increase vertical padding to balance the larger text */
+  padding: 0.3rem 1rem;
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 15px rgba(102, 178, 255, 0.6), 0 0 30px rgba(102, 178, 255, 0.3);
   text-align: center;
+}
+
+/* Small text indicator for billing cycle on subscription products */
+.billing-cycle {
+  font-size: 0.8rem;
+  color: var(--muted-col);
+  margin-left: 0.25rem;
 }
 
 /* Inner container for banner text to allow scrolling animation */
