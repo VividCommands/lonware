@@ -1435,3 +1435,58 @@ nav a.cta:hover {
   box-shadow: 0 4px 12px rgba(0, 188, 212, 0.6);
   transform: translateY(-2px);
 }
+/* Mobile responsiveness improvements */
+@media (max-width: 600px) {
+  /* General padding adjustments for small screens */
+  body {
+    padding: 0 1rem;
+  }
+
+  /* Stack navbar links vertically and center them */
+  .navbar,
+  nav,
+  header nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a,
+  nav a {
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  /* Ensure hero and text sections center align */
+  .hero,
+  .landing,
+  header,
+  footer,
+  .stats,
+  .why-choose,
+  .features,
+  .product,
+  .plans-grid,
+  .review-grid {
+    text-align: center;
+  }
+
+  /* Use single column for grid layouts */
+  .plans-grid,
+  .review-grid,
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  /* Adjust plan cards spacing */
+  .plan,
+  .plan-card {
+    margin: 1rem 0;
+  }
+
+  /* Reviews section width */
+  .review {
+    width: 100%;
+    min-height: auto;
+  }
+}
