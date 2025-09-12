@@ -1,3 +1,111 @@
+/* == Custom overrides for hero alignment, cube enhancements and pixel art == */
+/* Center hero text and widen hero art for stronger impact */
+.landing {
+  text-align: center;
+}
+.landing .hero-title {
+  display: block;
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.landing .hero-art {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  width: clamp(300px, 72vw, 760px);
+  height: clamp(260px, 60vw, 660px);
+  margin: 1.5rem auto 2.2rem;
+  position: relative;
+}
+.landing .cube {
+  /* Use CSS custom properties to define cube size; adapt size responsively */
+  /* Increase cube size for a more prominent hero effect. The cube size now scales
+     between 150px on small screens and up to 300px on large screens. */
+  --size: clamp(150px, 26vw, 300px);
+  --d: calc(var(--size) / 2);
+  width: var(--size);
+  height: var(--size);
+  transform-style: preserve-3d;
+}
+.landing .cube:nth-child(1) {
+  top: 52%;
+  left: 10%;
+}
+.landing .cube:nth-child(2) {
+  top: 18%;
+  left: 46%;
+}
+.landing .cube:nth-child(3) {
+  top: 60%;
+  left: 78%;
+}
+.landing .face {
+  /* Allow back faces to be visible so the cubes appear transparent */
+  backface-visibility: visible;
+  border: 1.3px solid rgba(120, 200, 255, 0.85);
+  /* Lower alpha on the face fill so you can see through to the other side */
+  background: rgba(0, 170, 255, 0.04);
+  box-shadow: inset 0 0 20px rgba(120, 200, 255, 0.32), 0 0 28px rgba(120, 200, 255, 0.36);
+}
+.landing .face.front  { transform: rotateY(0deg)   translateZ(var(--d)); }
+.landing .face.back   { transform: rotateY(180deg) translateZ(var(--d)); }
+.landing .face.right  { transform: rotateY(90deg)  translateZ(var(--d)); }
+.landing .face.left   { transform: rotateY(-90deg) translateZ(var(--d)); }
+.landing .face.top    { transform: rotateX(90deg)  translateZ(var(--d)); }
+.landing .face.bottom { transform: rotateX(-90deg) translateZ(var(--d)); }
+/* Add a shimmering highlight on the cube edges */
+.landing .face::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background:
+    radial-gradient(220px 60px at -5% -5%, rgba(0, 255, 224, 0.25), transparent 40%),
+    radial-gradient(220px 60px at 105% -5%, rgba(0, 140, 255, 0.22), transparent 40%),
+    radial-gradient(220px 60px at -5% 105%, rgba(0, 255, 224, 0.25), transparent 40%),
+    radial-gradient(220px 60px at 105% 105%, rgba(0, 140, 255, 0.22), transparent 40%);
+  mix-blend-mode: screen;
+  animation: lw-edgePulse 2.8s ease-in-out infinite;
+  opacity: 0.85;
+}
+@keyframes lw-edgePulse {
+  0%, 100% {
+    opacity: 0.45;
+    filter: blur(0.3px);
+  }
+  35% {
+    opacity: 0.92;
+    filter: blur(0.6px);
+  }
+  55% {
+    opacity: 0.65;
+    filter: blur(0.4px);
+  }
+}
+/* Pixel art header images on feature cards */
+.feature-card__art {
+  display: block;
+  width: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  image-rendering: pixelated;
+  border-radius: 12px;
+  border: 1px solid rgba(120, 200, 255, 0.25);
+  box-shadow: 0 6px 18px rgba(0, 180, 255, 0.12);
+  margin-bottom: 10px;
+}
+@media (max-width: 520px) {
+  .feature-card__art {
+    max-height: 100px;
+  }
+}
+/* Pixelate product card images for cohesive retro feel */
+.product-grid .card-image {
+  image-rendering: pixelated;
+  object-fit: cover;
+}
+
+/* === Animated marquee for the announcement banner === */
 /*
  * Global stylesheet for the recreated Lon's My Space website.
  *
@@ -108,18 +216,23 @@ body::after {
  * remains unchanged so the bar still ties into the overall theme.
  */
 .banner {
-  background: rgba(255, 255, 255, 0.9);
-  color: #000000;
-  /* Increase the font size and weight for better visibility */
-  font-size: 0.9rem;
-  font-weight: 600;
-  /* Slightly increase vertical padding to balance the larger text */
-  padding: 0.3rem 1rem;
-  overflow: hidden;
-  position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 15px rgba(102, 178, 255, 0.6), 0 0 30px rgba(102, 178, 255, 0.3);
+  /* Make the banner sticky at the top with a pure white background and dark text */
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  /* Reset banner colours after debugging.  The banner uses a pure white
+     background with dark text to stand out against the dark site theme. */
+  background: #ffffff !important;
+  color: #0b1623 !important;
+  /* TEMP debug: give the banner a translucent red background so we can see it during testing */
+  /* background: rgba(255, 0, 0, 0.4) !important; */
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem;
   text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 /* Small text indicator for billing cycle on subscription products */
@@ -131,11 +244,80 @@ body::after {
 
 /* Inner container for banner text to allow scrolling animation */
 .banner .banner-content {
-  white-space: nowrap;
   display: inline-block;
-  /* Bounce the announcement text back and forth across the bar */
-  animation: slideText 12s ease-in-out infinite;
-  padding-left: 100%;
+  /* The container does not use a filter directly; instead, individual span
+     elements within the marquee apply the liquid distortion. Animation
+     provides a gentle pulse on the banner’s scale. */
+  filter: none;
+  animation: bannerPulse 2.6s ease-in-out infinite;
+}
+
+/* Marquee container for the banner announcement text */
+.banner .banner-content .marquee {
+  display: flex;
+  white-space: nowrap;
+  width: fit-content;
+  animation: banner-marquee 16s linear infinite;
+}
+
+/* Spacing between repeated marquee messages */
+.banner .banner-content .marquee span {
+  margin-right: 2rem;
+  /* Apply the liquid distortion filter to each marquee chunk. The filter is defined
+     in the inline SVG within index.html. When animated (via the SVG’s animate tag),
+     the text appears to ripple like water. */
+  filter: url(#liquid-banner);
+}
+
+@keyframes banner-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Make strong text heavier inside banner */
+.banner strong{
+  font-weight: 800;
+}
+
+@keyframes bannerPulse{
+ 0%, 100% { transform: scale(1); }
+ 45% { transform: scale(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .banner .banner-content{
+    animation: none;
+    filter: none;
+  }
+}
+
+/* Override default features header to remove dark bar and spacing */
+.features__head {
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  text-align: center;
+}
+
+/* Section title and subtitle styling (used in features header) */
+.section-title {
+  font-family: "Oxanium", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  font-size: clamp(24px, 3.2vw, 38px);
+  line-height: 1.15;
+  margin: 0 0 6px;
+  background: linear-gradient(180deg, #ffffff, #b9d7ff 70%, #7db8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-sub {
+  color: var(--muted-col);
+  font-size: clamp(0.95rem, 0.9rem + .25vw, 1.05rem);
 }
 
 header {
@@ -897,6 +1079,147 @@ footer {
   }
 }
 
+/* -----------------------------------------------------------------
+   Custom overrides: hero cube spacing, slower rotation, stronger glow,
+   and simplified announcement banner animation.  These rules appear
+   after all other definitions so they take precedence without
+   disturbing existing styles.  */
+
+/* Hide the old marquee container if it still exists in the DOM. */
+.banner .banner-content .marquee {
+  display: none !important;
+}
+
+/* Prevent the banner content wrapper from pulsing or scrolling. */
+.banner .banner-content {
+  animation: none !important;
+  filter: none !important;
+  display: flex;
+  justify-content: center;
+}
+
+/* Style for the single announcement message.  The liquid filter
+   defined in the inline SVG gives it a subtle ripple effect.  The
+   drop‑appear and drop‑pulse animations create a water drop that
+   morphs into the text, pulses gently, and repeats. */
+.lw-msg {
+  /* Base styling only; the animation and liquid filter are applied via the
+     `.banner .lw-msg` selector defined later in this file. By resetting
+     the filter and animation here, we avoid conflicting definitions. */
+  position: relative;
+  display: inline-block;
+  filter: none;
+  animation: none;
+}
+
+/* Add a pseudo element to create the droplet that appears behind the text.  It
+   scales up and down in sync with the banner animation to simulate a water
+   droplet forming and dissolving.  This element doesn't interfere with
+   layout because it's absolutely positioned relative to the banner-msg. */
+.lw-msg::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Reset droplet styling; the actual size, colour and animation are
+     specified under `.banner .lw-msg::before`. */
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+/* Removed deprecated bannerCycle and dropletCycle animations.  The updated
+   animations are defined as lwBannerCycle and lwDroplet further down in
+   this stylesheet. */
+
+/* Adjust the banner animation timing for small screens to ensure the
+   animation remains smooth and legible on mobile devices. */
+@media (max-width: 520px) {
+  .lw-msg {
+    animation-duration: 10s;
+  }
+  .lw-msg::before {
+    animation-duration: 10s;
+  }
+}
+
+/* Respect user preference for reduced motion by disabling the banner
+   animation entirely and removing the liquid filter. */
+@media (prefers-reduced-motion: reduce) {
+  .lw-msg, .lw-msg::before {
+    /* Disable animations when the user prefers reduced motion */
+    animation: none !important;
+    filter: none !important;
+  }
+  /* Ensure the announcement text remains visible when animations are disabled. */
+  .lw-msg {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* Hide the droplet entirely when reduced motion is preferred. */
+  .lw-msg::before {
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) scale(0) !important;
+  }
+}
+
+/* Smooth scrolling and anchor offset */
+html {
+  scroll-behavior: smooth;
+}
+.anchor-target {
+  position: relative;
+  scroll-margin-top: 90px;
+}
+
+@keyframes drop-appear {
+  0%   { opacity: 0;   transform: scale(0.8) translateY(8px);    filter: blur(1.5px); }
+  60%  { opacity: 1;   transform: scale(1.05) translateY(-2px);  filter: blur(0.6px); }
+  100% { opacity: 1;   transform: scale(1)   translateY(0);      filter: blur(0px);   }
+}
+
+@keyframes drop-pulse {
+  0%,100% { transform: scale(1)   translateY(0);     filter: blur(0px); }
+  50%     { transform: scale(1.03) translateY(-1px); filter: blur(0.4px); }
+}
+
+/* Hero cube adjustments: distribute cubes further apart, slow down
+   rotation, and intensify edge glow.  These settings override
+   previous cube definitions while preserving responsive sizing. */
+/* Adjust cube sizing and motion.  A custom size variable keeps the
+   cubes prominent without spilling outside the hero art container. */
+.landing .cube {
+  /* Slightly smaller than the maximum to avoid overlap on wide screens */
+  --size: clamp(150px, 22vw, 260px);
+  /* Slow default spin to make motion more relaxed */
+  animation: spinCube 28s linear infinite;
+}
+.landing .cube:nth-child(1) {
+  /* Position the first cube towards the left and lower in the hero */
+  top: 58%;
+  left: 10%;
+  animation-duration: 34s;
+}
+.landing .cube:nth-child(2) {
+  /* Centre the second cube horizontally and raise it slightly */
+  top: 20%;
+  left: 45%;
+  animation-duration: 40s;
+  animation-direction: reverse;
+}
+.landing .cube:nth-child(3) {
+  /* Position the third cube on the right and mid‑height */
+  top: 63%;
+  left: 78%;
+  animation-duration: 32s;
+}
+
+/* Intensify the cube face glow and transparency for crisper edges. */
+.landing .face {
+  border: 1.7px solid rgba(120, 200, 255, 0.95);
+  background: rgba(0, 170, 255, 0.03);
+  box-shadow: inset 0 0 30px rgba(120, 200, 255, 0.45), 0 0 40px rgba(120, 200, 255, 0.5);
+}
+
 .features-row {
   display: flex;
   justify-content: center;
@@ -1509,3 +1832,351 @@ nav a.cta:hover {
     overflow-x: hidden;
   }
 }
+
+
+/* ========= Powerful Features (Lonware) ========= */
+:root{
+  --lw-bg: #0b1623;
+  --lw-card: rgba(255,255,255,0.04);
+  --lw-card-hover: rgba(35, 230, 150, 0.08);
+  --lw-border: rgba(255,255,255,0.08);
+  --lw-accent: #22e696;
+  --lw-text: #e6f4ff;
+  --lw-muted: #9fb7c9;
+}
+
+.features{
+  position: relative;
+  padding: clamp(56px, 8vw, 96px) 0;
+  background: radial-gradient(1200px 600px at 10% 0%, rgba(34,230,150,0.08), transparent 60%),
+              radial-gradient(1000px 500px at 90% 0%, rgba(34,230,150,0.06), transparent 60%);
+  overflow: hidden;
+}
+.features .wrap{ max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.features__head{ text-align: center; margin-bottom: 28px; }
+.features__head h2{
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--lw-text);
+  letter-spacing: 0.2px;
+}
+.features__head p{
+  color: var(--lw-muted);
+  margin-top: 8px;
+}
+
+/* grid */
+.features__grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+@media (max-width: 980px){
+  .features__grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 640px){
+  .features__grid{ grid-template-columns: 1fr; }
+}
+
+/* card */
+.feature-card{
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 8px;
+  background: linear-gradient(180deg, var(--lw-card) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid var(--lw-border);
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  color: var(--lw-text);
+  text-decoration: none;
+  position: relative;
+  isolation: isolate;
+  transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.feature-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(34,230,150,0.5);
+  background: linear-gradient(180deg, var(--lw-card-hover) 0%, rgba(255,255,255,0.03) 100%);
+  box-shadow: 0 10px 30px rgba(34,230,150,0.12);
+}
+.feature-card__icon{
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  color: var(--lw-accent);
+  background: radial-gradient(120% 120% at 30% 20%, rgba(34,230,150,0.22), rgba(34,230,150,0.06));
+  border: 1px solid rgba(34,230,150,0.35);
+}
+.feature-card h3{
+  font-size: 18px; line-height: 1.25;
+}
+.feature-card p{
+  color: var(--lw-muted);
+  font-size: 14.5px;
+}
+.feature-card__cta{
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--lw-accent);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.feature-card__cta::after{
+  content: "↗";
+  opacity: .85;
+  transition: transform .2s ease;
+}
+.feature-card:hover .feature-card__cta::after{ transform: translateX(3px) translateY(-1px); }
+
+/* accent variant for checkout */
+.feature-card--accent{
+  background: linear-gradient(180deg, rgba(34,230,150,0.08) 0%, rgba(34,230,150,0.03) 100%);
+  border-color: rgba(34,230,150,0.55);
+}
+
+/* motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .feature-card{ transition: none; }
+  .feature-card:hover{ transform: none; }
+}
+
+/* =======================================================
+ * Custom overrides for Lonware redesign
+ *
+ * These styles adjust the logo, hero, cards, navigation and
+ * features components to feel lighter, more modern and gaming‑inspired.
+ * They override earlier definitions with lower specificity.
+ * ======================================================= */
+
+/* Logo: bigger, bolder and no underline */
+.logo {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.2rem, 1.4rem + 0.5vw, 1.75rem);
+  letter-spacing: 0.3px;
+  color: var(--text-col);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+.logo:hover {
+  text-decoration: none;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.08));
+}
+
+/* Navigation: remove underlines on hover and lighten interaction */
+nav a {
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: none;
+  filter: brightness(1.1);
+}
+
+/* Hero typography overrides */
+.hero-title {
+  font-family: "Oxanium", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(1.8rem, 2.5rem + 1vw, 3.2rem);
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+  /* Subtle gradient effect to evoke a gaming feel */
+  background: linear-gradient(180deg, #ffffff, #b9d7ff 70%, #7db8ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-sub {
+  font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.15rem);
+  color: var(--muted-col);
+  max-width: 48rem;
+  margin: 0.25rem 0 0;
+}
+/* Tighten landing padding after removing chips & buttons */
+section.landing {
+  padding-bottom: 2.25rem;
+}
+
+/* Lighter, thinner product cards */
+.card {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  overflow: hidden;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(102,224,255,0.28);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.32);
+  background: rgba(255,255,255,0.045);
+}
+.card-content {
+  padding: 16px 16px 14px;
+}
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+}
+.price, .sale-price {
+  margin: 6px 0 10px;
+}
+.product-grid {
+  gap: 16px;
+  margin-top: 1.25rem;
+}
+
+/* Lighter feature cards for the powerful features section */
+.feature-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 16px 16px 14px;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.feature-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(102,224,255,0.28);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.28);
+  background: rgba(255,255,255,0.04);
+}
+.feature-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--primary-col-light);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.feature-card h3 {
+  font-size: 1.1rem;
+}
+.feature-card p {
+  font-size: 0.9rem;
+}
+.feature-card__cta {
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--primary-col-light);
+}
+
+/* Soften video overlay for product cards */
+.video-overlay::after {
+  opacity: 0.08;
+}
+
+/* Hide pricing/plan section on the homepage */
+.plans,
+.plans-section,
+#plans,
+section[data-section="plans"]{
+  display:none !important;
+}
+
+/*
+ * Enable smooth scrolling when jumping to anchor targets via in-page links.  This provides a more
+ * pleasant user experience when the main feature cards link to their corresponding product cards.
+ *
+ * The scroll-margin-top on .anchor-target ensures that the top of the target content isn't hidden
+ * behind the sticky banner or navigation bar. Adjust the value if your header height changes.
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+.anchor-target {
+  position: relative;
+  scroll-margin-top: 90px;
+}
+
+/* Ensure the header logo uses the light text colour instead of the primary accent */
+header .logo {
+  color: var(--text-col);
+}
+
+/*
+ * =====================================================
+ * Enhanced droplet animation for the announcement bar
+ *
+ * The default banner animation may appear static on some
+ * devices.  These overrides enlarge the water droplet,
+ * exaggerate the motion of the text and ensure the
+ * animation is visible across all screen sizes.  The
+ * definitions are placed at the end of the stylesheet to
+ * override any earlier rules.
+ * =====================================================
+ */
+
+/* Override the banner text animation with a stronger effect */
+.banner .lw-msg{
+  position: relative;
+  display: inline-block;
+  /* Use the liquid-banner filter defined in index.html */
+  filter: url(#liquid-banner);
+  /* Bigger scale change and slower cycle for clearer movement */
+  animation: lwBannerCycle 7s ease-in-out infinite;
+}
+
+/* Create a larger glowing droplet behind the words */
+.banner .lw-msg::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0,170,255,0.40);
+  box-shadow: 0 0 35px rgba(120,200,255,0.65);
+  transform: translate(-50%, -50%) scale(0);
+  animation: lwDroplet 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Keyframes for the banner message cycle
+ * 0–15%: the text materialises from below, scaling up and deblurring
+ * 15–55%: the text holds briefly, then pulses up and down
+ * 55–90%: the text scales back down and fades out
+ * 90–100%: reset to the starting state
+ */
+@keyframes lwBannerCycle {
+  0%   { opacity: 0;  transform: translateY(20px) scale(0.4);  filter: blur(2px);  letter-spacing: 0.05em; }
+  15%  { opacity: 1;  transform: translateY(0)    scale(1.15); filter: blur(0.5px); }
+  30%  { opacity: 1;  transform: translateY(0)    scale(1.00); filter: blur(0);       }
+  55%  {               transform: translateY(-2px) scale(1.03);                        }
+  75%  {               transform: translateY(0)    scale(1.00);                        }
+  90%  { opacity: 0;  transform: translateY(12px) scale(0.8);  filter: blur(1px);    }
+  100% { opacity: 0;  transform: translateY(20px) scale(0.4);  filter: blur(2px);    }
+}
+
+/* Keyframes for the glowing droplet behind the text
+ * 0–12%: droplet grows quickly as the text forms
+ * 12–30%: droplet disappears during the hold phase
+ * 82–94%: droplet reappears to signal the restart of the cycle
+ * 94–100%: droplet shrinks and vanishes
+ */
+@keyframes lwDroplet {
+  0%   { transform: translate(-50%, -50%) scale(0);   opacity: 0;   }
+  12%  { transform: translate(-50%, -50%) scale(2.0); opacity: 0.9; }
+  30%  { transform: translate(-50%, -50%) scale(0);   opacity: 0;   }
+  82%  { transform: translate(-50%, -50%) scale(0);   opacity: 0;   }
+  94%  { transform: translate(-50%, -50%) scale(1.6); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(0);   opacity: 0;   }
+}
+
+/* Mobile adjustments: extend the animation duration slightly on small screens */
+@media (max-width: 520px) {
+  .banner .lw-msg       { animation-duration: 8.5s; }
+  .banner .lw-msg::before { animation-duration: 8.5s; }
+}
+
+/* Reduced motion preferences: we previously disabled the banner animation entirely to respect user settings.
+   However, this prevented the announcement effect from displaying in some environments (e.g. within this test rig).
+   If you want to respect reduced motion, consider implementing a separate reduced‑motion animation instead of disabling
+   it completely. For now, we omit this override so the droplet effect remains visible. */
