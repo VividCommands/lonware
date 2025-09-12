@@ -1,0 +1,110 @@
+/* === Lonware custom UI fixes (September 2025) === */
+
+/* 1. Announcement Bar: white background, smooth marquee, pause on hover, reduced motion friendly */
+.banner {
+  background: #ffffff !important;
+  color: #111 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.banner .lw-msg {
+  filter: none !important; /* remove wave effects */
+  white-space: nowrap !important;
+  display: inline-block !important;
+  padding: 0.65rem 1rem !important;
+  letter-spacing: 0.2px !important;
+  will-change: transform !important;
+  animation: lwMarquee 18s linear infinite !important;
+}
+/* duplicate content via data-dup attribute; set via JS */
+.banner .lw-msg::after {
+  content: " · " attr(data-dup);
+  padding-left: 4rem;
+}
+.banner:hover .lw-msg {
+  animation-play-state: paused !important;
+}
+@keyframes lwMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner .lw-msg { animation: none !important; }
+}
+
+/* 2. Replace top-left logo image with shiny text pill button for Lonware */
+header .logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+header .logo img {
+  display: none !important; /* hide image */
+}
+header .logo::after {
+  content: "Lonware";
+  font: 700 clamp(16px, 2.2vw, 20px)/1.1 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: 0.3px;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  color: #2b2b2b;
+  background: linear-gradient(180deg, #f8f8f8, #dcdcdc);
+  border: 1px solid #c9c9c9;
+  box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+header .logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 40%);
+  mix-blend-mode: screen;
+  transform: translateY(-30%);
+  mask: linear-gradient(#000, transparent 60%);
+}
+
+/* 3. Center hero and neutralize stray transforms */
+.landing {
+  display: grid !important;
+  place-items: center !important;
+  min-height: 72vh !important;
+}
+.landing .hero-art {
+  margin-inline: auto !important;
+}
+.landing, .landing * {
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+/* 4. Mobile tweaks: smaller cubes, airy spacing, less jank */
+@media (max-width: 768px) {
+  .landing { min-height: 65vh; padding: 32px 20px; }
+}
+@media (max-width: 520px) {
+  .landing .cube {
+    --size: clamp(56px, 24vw, 96px) !important;
+    width: var(--size) !important;
+    height: var(--size) !important;
+    animation-duration: 32s !important; /* calmer on phones */
+  }
+  /* reposition cubes for better balance */
+  .landing .cube:nth-child(1) { top: 52% !important; left: 12% !important; }
+  .landing .cube:nth-child(2) { top: 20% !important; left: 46% !important; }
+  .landing .cube:nth-child(3) { top: 64% !important; left: 78% !important; }
+  section { margin-block: 40px; }
+  nav a, button { min-height: 44px; } /* thumb-friendly targets */
+}
+
+/* 5. Performance niceties */
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+.section-large {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px 800px;
+}
