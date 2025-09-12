@@ -299,44 +299,6 @@ body::after {
   text-align: center;
 }
 
-/* === Custom modifications for improved hero layout, banner and logo === */
-/* Center hero cubes and adjust spacing. Using flexbox ensures the cubes remain
-   evenly spaced and centred regardless of screen width. */
-.landing .hero-art {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: clamp(20px, 6vw, 40px) !important;
-}
-/* Reset positioning on individual cubes so they line up relative to the flex container */
-.landing .cube {
-  position: relative !important;
-}
-.landing .cube:nth-child(1),
-.landing .cube:nth-child(2),
-.landing .cube:nth-child(3) {
-  top: auto !important;
-  left: auto !important;
-}
-/* Reduce cube size slightly on medium screens to prevent overlap */
-@media (max-width: 1024px) {
-  .landing .cube {
-    --size: clamp(100px, 24vw, 240px);
-  }
-}
-/* On small screens keep the animated cubes visible but reduce their size and spacing
-   so they don’t overlap or cause excessive lag.  We no longer hide the cubes or
-   replace them with a static illustration; instead we scale them down and narrow
-   the gap between them. */
-@media (max-width: 768px) {
-  .landing .hero-art {
-    gap: clamp(1.5rem, 4vw, 5rem) !important;
-  }
-  .landing .cube {
-    /* Smaller cube size on mobile to avoid overflowing the viewport */
-    --size: clamp(80px, 20vw, 140px) !important;
-  }
-}
 /* Style for textual logo – a silver gradient that pops against the dark header. */
 header .logo-text {
   font-family: 'Oxanium', sans-serif;
@@ -2418,24 +2380,7 @@ body.product-page header .logo {
   animation: lwDroplet 6s ease-in-out infinite !important;
 }
 
-/* Optimise hero cubes for mobile.  Reduce sizes, slow rotations and reposition. */
-@media (max-width: 520px) {
-  .landing .cube {
-    --size: clamp(80px, 38vw, 140px);
-    width: var(--size) !important;
-    height: var(--size) !important;
-    animation-duration: 28s !important;
-  }
-  .landing .cube:nth-child(1) { top: 48% !important; left: 14% !important; }
-  .landing .cube:nth-child(2) { top: 18% !important; left: 46% !important; }
-  .landing .cube:nth-child(3) { top: 62% !important; left: 78% !important; }
-  /* Simplify the animated background on mobile to a static dark colour. */
-  body::before {
-    background: #0b1623 !important;
-    opacity: 1 !important;
-    animation: none !important;
-  }
-}
+/* (Removed) Previously optimised hero cubes for mobile. */
 
 /* Hide the logo image on product pages only; nav remains intact. */
 body.product-page header .logo img {
@@ -2446,3 +2391,64 @@ body.product-page header .logo img {
    However, this prevented the announcement effect from displaying in some environments (e.g. within this test rig).
    If you want to respect reduced motion, consider implementing a separate reduced‑motion animation instead of disabling
    it completely. For now, we omit this override so the droplet effect remains visible. */
+
+/* ---------------------------------------------------------------------
+   Final hero cube alignment overrides
+
+   To restore the original 3D holographic cube appearance while keeping
+   them evenly spaced, we override the positions of each cube on desktop
+   and mobile.  These rules come at the end of the file with
+   `!important` so they take precedence over earlier definitions.
+
+   On desktop and larger tablets (width ≥ 521px) we display three cubes
+   centered horizontally.  On mobile (≤ 520px) we show two cubes only,
+   positioned evenly across the hero area.  In both cases we avoid
+   altering the cube size variables to preserve the correct 3D
+   proportions.
+   ------------------------------------------------------------------- */
+@media (min-width: 521px) {
+  .landing .cube:nth-child(1) {
+    top: 35% !important;
+    left: 20% !important;
+  }
+  .landing .cube:nth-child(2) {
+    top: 25% !important;
+    left: 50% !important;
+  }
+  .landing .cube:nth-child(3) {
+    top: 35% !important;
+    left: 80% !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .landing .cube:nth-child(1) {
+    top: 40% !important;
+    left: 30% !important;
+  }
+  .landing .cube:nth-child(2) {
+    top: 40% !important;
+    left: 60% !important;
+  }
+  .landing .cube:nth-child(3) {
+    display: none !important;
+  }
+}
+
+    /*
+     * Final cube proportion and positioning override
+     *
+     * Ensure each hero cube remains a true square by binding its width and
+     * height back to the responsive `--size` custom property.  Without this
+     * override, earlier fixed-size declarations (e.g. 80px) cause the cubes
+     * to appear as flattened rectangles.  Setting `position: absolute` also
+     * reverts cubes to absolute positioning so top/left offsets from the
+     * alignment rules apply correctly.  The `!important` flags ensure these
+     * values win over any previous overrides.
+     */
+    .landing .cube {
+      width: var(--size) !important;
+      height: var(--size) !important;
+      margin: 0 !important;
+      position: absolute !important;
+    }
