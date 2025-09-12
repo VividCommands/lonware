@@ -324,18 +324,17 @@ body::after {
     --size: clamp(100px, 24vw, 240px);
   }
 }
-/* On small screens hide the animated cubes completely and fall back to a static hero
-   illustration. This prevents performance issues on mobile devices. */
+/* On small screens keep the animated cubes visible but reduce their size and spacing
+   so they don’t overlap or cause excessive lag.  We no longer hide the cubes or
+   replace them with a static illustration; instead we scale them down and narrow
+   the gap between them. */
 @media (max-width: 768px) {
   .landing .hero-art {
-    display: none;
+    gap: clamp(1.5rem, 4vw, 5rem) !important;
   }
-  .landing {
-    background-image: url('hero_art.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    padding: 3rem 0;
+  .landing .cube {
+    /* Smaller cube size on mobile to avoid overflowing the viewport */
+    --size: clamp(80px, 20vw, 140px) !important;
   }
 }
 /* Style for textual logo – a silver gradient that pops against the dark header. */
@@ -383,6 +382,16 @@ header .logo-text {
   perspective: 1400px !important;
   transform-style: preserve-3d !important;
   position: relative !important;
+}
+
+/* Override cube dimensions to maintain proper 3D proportions.  Using fixed
+   width and height ensures the built‑in face translations (40px) remain
+   correct, so the shapes look like true cubes instead of flattened boxes.
+   We apply these overrides after the flexbox adjustments to take
+   precedence over earlier `--size` values. */
+.landing .cube {
+  width: 80px !important;
+  height: 80px !important;
 }
 
 /* Reset cube positioning so they sit in the flex flow rather than using absolute offsets. */
