@@ -155,6 +155,7 @@ body::before {
   left: 0;
   width: 200%;
   height: 200%;
+  /* Default animated background gradient.  This provides gentle colour movement on desktop. */
   background: linear-gradient(120deg, #0a1931, #0b253e, #001f3f, #0b253e, #0a1931);
   animation: moveBg 40s linear infinite;
   z-index: -1;
@@ -216,16 +217,13 @@ body::after {
  * remains unchanged so the bar still ties into the overall theme.
  */
 .banner {
-  /* Make the banner sticky at the top with a pure white background and dark text */
+  /* Make the banner sticky at the top.  Use a semi-opaque dark background to better
+     blend with the site theme.  Colours are overridden at the bottom of this file */
   position: sticky;
   top: 0;
   z-index: 120;
-  /* Reset banner colours after debugging.  The banner uses a pure white
-     background with dark text to stand out against the dark site theme. */
-  background: #ffffff !important;
-  color: #0b1623 !important;
-  /* TEMP debug: give the banner a translucent red background so we can see it during testing */
-  /* background: rgba(255, 0, 0, 0.4) !important; */
+  background: #ffffff;
+  color: #0b1623;
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.6rem 1rem;
@@ -2118,9 +2116,13 @@ header .logo {
   position: relative;
   display: inline-block;
   /* Use the liquid-banner filter defined in index.html */
-  filter: url(#liquid-banner);
+  /* Apply !important so this filter and animation always run, even if a base
+     rule tries to disable them. Without !important the earlier `.lw-msg`
+     definitions can sometimes override the animation or filter, making the
+     banner appear static. */
+  filter: url(#liquid-banner) !important;
   /* Bigger scale change and slower cycle for clearer movement */
-  animation: lwBannerCycle 7s ease-in-out infinite;
+  animation: lwBannerCycle 7s ease-in-out infinite !important;
 }
 
 /* Create a larger glowing droplet behind the words */
@@ -2135,7 +2137,7 @@ header .logo {
   background: rgba(0,170,255,0.40);
   box-shadow: 0 0 35px rgba(120,200,255,0.65);
   transform: translate(-50%, -50%) scale(0);
-  animation: lwDroplet 7s ease-in-out infinite;
+  animation: lwDroplet 7s ease-in-out infinite !important;
   pointer-events: none;
 }
 
@@ -2174,6 +2176,83 @@ header .logo {
 @media (max-width: 520px) {
   .banner .lw-msg       { animation-duration: 8.5s; }
   .banner .lw-msg::before { animation-duration: 8.5s; }
+}
+
+/* Hide the logo on product pages. The product pages add the `product-page` class
+   to the <body> element. This rule hides the logo so users aren't distracted
+   by branding while viewing detailed product information. */
+body.product-page header .logo {
+  display: none !important;
+}
+
+/* Even when the user has enabled the prefers-reduced-motion setting, the
+   announcement banner should still animate. We override the earlier
+   reduced-motion rules by reapplying the banner animations with
+   !important flags and more specific selectors. */
+@media (prefers-reduced-motion: reduce) {
+  .banner .lw-msg {
+    animation: lwBannerCycle 8s ease-in-out infinite !important;
+    filter: url(#liquid-banner) !important;
+  }
+  .banner .lw-msg::before {
+    animation: lwDroplet 8s ease-in-out infinite !important;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Final Lonware adjustments for mobile performance and brand consistency
+   --------------------------------------------------------------------- */
+
+/* Scale the new logo to an appropriate size and maintain aspect ratio. */
+.logo img,
+.logo-img {
+  display: inline-block;
+  height: 34px;
+  width: auto;
+  vertical-align: middle;
+}
+
+/* Darken and refine the announcement bar across devices.  Use semi‑transparent
+   dark backgrounds, white text and a soft blur. */
+.banner {
+  background: rgba(11, 22, 35, 0.88) !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* Force the banner animation to run at a faster pace for smoother loops. */
+.banner .lw-msg {
+  filter: url(#liquid-banner) !important;
+  animation: lwBannerCycle 6s ease-in-out infinite !important;
+}
+.banner .lw-msg::before {
+  animation: lwDroplet 6s ease-in-out infinite !important;
+}
+
+/* Optimise hero cubes for mobile.  Reduce sizes, slow rotations and reposition. */
+@media (max-width: 520px) {
+  .landing .cube {
+    --size: clamp(80px, 38vw, 140px);
+    width: var(--size) !important;
+    height: var(--size) !important;
+    animation-duration: 28s !important;
+  }
+  .landing .cube:nth-child(1) { top: 48% !important; left: 14% !important; }
+  .landing .cube:nth-child(2) { top: 18% !important; left: 46% !important; }
+  .landing .cube:nth-child(3) { top: 62% !important; left: 78% !important; }
+  /* Simplify the animated background on mobile to a static dark colour. */
+  body::before {
+    background: #0b1623 !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+/* Hide the logo image on product pages only; nav remains intact. */
+body.product-page header .logo img {
+  display: none !important;
 }
 
 /* Reduced motion preferences: we previously disabled the banner animation entirely to respect user settings.
