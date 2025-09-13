@@ -2419,7 +2419,11 @@ body.product-page header .logo img {
            This, along with the other offsets below, centres the group and
            increases the spacing between cubes. */
         top: 35% !important;
-        left: 25% !important;
+        /* Shift slightly left (~3%) to ensure the group as a whole sits
+           closer to the centre of the screen while preserving equal
+           spacing.  Moving all cubes left by roughly a centimetre helps
+           counteract any perceived right‑bias on large displays. */
+        left: 22% !important;
         /* Ensure this cube spins forward at the default speed. */
         animation-direction: normal !important;
         animation-duration: 20s !important;
@@ -2428,7 +2432,8 @@ body.product-page header .logo img {
         /* Place the middle cube higher and dead centre.  Its animation runs
            in reverse and slightly slower to differentiate it from the others. */
         top: 25% !important;
-        left: 50% !important;
+        /* Move the centre cube left in unison with the other cubes. */
+        left: 47% !important;
         animation-direction: reverse !important;
         animation-duration: 24s !important;
       }
@@ -2436,7 +2441,8 @@ body.product-page header .logo img {
         /* Position the right cube to mirror the left one and keep the group
            centred.  Its animation alternates direction for extra variety. */
         top: 35% !important;
-        left: 75% !important;
+        /* Adjust the right cube left to maintain equal spacing and centering. */
+        left: 72% !important;
         animation-direction: alternate !important;
         animation-duration: 22s !important;
       }
