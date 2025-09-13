@@ -2415,22 +2415,30 @@ body.product-page header .logo img {
          the set of three cubes and prevent overlap while keeping their
          original appearance. */
       .landing .cube:nth-child(1) {
-        /* Raise the first cube slightly and move it inward so the trio
-           sits closer to the horizontal centre of the viewport. */
-        top: 40% !important;
-        left: 30% !important;
+        /* Position the left cube further in from the edge and raise it slightly.
+           This, along with the other offsets below, centres the group and
+           increases the spacing between cubes. */
+        top: 35% !important;
+        left: 25% !important;
+        /* Ensure this cube spins forward at the default speed. */
+        animation-direction: normal !important;
+        animation-duration: 20s !important;
       }
       .landing .cube:nth-child(2) {
-        /* Position the middle cube higher and dead centre to create a pleasing
-           staggered effect while preserving its 3‑D proportions. */
-        top: 30% !important;
+        /* Place the middle cube higher and dead centre.  Its animation runs
+           in reverse and slightly slower to differentiate it from the others. */
+        top: 25% !important;
         left: 50% !important;
+        animation-direction: reverse !important;
+        animation-duration: 24s !important;
       }
       .landing .cube:nth-child(3) {
-        /* Mirror the first cube’s position on the right side so the layout is
-           symmetrical.  This keeps the three cubes evenly spaced. */
-        top: 40% !important;
-        left: 70% !important;
+        /* Position the right cube to mirror the left one and keep the group
+           centred.  Its animation alternates direction for extra variety. */
+        top: 35% !important;
+        left: 75% !important;
+        animation-direction: alternate !important;
+        animation-duration: 22s !important;
       }
     }
 
