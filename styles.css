@@ -1878,41 +1878,6 @@ nav a.cta:hover {
   transform: translateY(-2px);
 }
 
-/*
- * Hero “Get Started” button
- *
- * This call‑to‑action appears below the 3D cubes on desktop to guide
- * visitors toward the Features section.  It reuses the same color palette
- * as the navigation CTA for brand consistency and centres itself within
- * the landing section.  Hidden on mobile to maintain a clean, compact
- * hero layout.
- */
-.landing .get-started {
-  display: inline-block;
-  margin: 3rem auto 0;
-  padding: 0.8rem 2rem;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #ffffff;
-  background: linear-gradient(90deg, #00bcd4, #0097a7);
-  box-shadow: 0 3px 10px rgba(0, 188, 212, 0.4);
-  text-decoration: none;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-.landing .get-started:hover {
-  box-shadow: 0 5px 14px rgba(0, 188, 212, 0.6);
-  transform: translateY(-2px);
-}
-
-/* Hide the Get Started button on small screens (≤520px) */
-@media (max-width: 520px) {
-  .landing .get-started {
-    display: none !important;
-  }
-}
 /* Mobile responsiveness improvements */
 @media (max-width: 600px) {
   /* General padding adjustments for small screens */
@@ -2459,7 +2424,8 @@ body.product-page header .logo img {
            closer to the centre of the screen while preserving equal
            spacing.  Moving all cubes left by roughly a centimetre helps
            counteract any perceived right‑bias on large displays. */
-        left: 22% !important;
+        /* Shift the entire trio further left to better center them on wide screens. */
+        left: 20% !important;
         /* Ensure this cube spins forward at the default speed. */
         animation-direction: normal !important;
         animation-duration: 20s !important;
@@ -2469,7 +2435,7 @@ body.product-page header .logo img {
            in reverse and slightly slower to differentiate it from the others. */
         top: 25% !important;
         /* Move the centre cube left in unison with the other cubes. */
-        left: 47% !important;
+        left: 45% !important;
         animation-direction: reverse !important;
         animation-duration: 24s !important;
       }
@@ -2478,7 +2444,7 @@ body.product-page header .logo img {
            centred.  Its animation alternates direction for extra variety. */
         top: 35% !important;
         /* Adjust the right cube left to maintain equal spacing and centering. */
-        left: 72% !important;
+        left: 70% !important;
         animation-direction: alternate !important;
         animation-duration: 22s !important;
       }
