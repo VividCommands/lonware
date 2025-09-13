@@ -2366,7 +2366,10 @@ body.product-page header .logo {
   /* Start the announcement text at the beginning of the banner instead of
      off‑screen.  Padding removed so the message is visible immediately. */
   padding-left: 0 !important;
-  animation: banner-scroll 15s linear infinite !important;
+  /* Apply a slow horizontal scroll animation to add a subtle movement.  A
+     longer duration keeps the motion gentle and unobtrusive on both
+     desktop and mobile. */
+  animation: banner-scroll 20s linear infinite !important;
   filter: none !important;
 }
 /* Remove the decorative droplet indicator that previously appeared to the
@@ -2406,34 +2409,47 @@ body.product-page header .logo img {
    altering the cube size variables to preserve the correct 3D
    proportions.
    ------------------------------------------------------------------- */
-@media (min-width: 521px) {
-  .landing .cube:nth-child(1) {
-    top: 35% !important;
-    left: 20% !important;
-  }
-  .landing .cube:nth-child(2) {
-    top: 25% !important;
-    left: 50% !important;
-  }
-  .landing .cube:nth-child(3) {
-    top: 35% !important;
-    left: 80% !important;
-  }
-}
+    @media (min-width: 521px) {
+      /* Space the cubes apart evenly and raise the centre cube slightly for
+         better composition on desktop.  These positions horizontally centre
+         the set of three cubes and prevent overlap while keeping their
+         original appearance. */
+      .landing .cube:nth-child(1) {
+        /* Raise the first cube slightly and move it inward so the trio
+           sits closer to the horizontal centre of the viewport. */
+        top: 40% !important;
+        left: 30% !important;
+      }
+      .landing .cube:nth-child(2) {
+        /* Position the middle cube higher and dead centre to create a pleasing
+           staggered effect while preserving its 3‑D proportions. */
+        top: 30% !important;
+        left: 50% !important;
+      }
+      .landing .cube:nth-child(3) {
+        /* Mirror the first cube’s position on the right side so the layout is
+           symmetrical.  This keeps the three cubes evenly spaced. */
+        top: 40% !important;
+        left: 70% !important;
+      }
+    }
 
-@media (max-width: 520px) {
-  .landing .cube:nth-child(1) {
-    top: 40% !important;
-    left: 30% !important;
-  }
-  .landing .cube:nth-child(2) {
-    top: 40% !important;
-    left: 60% !important;
-  }
-  .landing .cube:nth-child(3) {
-    display: none !important;
-  }
-}
+    @media (max-width: 520px) {
+      /* Remove cubes entirely on mobile to avoid lag and eliminate the extra
+         vertical space reserved for them.  We also collapse the hero art
+         container so the headline sits closer to the content. */
+      .landing .cube {
+        display: none !important;
+      }
+      .landing .hero-art {
+        /* Collapse the hero-art container to remove any leftover space where
+           the cubes used to live.  Resetting margin and padding ensures
+           there’s no unintended gap above the headline on mobile. */
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
 
     /*
      * Final cube proportion and positioning override
