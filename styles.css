@@ -1877,6 +1877,42 @@ nav a.cta:hover {
   box-shadow: 0 4px 12px rgba(0, 188, 212, 0.6);
   transform: translateY(-2px);
 }
+
+/*
+ * Hero “Get Started” button
+ *
+ * This call‑to‑action appears below the 3D cubes on desktop to guide
+ * visitors toward the Features section.  It reuses the same color palette
+ * as the navigation CTA for brand consistency and centres itself within
+ * the landing section.  Hidden on mobile to maintain a clean, compact
+ * hero layout.
+ */
+.landing .get-started {
+  display: inline-block;
+  margin: 3rem auto 0;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffffff;
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  box-shadow: 0 3px 10px rgba(0, 188, 212, 0.4);
+  text-decoration: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+.landing .get-started:hover {
+  box-shadow: 0 5px 14px rgba(0, 188, 212, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Hide the Get Started button on small screens (≤520px) */
+@media (max-width: 520px) {
+  .landing .get-started {
+    display: none !important;
+  }
+}
 /* Mobile responsiveness improvements */
 @media (max-width: 600px) {
   /* General padding adjustments for small screens */
