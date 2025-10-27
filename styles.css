@@ -11,6 +11,48 @@
 }
 .landing .hero-art {
   perspective: 1400px;
+
+  /* New Releases section styling */
+.releases {
+  padding: 5rem 1rem;
+  text-align: center;
+}
+
+.releases__grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .releases__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.release-card {
+  background: linear-gradient(135deg, rgba(30, 50, 106, 0.8), rgba(22, 32, 84, 0.8));
+  padding: 2rem;
+  border-radius: 0.8rem;
+  text-align: left;
+  color: #fff;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.release-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+
+.release-card__title {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: #ffe680;
+}
+
   transform-style: preserve-3d;
   width: clamp(300px, 72vw, 760px);
   height: clamp(260px, 60vw, 660px);
@@ -339,7 +381,8 @@ header .logo-text {
   /* Responsive gap between cubes – scales with viewport width */
   /* Increase the gap to further separate the rotating cubes and prevent
      overlap as they spin. */
-  gap: clamp(4rem, 10vw, 12rem) !important;
+  gap: clamp(6re6rem, 12vw, 15rem) !important;
+ 
   /* Ensure the container still provides perspective for the 3D transforms */
   perspective: 1400px !important;
   transform-style: preserve-3d !important;
