@@ -18,6 +18,7 @@
   position: relative;
 }
 .landing .cube {
+    display: none !important;
   /* Use CSS custom properties to define cube size; adapt size responsively */
   /* Increase cube size for a more prominent hero effect. The cube size now scales
      between 150px on small screens and up to 300px on large screens. */
