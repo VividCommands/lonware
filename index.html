@@ -9,6 +9,25 @@
        enhancements load properly. -->
   <!-- Use the standard styles.css filename for the deployed site. -->
   <link rel="stylesheet" href="styles.css" />
+      <!-- Inline override to extend the blue glow over the landing section.
+           This adds a tinted overlay to the top of the page so the colour
+           begins behind the header and covers the hero title. -->
+      <style>
+        .landing {
+          position: relative;
+        }
+        .landing::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 100%;
+          background: linear-gradient(to bottom, rgba(120, 200, 255, 0.08), transparent 60%);
+          pointer-events: none;
+          z-index: -1;
+        }
+      </style>
   <!-- Removed inline banner overrides. The banner styling is now defined solely in styles.css. -->
   <!-- Import gaming font for hero and headings -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,9 +78,9 @@
   <main>
     <!-- Hero landing section with scrollable tagline -->
     <section class="landing">
-      <!-- Updated hero copy with gaming vibe -->
-      <h1 class="hero-title">Squeeze Every Frame. Win More Fights.</h1>
-  <!-- Removed tagline to reduce clutter -->-->
+      <!-- Updated hero copy with a more engaging tagline -->
+      <h1 class="hero-title">Optimize Your Gameplay. Conquer Every Battle.</h1>
+      <!-- Removed tagline to reduce clutter -->
       <!-- Decorative hero art shows a swirling neon cube.  It gently rotates thanks to CSS animation defined in styles.css. -->
       <!--
    <div class="hero-art" style="display:none;">
