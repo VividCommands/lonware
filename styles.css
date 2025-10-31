@@ -16,8 +16,10 @@
   height: clamp(260px, 60vw, 660px);
   margin: 1.5rem auto 2.2rem;
   position: relative;
+    display: none !important;
 }
 .landing .cube {
+    display: none !important;
   /* Use CSS custom properties to define cube size; adapt size responsively */
   /* Increase cube size for a more prominent hero effect. The cube size now scales
      between 150px on small screens and up to 300px on large screens. */
@@ -1966,9 +1968,35 @@ nav a.cta:hover {
 .features{
   position: relative;
   padding: clamp(56px, 8vw, 96px) 0;
-  background: radial-gradient(1200px 600px at 10% 0%, rgba(34,230,150,0.08), transparent 60%),
-              radial-gradient(1000px 500px at 90% 0%, rgba(34,230,150,0.06), transparent 60%);
-  overflow: hidden;
+  /*
+    Reposition the green glow so it begins nearer the top of the viewport. By
+    shifting the radial gradient origins upward (negative y offset), the
+    background colour bleeds under the header instead of appearing half‑way
+    down the page. This preserves the layout of the Main section while
+    extending the subtle glow to the very top of the screen. Adjust the
+    pixel offset to fine‑tune how far the effect reaches.
+  */
+  /*
+    Extend the glow behind the Main section so it begins at the very top of
+    the viewport and fades down gradually. Adjust the vertical offset to a
+    large negative value so the radial gradients originate well above the
+    hero and newly released sections. Switch the colour tint to a cool blue
+    to better match the rest of the page aesthetics.
+  */
+  /*
+    Position the radial glows high above the section so the tint begins
+    immediately below the header and gently fades down over the Main and
+    Newly Released sections.  Using negative viewport‑based Y offsets
+    effectively pulls the centres of the gradients well above the page
+    content.  The green hue ties into the brand accent colour while
+    remaining subtle thanks to low opacity.  Increasing the transparent
+    stop to 70% allows the glow to taper off more gradually.
+  */
+  /* The ambient glow is now applied via a ::before on the main element,
+     so clear the background on the features section itself. */
+  background: none;
+  overflow: visible;
+  background-attachment: initial;
 }
 .features .wrap{ max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .features__head{ text-align: center; margin-bottom: 28px; }
@@ -2484,3 +2512,114 @@ body.product-page header .logo img {
       margin: 0 !important;
       position: absolute !important;
     }
+
+/* ========= Newly Released Section ========= */
+/*
+  The newly released Bloom Reducer card sits right under the Main features
+  section. It uses a subtle green glow and border to draw attention without
+  overpowering the rest of the page. The layout collapses gracefully on
+  smaller screens so the call to action remains easily tappable.
+*/
+.new-release{
+  position: relative;
+  padding: clamp(48px, 7vw, 80px) 0;
+  text-align: center;
+  overflow: hidden;
+  /*
+    Extend the ambient glow behind the newly released section upward so it
+    originates well above the page.  A large negative viewport offset
+    aligns the centre of the radial gradient near the top of the screen,
+    creating a seamless fade from the hero into the New Release area.
+    Maintaining the same green hue keeps it consistent with the Main
+    section’s glow.  The transparency stop of 70% matches the features
+    section for a more gradual fade.
+  */
+  /* Background glow removed; main::before now handles the subtle tint behind
+     both the features and newly released sections. */
+  background: none;
+}
+.new-release .wrap{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.new-release h2{
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 32px;
+  color: var(--lw-text);
+}
+.release-card{
+  border: 1px solid rgba(34,230,150,0.35);
+  border-radius: 20px;
+  padding: 32px;
+  background: linear-gradient(180deg, rgba(34,230,150,0.05), rgba(34,230,150,0.02) 100%);
+  box-shadow: 0 0 40px rgba(34,230,150,0.18);
+}
+.release-card h3{
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: var(--lw-text);
+}
+.release-card p{
+  color: var(--lw-muted);
+  font-size: 15px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+.release-card .primary{
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 8px;
+  background: rgba(34,230,150,0.18);
+  border: 1px solid rgba(34,230,150,0.45);
+  color: var(--lw-accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s ease, transform .2s ease;
+}
+.release-card .primary:hover{
+  background: rgba(34,230,150,0.28);
+  transform: translateY(-2px);
+}
+@media (max-width: 640px){
+  .release-card{
+    padding: 24px;
+  }
+  .new-release h2{
+    margin-bottom: 24px;
+  }
+  .release-card h3{
+    font-size: 24px;
+  }
+}
+
+/*
+  Apply the ambient glow to the entire main element so it begins right
+  below the header.  The pseudo‑element spans the full height of the
+  main content, allowing the radial gradients to fade naturally down
+  through the Main, Newly Released, and subsequent sections.  Anchoring
+  both radial centres at y = 0 ensures the glow starts at the very top
+  of main.  Low opacities and a 70% transparent stop deliver a soft
+  transition.
+*/
+main {
+  position: relative;
+  z-index: 0;
+}
+main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background:
+    radial-gradient(1200px 600px at 10% 0,
+                    rgba(34,230,150,0.08),
+                    transparent 70%),
+    radial-gradient(1000px 500px at 90% 0,
+                    rgba(34,230,150,0.06),
+                    transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}

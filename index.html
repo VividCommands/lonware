@@ -7,72 +7,15 @@
   <!-- Link to our updated stylesheet file. Use the correct filename 'styles (3).css'
        rather than the generic styles.css so the updated animations and cube
        enhancements load properly. -->
-
-      <style>
-      /* Extend cyan glow behind header and landing sections */
-      main {
-        position: relative;
-        margin-top: -80px;
-        padding-top: 80px;
-      }
-      main::before,
-      .landing::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(0, 183, 255, 0.12), transparent 60%);
-        pointer-events: none;
-        z-index: -1;
-      }
-      /* New product showcase styling */
-      .new-product {
-        display: flex;
-        justify-content: center;
-        margin: 4rem auto;
-      }
-      .new-product .card {
-        position: relative;
-        padding: 2rem;
-        border: 1px solid rgba(120, 200, 255, 0.4);
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 183, 255, 0.4), 0 0 10px rgba(0, 183, 255, 0.3) inset;
-        background: rgba(255, 255, 255, 0.05);
-        text-align: center;
-        max-width: 320px;
-      }
-      .new-product .badge-new {
-        position: absolute;
-        top: -12px;
-        left: 16px;
-        background: rgba(0, 183, 255, 0.7);
-        color: #fff;
-        font-size: 0.75rem;
-        padding: 2px 8px;
-        border-radius: 4px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 0 8px rgba(0, 183, 255, 0.6);
-      }
-      .new-product .button {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.6rem 1.2rem;
-        background: linear-gradient(45deg, #00b7ff, #0069ff);
-        color: #fff;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: background 0.3s ease;
-      }
-      .new-product .button:hover {
-        background: linear-gradient(45deg, #0069ff, #00b7ff);
-      }
-    </style>
-<!-- Use the standard styles.css filename for the deployed site. -->
+  <!-- Use the standard styles.css filename for the deployed site. -->
   <link rel="stylesheet" href="styles.css" />
+      <!--
+        Removed the previous inline override that stretched a blue gradient over the
+        entire main area. The visual glow behind the feature section is now
+        repositioned directly in the stylesheet so it begins beneath the header
+        rather than halfway down the page. Keeping the main markup clean helps
+        avoid unexpected layout shifts.
+      -->
   <!-- Removed inline banner overrides. The banner styling is now defined solely in styles.css. -->
   <!-- Import gaming font for hero and headings -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -81,7 +24,8 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/png" href="favicon-32.png" sizes="32x32" />
   <meta name="theme-color" content="#0B1623" />
-  <meta name="description" content="Lonware provides premium gaming optimisations and macros for PC and console gamers. Boost FPS, reduce latency and unlock your maximum performance." />
+  <meta name="description" content="Lonware provides premium gaming optimi
+        <style>.hero-art, .cube { display:none !important; }</style>sations and macros for PC and console gamers. Boost FPS, reduce latency and unlock your maximum performance." />
 </head>
 <body>
   <!-- SVG filter definition for the liquid animation on the banner. This hidden element defines
@@ -103,8 +47,8 @@
 
   <!-- Announcement banner: shows the discount once with a droplet animation.
        The inline style has been removed so styling comes from our CSS.  -->
-  <div class="banner" data-discount="10">
-    <span class="lw-msg">Use code <strong>Lxn2x</strong> for <strong class="discount">10%</strong> off your order! Don’t miss out on exclusive savings today.</span>
+  <div class="banner" data-discount="15">
+    <span class="lw-msg" data-dup="Use code Hollow for 15% off your order! Limited time Halloween offer.">Use code <strong>Hollow</strong> for <strong class="discount">15%</strong> off your order! Limited time Halloween offer.</span>
   </div>
   <!-- Site header with logo and navigation -->
   <header>
@@ -122,37 +66,10 @@
   <main>
     <!-- Hero landing section with scrollable tagline -->
     <section class="landing">
-      <!-- Updated hero copy with gaming vibe -->
-      <h1 class="hero-title">Squeeze Every Frame. Win More Fights.</h1>
+      <!-- Updated hero copy with a more engaging tagline -->
+      <h1 class="hero-title">Optimize Your Gameplay. Conquer Every Battle.</h1>
       <!-- Removed tagline to reduce clutter -->
-      <!-- Decorative hero art shows a swirling neon cube.  It gently rotates thanks to CSS animation defined in styles.css. -->
-      <div class="hero-art">
-        <!-- 3D cubes to replace static hero art image -->
-        <div class="cube">
-          <div class="face front"></div>
-          <div class="face back"></div>
-          <div class="face right"></div>
-          <div class="face left"></div>
-          <div class="face top"></div>
-          <div class="face bottom"></div>
-        </div>
-        <div class="cube">
-          <div class="face front"></div>
-          <div class="face back"></div>
-          <div class="face right"></div>
-          <div class="face left"></div>
-          <div class="face top"></div>
-          <div class="face bottom"></div>
-        </div>
-        <div class="cube">
-          <div class="face front"></div>
-          <div class="face back"></div>
-          <div class="face right"></div>
-          <div class="face left"></div>
-          <div class="face top"></div>
-          <div class="face bottom"></div>
-        </div>
-      </div>
+      <!-- Decorative hero art removed as per user request -->
       <!-- Desktop‑only call to action: a Get Started button that quickly anchors
            users to the Features section.  It's hidden on mobile via CSS so
            the hero remains uncluttered on small screens.  -->
@@ -182,17 +99,19 @@
             <span class="feature-card__cta">Learn more</span>
           </a>
 
-    <!-- Updated to link directly to the Bloom Reducer checkout. -->
-       <a class="feature-card" href="https://payhip.com/b/1Htr4" aria-label="Open Bloom Redu>cer">
+          <!-- Updated to link to the Bloom Reducer product page.  Renamed from Aim
+               Tweaks to Bloom Reducer and updated the description to reflect
+               its purpose. -->
+          <a class="feature-card" href="bloom-reducer.html" aria-label="Open Bloom Reducer">
             <!-- Removed feature art image per user request -->
             <div class="feature-card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
                 <path d="M12 2v3a7 7 0 1 1-7 7H2a10 10 0 1 0 10-10zM11 11h2v2h-2z"/>
               </svg>
             </div>
-<h3>Bloom Reducer</h3>
-          Reduces visual bloom and recoil for precise shots.
-            <span class="feature-card__cta">Buy now presets</span>
+            <h3>Bloom Reducer</h3>
+            <p>Reduce visual bloom and glare for crisp, clear sights and steadier aim.</p>
+            <span class="feature-card__cta">See presets</span>
           </a>
 
           <!-- Updated to link to the Console Tweaks product section. -->
@@ -249,24 +168,25 @@
         </div>
       </div>
     </section>
-    
-<!-- New product section for Bloom Reducer -->
-<section class="new-product">
-    <div class="card">
-        <span class="badge-new">NEWLY RELEASED</span>
-            <h2>Bloom Reducer</h2>
-        <p>Reduces visual bloom and recoil for precise shots.</p>
-        <a href="https://payhip.com/b/1Htr4" class="button">Buy Now</a>
-  </div>
-</section>
-
     <!-- ========= /Powerful Features ========= -->
+
+    <!-- ========= Newly Released Product ========= -->
+    <section class="new-release">
+      <div class="wrap">
+        <h2>Newly Released</h2>
+        <div class="release-card">
+          <h3>Bloom Reducer</h3>
+          <p>Cut through bloom and glare for a crisp gameplay experience.</p>
+          <a href="https://payhip.com/buy?link=1Htr4" class="primary" target="_blank">Buy Now</a>
+        </div>
+      </div>
+    </section>
 
     <!-- Product grid section -->
     <section class="product-grid">
       <!-- Anchor for Controller/KBM Macro -->
       <div id="controller-macro" class="anchor-target"></div>
-      <!--  Controller/KBM Macro (now first) -->
+      <!-- Product card: Controller/KBM Macro (now first) -->
       <!-- Link to the product page rather than Payhip so users can learn more -->
       <a class="card has-video" href="controller-macro.html" data-video-src="macro.mp4">
         <img src="img/controller_macro_product.png" alt="Controller/KBM Macro" class="card-image" />
@@ -282,7 +202,7 @@
         </div>
       </a>
       <div id="ping-optimizations" class="anchor-target"></div>
-      <!--  Ping Optimizations -->
+      <!-- Product card: Ping Optimizations -->
       <a class="card" href="ping-optimizations.html">
         <img src="img/ping_product.png" alt="Ping Optimizations" class="card-image" />
         <div class="card-content">
@@ -325,18 +245,20 @@
           <div class="button">View Product</div>
         </div>
       </a>
- <div id="bloom-reducer" class="anchor-target"></div>
-  <!-- Product card: Bloom Reducer -->
-  <a class="card" href="https://payhip.com/b/1Htr4">
-    <!-- Use our custom pixel-art image for Bloom Reducer. -->
-    <img src="img/aim_product.png" alt="Bloom Reducer" class="card-image" />
-    <div class="card-content">
-      <h3>Bloom Reducer</h3>
-      <div class="price">$25.00</div>
-      <div class="sale-price">$13.99</div>
-      <div class="button">Buy Now</div>
-    </div>
-  </a>
+      <div id="bloom-reducer" class="anchor-target"></div>
+      <!-- Product card: Bloom Reducer (formerly Aim Tweaks). Add has-video and YouTube embed like the other product cards. -->
+      <a class="card has-video" href="bloom-reducer.html" data-video-id="dIXx7q_W8zE">
+        <!-- Use the existing aim product image as a placeholder. Replace with a dedicated Bloom Reducer graphic when available. -->
+        <img src="img/aim_product.png" alt="Bloom Reducer" class="card-image" />
+        <!-- Overlay for YouTube preview. The data-video-id attribute above tells the player script to load this ID on hover. -->
+        <div class="video-overlay"></div>
+        <div class="card-content">
+          <h3>Bloom Reducer</h3>
+        <div class="price">$25.00</div>
+        <div class="sale-price">$13.99</div>
+          <div class="button">View Product</div>
+        </div>
+      </a>
     </section>
     <!-- Why choose section -->
     <section class="why-choose">
@@ -421,28 +343,29 @@
                       <!-- Removed the secondary button for Console Tweaks -->
           </div>
         </div>
-       
-<!-- Plan: Bloom Reducer -->
-<div class="plan">
-  <h3>Bloom Reducer</h3>
-  <div class="price">$13.99</div>
-  <ul>
-    <li>Reduce weapon bloom and recoil for precision</li>
-    <li>Compatible with top FPS titles</li>
-    <li>Customizable sensitivity settings</li>
-    <li>Boost your K/D ratio with stable aim</li>
-  </ul>
-  <d<div class="buttons">
-    <!-- Direct users straight to Payhip checkout for Bloom Reducer -->
-    <a href="https://payhip.com/b/1Htr4" class="primary" target="_blank">Buy Now</a>
-    <!-- Removed the secondary button for Bloom Reducer -->
-  </div>
-</div></div>
-      </divabel="Previous review">&#10094;</button>
-        
-
-        <button class="prev-review" aria-label="Previous review">&#10094;</button>
-      <div class="reviews-track">
+        <!-- Plan: Bloom Reducer (formerly Aim Tweaks) -->
+        <div class="plan">
+          <h3>Bloom Reducer</h3>
+          <div class="price">$13.99</div>
+          <ul>
+            <li>Reduce screen bloom for clearer visuals</li>
+            <li>Enhance colour fidelity and sharpness</li>
+            <li>Simple preset system with adjustable intensity</li>
+            <li>Compatible with top FPS titles</li>
+          </ul>
+          <div class="buttons">
+            <!-- Direct users straight to Payhip checkout for Bloom Reducer -->
+            <a href="https://payhip.com/buy?link=1Htr4" class="primary" target="_blank">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- Reviews section with slider and decorative heading -->
+        <section class="reviews">
+          <h2 class="section-title"><span>What Players Say</span></h2>
+          <div class="reviews-slider">
+            <button class="prev-review" aria-label="Previous review">&#10094;</button>
+            <div class="reviews-track">
               <div class="review">
                 <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 <p>Using Lonware macros changed how I play – my building speed is insane!</p>
@@ -470,7 +393,7 @@
               </div>
               <div class="review">
                 <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-<p>Bloom reducer improved my recoil control; I'm hitting shots I used to miss.</p>
+                <p>Aim tweaks improved my recoil control; I'm hitting shots I used to miss.</p>
                 <span class="reviewer">— Isabella&nbsp;T.</span>
               </div>
               <div class="review">
