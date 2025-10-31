@@ -13,10 +13,13 @@
            This adds a tinted overlay to the top of the page so the colour
            begins behind the header and covers the hero title. -->
       <style>
-        .landing {
+        /* Apply the blue‑tint overlay to the entire main section rather than just
+           the landing subsection. This way the colour begins immediately below
+           the header and gradually fades as you scroll down. */
+        main {
           position: relative;
         }
-        .landing::before {
+        main::before {
           content: "";
           position: absolute;
           top: 0;
