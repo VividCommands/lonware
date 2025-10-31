@@ -9,11 +9,11 @@
 </head>
 <body>
   <!-- Announcement banner: display a single, clear discount message -->
-  <div class="banner">
-    <span class="lw-msg">Use code <strong>Lxn2x</strong> for 20% off your order! Don’t miss out on exclusive savings today.</span>
+  <div class="banner" data-discount="12">
+    <span class="lw-msg" data-dup="Use code Hollow for 12% off your order! Limited time offer.">Use code <strong>Hollow</strong> for 12% off your order! Limited time offer.</span>
   </div>
-      <header>
-         <a href="index.html" class="logo"><span class="logo-text">Lonware</span></a>
+  <header>
+    <a href="index.html" class="logo"><span class="logo-text">Lonware</span></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="contact.html">Contact</a>
@@ -21,14 +21,11 @@
   </header>
   <main class="product-wrapper">
     <div class="product-image">
-      <!--
-        Embed the PC optimizations demo from YouTube.  We use an iframe with
-        autoplay, mute and loop enabled to mimic the behaviour of the macro
-        video.  Controls, related videos and branding are hidden via URL
-        parameters.  The playlist parameter is set to the same ID to enable
-        looping.
-      -->
-      <iframe src="https://www.youtube.com/embed/ycqSC46RnnQ?autoplay=1&mute=1&controls=0&loop=1&playlist=ycqSC46RnnQ&rel=0&modestbranding=1&showinfo=0" allow="autoplay; muted" frameborder="0" style="width: 100%; height: 100%; border: none;"></iframe>
+      <!-- Embed the PC optimisations demo from YouTube. We use an iframe with autoplay, mute and loop enabled to mimic the behaviour of other product videos. Controls, related videos and branding are hidden via URL parameters. The playlist parameter is set to the same ID to enable looping. -->
+      <iframe src="https://www.youtube.com/embed/ycqSC46RnnQ?autoplay=1&mute=1&controls=0&loop=1&playlist=ycqSC46RnnQ&rel=0&modestbranding=1&showinfo=0"
+              allow="autoplay; muted"
+              frameborder="0"
+              style="width: 100%; height: 100%; border: none;"></iframe>
     </div>
     <div class="product-details">
       <h1>PC Optimizations</h1>
@@ -37,9 +34,8 @@
         <span class="sale-price">$15.99</span>
       </div>
       <div class="actions">
-        <!-- irect users to the dedicated PC Optimizations checkout link on Payhip -->
-       <!-- Updated Payhip link for PC Optimizations -->
-       <a href="https://payhip.com/buy?link=LGIiX" class="buy" target="_blank" rel="noopener noreferrer">Buy Now</a>
+        <!-- Direct users to the dedicated PC Optimizations checkout link on Payhip -->
+        <a href="https://payhip.com/buy?link=LGIiX" class="buy" target="_blank" rel="noopener noreferrer">Buy Now</a>
       </div>
       <section>
         <h2>Overview</h2>
@@ -75,6 +71,4 @@
     &copy; 2025 Lonware. All rights reserved.
   </footer>
 </body>
-  
 </html>
-

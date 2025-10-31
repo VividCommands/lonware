@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Controller/KBM Macro – Lonware</title>
   <link rel="stylesheet" href="styles.css" />
-  <meta name="description" content="Automate complex inputs and gain the competitive edge with the Controller/KBM Macro engine. Record, customise and execute macros with ease." />
+  <meta name="description" content="Automate complex inputs and gain a competitive edge with the Controller/KBM Macro engine. Record, customise and execute macros for any game." />
 </head>
 <body>
   <!-- Announcement banner: display a single, clear discount message -->
-  <div class="banner">
-    <span class="lw-msg">Use code <strong>Lxn2x</strong> for 20% off your order! Don’t miss out on exclusive savings today.</span>
+  <div class="banner" data-discount="12">
+    <span class="lw-msg" data-dup="Use code Hollow for 12% off your order! Limited time offer.">Use code <strong>Hollow</strong> for 12% off your order! Limited time offer.</span>
   </div>
-      <header>
-         <a href="index.html" class="logo"><span class="logo-text">Lonware</span></a>
+  <header>
+    <a href="index.html" class="logo"><span class="logo-text">Lonware</span></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="shop.html" class="cta">Shop</a>
@@ -30,54 +30,41 @@
         </div>
         <!-- Slide 2: YouTube preview using the correct video ID provided by the user -->
         <div class="slide">
-        <iframe
-            src="https://www.youtube.com/embed/JDGbfd0nYDc?autoplay=1&amp;mute=1&amp;controls=0&amp;rel=0&amp;modestbranding=1&amp;showinfo=0&amp;loop=1&amp;playlist=JDGbfd0nYDc&amp;vq=hd1080"
+          <iframe
+            src="https://www.youtube.com/embed/JDGbfd0nYDc?autoplay=1&amp;mute=1&amp;controls=0&amp;rel=0&amp;modestbranding=1&amp;showinfo=0&amp;loop=1&amp;playlist=JDGbfd0nYDc"
             title="Controller/KBM Macro Preview"
             frameborder="0"
             allow="autoplay; fullscreen; encrypted-media"
             allowfullscreen></iframe>
         </div>
       </div>
-      <button class="prev-slide" aria-label="Previous video">&#10094;</button>
-      <button class="next-slide" aria-label="Next video">&#10095;</button>
+      <button class="prev-slide" aria-label="Previous video">❮</button>
+      <button class="next-slide" aria-label="Next video">❯</button>
     </div>
     <div class="product-details">
-    <h1>Macro.io</h1>
-    <p class="subtitle">Controller/Keyboard Macro</p>
+      <h1>Macro.io</h1>
+      <p class="subtitle">Controller/Keyboard Macro</p>
       <div class="prices">
-        <!-- Updated pricing for the macro package.  Display the current
-             subscription price and a subtle billing cycle indicator.  The
-             original cross‑out price has been removed because the product is
-             no longer on sale. -->
         <span class="price">$9.99</span>
         <span class="billing-cycle">every&nbsp;2&nbsp;weeks</span>
       </div>
       <div class="actions">
-        <!-- Direct all purchases to the recurring macro checkout on Payhip -->
-        <!-- Updated Payhip link for Macro (Buy Now) -->
+        <!-- Direct all purchases to the recurring macro subscription on Payhip -->
         <a href="https://payhip.com/buy?link=xKhTB" class="buy" target="_blank">Buy Now</a>
-        <!-- Premium option directs customers to the lifetime macro product checkout on Payhip -->
-        <!-- Updated Payhip link for Macro (Premium now directs to same product) -->
-        <a href="https://payhip.com/buy?link=xKhTB" class="learn-more" target="_blank">Premium</a>
+        <!-- Premium option directs customers to the one‑time lifetime macro checkout on Payhip -->
+        <a href="https://payhip.com/buy?link=xKhTB" class="secondary" target="_blank">Premium</a>
       </div>
       <section>
         <h2>Overview</h2>
-        <!-- Revamped overview drawing inspiration from the Payhip description.
-             This copy highlights the power and flexibility of macro.io while
-             keeping the tone engaging and professional. -->
-        <p>Macro.io is your personal automation powerhouse. Fire off complex combos with pixel‑perfect timing, chain keystrokes and mouse clicks in a flash, and tailor every sequence to your play style. Lightweight and intuitive, macro.io’s drag‑and‑drop editor lets you record actions, add loops and delays, and switch profiles instantly. With regular updates and dedicated support, you’ll always stay one step ahead.</p>
+        <p>Get a competitive edge with the Controller/KBM Macro engine. Record, customise and execute complex macros with ease to improve your performance in any game.</p>
       </section>
       <section class="bullets">
         <h2>Key Features</h2>
         <ul>
-          <li>Executes macros with lightning‑fast precision and minimal delay.</li>
-          <li>Design macros for any game with an intuitive drag‑and‑drop builder.</li>
-          <li>Record keystrokes and mouse movements to build complex scripts.</li>
-          <li>Customise macros with start/stop triggers, loops and delays.</li>
-          <li>Supports both controller and keyboard/mouse setups.</li>
-          <li>Multiple profile support for quick switching between games.</li>
-          <li>Lightweight and efficient – runs silently in the background.</li>
-          <li>Continuous updates and support ensure long‑term reliability.</li>
+          <li>Drag‑and‑drop macro builder for intuitive creation.</li>
+          <li>Record keystrokes and mouse movements in real time.</li>
+          <li>Supports controller and keyboard/mouse setups.</li>
+          <li>Lifetime updates and support included.</li>
         </ul>
       </section>
     </div>
@@ -96,30 +83,5 @@
   <footer>
     &copy; 2025 Lonware. All rights reserved.
   </footer>
-
-  <!-- Slider navigation script for the macro page -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const slides = document.querySelectorAll('.video-slider .slide');
-      let currentSlide = 0;
-      function showSlide(index) {
-        slides.forEach((slide, i) => {
-          slide.style.display = i === index ? 'block' : 'none';
-        });
-      }
-      // Initialize the first slide
-      showSlide(currentSlide);
-      const prevBtn = document.querySelector('.video-slider .prev-slide');
-      const nextBtn = document.querySelector('.video-slider .next-slide');
-      prevBtn.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-      });
-      nextBtn.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-      });
-    });
-  </script>
 </body>
 </html>
