@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shop – Lonware</title>
   <link rel="stylesheet" href="styles.css" />
+  <!-- Force HTTPS to avoid 'Not Secure' warnings and upgrade any insecure requests -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <script>
+    if (location.protocol === 'http:') {
+      location.href = 'https://' + location.host + location.pathname + location.search + location.hash;
+    }
+  </script>
   <!-- Favicon for browser tab -->
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
   <meta name="description" content="Browse and select from Lonware’s range of gaming optimisation packages. Choose the perfect plan for your setup with premium options and lifetime upgrades." />
