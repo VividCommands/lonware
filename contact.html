@@ -29,16 +29,23 @@
     <div class="contact-wrapper">
       <h1>Get In Touch</h1>
       <p>If you have any questions or comments, use this form to send a message directly.</p>
-      <!-- Replace local form with embedded Payhip contact page.
-           This iframe loads your Payhip contact page so messages are sent
-           through Payhip while preserving the look and feel of this page. -->
-      <iframe src="https://payhip.com/Ukna/contact"
-              style="width: 100%; height: 600px; border: none;"
-              title="Contact Form">
-        <p>Your browser does not support iframes. You can visit our contact page at
-          <a href="https://payhip.com/Ukna/contact" target="_blank" rel="noopener">Payhip Contact</a>.
-        </p>
-      </iframe>
+      <!-- Contact form: retains the original layout while routing submissions to Payhip.
+           The form posts to your Payhip contact endpoint via a hidden iframe so that
+           visitors remain on this page after clicking Send. -->
+      <form action="https://payhip.com/Ukna/contact" method="post" target="submission_target" enctype="multipart/form-data">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" name="first_name" required />
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last_name" required />
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required />
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <!-- Hidden iframe used as the target for form submissions. Using a named iframe prevents
+           the browser from navigating away when the form posts to Payhip. -->
+      <iframe name="submission_target" style="display:none;"></iframe>
     </div>
   </main>
   <footer>

@@ -29,8 +29,10 @@
   <main class="product-wrapper">
     <!-- Video preview for Bloom Reducer -->
     <div class="product-video">
-      <iframe src="https://www.youtube.com/embed/dIXx7q_W8zE?autoplay=1&mute=1&controls=0&loop=1&playlist=dIXx7q_W8zE&rel=0&modestbranding=1&showinfo=0"
-              allow="autoplay; fullscreen; encrypted-media"
+      <!-- Simplified YouTube embed. Removing autoplay/mute/loop parameters prevents video configuration errors on mobile. -->
+      <iframe src="https://www.youtube.com/embed/dIXx7q_W8zE?rel=0&modestbranding=1"
+              title="Bloom Reducer Preview"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
               frameborder="0"
               style="width: 100%; height: 100%; border: none;"></iframe>
     </div>

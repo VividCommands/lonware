@@ -1047,6 +1047,52 @@ nav a:hover {
   border-radius: 10px;
 }
 
+/*
+ * -------- Lonware custom overrides --------
+ *
+ * The following rules are appended at the very end of the stylesheet to ensure
+ * they take precedence over earlier definitions. These tweaks address
+ * outstanding user feedback:
+ *   • On mobile devices, product preview images and videos were too short and
+ *     appeared cropped. Increasing the aspect ratio to 16:9 (56.25% padding-top)
+ *     on screens narrower than 640px improves the viewing experience without
+ *     affecting desktop layouts.
+ *   • The new release card should be horizontally centred in its container on
+ *     both desktop and mobile views. Applying auto margins achieves this.
+ *   • The announcement banner’s text had stopped animating on some devices.
+ *     A simple sliding animation is reinstated here to ensure the discount
+ *     message scrolls continuously across the bar.
+ */
+
+/* Centre the new release card */
+.release-card {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Increase product preview height on smaller screens */
+@media (max-width: 640px) {
+  .product-image {
+    padding-top: 56.25%; /* 16:9 aspect ratio for mobile */
+  }
+}
+
+/* Restore scrolling animation for the announcement banner */
+.banner .lw-msg {
+  display: inline-block;
+  white-space: nowrap;
+  animation: slideText 20s linear infinite;
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 /* Ensure product videos and iframes inside the plain product-image container
    also fill their container while cropping evenly. Without this, some previews
    may appear letterboxed or off‑centre. */

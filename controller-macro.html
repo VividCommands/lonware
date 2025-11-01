@@ -29,14 +29,15 @@
           <video src="macro.mp4" controls preload="metadata"></video>
         </div>
         <!-- Slide 2: YouTube preview using the correct video ID provided by the user -->
-        <div class="slide">
-          <iframe
-            src="https://www.youtube.com/embed/JDGbfd0nYDc?autoplay=1&amp;mute=1&amp;controls=0&amp;rel=0&amp;modestbranding=1&amp;showinfo=0&amp;loop=1&amp;playlist=JDGbfd0nYDc"
-            title="Controller/KBM Macro Preview"
-            frameborder="0"
-            allow="autoplay; fullscreen; encrypted-media"
-            allowfullscreen></iframe>
-        </div>
+            <div class="slide">
+              <!-- Simplified YouTube embed to avoid mobile video configuration errors -->
+              <iframe
+                src="https://www.youtube.com/embed/JDGbfd0nYDc?rel=0&modestbranding=1"
+                title="Controller/KBM Macro Preview"
+                frameborder="0"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+              ></iframe>
+            </div>
       </div>
       <button class="prev-slide" aria-label="Previous video">❮</button>
       <button class="next-slide" aria-label="Next video">❯</button>

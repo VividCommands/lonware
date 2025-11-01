@@ -22,10 +22,12 @@
   <main class="product-wrapper">
     <div class="product-image">
       <!-- Embed the PC optimisations demo from YouTube. We use an iframe with autoplay, mute and loop enabled to mimic the behaviour of other product videos. Controls, related videos and branding are hidden via URL parameters. The playlist parameter is set to the same ID to enable looping. -->
-      <iframe src="https://www.youtube.com/embed/ycqSC46RnnQ?autoplay=1&mute=1&controls=0&loop=1&playlist=ycqSC46RnnQ&rel=0&modestbranding=1&showinfo=0"
-              allow="autoplay; muted"
-              frameborder="0"
-              style="width: 100%; height: 100%; border: none;"></iframe>
+          <!-- Simplified YouTube embed without autoplay/mute/loop parameters to avoid mobile errors -->
+          <iframe src="https://www.youtube.com/embed/ycqSC46RnnQ?rel=0&modestbranding=1"
+                  title="PC Optimizations Preview"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                  frameborder="0"
+                  style="width: 100%; height: 100%; border: none;"></iframe>
     </div>
     <div class="product-details">
       <h1>PC Optimizations</h1>
