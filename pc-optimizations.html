@@ -21,16 +21,23 @@
   </header>
   <main class="product-wrapper">
     <div class="product-image">
-      <!-- Embed the PC optimisations demo from YouTube. We use an iframe with autoplay, mute and loop enabled to mimic the behaviour of other product videos. Controls, related videos and branding are hidden via URL parameters. The playlist parameter is set to the same ID to enable looping. -->
-          <!-- Use YouTube's privacy‑enhanced domain with playsinline to improve mobile compatibility -->
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/ycqSC46RnnQ?rel=0&modestbranding=1&playsinline=1"
-            title="PC Optimizations Preview"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            frameborder="0"
-            style="width: 100%; height: 100%; border: none;"
-          ></iframe>
+         <!-- Video slider for PC Optimizations: replicates macro page for improved mobile compatibility -->
+    <div class="video-slider">
+      <div class="slides">
+        <div class="slide" style="display:block;">
+          <video src="pc_opt_video.mp4" controls preload="metadata"></video>
+        </div>
+        <div class="slide">
+          <iframe src="https://www.youtube-nocookie/ycqSC46RnQ?rel=0&modestbranding=1&playsinline=1"
+           title="PC Optimizations Preview"
+           frameborder="0"
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+           allowfullscreen></iframe>
+        </div>
+      </div>
+      <button class="prev-slide" aria-label="Previous video">&lt;</button>
+      <button class="next-slide" aria-label="Next video">&gt;</button>
+    </d
     </div>
     <div class="product-details">
       <h1>PC Optimizations</h1>
