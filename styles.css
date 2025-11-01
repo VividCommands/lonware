@@ -1065,6 +1065,13 @@ nav a:hover {
  */
 
 /* Centre the new release card */
+/* Ensure the single release card is centred within the Newly Released section on all screens. */
+.new-release .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .release-card {
   margin-left: auto;
   margin-right: auto;
@@ -1073,7 +1080,10 @@ nav a:hover {
 /* Increase product preview height on smaller screens */
 @media (max-width: 640px) {
   .product-image {
-    padding-top: 56.25%; /* 16:9 aspect ratio for mobile */
+    /* Make product previews taller on mobile to avoid extreme letterboxing.
+       A 4:3 aspect ratio (75%) provides more height while still maintaining
+       a pleasing widescreen look. */
+    padding-top: 75%;
   }
 }
 
