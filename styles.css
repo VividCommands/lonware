@@ -2595,9 +2595,14 @@ body.product-page header .logo img {
   background: none;
 }
 .new-release .wrap{
-  max-width: 800px;
+  /* Allow the wrapper to stretch the full width so the card can truly
+     centre itself. We still provide horizontal padding for breathing room. */
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .new-release h2{
   font-size: clamp(28px, 4vw, 40px);
@@ -2610,6 +2615,8 @@ body.product-page header .logo img {
   padding: 32px;
   background: linear-gradient(180deg, rgba(34,230,150,0.05), rgba(34,230,150,0.02) 100%);
   box-shadow: 0 0 40px rgba(34,230,150,0.18);
+  /* Constrain the maximum width so the card doesn’t sprawl on large screens. */
+  max-width: 600px;
 }
 .release-card h3{
   font-size: 26px;
