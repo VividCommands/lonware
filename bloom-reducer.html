@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+e<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -28,17 +28,24 @@
   </header>
   <main class="product-wrapper">
     <!-- Video preview for Bloom Reducer -->
-    <div class="product-video">
-      <!-- Use YouTube's privacy‑enhanced domain and playsinline to improve mobile compatibility. -->
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/dIXx7q_W8zE?rel=0&modestbranding=1&playsinline=1"
-        title="Bloom Reducer Preview"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-        frameborder="0"
-        style="width: 100%; height: 100%; border: none;"
-      ></iframe>
+   <!-- Video slider for Bloom Reducer: replicates macro page for improved mobile compatibility -->
+<div class="video-slider">
+  <div class="slides">
+    <div class="slide" style="display: block;">
+      <video src="pc_opt_video.mp4" controls preload="metadata"></video>
     </div>
+    <div class="slide">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/dIXx7Q_W8zE?rel=0&modestbranding=1&playsinline=1"
+        title="Bloom Reducer Preview"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+  <button class="prev-slide" aria-label="Previous video">&lt;</button>
+  <button class="next-slide" aria-label="Next video">&gt;</button>
+</div>
     <div class="product-details">
       <h1>Bloom Reducer</h1>
       <div class="prices">
