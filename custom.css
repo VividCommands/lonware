@@ -108,3 +108,28 @@ img[loading="lazy"] {
   content-visibility: auto;
   contain-intrinsic-size: 1000px 800px;
 }
+
+
+/* Custom mobile adjustments */
+@media (max-width: 640px) {
+  /* Hide video slider navigation arrows on small screens */
+  .video-slider .prev-slide,
+  .video-slider .next-slide {
+    display: none !important;
+  }
+  /* Center release card in New Releases section */
+  .new-release .wrap {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .new-release .release-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  /* Ensure buy buttons align properly */
+  .product-card .buy-btn {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
