@@ -29,11 +29,8 @@
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .banner .lw-msg { animation: none !important; }
-}
 
-/* 2. Replace top-left logo image with shiny text pill button for Lonware */
+ 2. Replace top-left logo image with shiny text pill button for Lonware */
 header .logo {
   position: relative;
   display: inline-flex;
