@@ -99,6 +99,15 @@ header .logo::before {
   section { margin-block: 40px; }
   nav a, button { min-height: 44px; } /* thumb-friendly targets */
 }
+/* Restore original Lonware logo image and hide custom pill */
+header .logo img {
+  display: inline !important;
+}
+header .logo::after,
+header .logo::before {
+  display: none !important;
+  content: none !important;
+}
 
 /* 5. Performance niceties */
 img[loading="lazy"] {
