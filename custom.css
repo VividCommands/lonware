@@ -142,3 +142,18 @@ img[loading="lazy"] {
     margin-right: auto;
   }
 }
+
+/* Restore original logo using pseudo-element and hide text */
+header .logo .logo-text {
+  display: none !important;
+}
+header .logo::before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-image: url('logo.png');
+  background-size: contain;
+  margin-right: 0.5rem;
+}
+
