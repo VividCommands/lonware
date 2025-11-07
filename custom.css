@@ -7,7 +7,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
-}
+
 .banner .lw-msg {
   filter: none !important; /* remove wave effects */
   white-space: nowrap !important;
@@ -17,11 +17,7 @@
   will-change: transform !important;
   animation: lwMarquee 18s linear infinite !important;
 }
-/* duplicate content via data-dup attribute; set via JS */
-.banner .lw-msg::after {
-  content: " · " attr(data-dup);
-  padding-left: 4rem;
-}
+/** Removed duplicate content via data-dup attribute; dynamic duplication is handled by JS */
 .banner:hover .lw-msg {
   animation-play-state: paused !important;
 }
