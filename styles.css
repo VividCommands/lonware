@@ -2686,14 +2686,3 @@ main::before {
   z-index: -1;
   pointer-events: none;
 }
-/* Hide navigation arrow icons used in video sliders */
-.prev-slide,
-.next-slide {
-  display: none;
-}
-
-/* Center align actions container with buy now button on product pages */
-.product-details .actions {
-  text-align: center;
-}
-

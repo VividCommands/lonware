@@ -7,7 +7,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
-
+}
 .banner .lw-msg {
   filter: none !important; /* remove wave effects */
   white-space: nowrap !important;
@@ -17,7 +17,12 @@
   will-change: transform !important;
   animation: lwMarquee 18s linear infinite !important;
 }
-/** Removed duplicate content via data-dup attribute; dynamic duplication is handled by JS */
+/* duplicate content via data-dup attribute; set via JS */
+.banner .lw-msg::after {
+  /* Remove duplicate discount message and spacing; show only a single announcement */
+  content: "";
+  padding-left: 0;
+}
 .banner:hover .lw-msg {
   animation-play-state: paused !important;
 }
@@ -41,7 +46,7 @@ header .logo img {
 }
 header .logo::after {
   content: "Lonware";
-  font: 700 clamp(16px, 2.2vw, 20px)animation: lwMarquee 18s linear infinite !important; system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font: 700 clamp(16px, 2.2vw, 20px)/1.1 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   letter-spacing: 0.3px;
   padding: 0.45rem 0.8rem;
   border-radius: 999px;
@@ -129,21 +134,3 @@ img[loading="lazy"] {
     margin-right: auto;
   }
 }
-/* Custom fixes (Nov 2025): ensure banner scroll always and revert logo style */
-@media (prefers-reduced-motion: reduce) {
-  .banner .lw-msg {
-    /* Keep animation even when reduced motion preference is set */
-    animation: lwMarquee 18s linear infinite !important;
-  }
-}
-
-/* Remove pill-style logo and show default logo */
-header .logo::after,
-header .logo::before {
-  display: none !important;
-  content: none !important;
-}
-header .logo img {
-  display: inline-block !important;
-}
-
