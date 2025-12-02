@@ -20,9 +20,21 @@
   </header>
   <main>
     <div class="product-page">
-      <!-- Replace broken video slider with a static product image. -->
-      <div class="product-media">
-        <img src="pc_product.png" alt="PC Optimizations icon" style="max-width:100%;height:auto;">
+      <!-- Video slider for PC Optimizations previews -->
+      <div class="video-slider">
+        <div class="slides">
+          <div class="slide">
+            <video src="https://lonware.com/pc.mp4" controls preload="metadata"></video>
+          </div>
+          <div class="slide">
+            <iframe src="https://www.youtube-nocookie.com/embed/ycqSC46RnnQ?rel=0&amp;modestbranding=1&amp;playsinline=1" title="PC Optimizations Preview 1" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="slide">
+            <iframe src="https://www.youtube-nocookie.com/embed/dIXx7q_W8zE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="PC Optimizations Preview 2" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <button class="prev-slide" aria-label="Previous video">❮</button>
+        <button class="next-slide" aria-label="Next video">❯</button>
       </div>
       <div class="product-details">
         <h1>PC Optimizations</h1>

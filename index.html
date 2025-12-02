@@ -67,7 +67,6 @@
       <!-- Card showcasing Bloom Reducer with a rotating icon overlay -->
       <div class="new-product-card">
         <div class="icon-rotate">
-          <!-- Updated image path to use root-level file instead of non-existent imgs folder -->
           <img src="aim_product.png" alt="Bloom Reducer icon">
         </div>
         <div class="new-product-content">
@@ -82,50 +81,55 @@
     <!-- Product grid inspired by the original site. Each card shows an image and tagline. Hovering plays a video preview; clicking anywhere takes you to the product page. -->
     <section class="product-grid featured">
       <a href="controller-macro.html" class="feature-card" data-video="https://lonware.com/macro.mp4">
-        <!-- Updated image path to use root-level asset -->
         <img src="controller_macro_product.png" alt="Controller/KBM Macro image">
         <video muted loop></video>
         <div class="card-overlay">
           <h3>Controller/KBM Macro</h3>
-          <p style="font-size:0.8rem; line-height:1.3; color:#c4e0f7;">Pixel‑perfect timing with zero‑drop queues and hardened input handling.</p>
+          <!-- description removed -->
         </div>
       </a>
       <a href="ping-optimizations.html" class="feature-card" data-video="https://lonware.com/ping.mp4">
-        <!-- Updated image path to use root-level asset -->
         <img src="ping_product.png" alt="Ping Optimizations image">
         <video muted loop></video>
         <div class="card-overlay">
           <h3>Ping Optimizations</h3>
-          <p style="font-size:0.8rem; line-height:1.3; color:#c4e0f7;">Route tuning and congestion control tuned to your region.</p>
+          <!-- description removed -->
         </div>
       </a>
       <a href="console-tweaks.html" class="feature-card" data-video="https://lonware.com/console.mp4">
-        <!-- Updated image path to use root-level asset -->
         <img src="console_product.png" alt="Console Tweaks image">
         <video muted loop></video>
         <div class="card-overlay">
           <h3>Console Tweaks</h3>
-          <p style="font-size:0.8rem; line-height:1.3; color:#c4e0f7;">Latency‑aware configurations tailored for console engines and netcode.</p>
+          <!-- description removed -->
         </div>
       </a>
       <a href="pc-optimizations.html" class="feature-card" data-video="https://lonware.com/pc.mp4">
-        <!-- Updated image path to use root-level asset -->
         <img src="pc_product.png" alt="PC Optimizations image">
         <video muted loop></video>
         <div class="card-overlay">
           <h3>PC Optimizations</h3>
-          <p style="font-size:0.8rem; line-height:1.3; color:#c4e0f7;">Clean render paths, smarter threads and thermal‑safe gains for peak FPS.</p>
+          <!-- description removed -->
         </div>
       </a>
       <a href="bloom-reducer.html" class="feature-card" data-video="https://lonware.com/bloom.mp4">
-        <!-- Updated image path to use root-level asset -->
         <img src="aim_product.png" alt="Bloom Reducer image">
         <video muted loop></video>
         <div class="card-overlay">
           <h3>Bloom Reducer</h3>
-          <p style="font-size:0.8rem; line-height:1.3; color:#c4e0f7;">Reduce visual bloom and glare for crisp, clear sights and steadier aim.</p>
+          <!-- description removed -->
         </div>
       </a>
+      <!-- New card for One Click Checkout -->
+      <a href="https://payhip.com/buy?link=LGIiX" class="feature-card" target="_blank" rel="noopener">
+        <img src="pc_product.png" alt="One Click Checkout image">
+        <video muted loop></video>
+        <div class="card-overlay">
+          <h3>One Click Checkout</h3>
+          <!-- description removed -->
+        </div>
+      </a>
+
     </section>
 
     <!-- Why choose Lonware -->
@@ -255,6 +259,16 @@
         videoEl.play().catch(() => {});
       });
       card.addEventListener('mouseleave', function() {
+        videoEl.pause();
+        videoEl.currentTime = 0;
+        videoEl.style.display = 'none';
+      });
+      // Support touch devices: play video on touchstart and hide on touchend
+      card.addEventListener('touchstart', function() {
+        videoEl.style.display = 'block';
+        videoEl.play().catch(() => {});
+      });
+      card.addEventListener('touchend', function() {
         videoEl.pause();
         videoEl.currentTime = 0;
         videoEl.style.display = 'none';

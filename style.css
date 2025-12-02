@@ -1120,3 +1120,17 @@ footer {
     padding: 0.2rem 0.5rem;
   }
 }
+
+/* Show card overlay on touch devices */
+@media (hover: none) {
+  .feature-card .card-overlay {
+    transform: translateY(0);
+  }
+}
+
+/* Arrange six cards in a row on wider screens */
+@media (min-width: 900px) {
+  .product-grid.featured {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
