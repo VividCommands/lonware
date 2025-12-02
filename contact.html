@@ -1,56 +1,46 @@
 <!DOCTYPE html>
-<!-- saved from url=(0032)https://lonware.com/contact.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact – Lonware</title>
-  <link rel="stylesheet" href="./contact_files/styles.css">
-      <link rel="stylesheet" href="./contact_files/custom.css">
-  
-  <!-- Force HTTPS to avoid 'Not Secure' warnings and upgrade any insecure requests -->
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <script>
-    if (location.protocol === 'http:') {
-      location.href = 'https://' + location.host + location.pathname + location.search + location.hash;
-    }
-  </script>
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-  <!-- Announcement banner: display a single, clear discount message -->
-  <div class="banner" data-discount="12">
-    <span class="lw-msg" data-dup="Use code Hollow for 12% off your order! Limited time offer.">Use code <strong>Hollow</strong> for 12% off your order! Limited time offer.</span>
+  <div class="announcement">
+    <span>Use code <strong>Xmas1</strong> for 12% off your order! Limited time offer.</span>
   </div>
   <header>
-    <a href="index.html" class="logo"><span class="logo-text">Lonware</span></a>
-    <nav>
+    <a href="index.html" class="logo">Lonware</a>
+    <nav class="nav-links">
       <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
   <main>
-    <div class="contact-wrapper">
-      <h1>Get In Touch</h1>
-      <p>If you have any questions or comments, use this form to send a message directly.</p>
-      <!-- Contact form: restored to its original appearance. When the user clicks
-           Send, the form triggers their email client via the mailto protocol. To
-           route inquiries to your inbox, replace the example address below with
-           your own email address (e.g. support@yourdomain.com). -->
-      <form action="mailto:example@example.com" method="post" enctype="text/plain">
+    <div class="contact-form">
+      <h2>Get In Touch</h2>
+      <p>If you have any questions or comments, use this form to send us a message directly.</p>
+      <form action="#" method="post">
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" name="first-name" required="">
+        <input type="text" id="first-name" name="first-name" required>
+
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" name="last-name" required="">
+        <input type="text" id="last-name" name="last-name" required>
+
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required="">
+        <input type="email" id="email" name="email" required>
+
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="6" required=""></textarea>
+        <textarea id="message" name="message" required></textarea>
+
         <button type="submit">Send</button>
       </form>
     </div>
   </main>
   <footer>
-    © 2025 Lonware. All rights reserved.
+    © 2025 Lonware. All rights reserved.
   </footer>
-
-
-</body></html>
+</body>
+</html>

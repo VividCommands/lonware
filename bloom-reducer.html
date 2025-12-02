@@ -4,62 +4,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bloom Reducer – Lonware</title>
-  <link rel="stylesheet" href="./index_files/styles.css">
-  <link rel="stylesheet" href="./index_files/custom.css">
-  <meta name="description" content="Reduce screen bloom for clearer visuals, enhance color fidelity and sharpness, and enjoy simple presets with adjustable intensity. Compatible with leading FPS titles.">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-  <div class="banner" data-discount="12">
-    <span class="lw-msg" data-dup="Use code Hollow for 12% off your order! Limited time offer.">Use code <strong>Hollow</strong> for 12% off your order! Limited time offer.</span>
+  <div class="announcement">
+    <span>Use code <strong>Xmas1</strong> for 12% off your order! Limited time offer.</span>
   </div>
   <header>
-    <a href="index.html" class="logo"><span class="logo-text">Lonware</span></a>
-    <nav>
+    <a href="index.html" class="logo">Lonware</a>
+    <nav class="nav-links">
       <a href="index.html">Home</a>
-      <a href="shop.html" class="cta">Shop</a>
+      <a href="shop.html">Shop</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main class="product-page">
-    <section class="product-hero">
-      <div class="wrap">
-        <h1>Bloom Reducer</h1>
-        <p class="product-subtitle">Cut through screen bloom and glare for crisp, clear sights.</p>
-        <div class="price-wrapper">
-          <div class="price">$25.00</div>
-          <div class="sale-price">$13.99</div>
-        </div>
-        <a href="https://payhip.com/buy?link=1Htr4" class="primary" target="_blank">Buy Now</a>
-      </div>
-    </section>
-    <section class="product-details">
-      <div class="wrap">
-        <div class="product-grid">
-          <img src="./index_files/aim_product.png" alt="Bloom Reducer" class="product-image">
-          <div class="product-info">
-            <h2>Key Features</h2>
-            <ul>
-              <li>Reduce screen bloom for clearer visuals</li>
-              <li>Enhance color fidelity and sharpness</li>
-              <li>Simple preset system with adjustable intensity</li>
-              <li>Compatible with top FPS titles</li>
-            </ul>
+  <main>
+    <div class="product-page">
+      <!-- Video slider for Bloom Reducer previews (local and YouTube) -->
+      <div class="video-slider">
+        <div class="slides">
+          <div class="slide">
+            <video src="https://lonware.com/bloom.mp4" controls preload="metadata"></video>
+          </div>
+          <div class="slide">
+            <iframe src="https://www.youtube-nocookie.com/embed/dIXx7Q_W8zE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Bloom Reducer Preview" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
+        <button class="prev-slide" aria-label="Previous video">❮</button>
+        <button class="next-slide" aria-label="Next video">❯</button>
       </div>
-    </section>
-    <section class="terms">
-      <div class="wrap">
-        <h2>Terms of Service</h2>
+      <div class="product-details">
+        <h1>Bloom Reducer</h1>
+        <div class="price"><del>$25.00</del> $13.99</div>
+        <div class="purchase-buttons">
+          <!-- Payhip link updated to original Bloom Reducer checkout -->
+          <a href="https://payhip.com/buy?link=1Htr4" class="btn-primary" target="_blank" rel="noopener">Buy Now</a>
+        </div>
+        <div class="overview">
+          Bloom Reducer cuts through distracting bloom and excessive brightness, giving you clearer visuals when it counts. Whether you’re honing your aim or exploring vast worlds, our tool lets you tailor visual clarity without altering the core feel of your games.
+        </div>
+        <h2 style="font-size:1.4rem;margin-bottom:0.6rem;color:#00c4ff;">Key Features</h2>
         <ul>
-          <li>Digital‑only products are delivered instantly via secure download.</li>
-          <li>All sales are final.</li>
+          <li>Reduces on‑screen bloom and glare for sharper imagery.</li>
+          <li>Enhances color accuracy and contrast while maintaining performance.</li>
+          <li>Customizable intensity presets to suit different games and setups.</li>
+          <li>Works across a wide range of popular FPS and adventure titles.</li>
+          <li>Simple installation with lifetime updates and support.</li>
         </ul>
       </div>
-    </section>
+    </div>
+    <div class="tos">
+      <h2>Terms of Service</h2>
+      <ul>
+        <li><strong>Digital‑only products:</strong> All items are delivered in digital format only. No physical goods will be shipped.</li>
+        <!-- Consolidated refund language into a single bullet to avoid repetition -->
+        <li><strong>All sales are final:</strong> Due to the nature of downloadable products, purchases are non‑refundable and no exchanges are offered.</li>
+        <li><strong>Intellectual property:</strong> All files and software are the property of their respective creators. Redistribution is prohibited.</li>
+        <li><strong>User responsibility:</strong> Ensure compatibility before purchasing. Misuse may result in account suspension.</li>
+        <li><strong>Terms subject to change:</strong> These terms may be updated at any time. Continued use implies acceptance of any changes.</li>
+      </ul>
+    </div>
   </main>
   <footer>
-    © 2025 Lonware. All rights reserved.
+    © 2025 Lonware. All rights reserved.
   </footer>
+
+  <!-- Simple slider script for product videos -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.video-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.slide');
+    let current = 0;
+    slides[current].classList.add('active');
+    const nextBtn = slider.querySelector('.next-slide');
+    const prevBtn = slider.querySelector('.prev-slide');
+    nextBtn.addEventListener('click', function() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    });
+    prevBtn.addEventListener('click', function() {
+      slides[current].classList.remove('active');
+      current = (current - 1 + slides.length) % slides.length;
+      slides[current].classList.add('active');
+    });
+  });
+  </script>
 </body>
 </html>

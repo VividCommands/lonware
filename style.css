@@ -1,0 +1,1122 @@
+/*
+ * Lonware Clone Stylesheet
+ *
+ * This stylesheet defines the core look and feel of the Lonware clone site.
+ * The design embraces a dark, space‑inspired aesthetic with a subtle star field
+ * backdrop. Cards, buttons and sections are styled to mirror the original
+ * Lonware layout while correcting typographic inconsistencies and visual bugs.
+ */
+
+/* Reset some default margins and paddings */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: #e4f1ff;
+  background: radial-gradient(circle at top, #041f3d 0%, #010b17 100%);
+  overflow-x: hidden;
+}
+
+/* Star field using layered radial gradients */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.6), transparent 80%),
+    radial-gradient(1.5px 1.5px at 70% 80%, rgba(255,255,255,0.4), transparent 80%),
+    radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.6), transparent 80%),
+    radial-gradient(1.2px 1.2px at 80% 20%, rgba(255,255,255,0.5), transparent 80%),
+    radial-gradient(0.8px 0.8px at 10% 90%, rgba(255,255,255,0.4), transparent 80%);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  animation: stars 50s linear infinite;
+}
+
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+/* Announcement bar */
+/* Announcement bar – light background with dark text. A marquee effect is used to gently scroll the offer across the screen. */
+/*
+ * Announcement bar
+ *
+ * The announcement bar sits above the header on all pages and gently
+ * scrolls a promotion across the screen. To ensure it remains visible
+ * and doesn’t get obscured by the sticky header, it is fixed to the
+ * top of the viewport. The header is offset accordingly via its
+ * `top` property (see below).
+ */
+/* Announcement bar: sits at the top of the page above the hero and
+ * scrolls horizontally. It uses a light background with dark text. The
+ * header sits immediately beneath it, so there's no need for fixed
+ * positioning here. */
+.announcement {
+  background: #ffffff;
+  color: #010b17;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  /* Pin the announcement bar to the very top so it remains visible on
+     every page. A high z-index ensures it sits above other elements. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Marquee animation for the announcement bar */
+@keyframes announcement-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* The text inside the announcement bar scrolls from right to left. Wrap
+ * the content in a span element in the HTML to activate this animation.
+ */
+.announcement span {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: announcement-scroll 20s linear infinite;
+}
+
+/* Header and navigation */
+header {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  /* Offset the header so it sits below the announcement bar.  The bar is
+     fixed at the top of the viewport, so the header should start
+     after it (roughly 2rem tall). */
+  top: 2.2rem;
+  z-index: 2;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Style the logo image inside the header */
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #e4f1ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #00c4ff;
+}
+
+.btn-primary {
+  background: #0099ff;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #00c4ff;
+}
+
+/* Label used in highlight for new products */
+/* New product badge – uses a fresh green hue to subtly draw attention. */
+.badge-new {
+  background: #18a44e;
+  color: #010b17;
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+/* On highlight hover the new badge brightens slightly */
+.highlight:hover .badge-new {
+  background: #2bd763;
+}
+
+main {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero section */
+.hero {
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+  color: #d0e7ff;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #a2c7e5;
+}
+
+/* Cards grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem;
+  padding: 1.5rem;
+  position: relative;
+  backdrop-filter: blur(4px);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.card p {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  color: #bcd5ed;
+  margin-bottom: 0.75rem;
+}
+
+.card a {
+  align-self: flex-start;
+  color: #00c4ff;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.card a::after {
+  content: '→';
+  margin-left: 0.4rem;
+  transition: transform 0.2s;
+}
+
+.card a:hover::after {
+  transform: translateX(3px);
+}
+
+/* New release highlight */
+/* New release highlight
+   The original Lonware site uses a fairly compact call‑out for the newest product.
+   Reduce the padding and border radius so the highlight card occupies less
+   vertical space. The margin is tightened so it doesn’t dominate the page. */
+/* Highlight card – showcases the newest release. */
+.highlight {
+  background: rgba(0, 196, 255, 0.1);
+  border: 1px solid rgba(0, 196, 255, 0.3);
+  border-radius: 0.6rem;
+  padding: 1rem 1.2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  width: 85%;
+  text-align: center;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Newly released section – headline and card wrapper */
+.new-release {
+  /* Center the entire Newly Released section and tighten its width.  The
+     container uses auto margins so it appears centered on the page. */
+  margin: 3rem auto;
+  text-align: center;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Container for the new product card */
+.new-product-card {
+  position: relative;
+  background: rgba(0, 196, 255, 0.08);
+  border: 1px solid rgba(0, 196, 255, 0.3);
+  border-radius: 0.8rem;
+  padding: 2rem 1.5rem;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Rotating icon behind the product details */
+.icon-rotate {
+  position: relative;
+  flex: 0 0 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.icon-rotate img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: rotateIcon 8s linear infinite;
+  opacity: 0.8;
+}
+@keyframes rotateIcon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Content area within the new product card */
+.new-product-content {
+  flex: 1;
+  text-align: left;
+}
+.new-product-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #00c4ff;
+}
+.new-product-content p {
+  margin-bottom: 0.8rem;
+  color: #c4e0f7;
+  line-height: 1.4;
+}
+.new-product-content .price {
+  font-size: 1.5rem;
+  color: #00c4ff;
+  margin-bottom: 1rem;
+}
+.new-product-content del {
+  color: #888;
+  margin-right: 0.4rem;
+}
+
+/* Shop now link styled like a subtle call to action */
+.new-product-link {
+  display: inline-block;
+  background: #18a44e;
+  color: #010b17;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.new-product-link:hover {
+  background: #2bd763;
+}
+
+/* Subtle glow on hover to elevate the highlight card */
+.highlight:hover {
+  box-shadow: 0 0 15px rgba(43, 215, 99, 0.5), 0 0 25px rgba(43, 215, 99, 0.3);
+}
+
+.highlight h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #00c4ff;
+}
+
+.highlight p {
+  margin-bottom: 1rem;
+  color: #c4e0f7;
+}
+
+.highlight .price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #00c4ff;
+}
+
+.highlight del {
+  color: #888;
+  margin-right: 0.4rem;
+}
+
+/* Product grid on home */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card .icon {
+  /* Removed since we use image icons instead of emoji. */
+}
+
+/* New product icon images for the home page product grid */
+.product-card img.product-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0.8rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 2px rgba(0, 196, 255, 0.8));
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.product-card .price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+  color: #00c4ff;
+}
+
+.product-card del {
+  color: #888;
+  margin-right: 0.4rem;
+}
+
+.product-card .btn-primary {
+  margin-top: 0.8rem;
+  width: 100%;
+}
+
+/* When multiple buttons in product-card, space them vertically */
+.product-card .btn-primary + .btn-primary {
+  margin-top: 0.4rem;
+}
+
+/* Featured product cards (home page) */
+.product-grid.featured {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.6rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.feature-card img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  z-index: 1;
+}
+
+.feature-card .card-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.6rem 0.5rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  text-align: center;
+  z-index: 2;
+}
+
+.feature-card .card-overlay h3 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  color: #fff;
+}
+
+.feature-card .card-overlay .price {
+  font-size: 0.9rem;
+  color: #00c4ff;
+}
+.feature-card .card-overlay del {
+  color: #888;
+  margin-right: 0.3rem;
+}
+
+.feature-card:hover img {
+  opacity: 0;
+}
+.feature-card:hover video {
+  display: block;
+}
+.feature-card:hover .card-overlay {
+  transform: translateY(0);
+}
+
+/* Video slider on product pages */
+.video-slider {
+  flex: 1 1 400px;
+  max-width: 600px;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.video-slider .slides {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.6rem;
+}
+.video-slider .slide {
+  display: none;
+}
+.video-slider .slide.active {
+  display: block;
+}
+.video-slider video,
+.video-slider iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 0.6rem;
+}
+.video-slider .prev-slide,
+.video-slider .next-slide {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.video-slider .prev-slide { left: -40px; }
+.video-slider .next-slide { right: -40px; }
+
+/* Testimonials slider */
+.testimonial-slider {
+  position: relative;
+}
+.testimonial-slide {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem;
+  padding: 1.2rem;
+  backdrop-filter: blur(4px);
+  display: none;
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto;
+}
+.testimonial-slide .stars {
+  color: #f4d03f;
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+}
+.testimonial-slide p {
+  font-size: 0.95rem;
+  color: #bcd5ed;
+  margin-bottom: 0.8rem;
+}
+.testimonial-slide .author {
+  font-size: 0.85rem;
+  color: #81a3c9;
+  font-style: italic;
+}
+.prev-testimonial,
+.next-testimonial {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+.prev-testimonial { float: left; }
+.next-testimonial { float: right; }
+
+/* Testimonial dots beneath the slider */
+.testimonial-dots {
+  text-align: center;
+  margin-top: 1rem;
+}
+.testimonial-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 196, 255, 0.3);
+  margin: 0 4px;
+  border: none;
+  cursor: pointer;
+}
+.testimonial-dot.active {
+  background: #00c4ff;
+}
+
+/* Reduce size of TOS boxes and spacing */
+/* Terms of Service styling: small, centered and with generous top margin so it sits off the initial view */
+.tos {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem;
+  padding: 1rem;
+  margin-top: 8rem;
+  font-size: 0.8rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Terms headings and list styling */
+.tos h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+  color: #00c4ff;
+  text-align: center;
+}
+
+.tos ul {
+  list-style: none;
+  margin-left: 1rem;
+}
+
+.tos ul li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.4rem;
+  color: #bcd5ed;
+}
+
+.tos ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #00c4ff;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Stats section */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.stat {
+  flex: 1 1 200px;
+}
+
+.stat h3 {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+  color: #00c4ff;
+}
+
+.stat p {
+  font-size: 0.9rem;
+  color: #a2c7e5;
+}
+
+/* Testimonials section */
+.testimonials {
+  /* Add extra top margin so the testimonials section isn't cramped against
+     the preceding section. */
+  margin: 4rem 0;
+}
+
+.testimonials h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.testimonial {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem;
+  padding: 1.5rem;
+  position: relative;
+  backdrop-filter: blur(4px);
+}
+
+.testimonial .stars {
+  color: #f4d03f;
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+}
+
+.testimonial p {
+  font-size: 0.95rem;
+  color: #bcd5ed;
+  margin-bottom: 0.8rem;
+}
+
+.testimonial .author {
+  font-size: 0.85rem;
+  color: #81a3c9;
+  font-style: italic;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #7ea9ce;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Product page layout */
+.product-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.product-media {
+  flex: 1 1 340px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem;
+  padding: 1rem;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00c4ff;
+  font-size: 3rem;
+}
+
+.product-details {
+  flex: 2 1 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-details h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-details .price {
+  font-size: 1.5rem;
+  color: #00c4ff;
+  margin-bottom: 1rem;
+}
+
+.product-details del {
+  color: #888;
+  margin-right: 0.5rem;
+}
+
+.product-details .purchase-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.product-details .purchase-buttons a {
+  text-decoration: none;
+}
+
+.product-details .overview {
+  margin-bottom: 1rem;
+  color: #bcd5ed;
+  line-height: 1.5;
+}
+
+.product-details ul {
+  list-style: none;
+  margin-left: 1rem;
+}
+
+.product-details ul li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #bcd5ed;
+}
+
+.product-details ul li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: #00c4ff;
+}
+
+
+/* Shop page specific */
+.pricing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem 0 3rem;
+}
+
+.pricing-plan {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem;
+  padding: 1.5rem;
+  flex: 1 1 300px;
+  min-width: 280px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.pricing-plan:hover {
+  transform: translateY(-4px);
+}
+
+/* Assign unique swirling backgrounds to each pricing plan using the
+ * data-plan attribute. These images come from the original Lonware
+ * repository and closely mirror the look of the live shop page. */
+/*
+ * Pricing plans share the same subtle translucent background defined
+ * above. Additional decorations can be applied here if needed in
+ * future, but for now we keep the cards uniform to mirror the original
+ * Lonware shop page.
+ */
+
+/* Plan icon for each product */
+.plan-icon {
+  font-size: 2.5rem;
+  color: #00c4ff;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* When using image icons for plans, style them similarly to maintain spacing */
+.plan-icon-img {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 0.5rem auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 2px rgba(0, 196, 255, 0.8));
+}
+
+/* Video preview wrapper hidden by default */
+.preview-video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 0.6rem 0.6rem 0 0;
+  display: none;
+  z-index: 1;
+}
+.preview-video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pricing-plan .label {
+  display: inline-block;
+  background: #00c4ff;
+  color: #010b17;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pricing-plan h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.pricing-plan .plan-desc {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #a2c7e5;
+}
+
+.pricing-plan .price {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00c4ff;
+}
+
+.pricing-plan ul {
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-plan ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+  color: #bcd5ed;
+}
+
+.pricing-plan ul li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: #00c4ff;
+}
+
+.pricing-plan .btn-primary {
+  margin-bottom: 0.5rem;
+}
+
+/* Contact form */
+.contact-form {
+  max-width: 500px;
+  margin: 3rem auto;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.6rem;
+  padding: 2rem;
+}
+
+/* Ensure the 'Why Choose Lonware?' section has space below before the
+   testimonials. Without this margin the two sections feel too crowded. */
+.why {
+  margin-bottom: 3rem;
+}
+
+.contact-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.contact-form p {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #a2c7e5;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #a2c7e5;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  border: 1px solid #334e6f;
+  background: rgba(0,0,0,0.4);
+  color: #e4f1ff;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form button {
+  display: block;
+  width: 100%;
+  background: #0099ff;
+  border: none;
+  color: #fff;
+  padding: 0.6rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.contact-form button:hover {
+  background: #00c4ff;
+}
+
+/* Video slider styles */
+.video-slider {
+  position: relative;
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
+
+.video-slider .slides {
+  position: relative;
+}
+
+.video-slider .slide {
+  display: none;
+}
+
+.video-slider .slide.active {
+  display: block;
+}
+
+.video-slider video,
+.video-slider iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #000;
+}
+
+.video-slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.4rem;
+}
+
+.video-slider .prev-slide {
+  left: -1.8rem;
+}
+
+.video-slider .next-slide {
+  right: -1.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  .product-page {
+    flex-direction: column;
+  }
+  .product-details .purchase-buttons {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .pricing {
+    flex-direction: column;
+    align-items: center;
+  }
+  .stats {
+    flex-direction: column;
+  }
+  .video-slider .prev-slide,
+  .video-slider .next-slide {
+    left: 0.2rem;
+    right: 0.2rem;
+    top: calc(100% + 0.5rem);
+    transform: none;
+  }
+  .video-slider button {
+    font-size: 1.2rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
