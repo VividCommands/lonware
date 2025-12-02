@@ -4,62 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PC Optimizations – Lonware</title>
-  <link rel="stylesheet" href="./index_files/styles.css">
-  <link rel="stylesheet" href="./index_files/custom.css">
-  <meta name="description" content="Boost FPS and system stability with over 700 tweaks for your CPU, GPU and memory. Our PC Optimizations package stabilizes network connectivity and provides one‑click apply and restore.">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-  <div class="banner" data-discount="12">
-    <span class="lw-msg" data-dup="Use code Hollow for 12% off your order! Limited time offer.">Use code <strong>Hollow</strong> for 12% off your order! Limited time offer.</span>
+  <div class="announcement">
+    <span>Use code <strong>Xmas1</strong> for 12% off your order! Limited time offer.</span>
   </div>
   <header>
-    <a href="index.html" class="logo"><span class="logo-text">Lonware</span></a>
-    <nav>
+    <a href="index.html" class="logo">Lonware</a>
+    <nav class="nav-links">
       <a href="index.html">Home</a>
-      <a href="shop.html" class="cta">Shop</a>
+      <a href="shop.html">Shop</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main class="product-page">
-    <section class="product-hero">
-      <div class="wrap">
-        <h1>PC Optimizations</h1>
-        <p class="product-subtitle">Over 700 system tweaks for peak FPS and rock‑solid stability.</p>
-        <div class="price-wrapper">
-          <div class="price">$25.99</div>
-          <div class="sale-price">$15.99</div>
-        </div>
-        <a href="https://payhip.com/buy?link=LGIiX" class="primary" target="_blank">Buy Now</a>
-      </div>
-    </section>
-    <section class="product-details">
-      <div class="wrap">
-        <div class="product-grid">
-          <img src="./index_files/pc_product.png" alt="PC Optimizations" class="product-image">
-          <div class="product-info">
-            <h2>Key Features</h2>
-            <ul>
-              <li>Over 700 system tweaks for peak FPS</li>
-              <li>Optimizes CPU, GPU and memory usage</li>
-              <li>Stabilizes network connectivity for lower latency</li>
-              <li>Easy one‑click apply and restore</li>
-            </ul>
+  <main>
+    <div class="product-page">
+      <!-- Video slider for PC Optimizations previews -->
+      <div class="video-slider">
+        <div class="slides">
+          <div class="slide">
+            <video src="https://lonware.com/pc.mp4" controls preload="metadata"></video>
+          </div>
+          <div class="slide">
+            <iframe src="https://www.youtube-nocookie.com/embed/dIXx7Q_W8zE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="PC Optimizations Preview" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
+        <button class="prev-slide" aria-label="Previous video">❮</button>
+        <button class="next-slide" aria-label="Next video">❯</button>
       </div>
-    </section>
-    <section class="terms">
-      <div class="wrap">
-        <h2>Terms of Service</h2>
+      <div class="product-details">
+        <h1>PC Optimizations</h1>
+        <div class="price"><del>$25.99</del> $15.99</div>
+        <div class="purchase-buttons">
+          <a href="https://payhip.com/buy?link=LGIiX" class="btn-primary" target="_blank" rel="noopener">Buy Now</a>
+        </div>
+        <div class="overview">
+          PC Optimizations maximizes your gaming rig’s performance by streamlining system processes, unlocking hidden headroom and ensuring consistent frame rates. Whether you're running a competitive FPS or exploring an open‑world adventure, our tweaks help you get the most out of your hardware.
+        </div>
+        <h2 style="font-size:1.4rem;margin-bottom:0.6rem;color:#00c4ff;">Key Features</h2>
         <ul>
-          <li>Digital‑only products are delivered instantly via secure download.</li>
-          <li>All sales are final.</li>
+          <li>Cleans up render paths and reduces overhead for consistent frames.</li>
+          <li>Optimizes CPU thread scheduling for improved multi‑core efficiency.</li>
+          <li>Routes resources to priority tasks for smoother gameplay.</li>
+          <li>Includes thermal‑safe performance presets to keep your system cool.</li>
+          <li>Enhances memory management to reduce stutters and hitching.</li>
+          <li>Works on Windows 10/11 with easy installation and lifetime updates.</li>
+          <li>Provides detailed guides and support to help you optimize safely.</li>
         </ul>
       </div>
-    </section>
+    </div>
+    <div class="tos">
+      <h2>Terms of Service</h2>
+      <ul>
+        <li><strong>Digital‑only products:</strong> All items are delivered in digital format only. No physical goods will be shipped.</li>
+        <!-- Consolidated refund language into a single bullet to avoid repetition -->
+        <li><strong>All sales are final:</strong> Due to the nature of downloadable products, purchases are non‑refundable and no exchanges are offered.</li>
+        <li><strong>Intellectual property:</strong> All files and software are the property of their respective creators. Redistribution is prohibited.</li>
+        <li><strong>User responsibility:</strong> Ensure compatibility before purchasing. Misuse may result in account suspension.</li>
+        <li><strong>Terms subject to change:</strong> These terms may be updated at any time. Continued use implies acceptance of any changes.</li>
+      </ul>
+    </div>
   </main>
   <footer>
-    © 2025 Lonware. All rights reserved.
+    © 2025 Lonware. All rights reserved.
   </footer>
+
+  <!-- Simple slider script for product videos -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.video-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.slide');
+    let current = 0;
+    slides[current].classList.add('active');
+    const nextBtn = slider.querySelector('.next-slide');
+    const prevBtn = slider.querySelector('.prev-slide');
+    nextBtn.addEventListener('click', function() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    });
+    prevBtn.addEventListener('click', function() {
+      slides[current].classList.remove('active');
+      current = (current - 1 + slides.length) % slides.length;
+      slides[current].classList.add('active');
+    });
+  });
+  </script>
 </body>
 </html>

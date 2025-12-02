@@ -1,48 +1,33 @@
 <!DOCTYPE html>
-<!-- saved from url=(0029)https://lonware.com/shop.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop – Lonware</title>
-  <link rel="stylesheet" href="./shop_files/styles.css">
-<link rel="stylesheet" href="./shop_files/custom.css">
-  <!-- Force HTTPS to avoid 'Not Secure' warnings and upgrade any insecure requests -->
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <script>
-    if (location.protocol === 'http:') {
-      location.href = 'https://' + location.host + location.pathname + location.search + location.hash;
-    }
-  </script>
-  <!-- Favicon for browser tab -->
-  <link rel="icon" type="image/png" sizes="32x32" href="https://lonware.com/logo.png">
-  <meta name="description" content="Browse and select from Lonware’s range of gaming optimization packages. Choose the perfect plan for your setup with premium options and lifetime upgrades.">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-  <!-- Announcement banner: display a single, clear discount message -->
-  <div class="banner" data-discount="12">
-    <span class="lw-msg" data-dup="Use code Hollow for 12% off your order! Limited time offer.">Use code <strong>Hollow</strong> for 12% off your order! Limited time offer.</span>
+  <div class="announcement">
+    <span>Use code <strong>Xmas1</strong> for 12% off your order! Limited time offer.</span>
   </div>
-  <!-- Header with navigation -->
   <header>
-    <a href="index.html" class="logo"><span class="logo-text">Lonware</span></a>
-    <nav>
+    <a href="index.html" class="logo">Lonware</a>
+    <nav class="nav-links">
       <a href="index.html">Home</a>
-      <a href="shop.html" class="cta">Shop</a>
+      <a href="shop.html">Shop</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main class="shop-wrapper">
-    <section class="shop-hero">
+  <main>
+    <section class="hero">
       <h1>Choose Your Package</h1>
       <p>Pick the optimization plan that best suits your gaming needs.</p>
     </section>
-    <section class="plans-grid">
-      <!-- Macro plan -->
-      <div class="plan-card">
-        <div class="tag">Most Popular</div>
+    <div class="pricing">
+      <div class="pricing-plan">
+        <span class="label">Most Popular</span>
         <h3>Macro.io</h3>
-        <p class="plan-subtitle">Controller/Keyboard Macro</p>
-        <!-- Display only the recurring price for the macro in the shop grid. The billing cycle indicator appears on the product page. -->
+        <p class="plan-desc">Controller/Keyboard Macro</p>
         <div class="price">$9.99</div>
         <ul>
           <li>Automate complex controller &amp; keyboard inputs</li>
@@ -51,17 +36,15 @@
           <li>Supports controller and keyboard/mouse setups</li>
           <li>Lifetime updates &amp; support</li>
         </ul>
-        <div class="buttons">
-          <!-- Primary purchase action takes users directly to checkout for the macro subscription -->
-          <a href="https://payhip.com/buy?link=xKhTB" class="primary" target="_blank">Buy Now</a>
-          <!-- Premium option leads directly to the lifetime macro checkout on Payhip -->
-          <a href="https://payhip.com/buy?link=xKhTB" class="secondary" target="_blank">Premium</a>
-        </div>
+        <a href="https://payhip.com/buy?link=xKhTB" class="btn-primary" target="_blank" rel="noopener">Buy Now</a>
+        <!-- Premium one‑time checkout link for lifetime macro -->
+        <a href="https://payhip.com/buy?link=NZ9tG" class="btn-primary" target="_blank" rel="noopener">Premium</a>
       </div>
-      <!-- PC Optimizations plan -->
-      <div class="plan-card">
-        <div class="tag">Best Value</div>
+      <div class="pricing-plan">
+        <span class="label">Best Value</span>
+        
         <h3>PC Optimizations</h3>
+        <p class="plan-desc">Maximize your PC’s FPS</p>
         <div class="price">$15.99</div>
         <ul>
           <li>Over 700 system tweaks for peak FPS</li>
@@ -69,32 +52,41 @@
           <li>Stabilizes network for lower latency</li>
           <li>Easy one‑click apply &amp; restore</li>
         </ul>
-        <div class="buttons">
-          <!-- Updated PC Optimizations link -->
-          <a href="https://payhip.com/buy?link=LGIiX" class="primary" target="_blank">Buy Now</a>
-          <!-- Secondary button links to the detailed PC optimizations page -->
-          <a href="pc-optimizations.html" class="secondary">Learn More</a>
-        </div>
+        <a href="https://payhip.com/buy?link=LGIiX" class="btn-primary" target="_blank" rel="noopener">Buy Now</a>
       </div>
-      <!-- Console Tweaks plan -->
-      <div class="plan-card" style="transition: transform 0.3s;">
-        <div class="tag">Controller</div>
+      <div class="pricing-plan">
+        <span class="label">Controller</span>
+        
         <h3>Console Tweaks</h3>
+        <p class="plan-desc">Fine‑tune your console</p>
         <div class="price">$9.99</div>
         <ul>
           <li>Improve console response time</li>
           <li>Reduce input lag and enhance stability</li>
-          <li>Easy installation with simple instructions</li>
+          <li>Easy install with simple instructions</li>
           <li>Works on PlayStation and Xbox</li>
         </ul>
-        <div class="buttons">
-          <!-- Direct users straight to the Console Tweaks checkout link -->
-          <a href="https://payhip.com/buy?link=v7ukP" class="primary" target="_blank">Buy Now</a>
-        </div>
+        <a href="https://payhip.com/buy?link=v7ukP" class="btn-primary" target="_blank" rel="noopener">Buy Now</a>
       </div>
-      <!-- Bloom Reducer plan -->
-      <div class="plan-card">
-        <div class="tag">Sharpshooter</div>
+    <!-- Ping plan card -->
+    <div class="pricing-plan">
+      <span class="label">Latency</span>
+      
+      <h3>Ping Optimizations</h3>
+      <p class="plan-desc">Eliminate lag and spikes</p>
+      <div class="price">$12.99</div>
+      <ul>
+        <li>Deliver near‑zero ping even under heavy load</li>
+        <li>Stabilize connections for smooth online play</li>
+        <li>Optimize routing to reduce jitter and drops</li>
+        <li>Works on any network setup (Wi‑Fi or Ethernet)</li>
+      </ul>
+      <a href="https://payhip.com/buy?link=EAXP0" class="btn-primary" target="_blank" rel="noopener">Buy Now</a>
+    </div>
+      <!-- Bloom Reducer plan card -->
+      <div class="pricing-plan">
+        <span class="label">Sharpshooter</span>
+        
         <h3>Bloom Reducer</h3>
         <div class="price">$13.99</div>
         <ul>
@@ -102,39 +94,32 @@
           <li>Custom tuning for sensitivity and acceleration</li>
           <li>Compatible with major FPS titles</li>
         </ul>
-        <div class="buttons">
-          <!-- Provide only a Buy Now button for Bloom Reducer (no secondary link) -->
-          <a href="https://payhip.com/buy?link=1Htr4" class="primary" target="_blank">Buy Now</a>
-        </div>
+        <a href="https://payhip.com/buy?link=1Htr4" class="btn-primary" target="_blank" rel="noopener">Buy Now</a>
       </div>
-    </section>
+    </div>
   </main>
   <footer>
-    © 2025 Lonware. All rights reserved.
+    © 2025 Lonware. All rights reserved.
   </footer>
-  <!-- Tilt effect for plan cards -->
+  <!-- Tilt effect script for shop plan cards -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.plan-card');
-      cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = -(y - centerY) / 15;
-          const rotateY = (x - centerX) / 15;
-          card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-          card.style.transition = 'transform 0.1s ease-out';
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = '';
-          card.style.transition = 'transform 0.3s ease';
-        });
+  document.addEventListener('DOMContentLoaded', function() {
+    const plans = document.querySelectorAll('.pricing-plan');
+    const maxTilt = 8; // degrees for rotation
+    plans.forEach(plan => {
+      plan.addEventListener('mousemove', function(event) {
+        const rect = plan.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        const rotateX = (-y * maxTilt).toFixed(2);
+        const rotateY = (x * maxTilt).toFixed(2);
+        plan.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      plan.addEventListener('mouseleave', function() {
+        plan.style.transform = '';
       });
     });
+  });
   </script>
-
-
-</body></html>
+</body>
+</html>
