@@ -95,8 +95,8 @@ body::before {
 .announcement span {
   display: inline-block;
   white-space: nowrap;
-  padding-left: 100%;
-  animation: announcement-scroll 20s linear infinite;
+  padding-left: 50%%;
+  animation: announcement-scroll 8s linear infinite;
 }
 
 /* Header and navigation */
