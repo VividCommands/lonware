@@ -83,6 +83,7 @@ body::before {
 @keyframes announcement-scroll {
   0% {
     transform: translateX(100%);
+  
   }
   100% {
     transform: translateX(-100%);
@@ -96,6 +97,8 @@ body::before {
   display: inline-block;
   white-space: nowrap;
   padding-left: 100%;
+    animation-duration: 10s;
+
   animation: announcement-scroll 20s linear infinite;
 }
 
