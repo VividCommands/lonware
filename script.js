@@ -99,11 +99,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (purchaseFeedList) {
         // Sample first names and product titles for the feed
         const names = [
-            'Liam', 'Noah', 'Oliver', 'Elijah', 'Amelia', 'Sophia', 'Mason', 'Isabella',
-            'James', 'Charlotte', 'Lucas', 'Mia', 'Henry', 'Evelyn', 'Aiden', 'Harper',
-            'Jack', 'Luna', 'Caleb', 'Ella',
-            // Include anonymous user IDs to add variety
-            'User101', 'User234', 'User567', 'PlayerX', 'Gamer42'
+            // Expanded name list to reduce repetition. Includes a mix of common names,
+            // unusual names, and anonymous identifiers so visitors rarely see duplicates.
+            'Liam','Noah','Oliver','Elijah','Amelia','Sophia','Mason','Isabella',
+            'James','Charlotte','Lucas','Mia','Henry','Evelyn','Aiden','Harper',
+            'Jack','Luna','Caleb','Ella','Benjamin','Ava','Daniel','Grace',
+            'William','Zoe','Logan','Chloe','Alexander','Madison','Ethan','Olivia',
+            'Carter','Victoria','Michael','Abigail','Matthew','Emily','Jacob','Sarah',
+            'Nathan','Aria','Addison','Mateo','Sofia','Gabriel','Hannah','Avery',
+            'Sebastian','Scarlett','Theodore','Penelope','Jayden','Maya','Samuel','Camila',
+            'David','Kennedy','Joseph','Nora','Wyatt','Isla','Christian','Riley',
+            'Anthony','Reagan','Isaiah','Layla','Andrew','Paisley','Christopher','Nova',
+            'Julian','Hazel','Joshua','Delilah','Hunter','Stella','Leo','Lillian',
+            // Anonymous/unique user IDs
+            'User101','User234','User567','User789','User131','User878','User998',
+            'Anonymous','AnonymousBuyer','AnonymousUser','Purchaser001','User007',
+            'PlayerX','PlayerOne','Gamer42','GamerGirl','Buyer77','Customer123'
         ];
         const products = [
             { name: 'Macro.io', short: 'Macro.io' },
