@@ -7,7 +7,8 @@
     <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="styles.css" />
     <!-- Favicon so the Lonware logo appears in the browser tab -->
-    <link rel="icon" href="images/favicon.png" type="image/png">
+        <!-- Use root-level favicon so the icon loads correctly when images folder isn't present -->
+        <link rel="icon" href="favicon.png" type="image/png">
     <!-- Google Fonts for modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,10 +57,11 @@
                     <video src="https://lonware.com/macro.mp4" controls preload="metadata" class="product-image"></video>
                 </div>
                 <div class="macro-slide">
-                    <img src="images/macro1.webp" alt="Macro screenshot 1" class="product-image" />
+                        <!-- Display macro screenshots from the root level so they load correctly on the live site -->
+                        <img src="macro1.webp" alt="Macro screenshot 1" class="product-image" />
                 </div>
                 <div class="macro-slide">
-                    <img src="images/macro2.webp" alt="Macro screenshot 2" class="product-image" />
+                        <img src="macro2.webp" alt="Macro screenshot 2" class="product-image" />
                 </div>
             </div>
             <div class="product-info">
@@ -97,7 +99,8 @@
                 <div class="product-card">
                     <div class="product-media">
                         <!-- Use our own images so the preview loads reliably -->
-                        <img src="images/pc1.webp" alt="PC Optimizations preview" />
+                             <!-- PC preview image lives at the repository root -->
+                             <img src="pc1.webp" alt="PC Optimizations preview" />
                         <!-- Retain a video preview on hover; if the remote video fails it will simply not display -->
                         <video class="product-video" autoplay muted loop preload="none">
                             <source src="https://lonware.com/pc.mp4" type="video/mp4" />

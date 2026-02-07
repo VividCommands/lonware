@@ -809,7 +809,8 @@ body {
     width: 480px;
     height: 480px;
     border-radius: 50%;
-    background-image: url('images/globe.png');
+    /* Use root-level globe image so it loads even if the images folder isn't created on the server */
+    background-image: url('globe.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

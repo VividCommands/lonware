@@ -6,7 +6,8 @@
     <title>Lonware</title>
     <link rel="stylesheet" href="styles.css" />
     <!-- Favicon for browser tab -->
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <!-- Use root-level favicon -->
+    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -28,10 +29,11 @@
         <p class="hero-subtitle">Maximize your FPS and optimize every component</p>
         <div class="macro-slider" style="margin-top:2rem;">
             <div class="macro-slide active">
-                <img src="images/pc1.webp" alt="PC screenshot 1" class="product-image" />
+                <!-- Load PC screenshots from root so they display on the live site -->
+                <img src="pc1.webp" alt="PC screenshot 1" class="product-image" />
             </div>
             <div class="macro-slide">
-                <img src="images/pc2.webp" alt="PC screenshot 2" class="product-image" />
+                <img src="pc2.webp" alt="PC screenshot 2" class="product-image" />
             </div>
         </div>
         <!-- Price and call to action -->

@@ -7,7 +7,8 @@
     <!-- Shared styles -->
     <link rel="stylesheet" href="styles.css" />
     <!-- Favicon for browser tab -->
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <!-- Use root-level favicon so the icon loads correctly when images folder isn't present -->
+    <link rel="icon" href="favicon.png" type="image/png">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,10 +40,11 @@
                 <video src="https://lonware.com/macro.mp4" controls preload="metadata" class="product-image"></video>
             </div>
             <div class="macro-slide">
-                <img src="images/macro1.webp" alt="Macro screenshot 1" class="product-image" />
+            <!-- Macro screenshots moved to root level for reliable loading -->
+            <img src="macro1.webp" alt="Macro screenshot 1" class="product-image" />
             </div>
             <div class="macro-slide">
-                <img src="images/macro2.webp" alt="Macro screenshot 2" class="product-image" />
+            <img src="macro2.webp" alt="Macro screenshot 2" class="product-image" />
             </div>
         </div>
         <!-- Price and purchase call to action -->
