@@ -1,2688 +1,1123 @@
-/* == Custom overrides for hero alignment, cube enhancements and pixel art == */
-/* Center hero text and widen hero art for stronger impact */
-.landing {
-  text-align: center;
-}
-.landing .hero-title {
-  display: block;
-  max-width: 20ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-.landing .hero-art {
-  perspective: 1400px;
-  transform-style: preserve-3d;
-  width: clamp(300px, 72vw, 760px);
-  height: clamp(260px, 60vw, 660px);
-  margin: 1.5rem auto 2.2rem;
-  position: relative;
-    display: none !important;
-}
-.landing .cube {
-    display: none !important;
-  /* Use CSS custom properties to define cube size; adapt size responsively */
-  /* Increase cube size for a more prominent hero effect. The cube size now scales
-     between 150px on small screens and up to 300px on large screens. */
-  --size: clamp(150px, 26vw, 300px);
-  --d: calc(var(--size) / 2);
-  width: var(--size);
-  height: var(--size);
-  transform-style: preserve-3d;
-}
-.landing .cube:nth-child(1) {
-  top: 52%;
-  left: 10%;
-}
-.landing .cube:nth-child(2) {
-  top: 18%;
-  left: 46%;
-}
-.landing .cube:nth-child(3) {
-  top: 60%;
-  left: 78%;
-}
-.landing .face {
-  /* Allow back faces to be visible so the cubes appear transparent */
-  backface-visibility: visible;
-  border: 1.3px solid rgba(120, 200, 255, 0.85);
-  /* Lower alpha on the face fill so you can see through to the other side */
-  background: rgba(0, 170, 255, 0.04);
-  box-shadow: inset 0 0 20px rgba(120, 200, 255, 0.32), 0 0 28px rgba(120, 200, 255, 0.36);
-}
-.landing .face.front  { transform: rotateY(0deg)   translateZ(var(--d)); }
-.landing .face.back   { transform: rotateY(180deg) translateZ(var(--d)); }
-.landing .face.right  { transform: rotateY(90deg)  translateZ(var(--d)); }
-.landing .face.left   { transform: rotateY(-90deg) translateZ(var(--d)); }
-.landing .face.top    { transform: rotateX(90deg)  translateZ(var(--d)); }
-.landing .face.bottom { transform: rotateX(-90deg) translateZ(var(--d)); }
-/* Add a shimmering highlight on the cube edges */
-.landing .face::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  background:
-    radial-gradient(220px 60px at -5% -5%, rgba(0, 255, 224, 0.25), transparent 40%),
-    radial-gradient(220px 60px at 105% -5%, rgba(0, 140, 255, 0.22), transparent 40%),
-    radial-gradient(220px 60px at -5% 105%, rgba(0, 255, 224, 0.25), transparent 40%),
-    radial-gradient(220px 60px at 105% 105%, rgba(0, 140, 255, 0.22), transparent 40%);
-  mix-blend-mode: screen;
-  animation: lw-edgePulse 2.8s ease-in-out infinite;
-  opacity: 0.85;
-}
-@keyframes lw-edgePulse {
-  0%, 100% {
-    opacity: 0.45;
-    filter: blur(0.3px);
-  }
-  35% {
-    opacity: 0.92;
-    filter: blur(0.6px);
-  }
-  55% {
-    opacity: 0.65;
-    filter: blur(0.4px);
-  }
-}
-/* Pixel art header images on feature cards */
-.feature-card__art {
-  display: block;
-  width: 100%;
-  max-height: 120px;
-  object-fit: cover;
-  image-rendering: pixelated;
-  border-radius: 12px;
-  border: 1px solid rgba(120, 200, 255, 0.25);
-  box-shadow: 0 6px 18px rgba(0, 180, 255, 0.12);
-  margin-bottom: 10px;
-}
-@media (max-width: 520px) {
-  .feature-card__art {
-    max-height: 100px;
-  }
-}
-/* Pixelate product card images for cohesive retro feel */
-.product-grid .card-image {
-  image-rendering: pixelated;
-  object-fit: cover;
-}
-
-/* === Animated marquee for the announcement banner === */
-/*
- * Global stylesheet for the recreated Lon's My Space website.
- *
- * This design takes inspiration from the original Payhip store but
- * modernises it with clean typography, soft-glass cards and a dark
- * aesthetic. It is completely responsive and uses pure CSS for
- * layout so there are no external dependencies. Feel free to tweak
- * colours and spacing to suit your brand.
- */
-
-/* Reset some default browser styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Root variables for consistent colour palette */
+/* Global variables for colors and base styling */
 :root {
-  /* Updated palette to a brighter neon blue */
-  --primary-col: #0095ff;
-  --primary-col-light: #66e0ff;
-  --background-col: #070c1f;
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --text-col: #ffffff;
-  --muted-col: #cccccc;
-  /* Additional colours for review names and hero art */
-  --review-name: #66b2ff;
+    /* Updated colour palette: black and blue theme */
+    /* Primary page background is almost black with a hint of blue. */
+    --bg-color: #01010d;
+    --card-bg: #0e1728;        /* dark card background with blue tint */
+    --primary-color: #0dcaf0;  /* bright blue accent */
+    --secondary-color: #3287fa;/* softer blue highlight */
+    --text-color: #e6f2ff;     /* very light blue for main text */
+    --muted-text: #8aaac6;     /* muted blue-grey for secondary text */
+    --glow-color: rgba(13, 202, 240, 0.25); /* glow colour for orbs */
+    --font-family: 'Montserrat', sans-serif;
 }
 
 body {
-  background: var(--background-col);
-  color: var(--text-col);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  
-  flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    /* Offset the navbar to account for the announcement bar height */
+    top: 2.5rem;
+    width: 100%;
+    display: flex;
+    /* Keep items on a single row on larger screens.  Use space-between so the
+       brand stays on the left and nav links align to the right. */
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(180deg, rgba(10, 14, 35, 0.9), rgba(10, 14, 35, 0.4));
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    transition: padding 0.3s ease, background-color 0.3s ease;
+}
+
+/* Make the navigation container flexible so it can grow and prevent link truncation */
+/* Navigation container: reserve space for nav links and allow them to wrap or stack
+   without clipping long words.  Use static positioning so the nav participates in
+   the navbar's flex layout.  Set a fixed width to prevent text from extending
+   off the viewport; adjust as needed for longer words.  Add margin-left to
+   separate from the logo and margin-right to avoid overlap with the scroll bar. */
+.navbar nav {
+    position: static;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    /* Increase width to accommodate long link names like "Products". */
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* When an announcement bar precedes the navbar, push the fixed navbar down so it doesn't overlap */
+
+/* Adjust navbar when scrolled */
+.navbar.scrolled {
+    padding: 0.75rem 2rem;
+    background-color: rgba(10, 14, 35, 0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Logo container with icon and text */
+.navbar .logo {
+    /* Logo in the navbar now only contains text.  It remains flexible and
+       coloured to match the Lonware brand. */
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+    display: block;
+    line-height: 1;
+    text-decoration: none;
+}
+
+/* Logo image sizing */
+.logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.logo {
+    /* The base .logo class is kept for backward compatibility.  The actual
+       styling of the logo container is now defined on .navbar .logo above. */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    /* Stack nav links vertically on larger screens to prevent truncation of long words.
+       Align them to the end of the navbar so they sit near the right edge. */
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    /* Use a lighter colour and shadow to ensure the text remains legible even when
+       placed over bright backgrounds (e.g., the hero's planet graphic). */
+    color: #f0f8ff;
+    font-weight: 300;
+    position: relative;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+    transition: color 0.3s ease;
 }
 
-/* Animated background gradient for subtle motion */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  /* Default animated background gradient.  This provides gentle colour movement on desktop. */
-  background: linear-gradient(120deg, #0a1931, #0b253e, #001f3f, #0b253e, #0a1931);
-  animation: moveBg 40s linear infinite;
-  z-index: -1;
-  opacity: 0.5;
+/* Underline and color change on hover */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: var(--secondary-color);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Floating particles overlay for subtle depth */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0.5px, rgba(255, 255, 255, 0) 1px) 0 0 / 4px 4px;
-  opacity: 0.1;
-  animation: moveDots 60s linear infinite;
-  z-index: -2;
+.nav-links a:hover {
+    color: var(--primary-color);
 }
 
-@keyframes moveDots {
-  0% {
-
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-1000px, -1000px);
-  }
-}
-
-@keyframes moveBg {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-25%, -25%);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-/* Top notification bar for discount code */
-/*
- * The announcement bar should immediately grab attention.  We invert
- * the colour scheme here: a crisp white bar with black text and a
- * gentle sliding animation that moves the message left and right.
- * On top of that, we add a subtle blue glow to help tie the element
- * into the overall colour palette.  The animation is defined
- * further below.
- */
-/*
- * Announcement banner
- *
- * Make the discount message more legible by increasing the font size and weight
- * while preserving the slim look of the bar. Padding is slightly larger to
- * accommodate the bigger type. All other styling (background, shadow, etc.)
- * remains unchanged so the bar still ties into the overall theme.
- */
-.banner {
-  /* Make the banner sticky at the top.  Use a semi-opaque dark background to better
-     blend with the site theme.  Colours are overridden at the bottom of this file */
-  position: sticky;
-  top: 0;
-  z-index: 120;
-  background: #ffffff;
-  color: #0b1623;
-  font-weight: 700;
-  font-size: 0.95rem;
-  padding: 0.6rem 1rem;
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-}
-
-/* Small text indicator for billing cycle on subscription products */
-.billing-cycle {
-  font-size: 0.8rem;
-  color: var(--muted-col);
-  margin-left: 0.25rem;
-}
-
-/* Inner container for banner text to allow scrolling animation */
-.banner .banner-content {
-  display: inline-block;
-  /* The container does not use a filter directly; instead, individual span
-     elements within the marquee apply the liquid distortion. Animation
-     provides a gentle pulse on the banner’s scale. */
-  filter: none;
-  animation: bannerPulse 2.6s ease-in-out infinite;
-}
-
-/* Marquee container for the banner announcement text */
-.banner .banner-content .marquee {
-  display: flex;
-  white-space: nowrap;
-  width: fit-content;
-  animation: banner-marquee 16s linear infinite;
-}
-
-/* Spacing between repeated marquee messages */
-.banner .banner-content .marquee span {
-  margin-right: 2rem;
-  /* Apply the liquid distortion filter to each marquee chunk. The filter is defined
-     in the inline SVG within index.html. When animated (via the SVG’s animate tag),
-     the text appears to ripple like water. */
-  filter: url(#liquid-banner);
-}
-
-@keyframes banner-marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Make strong text heavier inside banner */
-.banner strong{
-  font-weight: 800;
-}
-
-@keyframes bannerPulse{
- 0%, 100% { transform: scale(1); }
- 45% { transform: scale(1.03); }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .banner .banner-content{
-    animation: none;
-    filter: none;
-  }
-}
-
-/* Override default features header to remove dark bar and spacing */
-.features__head {
-  background: none;
-  border: none;
-  box-shadow: none;
-  margin-bottom: 1.5rem;
-  padding: 0;
-  text-align: center;
-}
-
-/* Style for textual logo – a silver gradient that pops against the dark header. */
-header .logo-text {
-  font-family: 'Oxanium', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #ffffff, #c0c0c0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-/* Simplify banner animation and remove liquid distortion. The message now gently
-   scrolls from right to left; the squiggly filter and pulse effect are disabled. */
-.banner .banner-content {
-  animation: none;
-  filter: none;
-}
-
-/* -----------------------------------------------------------------------------
-   Final overrides for the hero cubes and announcement bar
-   -----------------------------------------------------------------------------
-
-   The original Lonware site positioned the hero cubes absolutely within
-   the `.hero-art` container, setting explicit `top` and `left` values for each
-   cube.  This made the layout asymmetric on desktop and particularly
-   problematic on mobile devices, where the cubes overlapped and caused heavy
-   animation jank.  To fix this we convert the hero container into a flexbox
-   that horizontally centers its children and introduces a flexible gap
-   between them.  We also reset the cube positioning to rely on normal flow
-   instead of absolute offsets.  The `!important` flags ensure these
-   overrides take precedence over earlier definitions.
-*/
-
-/* Align the neon cubes neatly in the centre of the hero using flexbox. */
-.landing .hero-art {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  /* Responsive gap between cubes – scales with viewport width */
-  /* Increase the gap to further separate the rotating cubes and prevent
-     overlap as they spin. */
-  gap: clamp(4rem, 10vw, 12rem) !important;
-  /* Ensure the container still provides perspective for the 3D transforms */
-  perspective: 1400px !important;
-  transform-style: preserve-3d !important;
-  position: relative !important;
-}
-
-/* Override cube dimensions to maintain proper 3D proportions.  Using fixed
-   width and height ensures the built‑in face translations (40px) remain
-   correct, so the shapes look like true cubes instead of flattened boxes.
-   We apply these overrides after the flexbox adjustments to take
-   precedence over earlier `--size` values. */
-.landing .cube {
-  width: 80px !important;
-  height: 80px !important;
-}
-
-/* Reset cube positioning so they sit in the flex flow rather than using absolute offsets. */
-.landing .cube {
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-}
-
-/* On desktop and larger tablets, allow the cubes to grow slightly larger to fill
-   the hero space gracefully.  Because the flex layout controls spacing, we can
-   safely enlarge them without overlap. */
-@media (min-width: 769px) {
-  .landing .cube {
-    --size: clamp(180px, 24vw, 320px) !important;
-  }
-}
-
-/* Override final cube sizes and margins to ensure three cubes fit horizontally
-   within the hero container.  Smaller sizes and extra margins prevent
-   overlapping while maintaining a strong visual presence. */
-.landing .cube {
-  /* Smaller responsive size – scales up on large monitors but stays compact.
-     The 14vw sizing ensures three cubes fit within the hero container without
-     overlapping when combined with the increased gap. */
-  --size: clamp(120px, 14vw, 240px) !important;
-  /* Reset margin since spacing is now controlled by the flex gap */
-  margin: 0 !important;
-}
-
-/* Restyle the announcement bar to stand out against the dark background.  Use
-   a clean white backdrop, dark text and a simple horizontal scroll animation
-   instead of the previous squiggly liquid effect. */
-.banner {
-  background: #ffffff !important;
-  color: #0B1623 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
-}
-.banner .lw-msg {
-  display: inline-block !important;
-  white-space: nowrap !important;
-  padding-left: 100%; /* Push initial position off screen to the right */
-  /* Disable scroll animation; the message stays static for better legibility */
-  animation: none !important;
-  filter: none !important;
-}
-/* Animate the announcement text smoothly from right to left. */
-@keyframes banner-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-.banner .banner-content .marquee span {
-  filter: none;
-}
-.banner .banner-content .marquee {
-  animation: banner-slide 20s linear infinite;
-}
-@keyframes banner-slide {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Section title and subtitle styling (used in features header) */
-.section-title {
-  font-family: "Oxanium", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.4px;
-  font-size: clamp(24px, 3.2vw, 38px);
-  line-height: 1.15;
-  margin: 0 0 6px;
-  background: linear-gradient(180deg, #ffffff, #b9d7ff 70%, #7db8ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.section-sub {
-  color: var(--muted-col);
-  font-size: clamp(0.95rem, 0.9rem + .25vw, 1.05rem);
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--primary-col);
-}
-
-/* Logo emblem icon */
-.logo-icon {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  display: inline-block;
-}
-
-nav a {
-  margin-left: 1rem;
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-nav a:hover {
-  color: #66b2ff;
-}
-
-/* Container for the hero section that lists products */
-.hero {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 3rem 1rem;
-}
-
-/* Product card styling */
-.card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 0;
-  width: 260px;
-  text-align: center;
-  text-decoration: none;
-  color: #ffffff;
-  transition: transform 0.3s ease, background 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.12);
-  /* Add a soft blue glow on hover */
-  box-shadow: 0 0 20px rgba(102, 178, 255, 0.5), 0 0 40px rgba(102, 178, 255, 0.3);
-}
-
-/* Card image for product grid */
-.card-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  display: block;
-}
-
-.card-content {
-  padding: 1.2rem;
-}
-
-/* Video overlay shown on hover for cards that have videos */
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-/*
- * Ensure preview videos and YouTube iframes fill their overlays
- *
- * Without explicitly setting width/height and object-fit on the
- * elements themselves the browser may letterbox the preview.  By
- * forcing them to cover the available space and centering their
- * contents we guarantee a consistent, edge‑to‑edge preview on
- * product cards.
- */
-.video-overlay video,
-.video-overlay iframe {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 10px;
-}
-
-/*
- * Grid of product videos on product pages.
- *
- * When multiple media elements are displayed on a single page (for
- * example, the controller/KBM macro page now shows both a local
- * demonstration and a YouTube preview) they are wrapped in a
- * responsive grid.  Each video is constrained to a square shape
- * with equal width and height, and the grid automatically wraps on
- * smaller screens.
- */
-.product-video-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  /*
-   * Allow the video grid to occupy space alongside the product details.  Using
-   * flex settings similar to .product-image ensures the grid has an initial
-   * width of roughly half the page on desktop, but it will shrink and wrap
-   * responsively on smaller screens.  Without an explicit flex basis the
-   * grid could collapse to zero width when wrapped in a flex container.
-   */
-  flex: 1 1 45%;
-  max-width: 500px;
-  min-width: 300px;
-}
-
-/* New slider styling for product media on macro page */
-.video-slider {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 2rem;
-}
-
-.video-slider .slides {
-  position: relative;
-}
-
-/* Each slide maintains a 16:9 aspect ratio using the padding‑top trick */
-.video-slider .slide {
-  display: none;
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
-}
-
-/* The embedded video or iframe fills the slide */
-.video-slider .slide video,
-.video-slider .slide iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* Navigation arrows for the video slider */
-.video-slider .prev-slide,
-.video-slider .next-slide {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: #ffffff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.video-slider .prev-slide { left: 10px; }
-.video-slider .next-slide { right: 10px; }
-
-/* Review section enhancements */
-.reviews {
-  margin-top: 4rem;
-  position: relative;
-}
-
-/* Section title with lines on either side */
-.section-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.section-title::before,
-.section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #66b2ff;
-  opacity: 0.5;
-}
-
-.section-title span {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-/* Horizontal slider for reviews */
-.reviews-slider {
-  position: relative;
-  overflow: hidden;
-}
-
-.reviews-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 1rem;
-  padding-bottom: 1rem;
-}
-
-.reviews-track::-webkit-scrollbar {
-  display: none;
-}
-
-.review {
-  flex: 0 0 300px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1rem;
-  color: #ffffff;
-  scroll-snap-align: center;
-}
-
-.review .stars {
-  color: #ffd700;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.reviews-slider .prev-review,
-.reviews-slider .next-review {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: #ffffff;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  font-size: 1.3rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.reviews-slider .prev-review { left: 0.5rem; }
-.reviews-slider .next-review { right: 0.5rem; }
-
-@media (max-width: 768px) {
-  .reviews-slider .prev-review,
-  .reviews-slider .next-review {
-    display: none;
-  }
-}
-
-/* Make the plans grid more uniform and side‑by‑side */
-.plans-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-}
-
-/*
- * Each video box in the product media grid is designed to be perfectly square
- * on desktop and tablet screens while automatically scaling down on mobile.
- * The width is specified as a percentage of the available container to
- * ensure the boxes sit side‑by‑side when there is room.  Increasing the
- * width from 300 px to a flexible unit makes the previews larger and
- * prevents them from appearing tiny on high‑resolution monitors.
- */
-.product-video-grid .video-box {
-  /*
-   * Allow two videos to sit side by side inside the media grid.  Using a
-   * percentage-based flex-basis ensures that two boxes occupy approximately
-   * half of the available space (minus the gap).  On narrower screens the
-   * items will stack automatically.  The aspect-ratio property keeps
-   * each preview perfectly square regardless of its width.
-   */
-  flex: 1 1 calc(50% - 0.5rem);
-  aspect-ratio: 1 / 1;
-  max-width: none;
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-/*
- * Videos and iframes fill their container completely.  Using absolute
- * positioning with 100% width and height ensures they crop evenly from the
- * centre.  We also specify object‑fit: cover so the video fills the box
- * without letterboxing.
- */
-.product-video-grid video,
-.product-video-grid iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 10px;
-}
-
-/*
- * Extra media container for optional secondary videos on product pages.
- *
- * If only a single embedded video is required this class isn’t used, but
- * when a secondary media element such as a YouTube embed is added after
- * the main details this wrapper centres it on the page and limits its
- * width to avoid overwhelming the layout.
- */
-.extra-media {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-.extra-media iframe {
-  width: 100%;
-  max-width: 500px;
-  height: 281px; /* Maintain a 16:9 aspect ratio */
-  border-radius: 10px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.has-video:hover .video-overlay {
-  opacity: 1;
-}
-
-.has-video:hover .card-image {
-  filter: brightness(0.4);
-}
-
-.card h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-}
-
-.card .price {
-  color: #999999;
-  text-decoration: line-through;
-  font-size: 0.9rem;
-}
-
-.card .sale-price {
-  color: #66b2ff;
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-.card .button {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #ffffff;
-  background: #66b2ff;
-  transition: background 0.2s ease;
-}
-
-.card .button:hover {
-  background: #88c7ff;
-}
-
-/* Product page layout */
-.product-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2.5rem 1rem;
-}
-
-/*
- * Product image container
- *
- * On the product pages the preview video or static graphic should be wide and
- * cinematic rather than tall.  Changing the padding‑top from the classic
- * 16:9 (56.25%) to a lower value (40%) yields a more letterbox‑like shape
- * that better suits landscape game footage.  Flex settings keep the
- * container responsive while preserving aspect ratio.  Height is kept at
- * zero to allow the padding trick to control vertical space.
- */
-.product-image {
-  flex: 1 1 45%;
-  max-width: 500px;
-  min-width: 300px;
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-top: 40%; /* wider 2.5:1 ratio for a more cinematic feel */
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.product-image iframe,
-.product-image img,
-.product-image video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-/* Placeholder for product images (when no image is provided) */
-.placeholder {
-  width: 100%;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-}
-
-.product-details {
-  flex: 1 1 300px;
-}
-
-.product-details h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.product-details .prices {
-  margin: 1rem 0;
-  font-size: 1.1rem;
-}
-
-.product-details .old-price {
-  color: #777777;
-  text-decoration: line-through;
-  margin-right: 0.5rem;
-}
-
-.product-details .sale-price {
-  color: #66b2ff;
-  font-weight: bold;
-}
-
-.product-details .actions a {
-  display: inline-block;
-  margin-right: 0.75rem;
-  margin-bottom: 0.75rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.2s ease;
-}
-
-.product-details .actions .buy {
-  background: #66b2ff;
-  color: #ffffff;
-}
-
-.product-details .actions .buy:hover {
-  background: #88c7ff;
-}
-
-/* Styling for the secondary Learn More button on product pages */
-.product-details .actions .learn-more {
-  background: transparent;
-  border: 1px solid #66b2ff;
-  color: #66b2ff;
-}
-
-.product-details .actions .learn-more:hover {
-  background: rgba(102, 178, 255, 0.1);
-}
-
-.product-details .actions .view {
-  background: #ffffff;
-  color: #000000;
-}
-
-.product-details .actions .view:hover {
-  background: #dddddd;
-}
-
-/* Subtitles for product page headings */
-.subtitle {
-  color: #b0c5e7;
-  font-size: 1rem;
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
-  font-weight: normal;
-}
-
-/* Additional action button for lifetime purchase */
-.product-details .actions .lifetime {
-  background: transparent;
-  border: 1px solid #66b2ff;
-  color: #66b2ff;
-}
-.product-details .actions .lifetime:hover {
-  background: rgba(102, 178, 255, 0.1);
-}
-
-/* Media slider on product pages */
-.product-media-slider {
-  flex: 1 1 45%;
-  max-width: 500px;
-  min-width: 300px;
-  position: relative;
-  width: 100%;
-  height: 0;
-  /* Use a 16:9 aspect ratio for preview media to ensure more of the video is visible
-     while still cropping evenly on the sides. This helps pre‑videos like macros
-     and PC optimisations appear correctly without cutting off important parts. */
-  padding-top: 56.25%;
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-/* Controls for product media slider */
-.slider-controls {
-  position: relative;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  pointer-events: none; /* allow clicks only on buttons */
-}
-.slider-controls button {
-  pointer-events: auto;
-  background: rgba(0, 191, 255, 0.4);
-  border: none;
-  color: #ffffff;
-  font-size: 1.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.slider-controls button:hover {
-  background: rgba(0, 191, 255, 0.6);
-}
-.product-media-slider::-webkit-scrollbar {
-  display: none;
-}
-.product-media-slider .slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  position: relative;
-  height: 100%;
-}
-.product-media-slider video,
-.product-media-slider iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-/*
- * -------- Lonware custom overrides --------
- *
- * The following rules are appended at the very end of the stylesheet to ensure
- * they take precedence over earlier definitions. These tweaks address
- * outstanding user feedback:
- *   • On mobile devices, product preview images and videos were too short and
- *     appeared cropped. Increasing the aspect ratio to 16:9 (56.25% padding-top)
- *     on screens narrower than 640px improves the viewing experience without
- *     affecting desktop layouts.
- *   • The new release card should be horizontally centred in its container on
- *     both desktop and mobile views. Applying auto margins achieves this.
- *   • The announcement banner’s text had stopped animating on some devices.
- *     A simple sliding animation is reinstated here to ensure the discount
- *     message scrolls continuously across the bar.
- */
-
-/* Centre the new release card */
-/* Ensure the single release card is centred within the Newly Released section on all screens. */
-.new-release .wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.release-card {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Increase product preview height on smaller screens */
-@media (max-width: 640px) {
-  .product-image {
-    /* Make product previews taller on mobile to avoid extreme letterboxing.
-       A 4:3 aspect ratio (75%) provides more height while still maintaining
-       a pleasing widescreen look. */
-    padding-top: 75%;
-  }
-}
-
-/* Restore scrolling animation for the announcement banner */
-.banner .lw-msg {
-  display: inline-block;
-  white-space: nowrap;
-  animation: slideText 20s linear infinite;
-}
-
-@keyframes slideText {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* Ensure product videos and iframes inside the plain product-image container
-   also fill their container while cropping evenly. Without this, some previews
-   may appear letterboxed or off‑centre. */
-.product-image video,
-.product-image iframe {
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Crop video to fill its slide for a better preview while keeping quality */
-.product-media-slider video {
-  object-fit: cover;
-  /* Centre the video within its container so cropping is even on all sides */
-  object-position: center;
-}
-
-.product-details ul {
-  margin-top: 1rem;
-  padding-left: 1.2rem;
-}
-
-.product-details ul li {
-  margin-bottom: 0.5rem;
-}
-
-/* Contact page styles */
-.contact-wrapper {
-  max-width: 600px;
-  margin: 3rem auto;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-}
-
-.contact-wrapper h1 {
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  text-align: center;
-}
-
-.contact-wrapper label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: bold;
-}
-
-.contact-wrapper input,
-.contact-wrapper textarea {
-  width: 100%;
-  padding: 0.6rem;
-  margin-bottom: 1rem;
-  border-radius: 6px;
-  border: 1px solid #333333;
-  background: #222222;
-  color: #ffffff;
-}
-
-.contact-wrapper button {
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  background: #66b2ff;
-  color: #ffffff;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.contact-wrapper button:hover {
-  background: #88c7ff;
-}
-
-/* Terms of service section */
-.terms {
-  /* Present the terms section as a centred card.  We remove the top border
-     and instead wrap the content in a lightly translucent box to
-     separate it from the rest of the page.  A narrower width and small
-     font size keep the text unobtrusive while still readable. */
-  margin: 6rem auto;
-  padding: 1.5rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  font-size: 0.8rem;
-  color: #bbbbbb;
-  max-width: 700px;
-  line-height: 1.5;
-  text-align: left;
-}
-
-.terms h2 {
-  margin-bottom: 0.8rem;
-  font-size: 1.2rem;
-  color: #ffffff;
-}
-
-.terms ul {
-  padding-left: 1.2rem;
-}
-
-.terms ul li {
-  margin-bottom: 0.5rem;
-}
-
-/* Simple footer */
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.8rem;
-  color: #777777;
-}
-
-/* Landing / hero section styling */
-.landing {
-  text-align: center;
-  padding: 3rem 1rem 2rem;
-}
-
-.landing h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.landing p {
-  max-width: 600px;
-  margin: 0 auto;
-  color: #cccccc;
-  font-size: 1.1rem;
-}
-
-/* Scrolling text within the hero section */
-.scroll-text {
-  margin: 1rem auto 2rem;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 90%;
-  color: #88c7ff;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  animation: marquee 30s linear infinite;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* -----------------------------------------------------------------
-   Custom overrides: hero cube spacing, slower rotation, stronger glow,
-   and simplified announcement banner animation.  These rules appear
-   after all other definitions so they take precedence without
-   disturbing existing styles.  */
-
-/* Hide the old marquee container if it still exists in the DOM. */
-.banner .banner-content .marquee {
-  display: none !important;
-}
-
-/* Prevent the banner content wrapper from pulsing or scrolling. */
-.banner .banner-content {
-  animation: none !important;
-  filter: none !important;
-  display: flex;
-  justify-content: center;
-}
-
-/* Style for the single announcement message.  The liquid filter
-   defined in the inline SVG gives it a subtle ripple effect.  The
-   drop‑appear and drop‑pulse animations create a water drop that
-   morphs into the text, pulses gently, and repeats. */
-.lw-msg {
-  /* Base styling only; the animation and liquid filter are applied via the
-     `.banner .lw-msg` selector defined later in this file. By resetting
-     the filter and animation here, we avoid conflicting definitions. */
-  position: relative;
-  display: inline-block;
-  filter: none;
-  animation: none;
-}
-
-/* Add a pseudo element to create the droplet that appears behind the text.  It
-   scales up and down in sync with the banner animation to simulate a water
-   droplet forming and dissolving.  This element doesn't interfere with
-   layout because it's absolutely positioned relative to the banner-msg. */
-.lw-msg::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* Reset droplet styling; the actual size, colour and animation are
-     specified under `.banner .lw-msg::before`. */
-  transform: translate(-50%, -50%) scale(0);
-  pointer-events: none;
-}
-
-/* Removed deprecated bannerCycle and dropletCycle animations.  The updated
-   animations are defined as lwBannerCycle and lwDroplet further down in
-   this stylesheet. */
-
-/* Adjust the banner animation timing for small screens to ensure the
-   animation remains smooth and legible on mobile devices. */
-@media (max-width: 520px) {
-  .lw-msg {
-    animation-duration: 10s;
-  }
-  .lw-msg::before {
-    animation-duration: 10s;
-  }
-}
-
-/* Respect user preference for reduced motion by disabling the banner
-   animation entirely and removing the liquid filter. */
-@media (prefers-reduced-motion: reduce) {
-  .lw-msg, .lw-msg::before {
-    /* Disable animations when the user prefers reduced motion */
-    animation: none !important;
-    filter: none !important;
-  }
-  /* Ensure the announcement text remains visible when animations are disabled. */
-  .lw-msg {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  /* Hide the droplet entirely when reduced motion is preferred. */
-  .lw-msg::before {
-    opacity: 0 !important;
-    transform: translate(-50%, -50%) scale(0) !important;
-  }
-}
-
-/* Smooth scrolling and anchor offset */
-html {
-  scroll-behavior: smooth;
-}
-.anchor-target {
-  position: relative;
-  scroll-margin-top: 90px;
-}
-
-@keyframes drop-appear {
-  0%   { opacity: 0;   transform: scale(0.8) translateY(8px);    filter: blur(1.5px); }
-  60%  { opacity: 1;   transform: scale(1.05) translateY(-2px);  filter: blur(0.6px); }
-  100% { opacity: 1;   transform: scale(1)   translateY(0);      filter: blur(0px);   }
-}
-
-@keyframes drop-pulse {
-  0%,100% { transform: scale(1)   translateY(0);     filter: blur(0px); }
-  50%     { transform: scale(1.03) translateY(-1px); filter: blur(0.4px); }
-}
-
-/* Hero cube adjustments: distribute cubes further apart, slow down
-   rotation, and intensify edge glow.  These settings override
-   previous cube definitions while preserving responsive sizing. */
-/* Adjust cube sizing and motion.  A custom size variable keeps the
-   cubes prominent without spilling outside the hero art container. */
-.landing .cube {
-  /* Slightly smaller than the maximum to avoid overlap on wide screens */
-  --size: clamp(150px, 22vw, 260px);
-  /* Slow default spin to make motion more relaxed */
-  animation: spinCube 28s linear infinite;
-}
-.landing .cube:nth-child(1) {
-  /* Position the first cube towards the left and lower in the hero */
-  top: 58%;
-  left: 10%;
-  animation-duration: 34s;
-}
-.landing .cube:nth-child(2) {
-  /* Centre the second cube horizontally and raise it slightly */
-  top: 20%;
-  left: 45%;
-  animation-duration: 40s;
-  animation-direction: reverse;
-}
-.landing .cube:nth-child(3) {
-  /* Position the third cube on the right and mid‑height */
-  top: 63%;
-  left: 78%;
-  animation-duration: 32s;
-}
-
-/* Intensify the cube face glow and transparency for crisper edges. */
-.landing .face {
-  border: 1.7px solid rgba(120, 200, 255, 0.95);
-  background: rgba(0, 170, 255, 0.03);
-  box-shadow: inset 0 0 30px rgba(120, 200, 255, 0.45), 0 0 40px rgba(120, 200, 255, 0.5);
-}
-
-.features-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-/* Performance comparison styles */
-.performance-comparison {
-  max-width: 500px;
-  margin: 2rem auto 1.5rem;
-  text-align: left;
-  font-size: 0.9rem;
-}
-
-.performance-comparison .row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.3rem;
-  font-weight: bold;
-}
-
-.performance-comparison .fps {
-  color: var(--primary-col);
-}
-
-.performance-comparison .bar {
-  position: relative;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 0.6rem;
-}
-
-.performance-comparison .bar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: var(--pct, 0%);
-  background: linear-gradient(90deg, var(--primary-col), var(--primary-col-light));
-  border-radius: 4px;
-  transition: width 1s ease;
-}
-
-.performance-comparison .bar.without {
-  --pct: 60%;
-}
-.performance-comparison .bar.with {
-  --pct: 100%;
-}
-
-.performance-comparison .boost {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--primary-col-light);
-  margin-top: -0.3rem;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-/* Call-to-action buttons */
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.btn {
-  padding: 0.7rem 1.6rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  display: inline-block;
-  transition: all 0.2s ease;
-  font-size: 0.9rem;
-}
-
-.btn.primary {
-  background: linear-gradient(90deg, var(--primary-col), var(--primary-col-light));
-  color: #ffffff;
-}
-
-.btn.primary:hover {
-  filter: brightness(1.15);
-}
-
-.btn.secondary {
-  border: 1px solid var(--primary-col);
-  color: var(--primary-col);
-  background: transparent;
-}
-
-.btn.secondary:hover {
-  background: var(--primary-col);
-  color: #ffffff;
-}
-
-.feature {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1rem;
-  width: 120px;
-  text-align: center;
-}
-
-.feature .icon {
-  font-size: 1.6rem;
-  color: #66b2ff;
-  margin-bottom: 0.5rem;
-  /* Subtle bounce animation for visual interest */
-  animation: bounce 2s infinite ease-in-out alternate;
-}
-
-@keyframes bounce {
-  from {
+.nav-links a:hover::after {
+    opacity: 1;
     transform: translateY(0);
-  }
-  to {
-    transform: translateY(-8px);
-  }
 }
 
-.feature h4 {
-  font-size: 1rem;
-  font-weight: bold;
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: 4rem 1rem;
+    /* Use a solid background so section transitions appear seamless. */
+    background: var(--bg-color);
+    position: relative;
 }
 
-/* Product grid section overrides */
+/* Add a rotating planet as a pseudo-element of the hero. This ensures the 
+   background element appears behind the content without z-index issues. */
+.hero::before {
+    content: '';
+    position: absolute;
+    /* Position the planet partially off‑screen so that the rim and glow are visible
+       in the top right corner. Adjust dimensions so that it doesn't fully leave the viewport. */
+    top: -120px;
+    right: -120px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    /* Dark centre with a bright rim and blue halo similar to the Xeno design */
+    background: radial-gradient(circle, #01010d 0%, #01010d 55%, rgba(255, 255, 255, 0.4) 60%, rgba(13, 202, 240, 0.5) 70%, transparent 100%);
+    box-shadow: 0 0 120px 40px rgba(13, 202, 240, 0.4), 0 0 200px 80px rgba(255, 255, 255, 0.25);
+    animation: rotate 80s linear infinite;
+    z-index: 0;
+}
+
+/* Ensure hero content appears above the pseudo-element */
+.hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Planet behind hero */
+.planet {
+    position: absolute;
+    top: -100px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    /* Create a more defined planet similar to the Xeno design: 
+       a dark disc with a bright rim and blue halo. The inner part is
+       almost black, fading into a thin white rim and then a soft blue glow. */
+    /* Hide the HTML planet element (we use a pseudo-element instead). */
+    display: none;
+}
+
+/* Progress bar with lightning icon */
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.progress-icon {
+    width: 24px;
+    height: 24px;
+    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M13 3L4 14h7v7l9-11h-7z"/%3E%3C/svg%3E');
+    background-size: cover;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(13, 202, 240, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    max-width: 200px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0;
+    animation: load 4s linear infinite;
+}
+
+@keyframes load {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+}
+
+#dynamic-word {
+    color: var(--secondary-color);
+    animation: glow 3s ease-in-out infinite;
+}
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--muted-text);
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--primary-color);
+    color: #0a0e23;
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(13, 202, 240, 0.4);
+}
+
+/* Products Section */
+.products-section {
+    padding: 6rem 2rem;
+    /* Use the same page background; remove negative margin so sections transition smoothly without visible lines */
+    background: var(--bg-color);
+    margin-top: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.product-highlight {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* Macro slider: container for cycling between the main video and supplementary images */
+.macro-slider {
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+.macro-slide {
+    width: 100%;
+    height: auto;
+}
+.macro-slide video,
+.macro-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Make images slightly smaller than videos in the macro showcase for visual emphasis */
+.macro-slider .macro-slide img {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Interactive metric cards: animate slightly on hover to make the UI feel alive */
+.metric:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(13, 202, 240, 0.45);
+}
+
+/* Packages Section */
+.packages-section {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: var(--bg-color);
+}
+
+/* Hide the packages section by default. When the URL hash matches the
+   packages ID (#packages), it becomes visible via the :target selector. */
+#packages {
+    display: none;
+}
+#packages:target {
+    display: block;
+}
+.packages-section h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+.packages-section .section-subtitle {
+    color: var(--muted-text);
+    margin-bottom: 3rem;
+}
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+.package-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+.package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(13, 202, 240, 0.3);
+}
+.package-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: var(--primary-color);
+    color: #0a0e23;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+.package-card h3 {
+    margin-top: 2.5rem;
+    color: var(--primary-color);
+    font-size: 1.4rem;
+}
+.package-subtitle {
+    color: var(--muted-text);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+.package-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.package-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    text-align: left;
+    color: var(--muted-text);
+    font-size: 0.85rem;
+}
+.package-features li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+.package-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+.package-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #0a0e23;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.package-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(13, 202, 240, 0.35);
+}
+
+/* Benefits Section */
+.benefits-section {
+    padding: 6rem 2rem;
+    text-align: center;
+    /* Use the same background as the rest of the page to avoid visible transitions between sections. */
+    background: var(--bg-color);
+}
+.benefits-section h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+.benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+.benefit-item h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+.benefit-item p {
+    color: var(--muted-text);
+    font-size: 0.9rem;
+}
+.benefits-description {
+    color: var(--muted-text);
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 6rem 2rem;
+    background: var(--bg-color);
+    text-align: center;
+}
+.testimonials-section h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+.testimonials-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.testimonial-slide {
+    display: none;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+.testimonial-slide.active {
+    display: block;
+}
+.testimonial-quote {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+.testimonial-author {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+.testimonial-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.testimonial-nav::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid var(--primary-color);
+    border-right: 2px solid var(--primary-color);
+    transform: rotate(45deg);
+}
+.testimonial-nav.left {
+    left: -48px;
+}
+.testimonial-nav.left::before {
+    transform: rotate(-135deg);
+}
+.testimonial-nav.right {
+    right: -48px;
+}
+.testimonial-nav:hover {
+    background: var(--primary-color);
+}
+.testimonial-nav:hover::before {
+    border-color: #0a0e23;
+}
+
+.product-image {
+    width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.product-info {
+    max-width: 450px;
+}
+
+.product-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.product-info p {
+    color: var(--muted-text);
+    margin-bottom: 2rem;
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Interactive hover effect on metric cards to give the home page more life */
+.metric:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px rgba(13, 202, 240, 0.3);
+}
+
+.metric .icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0.5rem;
+    background-size: cover;
+}
+
+/* Icons as CSS backgrounds - placeholders; replace with your own */
+/* Metric icons encoded with accent color #0dcaf0; note %23 encodes '#' */
+.metric .icon.lightning {
+    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M13 3L4 14h7v7l9-11h-7z"/%3E%3C/svg%3E');
+}
+.metric .icon.performance {
+    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 21v-6H7v-4H4l8-9 8 9h-3v4h-4v6z"/%3E%3C/svg%3E');
+}
+.metric .icon.response {
+    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 21l-4-4h3V8h2v9h3 l-4 4zm0-18l4 4h-3v9h-2V7H8l4-4z"/%3E%3C/svg%3E');
+}
+.metric .icon.reliability {
+    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 2L1 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/%3E%3Cpath fill="%2301010d" d="M12 13a2 2 0 110-4 2 2 0 010 4z"/%3E%3C/svg%3E');
+}
+
+.metric p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-color);
+}
+
+/* Product Grid */
 .product-grid {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 2rem 1rem 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
 }
 
-/* Why choose section */
-.why-choose {
-  padding: 3rem 1rem;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.03);
-  border-top: 1px solid #111111;
-  border-bottom: 1px solid #111111;
+/* Each product card shows an image and optionally plays a video when hovered. */
+.product-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    /* Needed for positioning the new badge */
+    position: relative;
 }
 
-.why-choose h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+/* Container for images and video previews */
+.product-media {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
 }
 
-.stats {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
+.product-media img,
+.product-media video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: opacity 0.4s ease;
 }
 
-.stat {
-  text-align: center;
+/* The video overlay is absolutely positioned to cover the image and is initially hidden */
+.product-media video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
+    /* Disable pointer events on the hover video so clicks pass through to the link */
+    pointer-events: none;
 }
 
-.stat .number {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #66b2ff;
+/* On hover show the video and hide the image */
+.product-card:hover .product-media video {
+    opacity: 1;
+}
+.product-card:hover .product-media img {
+    opacity: 0;
 }
 
-.stat .label {
-  color: #bbbbbb;
-  font-size: 0.9rem;
+.product-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
-.why-choose p {
-  max-width: 700px;
-  margin: 0 auto;
-  color: #cccccc;
-  font-size: 1rem;
+.product-card p {
+    font-size: 0.9rem;
+    color: var(--muted-text);
 }
 
-/* Reviews section */
-.reviews {
-  padding: 3rem 1rem;
-  text-align: center;
-  overflow: hidden;
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px rgba(13, 202, 240, 0.35);
 }
 
-.reviews h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+/* Make the entire product card clickable by wrapping it in an anchor.  Ensure
+   the link inherits text colour and removes default underline. */
+.product-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
-/*
- * The testimonials container now uses CSS Grid so that reviews are arranged
- * in neat rows and columns.  On larger screens multiple testimonials will
- * appear side‑by‑side, while on smaller devices the grid automatically
- * stacks them gracefully.  The gap property controls the spacing between
- * cards both horizontally and vertically.
- */
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  justify-items: center;
-  gap: 2rem;
+/* Purchase feed section shows recent activity of users purchasing products. */
+.purchase-feed-section {
+    padding: 6rem 2rem;
+    background: var(--bg-color);
+    text-align: center;
 }
 
-/* When reviews are set up as a carousel, animate them horizontally */
-.review-grid.carousel {
-  flex-wrap: nowrap;
-  /* Speed up the scrolling animation so cards move across the screen faster */
-  animation: scrollReviews 35s linear infinite;
+.purchase-feed-section h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
 }
 
-@keyframes scrollReviews {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.purchase-feed-section .section-subtitle {
+    color: var(--muted-text);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
 }
 
-.review {
-  /* Reviews are displayed as cards in a horizontally scrolling carousel. */
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  /* Provide ample padding for readability */
-  padding: 1.2rem 1.6rem;
-  /* Make cards wider and slightly shorter for a more proportionate look */
-  /* Make review cards wider and slightly taller for a more balanced, square look */
-  /* Increase the width of testimonial cards so longer comments don’t wrap unnecessarily */
-  /* Widen testimonial cards so comments have ample room */
-  /* Reduce the size of testimonial cards so they sit comfortably side‑by‑side
-     on desktop and stack neatly on mobile.  A width around 300 px and a
-     minimum height around 220 px creates a balanced, almost square shape. */
-  width: 300px;
-  min-height: 220px;
-  height: auto;
-  font-style: normal;
-  color: #dddddd;
-  /* Show the full testimonial text without internal scrolling */
-  overflow-y: visible;
+.purchase-feed-list {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
 }
 
-/* Sliding animation for banner text */
-@keyframes slideText {
-  /* Start with the text off to the right, slide left, then return to the start */
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.purchase-feed-list li {
+    background: var(--card-bg);
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
 }
 
-/* Retain pulse animation for any other callouts if needed */
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(102, 178, 255, 0.5), 0 0 20px rgba(102, 178, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(102, 178, 255, 0.8), 0 0 40px rgba(102, 178, 255, 0.6);
-  }
+.purchase-feed-list li:nth-child(odd) {
+    background: #0f1a2d;
 }
 
-/* Ensure video overlays within product cards maintain a proper crop */
-.card .video-overlay video,
-.card .video-overlay iframe {
-  /* Fill the overlay area while cropping excess content */
-  object-fit: cover;
-  /* Centre the video horizontally and vertically */
-  object-position: center;
+.purchase-feed-list li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(13, 202, 240, 0.25);
 }
 
-/* Prevent horizontal scrolling on any device */
-html, body {
-  overflow-x: hidden;
+/* Badge to indicate a new product (e.g., Bloom Reducer). Positioned within a product card */
+.new-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #28a745;
+    color: #f0f8ff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    pointer-events: none;
+    /* Ensure the badge sits above image or video content */
+    z-index: 4;
+}
+/* Community Section */
+/* Community Section */
+.community-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6rem 2rem;
+    /* Provide enough height so the decorative planet can be seen */
+    min-height: 400px;
+    /* Use a blue‑tinted gradient instead of purple and avoid harsh section transitions */
+    background: radial-gradient(circle at bottom, rgba(13, 202, 240, 0.08), var(--bg-color) 75%);
 }
 
-/* Rotating neon cube hero art */
-.hero-art {
-  width: 320px;
-  height: 320px;
-  margin: 2rem auto;
-  position: relative;
-  perspective: 800px;
+.community-text {
+    max-width: 500px;
+    margin-bottom: 3rem;
 }
 
-@keyframes spinCube {
-  from {
-    transform: rotateY(0deg) rotateX(0deg);
-  }
-  to {
-    transform: rotateY(360deg) rotateX(360deg);
-  }
+.community-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
 }
 
-/* 3D cube styles for hero section */
-.cube {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  transform-style: preserve-3d;
-  animation: spinCube 20s infinite linear;
-}
-.cube:nth-child(1) {
-  top: 40%;
-  left: 10%;
-  animation-duration: 20s;
-}
-.cube:nth-child(2) {
-  top: 20%;
-  left: 45%;
-  animation-duration: 25s;
-  animation-direction: reverse;
-}
-.cube:nth-child(3) {
-  top: 50%;
-  left: 70%;
-  animation-duration: 22s;
-}
-.face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(102, 178, 255, 0.1);
-  border: 1px solid rgba(102, 178, 255, 0.6);
-  box-shadow: 0 0 10px rgba(102, 178, 255, 0.6), 0 0 20px rgba(102, 178, 255, 0.4);
-}
-.face.front  { transform: rotateY(0deg) translateZ(40px); }
-.face.back   { transform: rotateY(180deg) translateZ(40px); }
-.face.right  { transform: rotateY(90deg) translateZ(40px); }
-.face.left   { transform: rotateY(-90deg) translateZ(40px); }
-.face.top    { transform: rotateX(90deg) translateZ(40px); }
-.face.bottom { transform: rotateX(-90deg) translateZ(40px); }
-
-.reviewer {
-  display: block;
-  margin-top: 0.8rem;
-  font-style: normal;
-  font-weight: bold;
-  color: #66b2ff;
+.community-text p {
+    color: var(--muted-text);
 }
 
-/* ---------------------------------------------------------------------
-   Particle canvas and plans pricing styles
-   ------------------------------------------------------------------- */
-
-/* Particle canvas sits behind all content and displays subtle mouse‑tracking particles. */
-#particle-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Ensure main content sits above the particle canvas */
-main {
-  position: relative;
-  z-index: 1;
-}
-
-/* Plans (product comparison) section styles */
-.plans-section {
-  padding: 3rem 1rem;
-  text-align: center;
-}
-.plans-section h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-.plans,
-.plans-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
-.plan,
-.plan-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  width: 300px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Add a subtle glow on hover for plan cards */
-.plan-card:hover {
-  box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
-}
-/* Highlight tags on plan cards */
-.plan .tag,
-.plan-card .tag {
-  position: absolute;
-  top: -0.75rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #00bfff;
-  color: #0a0a0a;
-  padding: 0.25rem 0.75rem;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-.plan h3,
-.plan-card h3 {
-  margin-top: 1rem;
-  font-size: 1.4rem;
-  color: #ffffff;
-}
-.plan .price,
-.plan-card .price {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-  color: #00bfff;
-}
-.plan .old-price,
-.plan-card .old-price {
-  font-size: 1rem;
-  text-decoration: line-through;
-  color: #888888;
-  margin-right: 0.5rem;
-}
-.plan ul,
-.plan-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-  text-align: left;
-}
-.plan ul li,
-.plan-card ul li {
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
-  color: #dddddd;
-  padding-left: 1.2rem;
-  position: relative;
-}
-.plan ul li::before,
-.plan-card ul li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #00bfff;
-}
-.plan .buttons,
-.plan-card .buttons {
-  margin-top: auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.plan .buttons a,
-.plan-card .buttons a {
-  display: block;
-  text-align: center;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.2s;
-}
-.plan .buttons .primary,
-.plan-card .buttons .primary {
-  background: #00bfff;
-  color: #0a0a0a;
-}
-.plan .buttons .primary:hover,
-.plan-card .buttons .primary:hover {
-  background: #33ccff;
-}
-.plan .buttons .secondary,
-.plan-card .buttons .secondary {
-  background: transparent;
-  border: 1px solid #00bfff;
-  color: #00bfff;
-}
-.plan .buttons .secondary:hover,
-.plan-card .buttons .secondary:hover {
-  background: rgba(0, 191, 255, 0.1);
-}
-
-/* Shop hero alignment */
-.shop-hero {
-  text-align: center;
-  /* Add extra top margin so the hero text sits comfortably above the plans grid */
-  margin: 4rem auto 2rem;
-  max-width: 700px;
-}
-
-/* Ensure the plans grid doesn’t collide with the hero text */
-.plans-grid {
-  margin-top: 1rem;
+.community-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Ensure the large orbiting circle can extend beyond the container */
+    position: relative;
+    overflow: hidden;
 }
 
 /*
- * Navigation CTA styling
- * Highlight the Shop link in the navigation bar so it stands out as a call‑to‑action.
+ * Spinning globe used in the community section on the home page.  The image
+ * provides a 3D‑like planet with a glowing atmosphere.  The element rotates
+ * slowly to add life to the page.  If spinning is undesired, remove the
+ * animation property.
  */
-nav a.cta {
-  background: linear-gradient(90deg, #00bcd4, #0097a7);
-  color: #ffffff;
-  /* Increase padding and font size to make the Shop button more prominent */
-  padding: 0.6rem 1.3rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  margin-left: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-nav a.cta:hover {
-  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.6);
-  transform: translateY(-2px);
+.spinning-globe {
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background-image: url('images/globe.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 60px 20px rgba(13, 202, 240, 0.2), 0 0 120px 40px rgba(255, 255, 255, 0.1);
+    animation: spin 40s linear infinite;
+    position: relative;
 }
 
-/* Mobile responsiveness improvements */
-@media (max-width: 600px) {
-  /* General padding adjustments for small screens */
-  body {
-    padding: 0 1rem;
-  }
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
-  /* Stack navbar links vertically and center them */
-  .navbar,
-  nav,
-  header nav {
+/* Footer */
+.footer {
+    background: var(--card-bg);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--muted-text);
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
     flex-direction: column;
     align-items: center;
-  }
+}
 
-  .navbar a,
-  nav a {
-    display: block;
-    margin: 0.5rem 0;
-    text-align: center;
-  }
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
 
-  /* Ensure hero and text sections center align */
-  .hero,
-  .landing,
-  header,
-  footer,
-  .stats,
-  .why-choose,
-  .features,
-  .product,
-  .plans-grid,
-  .review-grid {
-    text-align: center;
-  }
+/* Size the footer logo image consistently with the navbar logo */
+.footer-logo .logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
 
-  /* Use single column for grid layouts */
-  .plans-grid,
-  .review-grid,
-  .stats {
-    grid-template-columns: 1fr;
-  }
+.footer-tagline {
+    margin-bottom: 1rem;
+}
 
-  /* Adjust plan cards spacing */
-  .plan,
-  .plan-card {
-    margin: 1rem 0;
-  }
+.footer-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin-bottom: 1rem;
+}
 
-  /* Reviews section width */
-  .review {
+/* Announcement bar styling */
+.announcement-bar {
     width: 100%;
-    min-height: auto;
-  }
-}
-
-
-  /* Center hero text and responsive heading size */
-  .landing {
+    /* Use a vibrant gradient of the accent colours so it stands out on both desktop and mobile */
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: #0a0e23;
     text-align: center;
-    padding: 1rem;
-  }
-  .landing h1 {
-    max-width: 90%;
-    margin: 0 auto 1rem;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-  }
-  /* Hide horizontal overflow */
-  html, body {
-    overflow-x: hidden;
-  }
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 101; /* ensure it appears above the navbar */
+    /* Subtle pulse animation to draw attention without being distracting */
+    animation: announcement-pulse 4s ease-in-out infinite;
 }
 
-
-/* ========= Powerful Features (Lonware) ========= */
-:root{
-  --lw-bg: #0b1623;
-  --lw-card: rgba(255,255,255,0.04);
-  --lw-card-hover: rgba(35, 230, 150, 0.08);
-  --lw-border: rgba(255,255,255,0.08);
-  --lw-accent: #22e696;
-  --lw-text: #e6f4ff;
-  --lw-muted: #9fb7c9;
+@keyframes announcement-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.75; }
 }
 
-.features{
-  position: relative;
-  padding: clamp(56px, 8vw, 96px) 0;
-  /*
-    Reposition the green glow so it begins nearer the top of the viewport. By
-    shifting the radial gradient origins upward (negative y offset), the
-    background colour bleeds under the header instead of appearing half‑way
-    down the page. This preserves the layout of the Main section while
-    extending the subtle glow to the very top of the screen. Adjust the
-    pixel offset to fine‑tune how far the effect reaches.
-  */
-  /*
-    Extend the glow behind the Main section so it begins at the very top of
-    the viewport and fades down gradually. Adjust the vertical offset to a
-    large negative value so the radial gradients originate well above the
-    hero and newly released sections. Switch the colour tint to a cool blue
-    to better match the rest of the page aesthetics.
-  */
-  /*
-    Position the radial glows high above the section so the tint begins
-    immediately below the header and gently fades down over the Main and
-    Newly Released sections.  Using negative viewport‑based Y offsets
-    effectively pulls the centres of the gradients well above the page
-    content.  The green hue ties into the brand accent colour while
-    remaining subtle thanks to low opacity.  Increasing the transparent
-    stop to 70% allows the glow to taper off more gradually.
-  */
-  /* The ambient glow is now applied via a ::before on the main element,
-     so clear the background on the features section itself. */
-  background: none;
-  overflow: visible;
-  background-attachment: initial;
-}
-.features .wrap{ max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.features__head{ text-align: center; margin-bottom: 28px; }
-.features__head h2{
-  font-size: clamp(28px, 4vw, 40px);
-  color: var(--lw-text);
-  letter-spacing: 0.2px;
-}
-.features__head p{
-  color: var(--lw-muted);
-  margin-top: 8px;
-}
-
-/* grid */
-.features__grid{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-@media (max-width: 980px){
-  .features__grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-}
-@media (max-width: 640px){
-  .features__grid{ grid-template-columns: 1fr; }
-}
-
-/* card */
-.feature-card{
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  gap: 8px;
-  background: linear-gradient(180deg, var(--lw-card) 0%, rgba(255,255,255,0.02) 100%);
-  border: 1px solid var(--lw-border);
-  border-radius: 16px;
-  padding: 18px 18px 16px;
-  color: var(--lw-text);
-  text-decoration: none;
-  position: relative;
-  isolation: isolate;
-  transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
-}
-.feature-card:hover{
-  transform: translateY(-3px);
-  border-color: rgba(34,230,150,0.5);
-  background: linear-gradient(180deg, var(--lw-card-hover) 0%, rgba(255,255,255,0.03) 100%);
-  box-shadow: 0 10px 30px rgba(34,230,150,0.12);
-}
-.feature-card__icon{
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  display: grid; place-items: center;
-  color: var(--lw-accent);
-  background: radial-gradient(120% 120% at 30% 20%, rgba(34,230,150,0.22), rgba(34,230,150,0.06));
-  border: 1px solid rgba(34,230,150,0.35);
-}
-.feature-card h3{
-  font-size: 18px; line-height: 1.25;
-}
-.feature-card p{
-  color: var(--lw-muted);
-  font-size: 14.5px;
-}
-.feature-card__cta{
-  margin-top: 6px;
-  font-weight: 600;
-  font-size: 13.5px;
-  color: var(--lw-accent);
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.feature-card__cta::after{
-  content: "↗";
-  opacity: .85;
-  transition: transform .2s ease;
-}
-.feature-card:hover .feature-card__cta::after{ transform: translateX(3px) translateY(-1px); }
-
-/* accent variant for checkout */
-.feature-card--accent{
-  background: linear-gradient(180deg, rgba(34,230,150,0.08) 0%, rgba(34,230,150,0.03) 100%);
-  border-color: rgba(34,230,150,0.55);
-}
-
-/* motion preferences */
-@media (prefers-reduced-motion: reduce){
-  .feature-card{ transition: none; }
-  .feature-card:hover{ transform: none; }
-}
-
-/* =======================================================
- * Custom overrides for Lonware redesign
- *
- * These styles adjust the logo, hero, cards, navigation and
- * features components to feel lighter, more modern and gaming‑inspired.
- * They override earlier definitions with lower specificity.
- * ======================================================= */
-
-/* Logo: bigger, bolder and no underline */
-.logo {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.2rem, 1.4rem + 0.5vw, 1.75rem);
-  letter-spacing: 0.3px;
-  color: var(--text-col);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
-}
-.logo:hover {
-  text-decoration: none;
-  filter: drop-shadow(0 0 4px rgba(255,255,255,0.08));
-}
-
-/* Navigation: remove underlines on hover and lighten interaction */
-nav a {
-  text-decoration: none;
-}
-nav a:hover {
-  text-decoration: none;
-  filter: brightness(1.1);
-}
-
-/* Hero typography overrides */
-.hero-title {
-  font-family: "Oxanium", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  font-size: clamp(1.8rem, 2.5rem + 1vw, 3.2rem);
-  line-height: 1.1;
-  margin: 0 0 0.75rem;
-  /* Subtle gradient effect to evoke a gaming feel */
-  background: linear-gradient(180deg, #ffffff, #b9d7ff 70%, #7db8ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.hero-sub {
-  font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.15rem);
-  color: var(--muted-col);
-  max-width: 48rem;
-  margin: 0.25rem 0 0;
-}
-/* Tighten landing padding after removing chips & buttons */
-section.landing {
-  padding-bottom: 2.25rem;
-}
-
-/* Lighter, thinner product cards */
-.card {
-  background: rgba(255,255,255,0.035);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 14px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
-  overflow: hidden;
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
-}
-.card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(102,224,255,0.28);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.32);
-  background: rgba(255,255,255,0.045);
-}
-.card-content {
-  padding: 16px 16px 14px;
-}
-.card h3 {
-  margin: 0 0 6px;
-  font-size: 1.05rem;
-  letter-spacing: 0.2px;
-}
-.price, .sale-price {
-  margin: 6px 0 10px;
-}
-.product-grid {
-  gap: 16px;
-  margin-top: 1.25rem;
-}
-
-/* Lighter feature cards for the powerful features section */
-.feature-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 14px;
-  padding: 16px 16px 14px;
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
-}
-.feature-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(102,224,255,0.28);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.28);
-  background: rgba(255,255,255,0.04);
-}
-.feature-card__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-  color: var(--primary-col-light);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.feature-card h3 {
-  font-size: 1.1rem;
-}
-.feature-card p {
-  font-size: 0.9rem;
-}
-.feature-card__cta {
-  margin-top: 8px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--primary-col-light);
-}
-
-/* Soften video overlay for product cards */
-.video-overlay::after {
-  opacity: 0.08;
-}
-
-/* Hide pricing/plan section on the homepage */
-.plans,
-.plans-section,
-#plans,
-section[data-section="plans"]{
-  display:none !important;
-}
-
-/*
- * Enable smooth scrolling when jumping to anchor targets via in-page links.  This provides a more
- * pleasant user experience when the main feature cards link to their corresponding product cards.
- *
- * The scroll-margin-top on .anchor-target ensures that the top of the target content isn't hidden
- * behind the sticky banner or navigation bar. Adjust the value if your header height changes.
- */
-html {
-  scroll-behavior: smooth;
-}
-
-.anchor-target {
-  position: relative;
-  scroll-margin-top: 90px;
-}
-
-/* Ensure the header logo uses the light text colour instead of the primary accent */
-header .logo {
-  color: var(--text-col);
-}
-
-/*
- * =====================================================
- * Enhanced droplet animation for the announcement bar
- *
- * The default banner animation may appear static on some
- * devices.  These overrides enlarge the water droplet,
- * exaggerate the motion of the text and ensure the
- * animation is visible across all screen sizes.  The
- * definitions are placed at the end of the stylesheet to
- * override any earlier rules.
- * =====================================================
- */
-
-/* Override the banner text animation with a stronger effect */
-.banner .lw-msg{
-  position: relative;
-  display: inline-block;
-  /* Use the liquid-banner filter defined in index.html */
-  /* Apply !important so this filter and animation always run, even if a base
-     rule tries to disable them. Without !important the earlier `.lw-msg`
-     definitions can sometimes override the animation or filter, making the
-     banner appear static. */
-  filter: url(#liquid-banner) !important;
-  /* Bigger scale change and slower cycle for clearer movement */
-  animation: lwBannerCycle 7s ease-in-out infinite !important;
-}
-
-/* Create a larger glowing droplet behind the words */
-.banner .lw-msg::before{
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: rgba(0,170,255,0.40);
-  box-shadow: 0 0 35px rgba(120,200,255,0.65);
-  transform: translate(-50%, -50%) scale(0);
-  animation: lwDroplet 7s ease-in-out infinite !important;
-  pointer-events: none;
-}
-
-/* Keyframes for the banner message cycle
- * 0–15%: the text materialises from below, scaling up and deblurring
- * 15–55%: the text holds briefly, then pulses up and down
- * 55–90%: the text scales back down and fades out
- * 90–100%: reset to the starting state
- */
-@keyframes lwBannerCycle {
-  0%   { opacity: 0;  transform: translateY(20px) scale(0.4);  filter: blur(2px);  letter-spacing: 0.05em; }
-  15%  { opacity: 1;  transform: translateY(0)    scale(1.15); filter: blur(0.5px); }
-  30%  { opacity: 1;  transform: translateY(0)    scale(1.00); filter: blur(0);       }
-  55%  {               transform: translateY(-2px) scale(1.03);                        }
-  75%  {               transform: translateY(0)    scale(1.00);                        }
-  90%  { opacity: 0;  transform: translateY(12px) scale(0.8);  filter: blur(1px);    }
-  100% { opacity: 0;  transform: translateY(20px) scale(0.4);  filter: blur(2px);    }
-}
-
-/* Keyframes for the glowing droplet behind the text
- * 0–12%: droplet grows quickly as the text forms
- * 12–30%: droplet disappears during the hold phase
- * 82–94%: droplet reappears to signal the restart of the cycle
- * 94–100%: droplet shrinks and vanishes
- */
-@keyframes lwDroplet {
-  0%   { transform: translate(-50%, -50%) scale(0);   opacity: 0;   }
-  12%  { transform: translate(-50%, -50%) scale(2.0); opacity: 0.9; }
-  30%  { transform: translate(-50%, -50%) scale(0);   opacity: 0;   }
-  82%  { transform: translate(-50%, -50%) scale(0);   opacity: 0;   }
-  94%  { transform: translate(-50%, -50%) scale(1.6); opacity: 0.8; }
-  100% { transform: translate(-50%, -50%) scale(0);   opacity: 0;   }
-}
-
-/* Mobile adjustments: extend the animation duration slightly on small screens */
-@media (max-width: 520px) {
-  .banner .lw-msg       { animation-duration: 8.5s; }
-  .banner .lw-msg::before { animation-duration: 8.5s; }
-}
-
-/* Hide the logo on product pages. The product pages add the `product-page` class
-   to the <body> element. This rule hides the logo so users aren't distracted
-   by branding while viewing detailed product information. */
-body.product-page header .logo {
-  display: none !important;
-}
-
-/* Even when the user has enabled the prefers-reduced-motion setting, the
-   announcement banner should still animate. We override the earlier
-   reduced-motion rules by reapplying the banner animations with
-   !important flags and more specific selectors. */
-@media (prefers-reduced-motion: reduce) {
-  .banner .lw-msg {
-    animation: lwBannerCycle 8s ease-in-out infinite !important;
-    filter: url(#liquid-banner) !important;
-  }
-  .banner .lw-msg::before {
-    animation: lwDroplet 8s ease-in-out infinite !important;
-  }
-}
-
-/* ---------------------------------------------------------------------
-   Final Lonware adjustments for mobile performance and brand consistency
-   --------------------------------------------------------------------- */
-
-/* Scale the new logo to an appropriate size and maintain aspect ratio. */
-.logo img,
-.logo-img {
-  display: inline-block;
-  height: 34px;
-  width: auto;
-  vertical-align: middle;
-}
-
-/* Darken and refine the announcement bar across devices.  Use semi‑transparent
-   dark backgrounds, white text and a soft blur. */
-.banner {
-  background: rgba(11, 22, 35, 0.88) !important;
-  color: #ffffff !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35) !important;
-  backdrop-filter: blur(4px) !important;
-}
-
-/* Force the banner animation to run at a faster pace for smoother loops. */
-.banner .lw-msg {
-  filter: url(#liquid-banner) !important;
-  animation: lwBannerCycle 6s ease-in-out infinite !important;
-}
-
-/*
- * Final banner override: After previous dark styling, restore the
- * announcement bar to a clean white design with dark text.  This rule comes
- * after all earlier `.banner` declarations (including those with
- * `!important` flags) to ensure it takes precedence.  The scroll animation
- * defined earlier is reapplied here. */
-.banner {
-  background: #ffffff !important;
-  color: #0B1623 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
-  backdrop-filter: none !important;
-}
-.banner .lw-msg {
-  display: inline-block !important;
-  white-space: nowrap !important;
-  /* Start the announcement text at the beginning of the banner instead of
-     off‑screen.  Padding removed so the message is visible immediately. */
-  padding-left: 0 !important;
-  /* Apply a slow horizontal scroll animation to add a subtle movement.  A
-     longer duration keeps the motion gentle and unobtrusive on both
-     desktop and mobile. */
-  animation: banner-scroll 20s linear infinite !important;
-  filter: none !important;
-}
-/* Remove the decorative droplet indicator that previously appeared to the
-   left of the announcement text.  Without this pseudo-element, the banner
-   presents a cleaner look on both desktop and mobile. */
-.banner .lw-msg::before {
-  content: none !important;
-  display: none !important;
-}
-.banner .lw-msg::before {
-  animation: lwDroplet 6s ease-in-out infinite !important;
-}
-
-/* (Removed) Previously optimised hero cubes for mobile. */
-
-/* Hide the logo image on product pages only; nav remains intact. */
-body.product-page header .logo img {
-  display: none !important;
-}
-
-/* Reduced motion preferences: we previously disabled the banner animation entirely to respect user settings.
-   However, this prevented the announcement effect from displaying in some environments (e.g. within this test rig).
-   If you want to respect reduced motion, consider implementing a separate reduced‑motion animation instead of disabling
-   it completely. For now, we omit this override so the droplet effect remains visible. */
-
-/* ---------------------------------------------------------------------
-   Final hero cube alignment overrides
-
-   To restore the original 3D holographic cube appearance while keeping
-   them evenly spaced, we override the positions of each cube on desktop
-   and mobile.  These rules come at the end of the file with
-   `!important` so they take precedence over earlier definitions.
-
-   On desktop and larger tablets (width ≥ 521px) we display three cubes
-   centered horizontally.  On mobile (≤ 520px) we show two cubes only,
-   positioned evenly across the hero area.  In both cases we avoid
-   altering the cube size variables to preserve the correct 3D
-   proportions.
-   ------------------------------------------------------------------- */
-    @media (min-width: 521px) {
-      /* Space the cubes apart evenly and raise the centre cube slightly for
-         better composition on desktop.  These positions horizontally centre
-         the set of three cubes and prevent overlap while keeping their
-         original appearance. */
-      .landing .cube:nth-child(1) {
-        /* Position the left cube further in from the edge and raise it slightly.
-           This, along with the other offsets below, centres the group and
-           increases the spacing between cubes. */
-        top: 35% !important;
-        /* Shift slightly left (~3%) to ensure the group as a whole sits
-           closer to the centre of the screen while preserving equal
-           spacing.  Moving all cubes left by roughly a centimetre helps
-           counteract any perceived right‑bias on large displays. */
-        /* Shift the entire trio further left to better center them on wide screens. */
-        left: 20% !important;
-        /* Ensure this cube spins forward at the default speed. */
-        animation-direction: normal !important;
-        animation-duration: 20s !important;
-      }
-      .landing .cube:nth-child(2) {
-        /* Place the middle cube higher and dead centre.  Its animation runs
-           in reverse and slightly slower to differentiate it from the others. */
-        top: 25% !important;
-        /* Move the centre cube left in unison with the other cubes. */
-        left: 45% !important;
-        animation-direction: reverse !important;
-        animation-duration: 24s !important;
-      }
-      .landing .cube:nth-child(3) {
-        /* Position the right cube to mirror the left one and keep the group
-           centred.  Its animation alternates direction for extra variety. */
-        top: 35% !important;
-        /* Adjust the right cube left to maintain equal spacing and centering. */
-        left: 70% !important;
-        animation-direction: alternate !important;
-        animation-duration: 22s !important;
-      }
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+    /* Navigation stacks vertically on smaller screens */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.5rem;
     }
-
-    @media (max-width: 520px) {
-      /* Remove cubes entirely on mobile to avoid lag and eliminate the extra
-         vertical space reserved for them.  We also collapse the hero art
-         container so the headline sits closer to the content. */
-      .landing .cube {
-        display: none !important;
-      }
-      .landing .hero-art {
-        /* Collapse the hero-art container to remove any leftover space where
-           the cubes used to live.  Resetting margin and padding ensures
-           there’s no unintended gap above the headline on mobile. */
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
     }
-
-    /*
-     * Final cube proportion and positioning override
-     *
-     * Ensure each hero cube remains a true square by binding its width and
-     * height back to the responsive `--size` custom property.  Without this
-     * override, earlier fixed-size declarations (e.g. 80px) cause the cubes
-     * to appear as flattened rectangles.  Setting `position: absolute` also
-     * reverts cubes to absolute positioning so top/left offsets from the
-     * alignment rules apply correctly.  The `!important` flags ensure these
-     * values win over any previous overrides.
-     */
-    .landing .cube {
-      width: var(--size) !important;
-      height: var(--size) !important;
-      margin: 0 !important;
-      position: absolute !important;
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
     }
-
-/* ========= Newly Released Section ========= */
-/*
-  The newly released Bloom Reducer card sits right under the Main features
-  section. It uses a subtle green glow and border to draw attention without
-  overpowering the rest of the page. The layout collapses gracefully on
-  smaller screens so the call to action remains easily tappable.
-*/
-.new-release{
-  position: relative;
-  padding: clamp(48px, 7vw, 80px) 0;
-  text-align: center;
-  overflow: hidden;
-  /*
-    Extend the ambient glow behind the newly released section upward so it
-    originates well above the page.  A large negative viewport offset
-    aligns the centre of the radial gradient near the top of the screen,
-    creating a seamless fade from the hero into the New Release area.
-    Maintaining the same green hue keeps it consistent with the Main
-    section’s glow.  The transparency stop of 70% matches the features
-    section for a more gradual fade.
-  */
-  /* Background glow removed; main::before now handles the subtle tint behind
-     both the features and newly released sections. */
-  background: none;
-}
-.new-release .wrap{
-  /* Allow the wrapper to stretch the full width so the card can truly
-     centre itself. We still provide horizontal padding for breathing room. */
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.new-release h2{
-  font-size: clamp(28px, 4vw, 40px);
-  margin-bottom: 32px;
-  color: var(--lw-text);
-}
-.release-card{
-  border: 1px solid rgba(34,230,150,0.35);
-  border-radius: 20px;
-  padding: 32px;
-  background: linear-gradient(180deg, rgba(34,230,150,0.05), rgba(34,230,150,0.02) 100%);
-  box-shadow: 0 0 40px rgba(34,230,150,0.18);
-  /* Constrain the maximum width so the card doesn’t sprawl on large screens. */
-  max-width: 600px;
-}
-.release-card h3{
-  font-size: 26px;
-  margin-bottom: 10px;
-  color: var(--lw-text);
-}
-.release-card p{
-  color: var(--lw-muted);
-  font-size: 15px;
-  margin-bottom: 20px;
-  line-height: 1.4;
-}
-.release-card .primary{
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 8px;
-  background: rgba(34,230,150,0.18);
-  border: 1px solid rgba(34,230,150,0.45);
-  color: var(--lw-accent);
-  font-weight: 600;
-  text-decoration: none;
-  transition: background .2s ease, transform .2s ease;
-}
-.release-card .primary:hover{
-  background: rgba(34,230,150,0.28);
-  transform: translateY(-2px);
-}
-@media (max-width: 640px){
-  .release-card{
-    padding: 24px;
-  }
-  .new-release h2{
-    margin-bottom: 24px;
-  }
-  .release-card h3{
-    font-size: 24px;
-  }
+    /* Adjust hero spacing and font sizes */
+    .hero {
+        padding: 3rem 1rem 2rem;
+        min-height: auto;
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+    .cta-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    /* Product spotlight stacks vertical */
+    .product-highlight {
+        flex-direction: column;
+        align-items: center;
+    }
+    .product-image {
+        max-width: 100%;
+    }
+    .product-info {
+        max-width: 100%;
+        text-align: center;
+    }
+    .metrics {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+    /* Product grid becomes 2 columns */
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    /* Benefits section stacks items */
+    .benefits-grid {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    /* Testimonials section spacing */
+    .testimonials-section {
+        padding: 4rem 1rem;
+    }
+    /* Footer adjusts text size */
+    .footer {
+        padding: 2rem 1rem;
+    }
 }
 
-/*
-  Apply the ambient glow to the entire main element so it begins right
-  below the header.  The pseudo‑element spans the full height of the
-  main content, allowing the radial gradients to fade naturally down
-  through the Main, Newly Released, and subsequent sections.  Anchoring
-  both radial centres at y = 0 ensures the glow starts at the very top
-  of main.  Low opacities and a 70% transparent stop deliver a soft
-  transition.
-*/
-main {
-  position: relative;
-  z-index: 0;
+@media (max-width: 480px) {
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+    .cta-button {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.85rem;
+    }
+    .hero-title {
+        font-size: 1.6rem;
+    }
 }
-main::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background:
-    radial-gradient(1200px 600px at 10% 0,
-                    rgba(34,230,150,0.08),
-                    transparent 70%),
-    radial-gradient(1000px 500px at 90% 0,
-                    rgba(34,230,150,0.06),
-                    transparent 70%);
-  z-index: -1;
-  pointer-events: none;
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--muted-text);
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.social-icon:hover {
+    opacity: 1;
+}
+
+/* Social icon placeholders using SVG via data URIs */
+/* Blue social icons to match accent colour */
+.social-icon.discord {
+    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20.317 4.369A19.791 19.791 0 0015.594 3a14.376 14.376 0 00-.69 1.453 18.358 18.358 0 00-5.807 0A14.387 14.387 0 008.407 3 19.788 19.788 0 003.684 4.369c-2.978 4.671-3.78 9.206-3.379 13.734a20.142 20.142 0 005.993 3.043 15.053 15.053 0 001.171-1.873 13.013 13.013 0 01-1.85-.823c.155-.116.306-.237.452-.365a10.1 10.1 0 001.109-1.091c.715.533 1.543.909 2.433 1.107a14.531 14.531 0 006.02 0c.89-.198 1.718-.574 2.433-1.107.376.415.79.799 1.23 1.148a10.09 10.09 0 001.109 1.091c.146.128.297.249.452.365a13.015 13.015 0 01-1.85.823c.331.665.714 1.289 1.142 1.873a20.149 20.149 0 005.993-3.043c.462-4.754-.399-9.254-3.39-13.734z"/%3E%3C/svg%3E');
+}
+
+.social-icon.github {
+    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 0a12 12 0 00-3.792 23.415c.6.111.824-.26.824-.579 0-.286-.011-1.242-.017-2.248-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.746.082-.731.082-.731 1.204.085 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.775.419-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.938 0-1.312.469-2.383 1.236-3.222-.124-.304-.536-1.53.117-3.191 0 0 1.008-.323 3.304 1.23a11.486 11.486 0 016.008 0c2.296-1.553 3.303-1.23 3.303-1.23.653 1.661.241 2.887.118 3.191.769.839 1.236 1.91 1.236 3.222 0 4.618-2.806 5.63-5.479 5.927.43.371.823 1.102.823 2.222 0 1.603-.015 2.896-.015 3.288 0 .321.222.694.829.577A12.002 12.002 0 0012 0"/%3E%3C/svg%3E');
+}
+
+.social-icon.email {
+    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 12.713l11.985-8.713H0.015L12 12.713zM12 14.9l-12-8.713V20.25H24V6.187L12 14.9z"/%3E%3C/svg%3E');
+}
+
+.copyright {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--muted-text);
+}
+
+/* Animations */
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 8px var(--secondary-color);
+    }
+    50% {
+        text-shadow: 0 0 16px var(--secondary-color);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Terms of Service section styling */
+.tos {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    color: var(--text-color);
+}
+
+.tos h2 {
+    margin-top: 0;
+    color: var(--secondary-color);
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.tos ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.tos li {
+    margin-bottom: 0.6rem;
+    color: var(--muted-text);
+}
+
+/* Feature lists on product pages */
+.feature-list {
+    max-width: 800px;
+    margin: 1.5rem auto;
+    padding-left: 1.5rem;
+    color: var(--muted-text);
+    list-style: disc;
+}
+.feature-list li {
+    margin-bottom: 0.6rem;
+}
+
+/* Checkout form styling */
+.checkout-section h1 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+.checkout-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.checkout-form label {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+.checkout-form input {
+    background: var(--card-bg);
+    border: 1px solid var(--secondary-color);
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    color: var(--text-color);
+}
+.checkout-form button {
+    margin-top: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .product-highlight {
+        flex-direction: column;
+    }
+    .product-image {
+        width: 100%;
+        max-width: 400px;
+    }
 }

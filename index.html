@@ -1,280 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lonware – Gaming Optimizations</title>
-  <!-- Add a cache‑busting query string to ensure browsers load the latest stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lonware</title>
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Favicon so the Lonware logo appears in the browser tab -->
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Announcement bar -->
-  <div class="announcement">
-    <span>Use code <strong>Xmas1</strong> for 12% off your order! Limited time offer.</span>
-  </div>
+    <!-- Promotional announcement bar -->
+    <div class="announcement-bar">
+        Use code <strong>UPD!</strong> for 12% off
+    </div>
+    <!-- Main navigation bar -->
+    <header class="navbar">
+        <!-- Combine logo image and text for branding -->
+        <!-- Logo text only; link back to home when clicked -->
+        <a href="index.html#home" class="logo">Lonware</a>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="packages.html">Products</a>
+        </nav>
+    </header>
 
-  <!-- Header -->
-  <header>
-    <!-- Make the logo a link back to the home page -->
-    <a href="index.html" class="logo">Lonware</a>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero section -->
-    <section class="hero">
-      <h1>Optimize Your Gameplay.<br>Conquer Every Battle.</h1>
-      <p>Zero‑fluff, high‑impact optimizations built for gamers who demand more.</p>
+    <!-- Hero section with dynamic text and subtle animations -->
+    <section id="home" class="hero">
+        <!-- Decorative planet graphic behind hero is now implemented via CSS pseudo-element -->
+        <h1 class="hero-title">
+            Experience the best in <span id="dynamic-word" class="highlight">performance</span> today
+        </h1>
+        <p class="hero-subtitle">Lonware provides <span class="highlight">lightning‑fast</span> performance, intuitive customization and a simple interface — all branded for Lonware.</p>
+        <!-- Animated progress bar with lightning icon to represent speed -->
+        <div class="progress-container">
+            <div class="progress-icon"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+        <!-- Link to the products page (packages) so users can choose a plan -->
+        <a href="packages.html" class="cta-button">See Products</a>
     </section>
 
-    <!-- Main cards section -->
-    <section class="cards">
-      <div class="card">
-        <h3>Controller / KBM Macro</h3>
-        <p>Pixel‑perfect timing with zero‑drop queues and hardened input handling.</p>
-        <a href="controller-macro.html">Learn more</a>
-      </div>
-      <div class="card">
-        <h3>Bloom Reducer</h3>
-        <p>Reduce visual bloom and glare for crisp, clear sights and steadier aim.</p>
-        <a href="bloom-reducer.html">See presets</a>
-      </div>
-      <div class="card">
-        <h3>Console Tweaks</h3>
-        <p>Latency‑aware configurations tailored for console engines and netcode.</p>
-        <a href="console-tweaks.html">Optimize console</a>
-      </div>
-      <div class="card">
-        <h3>PC Optimizations</h3>
-        <p>Clean render paths, smarter threads and thermal‑safe gains for peak FPS.</p>
-        <a href="pc-optimizations.html">View results</a>
-      </div>
-      <div class="card">
-        <h3>Ping Optimizations</h3>
-        <p>Route tuning and congestion control tuned to your region.</p>
-        <a href="ping-optimizations.html">Get help</a>
-      </div>
-      <!-- Removed the One‑Click Checkout card to mirror the original Lonware home page. -->
+    <!-- Product spotlight section -->
+    <section id="products" class="products-section">
+        <div class="product-highlight">
+            <!-- Macro showcase slider: cycle through the main video and two supplementary images automatically -->
+            <div class="macro-slider">
+                <div class="macro-slide active">
+                    <video src="https://lonware.com/macro.mp4" controls preload="metadata" class="product-image"></video>
+                </div>
+                <div class="macro-slide">
+                    <img src="images/macro1.webp" alt="Macro screenshot 1" class="product-image" />
+                </div>
+                <div class="macro-slide">
+                    <img src="images/macro2.webp" alt="Macro screenshot 2" class="product-image" />
+                </div>
+            </div>
+            <div class="product-info">
+                <h2>Macro.io</h2>
+                <p>
+                    Macro.io is the star of the Lonware lineup, offering unmatched performance and reliability for controller and keyboard users. Record, customize and execute complex macros with ease to improve your gameplay and gain a competitive edge.
+                </p>
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="icon lightning"></div>
+                        <p><strong>Execution Speed</strong><br />Lightning fast macro execution</p>
+                    </div>
+                    <div class="metric">
+                        <div class="icon performance"></div>
+                        <p><strong>Customization</strong><br />Drag‑and‑drop macro builder</p>
+                    </div>
+                    <div class="metric">
+                        <div class="icon response"></div>
+                        <p><strong>Multi‑Input</strong><br />Supports controller and keyboard</p>
+                    </div>
+                    <div class="metric">
+                        <div class="icon reliability"></div>
+                        <p><strong>Lifetime Support</strong><br />Includes updates and support</p>
+                    </div>
+                </div>
+                <!-- Add a Buy Now button for Macro.io on the home page -->
+                <a href="macro.html" class="package-button" style="margin-top:1.5rem;">Buy Now</a>
+            </div>
+        </div>
+
+        <!-- Additional product list -->
+        <div class="product-grid">
+            <!-- PC Optimizations card: wraps entire card in a link to the PC page -->
+            <a href="pc.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="https://lonware.com/pc_product.png" alt="PC Optimizations preview" />
+                        <!-- Video plays on hover for preview -->
+                        <video class="product-video" autoplay muted loop preload="none">
+                            <source src="https://lonware.com/pc.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <h3>PC Optimizations</h3>
+                    <p class="product-card-desc">Maximize your PC's FPS</p>
+                </div>
+            </a>
+            <!-- Console Tweaks card -->
+            <a href="console.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="https://lonware.com/console_product.png" alt="Console Tweaks preview" />
+                    </div>
+                    <h3>Console Tweaks</h3>
+                    <p class="product-card-desc">Fine tune your console</p>
+                </div>
+            </a>
+            <!-- Ping Optimizations card -->
+            <a href="ping.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="https://lonware.com/ping_product.png" alt="Ping Optimizations preview" />
+                    </div>
+                    <h3>Ping Optimizations</h3>
+                    <p class="product-card-desc">Eliminate lag and spikes</p>
+                </div>
+            </a>
+            <!-- Bloom Reducer card: includes a video preview on hover -->
+            <a href="bloom.html" class="product-card-link">
+                <div class="product-card">
+                    <!-- New badge for Bloom Reducer -->
+                    <span class="new-badge">New</span>
+                    <div class="product-media">
+                        <img src="https://lonware.com/aim_product.png" alt="Bloom Reducer preview" />
+                        <video class="product-video" autoplay muted loop preload="none">
+                            <source src="https://lonware.com/bloom.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <h3>Bloom Reducer</h3>
+                    <p class="product-card-desc">Enhance aim accuracy</p>
+                </div>
+            </a>
+        </div>
     </section>
 
-    <!-- Newly Released section -->
-    <section class="new-release">
-      <h2 style="text-align:center;margin-bottom:1rem;font-size:2rem;color:#00c4ff;">Newly Released</h2>
-      <!-- Card showcasing Bloom Reducer with a rotating icon overlay -->
-      <div class="new-product-card">
-        <div class="icon-rotate">
-          <img src="aim_product.png" alt="Bloom Reducer icon">
+    <!-- Packages section removed from the home page. The full list of products is now available on its own page (packages.html). -->
+
+    <!-- Benefits section with stats -->
+    <section id="benefits" class="benefits-section">
+        <h2>Why Choose Lonware?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <h3>1K+</h3>
+                <p>Gamers Optimized</p>
+            </div>
+            <div class="benefit-item">
+                <h3>40%</h3>
+                <p>Average FPS Gain</p>
+            </div>
+            <div class="benefit-item">
+                <h3>5+</h3>
+                <p>Years Experience</p>
+            </div>
         </div>
-        <div class="new-product-content">
-          <h3>Bloom Reducer <span class="badge-new">New</span></h3>
-          <p>Cut through bloom and glare for crisp, clear sights and steadier aim. Reduce visual noise and hone your focus with our latest release.</p>
-          <div class="price"><del>$25.00</del> $13.99</div>
-          <a href="https://payhip.com/buy?link=1Htr4" class="new-product-link" target="_blank" rel="noopener">Shop Now</a>
-        </div>
-      </div>
+        <p class="benefits-description">
+            Our community‑driven tweaks and optimizations have helped thousands of players achieve smoother, faster gameplay. We combine technical expertise with constant research to ensure your rig performs at its best.
+        </p>
     </section>
 
-    <!-- Product grid inspired by the original site. Each card shows an image and tagline. Hovering plays a video preview; clicking anywhere takes you to the product page. -->
-    <section class="product-grid featured">
-      <a href="controller-macro.html" class="feature-card" data-video="https://lonware.com/macro.mp4">
-        <img src="controller_macro_product.png" alt="Controller/KBM Macro image">
-        <video muted loop></video>
-        <div class="card-overlay">
-          <h3>Controller/KBM Macro</h3>
-          <!-- description removed -->
+    <!-- Testimonials section with simple slider -->
+    <section id="testimonials" class="testimonials-section">
+        <h2>What Players Say</h2>
+        <div class="testimonials-container">
+            <button class="testimonial-nav left" aria-label="Previous testimonial"></button>
+            <div class="testimonial-slide active">
+                <p class="testimonial-quote">Using Lonware macros changed how I play — my building speed is insane!</p>
+                <p class="testimonial-author">— Zach H.</p>
+            </div>
+            <div class="testimonial-slide">
+                <p class="testimonial-quote">Ping Optimizations gave me a huge edge in competitive matches.</p>
+                <p class="testimonial-author">— Mia P.</p>
+            </div>
+            <div class="testimonial-slide">
+                <p class="testimonial-quote">The PC tweaks boosted my FPS by 50%. Highly recommend.</p>
+                <p class="testimonial-author">— Alex R.</p>
+            </div>
+            <button class="testimonial-nav right" aria-label="Next testimonial"></button>
         </div>
-      </a>
-      <a href="ping-optimizations.html" class="feature-card" data-video="https://lonware.com/ping.mp4">
-        <img src="ping_product.png" alt="Ping Optimizations image">
-        <video muted loop></video>
-        <div class="card-overlay">
-          <h3>Ping Optimizations</h3>
-          <!-- description removed -->
-        </div>
-      </a>
-      <a href="console-tweaks.html" class="feature-card" data-video="https://lonware.com/console.mp4">
-        <img src="console_product.png" alt="Console Tweaks image">
-        <video muted loop></video>
-        <div class="card-overlay">
-          <h3>Console Tweaks</h3>
-          <!-- description removed -->
-        </div>
-      </a>
-      <a href="pc-optimizations.html" class="feature-card" data-video="https://lonware.com/pc.mp4">
-        <img src="pc_product.png" alt="PC Optimizations image">
-        <video muted loop></video>
-        <div class="card-overlay">
-          <h3>PC Optimizations</h3>
-          <!-- description removed -->
-        </div>
-      </a>
-      <a href="bloom-reducer.html" class="feature-card" data-video="https://lonware.com/bloom.mp4">
-        <img src="aim_product.png" alt="Bloom Reducer image">
-        <video muted loop></video>
-        <div class="card-overlay">
-          <h3>Bloom Reducer</h3>
-          <!-- description removed -->
-        </div>
-      </a>
-      <!-- New card for One Click Checkout -->
-      <a href="https://payhip.com/buy?link=LGIiX" class="feature-card" target="_blank" rel="noopener">
-        <img src="pc_product.png" alt="One Click Checkout image">
-        <video muted loop></video>
-        <div class="card-overlay">
-          <h3>One Click Checkout</h3>
-          <!-- description removed -->
-        </div>
-      </a>
-
     </section>
 
-    <!-- Why choose Lonware -->
-    <section class="why">
-      <h2 style="text-align:center;margin-bottom:1.5rem;font-size:2rem;">Why Choose Lonware?</h2>
-      <div class="stats">
-        <div class="stat">
-          <h3>1K+</h3>
-          <p>Gamers Optimized</p>
-        </div>
-        <div class="stat">
-          <h3>40%</h3>
-          <p>Average FPS Gain</p>
-        </div>
-        <div class="stat">
-          <h3>5+</h3>
-          <p>Years Experience</p>
-        </div>
-      </div>
-      <p style="text-align:center; max-width:700px; margin:0 auto; color:#bcd5ed; line-height:1.5;">Our community‑driven tweaks and optimizations have helped thousands of players achieve smoother, faster gameplay. We combine technical expertise with constant research to ensure your gaming rig performs at its best.</p>
+    <!-- Recent purchase feed section: displays random purchase events to show activity -->
+    <section id="purchase-feed" class="purchase-feed-section">
+        <h2>Trusted by players worldwide</h2>
+        <p class="section-subtitle">See what people are buying right now</p>
+        <ul class="purchase-feed-list" id="purchase-feed-list"></ul>
     </section>
 
-    <!-- Testimonials with slider -->
-    <section class="testimonials">
-      <h2>What Players Say</h2>
-      <div class="testimonial-slider">
-        <div class="testimonial-slide active">
-          <div class="stars">★★★★★</div>
-          <p>Using Lonware macros changed how I play — my building speed is insane!</p>
-          <div class="author">— Zach H.</div>
+    <!-- Footer with navigation and social icons -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Lonware</div>
+            <p class="footer-tagline">Experience the future</p>
+            <ul class="footer-links">
+                <li><a href="packages.html">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#" aria-label="Discord" class="social-icon discord"></a>
+                <a href="#" aria-label="GitHub" class="social-icon github"></a>
+                <a href="#" aria-label="Email" class="social-icon email"></a>
+            </div>
         </div>
-        <div class="testimonial-slide">
-          <div class="stars">★★★★★</div>
-          <p>The PC optimizer gave me stable 240 FPS in Apex. Highly recommend.</p>
-          <div class="author">— Sophia N.</div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="stars">★★★★★</div>
-          <p>I didn't expect console tweaks to matter this much, but my PS5 runs like new.</p>
-          <div class="author">— Liam R.</div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="stars">★★★★★</div>
-          <p>The lifetime macro package paid for itself within a week of tournaments.</p>
-          <div class="author">— Ava M.</div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="stars">★★★★★</div>
-          <p>Ping Optimizations dropped my ping by 30 ms — online matches feel smooth now.</p>
-          <div class="author">— Mason P.</div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="stars">★★★★★</div>
-          <p>Bloom Reducer made my crosshair so much clearer. My aim consistency shot up!</p>
-          <div class="author">— Olivia W.</div>
-        </div>
-      </div>
-      <!-- Dots to indicate which testimonial is active -->
-      <div class="testimonial-dots"></div>
-      <button class="prev-testimonial" aria-label="Previous testimonial">❮</button>
-      <button class="next-testimonial" aria-label="Next testimonial">❯</button>
-    </section>
-  </main>
+        <p class="copyright">&copy; 2026 Lonware. All rights reserved.</p>
+    </footer>
 
-  <footer>
-    © 2025 Lonware. All rights reserved.
-  </footer>
-  <!-- Testimonials slider script -->
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const testimonialContainer = document.querySelector('.testimonial-slider');
-    if (!testimonialContainer) return;
-    const testimonialSlides = testimonialContainer.querySelectorAll('.testimonial-slide');
-    let currentTestimonial = 0;
-    // ensure only the first slide is visible on load
-    testimonialSlides.forEach((slide, index) => {
-      slide.style.display = index === 0 ? 'block' : 'none';
-    });
-    function showTestimonial(index) {
-      testimonialSlides[currentTestimonial].style.display = 'none';
-      currentTestimonial = (index + testimonialSlides.length) % testimonialSlides.length;
-      testimonialSlides[currentTestimonial].style.display = 'block';
-      // update dots when testimonial changes
-      updateDots();
-    }
-    const nextBtn = document.querySelector('.next-testimonial');
-    const prevBtn = document.querySelector('.prev-testimonial');
-    nextBtn.addEventListener('click', function() {
-      showTestimonial(currentTestimonial + 1);
-    });
-    prevBtn.addEventListener('click', function() {
-      showTestimonial(currentTestimonial - 1);
-    });
-
-    // Create dots for testimonials
-    const dotsContainer = document.querySelector('.testimonial-dots');
-    if (dotsContainer) {
-      testimonialSlides.forEach((_, idx) => {
-        const dot = document.createElement('button');
-        dot.className = 'testimonial-dot';
-        dot.setAttribute('aria-label', `Show testimonial ${idx + 1}`);
-        dot.addEventListener('click', function() {
-          showTestimonial(idx);
-        });
-        dotsContainer.appendChild(dot);
-      });
-      // set initial active dot
-      dotsContainer.children[0].classList.add('active');
-    }
-
-    function updateDots() {
-      if (!dotsContainer) return;
-      Array.from(dotsContainer.children).forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentTestimonial);
-      });
-    }
-  });
-  // Video previews for featured product cards
-  const featureCards = document.querySelectorAll('.feature-card');
-  featureCards.forEach(card => {
-    const videoEl = card.querySelector('video');
-    const videoSrc = card.getAttribute('data-video');
-    if (videoEl && videoSrc) {
-      videoEl.src = videoSrc;
-      card.addEventListener('mouseenter', function() {
-        videoEl.style.display = 'block';
-        videoEl.play().catch(() => {});
-      });
-      card.addEventListener('mouseleave', function() {
-        videoEl.pause();
-        videoEl.currentTime = 0;
-        videoEl.style.display = 'none';
-      });
-      // Support touch devices: play video on touchstart and hide on touchend
-      card.addEventListener('touchstart', function() {
-        videoEl.style.display = 'block';
-        videoEl.play().catch(() => {});
-      });
-      card.addEventListener('touchend', function() {
-        videoEl.pause();
-        videoEl.currentTime = 0;
-        videoEl.style.display = 'none';
-      });
-    }
-  });
-  </script>
+    <!-- External script for dynamic behaviours -->
+    <script src="script.js"></script>
 </body>
 </html>
