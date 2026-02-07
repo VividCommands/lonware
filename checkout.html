@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lonware</title>
+    <!-- Shared stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Favicon for browser tab -->
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Announcement bar -->
+    <div class="announcement-bar">
+        Use code <strong>UPD!</strong> for 12% off
+    </div>
+    <!-- Navigation bar -->
+    <header class="navbar">
+        <!-- Use text only for the branding in the navbar; clicking the name returns to home -->
+        <a href="index.html#home" class="logo">Lonware</a>
+        <nav class="nav-links">
+            <a href="index.html#home">Home</a>
+            <a href="packages.html" class="active">Products</a>
+        </nav>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section" style="padding-top:8rem;">
+        <h1>Checkout</h1>
+        <div id="product-info" style="text-align:center; margin-bottom:2rem;"></div>
+        <form class="checkout-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            <label for="card">Card Number</label>
+            <input type="text" id="card" name="card" placeholder="1234 5678 9012 3456" required />
+            <label for="expiry">Expiry Date</label>
+            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required />
+            <label for="cvc">CVC</label>
+            <input type="text" id="cvc" name="cvc" placeholder="123" required />
+            <!-- The submit button does not process payments; it simply acknowledges the action. -->
+            <button type="submit" class="package-button">Place Order</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo"><img src="images/logo.png" alt="Lonware logo" class="logo-img" /> Lonware</div>
+            <p class="footer-tagline">Experience the future</p>
+            <ul class="footer-links">
+                <li><a href="packages.html">Products</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#" aria-label="Discord" class="social-icon discord"></a>
+                <a href="#" aria-label="GitHub" class="social-icon github"></a>
+                <a href="#" aria-label="Email" class="social-icon email"></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Lonware. All rights reserved.</p>
+    </footer>
+
+    <script>
+    // Populate the checkout page with product details based on query parameter
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const product = params.get('product');
+        const products = {
+            macro: { name: 'Macro.io', price: 9.99 },
+            pc: { name: 'PC Optimizations', price: 15.99 },
+            console: { name: 'Console Tweaks', price: 9.99 },
+            ping: { name: 'Ping Optimizations', price: 12.99 },
+            bloom: { name: 'Bloom Reducer', price: 13.99 }
+        };
+        const infoDiv = document.getElementById('product-info');
+        if (product && products[product]) {
+            const info = products[product];
+            infoDiv.innerHTML = `<h2 style="margin:0 0 0.5rem 0; color: var(--secondary-color);">${info.name}</h2>` +
+                `<p style="margin:0; color: var(--muted-text);">Price: $${info.price.toFixed(2)}</p>`;
+        } else {
+            infoDiv.innerHTML = '<p style="color: var(--muted-text);">Invalid product. Please return to the products page.</p>';
+        }
+    });
+    </script>
+    <!-- Load the common script for navbar shrink and other interactions -->
+    <script src="script.js"></script>
+</body>
+</html>
