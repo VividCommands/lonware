@@ -430,6 +430,19 @@ body {
     box-shadow: 0 6px 12px rgba(13, 202, 240, 0.35);
 }
 
+/* Style for the lifetime button on product pages.  Uses the secondary colour to
+   differentiate from standard Buy Now buttons. */
+.lifetime-button {
+    background: var(--secondary-color);
+    color: #0a0e23;
+}
+
+.lifetime-button:hover {
+    transform: translateY(-2px);
+    /* Use the secondary colour’s RGBA for the hover shadow */
+    box-shadow: 0 6px 12px rgba(50, 135, 250, 0.35);
+}
+
 /* Benefits Section */
 .benefits-section {
     padding: 6rem 2rem;

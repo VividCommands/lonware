@@ -171,4 +171,34 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add a new entry every 6 seconds
         setInterval(addPurchaseEntry, 6000);
     }
+
+    // -------------------------------------------------------------------------
+    // Product preview video hover controls
+    //
+    // Some product cards on the home page include hidden videos (for example,
+    // the Bloom Reducer card). These videos should begin playing when the user
+    // hovers over the card and reset when the pointer leaves. Without this
+    // explicit handling the videos either do not start (because preload is
+    // disabled) or continue looping even after hover ends. The following code
+    // runs after DOMContentLoaded and attaches event listeners to every
+    // `.product-card` element containing a <video> tag. Videos are paused and
+    // reset to the beginning by default to avoid autoplay. When a card is
+    // hovered, the video plays; when the mouse leaves the card, the video
+    // pauses and rewinds to frame zero.
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach((card) => {
+        const video = card.querySelector('video');
+        if (video) {
+            // Ensure the video is not playing on page load
+            video.pause();
+            video.currentTime = 0;
+            card.addEventListener('mouseenter', () => {
+                video.play().catch(() => {});
+            });
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+    });
 });
