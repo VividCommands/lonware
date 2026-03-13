@@ -7,8 +7,8 @@
     <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="styles.css" />
     <!-- Favicon so the Lonware logo appears in the browser tab -->
-        <!-- Use root-level favicon so the icon loads correctly when images folder isn't present -->
-        <link rel="icon" href="logo.png" type="image/png">
+    <!-- Use root-level favicon so the icon loads correctly when images folder isn't present -->
+    <link rel="icon" href="logo.png" type="image/png">
     <!-- Google Fonts for modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,18 +50,21 @@
 
     <!-- Product spotlight section -->
     <section id="products" class="products-section">
-        <div class="product-highlight">
-            <!-- Macro showcase slider: cycle through the main video and two supplementary images automatically -->
+        <div class="product-highlight" style="margin-top:-1.5rem;">
+            <!-- Macro showcase slider: cycle through the main video and three supplementary images automatically -->
             <div class="macro-slider">
                 <div class="macro-slide active">
                     <video src="https://lonware.com/macro.mp4" controls preload="metadata" class="product-image"></video>
                 </div>
                 <div class="macro-slide">
-                        <!-- Display macro screenshots from the root level so they load correctly on the live site -->
-                        <img src="macro1.webp" alt="Macro screenshot 1" class="product-image" />
+                    <!-- Display macro screenshots from the root level so they load correctly on the live site -->
+                    <img src="macro_new_1.webp" alt="Macro screenshot 1" class="product-image" />
                 </div>
                 <div class="macro-slide">
-                        <img src="macro2.webp" alt="Macro screenshot 2" class="product-image" />
+                    <img src="macro_new_2.webp" alt="Macro screenshot 2" class="product-image" />
+                </div>
+                <div class="macro-slide">
+                    <img src="macro_new_3.webp" alt="Macro screenshot 3" class="product-image" />
                 </div>
             </div>
             <div class="product-info">
@@ -99,8 +102,8 @@
                 <div class="product-card">
                     <div class="product-media">
                         <!-- Use our own images so the preview loads reliably -->
-                             <!-- PC preview image lives at the repository root -->
-                             <img src="pc1.webp" alt="PC Optimizations preview" />
+                        <!-- PC preview image lives at the repository root -->
+                        <img src="pc1.webp" alt="PC Optimizations preview" />
                         <!-- Retain a video preview on hover; if the remote video fails it will simply not display -->
                         <video class="product-video" autoplay muted loop preload="none">
                             <source src="https://lonware.com/pc.mp4" type="video/mp4" />
@@ -130,16 +133,14 @@
                     <p class="product-card-desc">Eliminate lag and spikes</p>
                 </div>
             </a>
-            <!-- Bloom Reducer card: includes a video preview on hover -->
+            <!-- Bloom Reducer card: remove broken video preview and use only image -->
             <a href="bloom.html" class="product-card-link">
                 <div class="product-card">
                     <!-- New badge for Bloom Reducer -->
                     <span class="new-badge">New</span>
                     <div class="product-media">
                         <img src="https://lonware.com/aim_product.png" alt="Bloom Reducer preview" />
-                        <video class="product-video" autoplay muted loop preload="none">
-                            <source src="https://lonware.com/bloom.mp4" type="video/mp4" />
-                        </video>
+                        <!-- Removed video preview because bloom.mp4 is missing -->
                     </div>
                     <h3>Bloom Reducer</h3>
                     <p class="product-card-desc">Enhance aim accuracy</p>
