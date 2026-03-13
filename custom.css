@@ -134,3 +134,45 @@ img[loading="lazy"] {
     margin-right: auto;
   }
 }
+
+
+/* === Custom navigation & mobile adjustments (March 2026) === */
+/* Oval sticky header with reduced height and top spacing */
+header {
+  border-radius: 999px !important;
+  padding: 0.25rem 1rem !important;
+  top: 0.5rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: fit-content !important;
+}
+
+/* Ensure header spans full width on larger screens while keeping rounded shape */
+@media (min-width: 768px) {
+  header {
+    width: auto !important;
+    margin: 0 1rem !important;
+  }
+}
+
+/* Prevent horizontal scrolling on mobile */
+body {
+  overflow-x: hidden !important;
+}
+
+/* Planet (logo ring) pulsing animation */
+header .logo::before {
+  animation: planetPulse 3s ease-in-out infinite !important;
+}
+
+/* Keyframes for pulsing glow around the planet */
+@keyframes planetPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.4);
+    transform: translateY(-30%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 15px 4px rgba(255,255,255,0.7);
+    transform: translateY(-30%) scale(1.05);
+  }
+}
