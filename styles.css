@@ -1135,3 +1135,48 @@ body {
         max-width: 400px;
     }
 }
+
+/* Prevent horizontal scrolling on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/
+/* Prevent horizontal scrolling on mobile */
+body {
+  overflow-x: hidden;
+}
+* Round and reposition the navbar */
+.navbar {
+  position: sticky;
+  top: 0.5rem;
+  margin: 0.5rem auto;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  width: fit-content;
+  max-width: 90%;
+  left: 0;
+  right: 0;
+}
+
+/* Make the logo image circular */
+.navbar .logo img {
+  border-radius: 50%;
+}
+
+/* Animate the planet ring with a pulsing glow */
+.navbar .logo::before {
+  animation: planetPulse 5s ease-in-out infinite;
+}
+
+/* Keyframes for pulsing glow around the planet */
+@keyframes planetPulse {
+  0%, 100% {
+    box-shadow: 0 0 0.5rem var(--glow-color);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 1rem var(--glow-color);
+    transform: scale(1.08);
+  }
+}
