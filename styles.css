@@ -1149,7 +1149,7 @@ body {
 * Round and reposition the navbar */
 .navbar {
   position: sticky;
-  top: 0.5rem;
+  top: 0.5rm;m;
   margin: 0.5rem auto;
   padding: 0.4rem 1rem;
   border-radius: 999px;
@@ -1180,3 +1180,9 @@ body {
     transform: scale(1.08);
   }
 }
+
+/* Adjust navbar offset to accommodate announcement bar */
+.navbar {
+    top: 2.5rem !important;
+}
+
