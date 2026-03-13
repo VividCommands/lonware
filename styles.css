@@ -38,7 +38,7 @@ body {
     background: linear-gradient(180deg, rgba(10, 14, 35, 0.9), rgba(10, 14, 35, 0.4));
     backdrop-filter: blur(8px);
     z-index: 100;
-    transition: padding 0.3s ease, background-color 0.3s ease;
+       transition: padding 0.3s ease, background-color 0.3s ease, top 0.3s ease, width 0.3s ease, border-radius 0.3s ease;
 }
 
 /* Make the navigation container flexible so it can grow and prevent link truncation */
@@ -62,10 +62,16 @@ body {
 
 /* Adjust navbar when scrolled */
 .navbar.scrolled {
-    padding: 0.75rem 2rem;
-    background-color: rgba(10, 14, 35, 0.95);
+        top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    background-color: rgba(10, 14, 35, 0.9);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
+    }
+
 
 /* Logo container with icon and text */
 .navbar .logo {
@@ -317,7 +323,14 @@ body {
 
 /* Make images slightly smaller than videos in the macro showcase for visual emphasis */
 .macro-slider .macro-slide img {
-    width: 80%;
+   .macro-slider .macro-slide img {
+    width: 60%;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+}
+    border-radius: 8px;
     margin: 0 auto;
 }
 
@@ -1147,22 +1160,12 @@ body {
   overflow-x: hidden;
 }
 * Round and reposition the navbar */
-.navbar {
-  position: sticky;
-  top: 0.5rm;m;
-  margin: 0.5rem auto;
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  width: fit-content;
-  max-width: 90%;
-  left: 0;
-  right: 0;
-}
+.
 
 /* Make the logo image circular */
 .navbar .logo img {
   border-radius: 50%;
-}
+
 
 /* Animate the planet ring with a pulsing glow */
 .navbar .logo::before {
