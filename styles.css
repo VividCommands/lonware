@@ -315,7 +315,7 @@ border-radius: 8px;
     width: 100%;
     height: auto;
 }
-.acro-slide video,
+..macro-slide video,
 .macro-slide img {
    width: 100%;
     height: auto;
@@ -323,7 +323,7 @@ border-radius: 8px;
 
 /* Make images slightly smaller than videos in the macro showcase for visual emphasis */
 .macro-slider .macro-slide img {
-   width: 40%;
+ width: 35%;
     margin: 0 auto;
     background-color: var(--card-bg);
     padding: 1rem;
