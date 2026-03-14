@@ -54,7 +54,7 @@
             <!-- Macro showcase slider: cycle through the main video and three supplementary images automatically -->
             <div class="macro-slider">
                 <div class="macro-slide active">
-                    <video src="https://lonware.com/macro.mp4" controls preload="metadata" class="product-image"></video>
+<video src="https://lonware.com/macro.mp4" autoplay muted loop playsinline preload="metadata" class="product-image"></video>
                 </div>
                 <div class="macro-slide">
                     <!-- Display macro screenshots from the root level so they load correctly on the live site -->
@@ -133,17 +133,16 @@
                     <p class="product-card-desc">Eliminate lag and spikes</p>
                 </div>
             </a>
-            <!-- Bloom Reducer card: remove broken video preview and use only image -->
-            <a href="bloom.html" class="product-card-link">
+          <<!-- Bloom Reducer card with video preview -->
                 <div class="product-card">
                     <!-- New badge for Bloom Reducer -->
                     <span class="new-badge">New</span>
                     <div class="product-media">
-                        <img src="https://lonware.com/aim_product.png" alt="Bloom Reducer preview" />
-                        <!-- Removed video preview because bloom.mp4 is missing -->
-                                    <video class="product-video" autoplay muted loop preload="none">
-                <source src="https://lonware.com/bloom.mp4" type="video/mp4" />
-            </video>
+<img src="https://lonware.com/aim_product.png" alt="Bloom Reducer preview" />
+<!-- Video preview shown on hover -->
+<video class="product-video" autoplay muted loop playsinline preload="none">
+    <source src="https://lonware.com/bloom.mp4" type="video/mp4" />
+</video>
                     </div>
                     <h3>Bloom Reducer</h3>
                     <p class="product-card-desc">Enhance aim accuracy</p>
