@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const announcementBar = document.querySelector('.announcement-bar');
-    // Navbar scroll shrink functionality
-    const navbar = document.querySelector('.navbar');
 const handleScroll = () => {
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -34,8 +32,7 @@ const handleScroll = () => {
     }
 };
 window.addEventListener('scroll', handleScroll);
-    };
-    window.addEventListener('scroll', handleScroll);
+
 
     // Reveal packages section when CTA button is clicked
     const ctaBtn = document.querySelector('.cta-button');
