@@ -38,7 +38,7 @@ body {
     background: linear-gradient(180deg, rgba(10, 14, 35, 0.9), rgba(10, 14, 35, 0.4));
     backdrop-filter: blur(8px);
     z-index: 100;
-       transition: padding 0.3s ease, background-color 0.3s ease, top 0.3s ease, width 0.3s ease, border-radius 0.3s ease;
+               transition: padding 0.6s ease, background-color 0.6s ease, top 0.6s ease, width 0.6s ease, border-radius 0.6s ease;
 }
 
 /* Make the navigation container flexible so it can grow and prevent link truncation */
@@ -324,14 +324,13 @@ body {
 /* Make images slightly smaller than videos in the macro showcase for visual emphasis */
 .macro-slider .macro-slide img {
    .macro-slider .macro-slide img {
-    width: 60%;
+    width: 45%%;
     margin: 0 auto;
     background-color: var(--card-bg);
-    padding: 1rem;
-    border-radius: 8px;
+   padding: 1rem;
+   border-radius: 8px;
 }
-    border-radius: 8px;
-    margin: 0 auto;
+    
 }
 
 /* Interactive metric cards: animate slightly on hover to make the UI feel alive */
