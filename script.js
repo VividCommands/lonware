@@ -21,14 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateWord, 2000);
     }
 
+    const announcementBar = document.querySelector('.announcement-bar');
     // Navbar scroll shrink functionality
     const navbar = document.querySelector('.navbar');
-    const handleScroll = () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+const handleScroll = () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+        if (announcementBar) announcementBar.style.display = 'none';
+    } else {
+        navbar.classList.remove('scrolled');
+        if (announcementBar) announcementBar.style.display = '';
+    }
+};
+window.addEventListener('scroll', handleScroll);
     };
     window.addEventListener('scroll', handleScroll);
 
