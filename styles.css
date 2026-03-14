@@ -1189,3 +1189,19 @@ body {
     top: 2.5rem !important;
 }
 
+
+    
+/* Adjust macro slider images for better quality */
+.macro-slider .macro-slide img {
+    width: 40%;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* Smooth navbar transition on scroll */
+.navbar {
+    transition: padding 0.3s ease, background-color 0.3s ease, top 0.3s ease, width 0.3s ease, border-radius 0.3s ease, transform 0.3s ease;
+}
+
