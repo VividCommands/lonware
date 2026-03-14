@@ -306,7 +306,8 @@ body {
     position: relative;
     max-width: 700px;
     width: 100%;
-    border-radius: 8px;
+ 
+border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
@@ -314,7 +315,7 @@ body {
     width: 100%;
     height: auto;
 }
-macro-slide video,
+.acro-slide video,
 .macro-slide img {
    width: 100%;
     height: auto;
@@ -322,15 +323,14 @@ macro-slide video,
 
 /* Make images slightly smaller than videos in the macro showcase for visual emphasis */
 .macro-slider .macro-slide img {
-    width: 45%;
+   width: 40%;
     margin: 0 auto;
     background-color: var(--card-bg);
     padding: 1rem;
     border-radius: 8px;
 }
+   
 
-    
-}
 
 /* Interactive metric cards: animate slightly on hover to make the UI feel alive */
 .metric:hover {
