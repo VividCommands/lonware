@@ -314,22 +314,21 @@ body {
     width: 100%;
     height: auto;
 }
-.macro-slide video,
+macro-slide video,
 .macro-slide img {
-    width: 100%;
+   width: 100%;
     height: auto;
     display: block;
-}
 
 /* Make images slightly smaller than videos in the macro showcase for visual emphasis */
 .macro-slider .macro-slide img {
-   .macro-slider .macro-slide img {
-    width: 45%%;
+    width: 45%;
     margin: 0 auto;
     background-color: var(--card-bg);
-   padding: 1rem;
-   border-radius: 8px;
+    padding: 1rem;
+    border-radius: 8px;
 }
+
     
 }
 
@@ -1190,9 +1189,9 @@ body {
 
 
     
-/* Adjust macro slider images for better quality */
+Adjust macro slider images for better quality */
 .macro-slider .macro-slide img {
-    width: 40%;
+width: 45%;
     margin: 0 auto;
     background-color: var(--card-bg);
     padding: 1rem;
@@ -1201,6 +1200,6 @@ body {
 
 /* Smooth navbar transition on scroll */
 .navbar {
-    transition: padding 0.3s ease, background-color 0.3s ease, top 0.3s ease, width 0.3s ease, border-radius 0.3s ease, transform 0.3s ease;
+    transition: padding 0.6s ease, background-color 0.6s ease, top 0.6s ease, width 0.6s ease, border-radius 0.6s ease, transform 0.6s ease;
 }
 
