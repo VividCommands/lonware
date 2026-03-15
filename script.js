@@ -1,4 +1,4 @@
-// JavaScript to handle dynamic word rotation in the hero section
+https://github.com/VividCommands/lonware/edit/site-updates-mar15/script.js// JavaScript to handle dynamic word rotation in the hero section
 
 document.addEventListener('DOMContentLoaded', () => {
     const dynamicWord = document.getElementById('dynamic-word');
@@ -19,16 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWord();
         // Rotate slightly faster to give a snappier feel
         setInterval(updateWord, 2000);
-    }
+        
+        
+  
+  }
 
+const navbar = document.querySelector('.navbar');
     const announcementBar = document.querySelector('.announcement-bar');
 const handleScroll = () => {
     if (window.scrollY > 50) {
+                navbar.style.top = '0';
         navbar.classList.add('scrolled');
         if (announcementBar) announcementBar.style.display = 'none';
+
+                
     } else {
         navbar.classList.remove('scrolled');
         if (announcementBar) announcementBar.style.display = '';
+            navbar.style.top = '';
     }
 };
 window.addEventListener('scroll', handleScroll);
