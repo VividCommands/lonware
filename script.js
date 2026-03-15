@@ -1,4 +1,4 @@
-https://github.com/VividCommands/lonware/edit/site-updates-mar15/script.js// JavaScript to handle dynamic word rotation in the hero section
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const dynamicWord = document.getElementById('dynamic-word');
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateWord, 2000);
         
         
-  
-  }
+ // Adjust navbar and announcement bar on scroll
+ 
 
 const navbar = document.querySelector('.navbar');
     const announcementBar = document.querySelector('.announcement-bar');
