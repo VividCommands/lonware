@@ -125,13 +125,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Product card video hover (PC) ────────────────────────────────────
-    document.querySelectorAll('.product-card').forEach(card => {
-        const video = card.querySelector('video');
-        if (!video) return;
-        video.pause();
-        video.currentTime = 0;
-        card.addEventListener('mouseenter', () => video.play().catch(() => {}));
-        card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
-    });
+    // Desktop-only: enable video hover previews on product cards.
+    // On mobile, hover fires on tap causing accidental video playback.
+    const isMobile = ('ontouchstart' in window) || window.innerWidth <= 768;
+    if (!isMobile) {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const video = card.querySelector('video');
+            if (!video) return;
+            video.pause();
+            video.currentTime = 0;
+            card.addEventListener('mouseenter', () => video.play().catch(() => {}));
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+    } else {
+        // On mobile: hide product-card hover videos entirely
+        document.querySelectorAll('.product-card video').forEach(v => {
+            v.pause();
+            v.removeAttribute('src');
+            v.load();
+            v.style.display = 'none';
+        });
+    }
 
 });
