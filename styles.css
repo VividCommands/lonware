@@ -1,9 +1,9 @@
 /* Global variables for colors and base styling */
 :root {
-    /* Updated colour palette: black and blue theme */
+        /* Updated colour palette: black and blue theme */
     /* Primary page background is almost black with a hint of blue. */
     --bg-color: #01010d;
-    --card-bg: #0e1728;        /* dark card background with blue tint */
+        --card-bg: #0e1728;       /* dark card background with blue tint */
     --primary-color: #0dcaf0;  /* bright blue accent */
     --secondary-color: #3287fa;/* softer blue highlight */
     --text-color: #e6f2ff;     /* very light blue for main text */
@@ -13,1175 +13,1096 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-family);
-    line-height: 1.6;
-    overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        background: var(--bg-color);
+        color: var(--text-color);
+        font-family: var(--font-family);
+        line-height: 1.6;
+        overflow-x: hidden;
 }
 
 /* Navigation Bar */
 .navbar {
-    position: fixed;
-    /* Offset the navbar to account for the announcement bar height */
-    top: 2.5rem;
-    width: 100%;
-    display: flex;
-    /* Keep items on a single row on larger screens.  Use space-between so the
-       brand stays on the left and nav links align to the right. */
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    background: linear-gradient(180deg, rgba(10, 14, 35, 0.9), rgba(10, 14, 35, 0.4));
-    backdrop-filter: blur(8px);
-    z-index: 100;
-    transition: padding 0.3s ease, background-color 0.3s ease;
+        position: fixed;
+        /* Default top is 0; JS will set it to announcement bar height when visible */
+    top: 0;
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 2rem;
+        background: linear-gradient(180deg, rgba(10, 14, 35, 0.9), rgba(10, 14, 35, 0.4));
+        backdrop-filter: blur(8px);
+        z-index: 100;
+        /* Smooth transition for top offset and padding changes */
+    transition: top 0.3s ease, padding 0.3s ease, background-color 0.3s ease;
 }
 
-/* Make the navigation container flexible so it can grow and prevent link truncation */
-/* Navigation container: reserve space for nav links and allow them to wrap or stack
-   without clipping long words.  Use static positioning so the nav participates in
-   the navbar's flex layout.  Set a fixed width to prevent text from extending
-   off the viewport; adjust as needed for longer words.  Add margin-left to
-   separate from the logo and margin-right to avoid overlap with the scroll bar. */
 .navbar nav {
-    position: static;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    /* Increase width to accommodate long link names like "Products". */
-    width: 10rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+        position: static;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        width: 10rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
 }
-
-/* When an announcement bar precedes the navbar, push the fixed navbar down so it doesn't overlap */
 
 /* Adjust navbar when scrolled */
 .navbar.scrolled {
-    padding: 0.75rem 2rem;
-    background-color: rgba(10, 14, 35, 0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        padding: 0.75rem 2rem;
+        background-color: rgba(10, 14, 35, 0.95);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 /* Logo container with icon and text */
 .navbar .logo {
-    /* Logo in the navbar now only contains text.  It remains flexible and
-       coloured to match the Lonware brand. */
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    letter-spacing: 2px;
-    display: block;
-    line-height: 1;
-    text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        letter-spacing: 2px;
+        display: block;
+        line-height: 1;
+        text-decoration: none;
 }
 
 /* Logo image sizing */
 .logo-img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
 }
 
 .logo {
-    /* The base .logo class is kept for backward compatibility.  The actual
-       styling of the logo container is now defined on .navbar .logo above. */
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    /* Stack nav links vertically on larger screens to prevent truncation of long words.
-       Align them to the end of the navbar so they sit near the right edge. */
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 0;
-    padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 0;
+        padding: 0;
 }
 
 .nav-links a {
-    text-decoration: none;
-    /* Use a lighter colour and shadow to ensure the text remains legible even when
-       placed over bright backgrounds (e.g., the hero's planet graphic). */
-    color: #f0f8ff;
-    font-weight: 300;
-    position: relative;
-    text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
-    transition: color 0.3s ease;
+        text-decoration: none;
+        color: #f0f8ff;
+        font-weight: 300;
+        position: relative;
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+        transition: color 0.3s ease;
 }
 
-/* Underline and color change on hover */
 .nav-links a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 2px;
-    background: var(--secondary-color);
-    opacity: 0;
-    transform: translateY(4px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background: var(--secondary-color);
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--primary-color);
+        color: var(--primary-color);
 }
 
 .nav-links a:hover::after {
-    opacity: 1;
-    transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
 }
 
 /* Hero Section */
 .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-    padding: 4rem 1rem;
-    /* Use a solid background so section transitions appear seamless. */
-    background: var(--bg-color);
-    position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        padding: 4rem 1rem;
+        background: var(--bg-color);
+        position: relative;
 }
 
-/* Add a rotating planet as a pseudo-element of the hero. This ensures the 
-   background element appears behind the content without z-index issues. */
 .hero::before {
-    content: '';
-    position: absolute;
-    /* Position the planet partially off‑screen so that the rim and glow are visible
-       in the top right corner. Adjust dimensions so that it doesn't fully leave the viewport. */
-    top: -120px;
-    right: -120px;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    /* Dark centre with a bright rim and blue halo similar to the Xeno design */
-    background: radial-gradient(circle, #01010d 0%, #01010d 55%, rgba(255, 255, 255, 0.4) 60%, rgba(13, 202, 240, 0.5) 70%, transparent 100%);
-    box-shadow: 0 0 120px 40px rgba(13, 202, 240, 0.4), 0 0 200px 80px rgba(255, 255, 255, 0.25);
-    animation: rotate 80s linear infinite;
-    z-index: 0;
+        content: '';
+        position: absolute;
+        top: -120px;
+        right: -120px;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #01010d 0%, #01010d 55%, rgba(255, 255, 255, 0.4) 60%, rgba(13, 202, 240, 0.5) 70%, transparent 100%);
+        box-shadow: 0 0 120px 40px rgba(13, 202, 240, 0.4), 0 0 200px 80px rgba(255, 255, 255, 0.25);
+        animation: rotate 80s linear infinite;
+        z-index: 0;
 }
 
-/* Ensure hero content appears above the pseudo-element */
 .hero > * {
-    position: relative;
-    z-index: 1;
+        position: relative;
+        z-index: 1;
 }
 
-/* Planet behind hero */
 .planet {
-    position: absolute;
-    top: -100px;
-    right: -150px;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    /* Create a more defined planet similar to the Xeno design: 
-       a dark disc with a bright rim and blue halo. The inner part is
-       almost black, fading into a thin white rim and then a soft blue glow. */
-    /* Hide the HTML planet element (we use a pseudo-element instead). */
-    display: none;
+        position: absolute;
+        top: -100px;
+        right: -150px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        display: none;
 }
 
 /* Progress bar with lightning icon */
 .progress-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 1.5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 1.5rem 0;
 }
 
 .progress-icon {
-    width: 24px;
-    height: 24px;
-    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M13 3L4 14h7v7l9-11h-7z"/%3E%3C/svg%3E');
-    background-size: cover;
+        width: 24px;
+        height: 24px;
+        background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M13 3L4 14h7v7l9-11h-7z"/%3E%3C/svg%3E');
+        background-size: cover;
 }
 
 .progress-bar {
-    flex: 1;
-    height: 6px;
-    background: rgba(13, 202, 240, 0.2);
-    border-radius: 3px;
-    overflow: hidden;
-    position: relative;
-    max-width: 200px;
+        flex: 1;
+        height: 6px;
+        background: rgba(13, 202, 240, 0.2);
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+        max-width: 200px;
 }
 
 .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    width: 0;
-    animation: load 4s linear infinite;
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        width: 0;
+        animation: load 4s linear infinite;
 }
 
 @keyframes load {
-    0% {
-        width: 0;
-    }
-    50% {
-        width: 100%;
-    }
-    100% {
-        width: 0;
-    }
+        0% { width: 0; }
+        50% { width: 100%; }
+        100% { width: 0; }
 }
 
 .hero-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin: 0 0 1rem;
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin: 0 0 1rem;
 }
 
 #dynamic-word {
-    color: var(--secondary-color);
-    animation: glow 3s ease-in-out infinite;
+        color: var(--secondary-color);
+        animation: glow 3s ease-in-out infinite;
 }
 
 .hero-subtitle {
-    font-size: 1.125rem;
-    color: var(--muted-text);
-    max-width: 600px;
-    margin-bottom: 2rem;
+        font-size: 1.125rem;
+        color: var(--muted-text);
+        max-width: 600px;
+        margin-bottom: 2rem;
 }
 
 .highlight {
-    color: var(--primary-color);
+        color: var(--primary-color);
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background: var(--primary-color);
-    color: #0a0e23;
-    font-weight: 600;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        background: var(--primary-color);
+        color: #0a0e23;
+        font-weight: 600;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(13, 202, 240, 0.4);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(13, 202, 240, 0.4);
 }
 
 /* Products Section */
 .products-section {
-    padding: 6rem 2rem;
-    /* Use the same page background; remove negative margin so sections transition smoothly without visible lines */
-    background: var(--bg-color);
-    margin-top: 0;
-    position: relative;
-    z-index: 10;
+        padding: 6rem 2rem;
+        background: var(--bg-color);
+        margin-top: 0;
+        position: relative;
+        z-index: 10;
 }
 
 .product-highlight {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 4rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 4rem;
 }
 
-/* Macro slider: container for cycling between the main video and supplementary images */
 .macro-slider {
-    position: relative;
-    max-width: 700px;
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
+        position: relative;
+        max-width: 700px;
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
 }
+
 .macro-slide {
-    width: 100%;
-    height: auto;
+        width: 100%;
+        height: auto;
 }
+
 .macro-slide video,
 .macro-slide img {
-    width: 100%;
-    height: auto;
-    display: block;
+        width: 100%;
+        height: auto;
+        display: block;
 }
 
-/* Make images slightly smaller than videos in the macro showcase for visual emphasis */
 .macro-slider .macro-slide img {
-    width: 80%;
-    margin: 0 auto;
+        width: 80%;
+        margin: 0 auto;
 }
 
-/* Interactive metric cards: animate slightly on hover to make the UI feel alive */
 .metric:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 8px 16px rgba(13, 202, 240, 0.45);
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 8px 16px rgba(13, 202, 240, 0.45);
 }
 
 /* Packages Section */
 .packages-section {
-    padding: 6rem 2rem;
-    text-align: center;
-    background: var(--bg-color);
+        padding: 6rem 2rem;
+        text-align: center;
+        background: var(--bg-color);
 }
 
-/* Hide the packages section by default. When the URL hash matches the
-   packages ID (#packages), it becomes visible via the :target selector. */
 #packages {
-    display: none;
-}
-#packages:target {
-    display: block;
-}
-.packages-section h2 {
-    font-size: 2rem;
-    color: var(--secondary-color);
-    margin-bottom: 0.5rem;
-}
-.packages-section .section-subtitle {
-    color: var(--muted-text);
-    margin-bottom: 3rem;
-}
-.packages-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-.package-card {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-}
-.package-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 20px rgba(13, 202, 240, 0.3);
-}
-.package-tag {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    background: var(--primary-color);
-    color: #0a0e23;
-    border-radius: 12px;
-    text-transform: uppercase;
-}
-.package-card h3 {
-    margin-top: 2.5rem;
-    color: var(--primary-color);
-    font-size: 1.4rem;
-}
-.package-subtitle {
-    color: var(--muted-text);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-.package-price {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-.package-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem;
-    text-align: left;
-    color: var(--muted-text);
-    font-size: 0.85rem;
-}
-.package-features li {
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.5rem;
-}
-.package-features li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--primary-color);
-}
-.package-button {
-    display: inline-block;
-    background: var(--primary-color);
-    color: #0a0e23;
-    padding: 0.5rem 1.5rem;
-    border-radius: 30px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.package-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(13, 202, 240, 0.35);
+        display: none;
 }
 
-/* Style for the lifetime button on product pages.  Uses the secondary colour to
-   differentiate from standard Buy Now buttons. */
+#packages:target {
+        display: block;
+}
+
+.packages-section h2 {
+        font-size: 2rem;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+}
+
+.packages-section .section-subtitle {
+        color: var(--muted-text);
+        margin-bottom: 3rem;
+}
+
+.packages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+}
+
+.package-card {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+}
+
+.package-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 20px rgba(13, 202, 240, 0.3);
+}
+
+.package-tag {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.7rem;
+        font-weight: 600;
+        background: var(--primary-color);
+        color: #0a0e23;
+        border-radius: 12px;
+        text-transform: uppercase;
+}
+
+.package-card h3 {
+        margin-top: 2.5rem;
+        color: var(--primary-color);
+        font-size: 1.4rem;
+}
+
+.package-subtitle {
+        color: var(--muted-text);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+}
+
+.package-price {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+}
+
+.package-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.5rem;
+        text-align: left;
+        color: var(--muted-text);
+        font-size: 0.85rem;
+}
+
+.package-features li {
+        margin-bottom: 0.5rem;
+        position: relative;
+        padding-left: 1.5rem;
+}
+
+.package-features li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+}
+
+.package-button {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #0a0e23;
+        padding: 0.5rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.package-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(13, 202, 240, 0.35);
+}
+
 .lifetime-button {
-    background: var(--secondary-color);
-    color: #0a0e23;
+        background: var(--secondary-color);
+        color: #0a0e23;
 }
 
 .lifetime-button:hover {
-    transform: translateY(-2px);
-    /* Use the secondary colour’s RGBA for the hover shadow */
-    box-shadow: 0 6px 12px rgba(50, 135, 250, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(50, 135, 250, 0.35);
 }
 
 /* Benefits Section */
 .benefits-section {
-    padding: 6rem 2rem;
-    text-align: center;
-    /* Use the same background as the rest of the page to avoid visible transitions between sections. */
-    background: var(--bg-color);
+        padding: 6rem 2rem;
+        text-align: center;
+        background: var(--bg-color);
 }
+
 .benefits-section h2 {
-    font-size: 2rem;
-    color: var(--secondary-color);
-    margin-bottom: 2rem;
+        font-size: 2rem;
+        color: var(--secondary-color);
+        margin-bottom: 2rem;
 }
+
 .benefits-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3rem;
-    margin-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 3rem;
+        margin-bottom: 2rem;
 }
+
 .benefit-item h3 {
-    color: var(--primary-color);
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+        color: var(--primary-color);
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
 }
+
 .benefit-item p {
-    color: var(--muted-text);
-    font-size: 0.9rem;
+        color: var(--muted-text);
+        font-size: 0.9rem;
 }
+
 .benefits-description {
-    color: var(--muted-text);
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 0.9rem;
+        color: var(--muted-text);
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 0.9rem;
 }
 
 /* Testimonials Section */
 .testimonials-section {
-    padding: 6rem 2rem;
-    background: var(--bg-color);
-    text-align: center;
+        padding: 6rem 2rem;
+        background: var(--bg-color);
+        text-align: center;
 }
+
 .testimonials-section h2 {
-    font-size: 2rem;
-    color: var(--secondary-color);
-    margin-bottom: 2rem;
+        font-size: 2rem;
+        color: var(--secondary-color);
+        margin-bottom: 2rem;
 }
+
 .testimonials-container {
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-    overflow: hidden;
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto;
+        overflow: hidden;
 }
+
 .testimonial-slide {
-    display: none;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        display: none;
+        padding: 2rem;
+        background: var(--card-bg);
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
+
 .testimonial-slide.active {
-    display: block;
+        display: block;
 }
+
 .testimonial-quote {
-    font-size: 1rem;
-    color: var(--text-color);
-    margin-bottom: 1rem;
+        font-size: 1rem;
+        color: var(--text-color);
+        margin-bottom: 1rem;
 }
+
 .testimonial-author {
-    font-size: 0.9rem;
-    color: var(--muted-text);
+        font-size: 0.9rem;
+        color: var(--muted-text);
 }
+
 .testimonial-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    background: var(--card-bg);
-    border-radius: 50%;
-    border: 2px solid var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.3s ease;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        background: var(--card-bg);
+        border-radius: 50%;
+        border: 2px solid var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s ease;
 }
+
 .testimonial-nav::before {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-top: 2px solid var(--primary-color);
-    border-right: 2px solid var(--primary-color);
-    transform: rotate(45deg);
+        content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-top: 2px solid var(--primary-color);
+        border-right: 2px solid var(--primary-color);
+        transform: rotate(45deg);
 }
+
 .testimonial-nav.left {
-    left: -48px;
+        left: -48px;
 }
+
 .testimonial-nav.left::before {
-    transform: rotate(-135deg);
+        transform: rotate(-135deg);
 }
+
 .testimonial-nav.right {
-    right: -48px;
+        right: -48px;
 }
+
 .testimonial-nav:hover {
-    background: var(--primary-color);
+        background: var(--primary-color);
 }
+
 .testimonial-nav:hover::before {
-    border-color: #0a0e23;
+        border-color: #0a0e23;
 }
 
 .product-image {
-    width: 350px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        width: 350px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .product-info {
-    max-width: 450px;
+        max-width: 450px;
 }
 
 .product-info h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
 }
 
 .product-info p {
-    color: var(--muted-text);
-    margin-bottom: 2rem;
+        color: var(--muted-text);
+        margin-bottom: 2rem;
 }
 
 .metrics {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
 }
 
 .metric {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background: var(--card-bg);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background: var(--card-bg);
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Interactive hover effect on metric cards to give the home page more life */
 .metric:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 16px rgba(13, 202, 240, 0.3);
+        transform: translateY(-6px);
+        box-shadow: 0 8px 16px rgba(13, 202, 240, 0.3);
 }
 
 .metric .icon {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 0.5rem;
-    background-size: cover;
+        width: 24px;
+        height: 24px;
+        margin-bottom: 0.5rem;
+        background-size: cover;
 }
 
-/* Icons as CSS backgrounds - placeholders; replace with your own */
-/* Metric icons encoded with accent color #0dcaf0; note %23 encodes '#' */
 .metric .icon.lightning {
-    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M13 3L4 14h7v7l9-11h-7z"/%3E%3C/svg%3E');
+        background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M13 3L4 14h7v7l9-11h-7z"/%3E%3C/svg%3E');
 }
+
 .metric .icon.performance {
-    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 21v-6H7v-4H4l8-9 8 9h-3v4h-4v6z"/%3E%3C/svg%3E');
+        background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 21v-6H7v-4H4l8-9 8 9h-3v4h-4v6z"/%3E%3C/svg%3E');
 }
+
 .metric .icon.response {
-    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 21l-4-4h3V8h2v9h3 l-4 4zm0-18l4 4h-3v9h-2V7H8l4-4z"/%3E%3C/svg%3E');
+        background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 21l-4-4h3V8h2v9h3 l-4 4zm0-18l4 4h-3v9h-2V7H8l4-4z"/%3E%3C/svg%3E');
 }
+
 .metric .icon.reliability {
-    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 2L1 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/%3E%3Cpath fill="%2301010d" d="M12 13a2 2 0 110-4 2 2 0 010 4z"/%3E%3C/svg%3E');
+        background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 2L1 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/%3E%3Cpath fill="%2301010d" d="M12 13a2 2 0 110-4 2 2 0 010 4z"/%3E%3C/svg%3E');
 }
 
 .metric p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: var(--text-color);
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--text-color);
 }
 
 /* Product Grid */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
 }
 
-/* Each product card shows an image and optionally plays a video when hovered. */
 .product-card {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    /* Needed for positioning the new badge */
-    position: relative;
+        background: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        position: relative;
 }
 
-/* Container for images and video previews */
 .product-media {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 1rem;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1rem;
 }
 
 .product-media img,
 .product-media video {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    transition: opacity 0.4s ease;
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: opacity 0.4s ease;
 }
 
-/* The video overlay is absolutely positioned to cover the image and is initially hidden */
 .product-media video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    opacity: 0;
-    /* Disable pointer events on the hover video so clicks pass through to the link */
-    pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        opacity: 0;
+        pointer-events: none;
 }
 
-/* On hover show the video and hide the image */
 .product-card:hover .product-media video {
-    opacity: 1;
+        opacity: 1;
 }
+
 .product-card:hover .product-media img {
-    opacity: 0;
+        opacity: 0;
 }
 
 .product-card h3 {
-    margin-bottom: 0.5rem;
-    color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
 }
 
 .product-card p {
-    font-size: 0.9rem;
-    color: var(--muted-text);
+        font-size: 0.9rem;
+        color: var(--muted-text);
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 16px rgba(13, 202, 240, 0.35);
+        transform: translateY(-6px);
+        box-shadow: 0 8px 16px rgba(13, 202, 240, 0.35);
 }
 
-/* Make the entire product card clickable by wrapping it in an anchor.  Ensure
-   the link inherits text colour and removes default underline. */
 .product-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+        text-decoration: none;
+        color: inherit;
+        display: block;
 }
 
-/* Purchase feed section shows recent activity of users purchasing products. */
+/* Purchase feed section */
 .purchase-feed-section {
-    padding: 6rem 2rem;
-    background: var(--bg-color);
-    text-align: center;
+        padding: 6rem 2rem;
+        background: var(--bg-color);
+        text-align: center;
 }
 
 .purchase-feed-section h2 {
-    font-size: 2rem;
-    color: var(--secondary-color);
-    margin-bottom: 0.5rem;
+        font-size: 2rem;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
 }
 
 .purchase-feed-section .section-subtitle {
-    color: var(--muted-text);
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
+        color: var(--muted-text);
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
 }
 
 .purchase-feed-list {
-    list-style: none;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0;
+        list-style: none;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0;
 }
 
 .purchase-feed-list li {
-    background: var(--card-bg);
-    margin-bottom: 0.75rem;
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    color: var(--text-color);
-    font-size: 0.9rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-    transition: transform 0.2s ease;
+        background: var(--card-bg);
+        margin-bottom: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+        transition: transform 0.2s ease;
 }
 
 .purchase-feed-list li:nth-child(odd) {
-    background: #0f1a2d;
+        background: #0f1a2d;
 }
 
 .purchase-feed-list li:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(13, 202, 240, 0.25);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(13, 202, 240, 0.25);
 }
 
-/* Badge to indicate a new product (e.g., Bloom Reducer). Positioned within a product card */
 .new-badge {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: #28a745;
-    color: #f0f8ff;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    pointer-events: none;
-    /* Ensure the badge sits above image or video content */
-    z-index: 4;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: #28a745;
+        color: #f0f8ff;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        pointer-events: none;
+        z-index: 4;
 }
-/* Community Section */
+
 /* Community Section */
 .community-section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6rem 2rem;
-    /* Provide enough height so the decorative planet can be seen */
-    min-height: 400px;
-    /* Use a blue‑tinted gradient instead of purple and avoid harsh section transitions */
-    background: radial-gradient(circle at bottom, rgba(13, 202, 240, 0.08), var(--bg-color) 75%);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6rem 2rem;
+        min-height: 400px;
+        background: radial-gradient(circle at bottom, rgba(13, 202, 240, 0.08), var(--bg-color) 75%);
 }
 
 .community-text {
-    max-width: 500px;
-    margin-bottom: 3rem;
+        max-width: 500px;
+        margin-bottom: 3rem;
 }
 
 .community-text h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--secondary-color);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--secondary-color);
 }
 
 .community-text p {
-    color: var(--muted-text);
+        color: var(--muted-text);
 }
 
 .community-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Ensure the large orbiting circle can extend beyond the container */
-    position: relative;
-    overflow: hidden;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
 }
 
-/*
- * Spinning globe used in the community section on the home page.  The image
- * provides a 3D‑like planet with a glowing atmosphere.  The element rotates
- * slowly to add life to the page.  If spinning is undesired, remove the
- * animation property.
- */
 .spinning-globe {
-    width: 480px;
-    height: 480px;
-    border-radius: 50%;
-    /* Use root-level globe image so it loads even if the images folder isn't created on the server */
-    background-image: url('globe.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    box-shadow: 0 0 60px 20px rgba(13, 202, 240, 0.2), 0 0 120px 40px rgba(255, 255, 255, 0.1);
-    animation: spin 40s linear infinite;
-    position: relative;
+        width: 480px;
+        height: 480px;
+        border-radius: 50%;
+        background-image: url('globe.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        box-shadow: 0 0 60px 20px rgba(13, 202, 240, 0.2), 0 0 120px 40px rgba(255, 255, 255, 0.1);
+        animation: spin 40s linear infinite;
+        position: relative;
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
 }
 
 /* Footer */
 .footer {
-    background: var(--card-bg);
-    padding: 3rem 2rem;
-    text-align: center;
-    color: var(--muted-text);
+        background: var(--card-bg);
+        padding: 3rem 2rem;
+        text-align: center;
+        color: var(--muted-text);
 }
 
 .footer-content {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 }
 
 .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
 }
 
-/* Size the footer logo image consistently with the navbar logo */
 .footer-logo .logo-img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
 }
 
 .footer-tagline {
-    margin-bottom: 1rem;
+        margin-bottom: 1rem;
 }
 
 .footer-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    padding: 0;
-    margin-bottom: 1rem;
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        padding: 0;
+        margin-bottom: 1rem;
 }
 
 /* Announcement bar styling */
 .announcement-bar {
-    width: 100%;
-    /* Use a vibrant gradient of the accent colours so it stands out on both desktop and mobile */
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    color: #0a0e23;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    position: relative;
-    z-index: 101; /* ensure it appears above the navbar */
-    /* Subtle pulse animation to draw attention without being distracting */
-    animation: announcement-pulse 4s ease-in-out infinite;
+        width: 100%;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        color: #0a0e23;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        position: relative;
+        z-index: 101;
+        animation: announcement-pulse 4s ease-in-out infinite;
 }
 
 @keyframes announcement-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.75; }
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.75; }
 }
 
 /* Responsive styles for mobile devices */
 @media (max-width: 768px) {
-    /* Navigation stacks vertically on smaller screens */
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem 1.5rem;
-    }
+        .navbar {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 1rem 1.5rem;
+        }
+
     .nav-links {
-        flex-direction: column;
-        width: 100%;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+                margin-top: 0.5rem;
     }
+
     .nav-links a {
-        display: block;
-        width: 100%;
-        padding: 0.5rem 0;
+                display: block;
+                width: 100%;
+                padding: 0.5rem 0;
     }
-    /* Adjust hero spacing and font sizes */
+
     .hero {
-        padding: 3rem 1rem 2rem;
-        min-height: auto;
+                padding: 3rem 1rem 2rem;
+                min-height: auto;
     }
+
     .hero-title {
-        font-size: 2rem;
+                font-size: 2rem;
     }
+
     .hero-subtitle {
-        font-size: 1rem;
-        max-width: 90%;
+                font-size: 1rem;
+                max-width: 90%;
     }
+
     .cta-button {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.95rem;
+                padding: 0.6rem 1.5rem;
+                font-size: 0.95rem;
     }
-    /* Product spotlight stacks vertical */
+
     .product-highlight {
-        flex-direction: column;
-        align-items: center;
+                flex-direction: column;
+                align-items: center;
     }
+
     .product-image {
-        max-width: 100%;
+                max-width: 100%;
     }
+
     .product-info {
-        max-width: 100%;
-        text-align: center;
+                max-width: 100%;
+                text-align: center;
     }
+
     .metrics {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
-    /* Product grid becomes 2 columns */
+
     .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-    /* Benefits section stacks items */
+
     .benefits-grid {
-        flex-direction: column;
-        gap: 1.5rem;
+                flex-direction: column;
+                gap: 1.5rem;
     }
-    /* Testimonials section spacing */
+
     .testimonials-section {
-        padding: 4rem 1rem;
+                padding: 4rem 1rem;
     }
-    /* Footer adjusts text size */
+
     .footer {
-        padding: 2rem 1rem;
+                padding: 2rem 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .nav-links a {
-        font-size: 0.85rem;
-    }
+        .nav-links a {
+                    font-size: 0.85rem;
+        }
+
     .cta-button {
-        padding: 0.5rem 1.25rem;
-        font-size: 0.85rem;
+                padding: 0.5rem 1.25rem;
+                font-size: 0.85rem;
     }
+
     .hero-title {
-        font-size: 1.6rem;
+                font-size: 1.6rem;
     }
 }
 
 .footer-links a {
-    text-decoration: none;
-    color: var(--muted-text);
-    transition: color 0.3s ease;
+        text-decoration: none;
+        color: var(--muted-text);
+        transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: var(--primary-color);
+        color: var(--primary-color);
 }
 
 .social-icons {
-    display: flex;
-    gap: 1rem;
+        display: flex;
+        gap: 1rem;
 }
 
 .social-icon {
-    width: 24px;
-    height: 24px;
-    display: inline-block;
-    background-size: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        background-size: cover;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
 }
 
 .social-icon:hover {
-    opacity: 1;
+        opacity: 1;
 }
 
-/* Social icon placeholders using SVG via data URIs */
-/* Blue social icons to match accent colour */
 .social-icon.discord {
-    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20.317 4.369A19.791 19.791 0 0015.594 3a14.376 14.376 0 00-.69 1.453 18.358 18.358 0 00-5.807 0A14.387 14.387 0 008.407 3 19.788 19.788 0 003.684 4.369c-2.978 4.671-3.78 9.206-3.379 13.734a20.142 20.142 0 005.993 3.043 15.053 15.053 0 001.171-1.873 13.013 13.013 0 01-1.85-.823c.155-.116.306-.237.452-.365a10.1 10.1 0 001.109-1.091c.715.533 1.543.909 2.433 1.107a14.531 14.531 0 006.02 0c.89-.198 1.718-.574 2.433-1.107.376.415.79.799 1.23 1.148a10.09 10.09 0 001.109 1.091c.146.128.297.249.452.365a13.015 13.015 0 01-1.85.823c.331.665.714 1.289 1.142 1.873a20.149 20.149 0 005.993-3.043c.462-4.754-.399-9.254-3.39-13.734z"/%3E%3C/svg%3E');
+        background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20.317 4.369A19.791 19.791 0 0015.594 3a14.376 14.376 0 00-.69 1.453 18.358 18.358 0 00-5.807 0A14.387 14.387 0 008.407 3 19.788 19.788 0 003.684 4.369c-2.978 4.671-3.78 9.206-3.379 13.734a20.142 20.142 0 005.993 3.043 15.053 15.053 0 001.171-1.873 13.013 13.013 0 01-1.85-.823c.155-.116.306-.237.452-.365a10.1 10.1 0 001.109-1.091c.715.533 1.543.909 2.433 1.107a14.531 14.531 0 006.02 0c.89-.198 1.718-.574 2.433-1.107.376.415.79.799 1.23 1.148a10.09 10.09 0 001.109 1.091c.146.128.297.249.452.365a13.015 13.015 0 01-1.85.823c.331.665.714 1.289 1.142 1.873a20.149 20.149 0 005.993-3.043c.462-4.754-.399-9.254-3.39-13.734z"/%3E%3C/svg%3E');
 }
 
 .social-icon.github {
-    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 0a12 12 0 00-3.792 23.415c.6.111.824-.26.824-.579 0-.286-.011-1.242-.017-2.248-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.746.082-.731.082-.731 1.204.085 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.775.419-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.938 0-1.312.469-2.383 1.236-3.222-.124-.304-.536-1.53.117-3.191 0 0 1.008-.323 3.304 1.23a11.486 11.486 0 016.008 0c2.296-1.553 3.303-1.23 3.303-1.23.653 1.661.241 2.887.118 3.191.769.839 1.236 1.91 1.236 3.222 0 4.618-2.806 5.63-5.479 5.927.43.371.823 1.102.823 2.222 0 1.603-.015 2.896-.015 3.288 0 .321.222.694.829.577A12.002 12.002 0 0012 0"/%3E%3C/svg%3E');
+        background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 0a12 12 0 00-3.792 23.415c.6.111.824-.26.824-.579 0-.286-.011-1.242-.017-2.248-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.746.082-.731.082-.731 1.204.085 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.775.419-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.938 0-1.312.469-2.383 1.236-3.222-.124-.304-.536-1.53.117-3.191 0 0 1.008-.323 3.304 1.23a11.486 11.486 0 016.008 0c2.296-1.553 3.303-1.23 3.303-1.23.653 1.661.241 2.887.118 3.191.769.839 1.236 1.91 1.236 3.222 0 4.618-2.806 5.63-5.479 5.927.43.371.823 1.102.823 2.222 0 1.603-.015 2.896-.015 3.288 0 .321.222.694.829.577A12.002 12.002 0 0012 0"/%3E%3C/svg%3E');
 }
 
 .social-icon.email {
-    background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 12.713l11.985-8.713H0.015L12 12.713zM12 14.9l-12-8.713V20.25H24V6.187L12 14.9z"/%3E%3C/svg%3E');
+        background-image: url('data:image/svg+xml,%3Csvg fill="%230dcaf0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M12 12.713l11.985-8.713H0.015L12 12.713zM12 14.9l-12-8.713V20.25H24V6.187L12 14.9z"/%3E%3C/svg%3E');
 }
 
 .copyright {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    color: var(--muted-text);
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: var(--muted-text);
 }
 
 /* Animations */
 @keyframes glow {
-    0%, 100% {
-        text-shadow: 0 0 8px var(--secondary-color);
-    }
-    50% {
-        text-shadow: 0 0 16px var(--secondary-color);
-    }
+        0%, 100% { text-shadow: 0 0 8px var(--secondary-color); }
+        50% { text-shadow: 0 0 16px var(--secondary-color); }
 }
 
 @keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
 }
 
 /* Terms of Service section styling */
 .tos {
-    max-width: 900px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    color: var(--text-color);
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background: var(--card-bg);
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        color: var(--text-color);
 }
 
 .tos h2 {
-    margin-top: 0;
-    color: var(--secondary-color);
-    font-size: 1.6rem;
-    text-align: center;
+        margin-top: 0;
+        color: var(--secondary-color);
+        font-size: 1.6rem;
+        text-align: center;
 }
 
 .tos ul {
-    list-style: disc;
-    padding-left: 1.5rem;
-    margin-top: 1rem;
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin-top: 1rem;
 }
 
 .tos li {
-    margin-bottom: 0.6rem;
-    color: var(--muted-text);
+        margin-bottom: 0.6rem;
+        color: var(--muted-text);
 }
 
 /* Feature lists on product pages */
 .feature-list {
-    max-width: 800px;
-    margin: 1.5rem auto;
-    padding-left: 1.5rem;
-    color: var(--muted-text);
-    list-style: disc;
+        max-width: 800px;
+        margin: 1.5rem auto;
+        padding-left: 1.5rem;
+        color: var(--muted-text);
+        list-style: disc;
 }
+
 .feature-list li {
-    margin-bottom: 0.6rem;
+        margin-bottom: 0.6rem;
 }
 
 /* Checkout form styling */
 .checkout-section h1 {
-    text-align: center;
-    color: var(--secondary-color);
-    margin-bottom: 2rem;
+        text-align: center;
+        color: var(--secondary-color);
+        margin-bottom: 2rem;
 }
+
 .checkout-form {
-    max-width: 600px;
-    margin: 2rem auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.checkout-form label {
-    font-size: 0.9rem;
-    color: var(--muted-text);
-}
-.checkout-form input {
-    background: var(--card-bg);
-    border: 1px solid var(--secondary-color);
-    padding: 0.8rem 1rem;
-    border-radius: 4px;
-    color: var(--text-color);
-}
-.checkout-form button {
-    margin-top: 1rem;
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-    .product-highlight {
+        max-width: 600px;
+        margin: 2rem auto;
+        display: flex;
         flex-direction: column;
-    }
+        gap: 1rem;
+}
+
+.checkout-form label {
+        font-size: 0.9rem;
+        color: var(--muted-text);
+}
+
+.checkout-form input {
+        background: var(--card-bg);
+        border: 1px solid var(--secondary-color);
+        padding: 0.8rem 1rem;
+        border-radius: 4px;
+        color: var(--text-color);
+}
+
+.checkout-form button {
+        margin-top: 1rem;
+}
+
+/* Prevent horizontal scrolling on mobile */
+body {
+        overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+        .product-highlight {
+                    flex-direction: column;
+        }
+
     .product-image {
-        width: 100%;
-        max-width: 400px;
+                width: 100%;
+                max-width: 400px;
     }
-}
-
-/* Prevent horizontal scrolling on mobile */
-body {
-  overflow-x: hidden;
-}
-
-/
-/* Prevent horizontal scrolling on mobile */
-body {
-  overflow-x: hidden;
-}
-* Round and reposition the navbar */
-.navbar {
-  position: sticky;
-  top: 0.5rm;m;
-  margin: 0.5rem auto;
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  width: fit-content;
-  max-width: 90%;
-  left: 0;
-  right: 0;
-}
-
-/* Make the logo image circular */
-.navbar .logo img {
-  border-radius: 50%;
-}
-
-/* Animate the planet ring with a pulsing glow */
-.navbar .logo::before {
-  animation: planetPulse 5s ease-in-out infinite;
-}
-
-/* Keyframes for pulsing glow around the planet */
-@keyframes planetPulse {
-  0%, 100% {
-    box-shadow: 0 0 0.5rem var(--glow-color);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 1rem var(--glow-color);
-    transform: scale(1.08);
-  }
-}
-
-/* Adjust navbar offset to accommodate announcement bar */
-.navbar {
-    top: 2.5rem !important;
 }
