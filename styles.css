@@ -335,3 +335,46 @@ body {
     .product-card { padding: 1rem; }
     .hero::before { width: 200px; height: 200px; top: -30px; right: -30px; }
 }
+
+
+/* Testimonial track wrapper for slider */
+.testimonial-track {
+    position: relative;
+    width: 100%;
+}
+
+/* Video hover preview for product cards */
+.product-media {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-media video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+@media (hover: hover) {
+    .product-card:hover .product-media video {
+        opacity: 1;
+    }
+}
+
+/* Mobile nav centering fix */
+@media (max-width: 768px) {
+    .navbar.scrolled {
+        justify-content: center;
+        text-align: center;
+    }
+    .navbar.scrolled .logo,
+    .navbar.scrolled .nav-links {
+        text-align: center;
+    }
+}
+
