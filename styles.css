@@ -169,7 +169,7 @@ body {
 .cta-button { display: inline-block; padding: 0.75rem 2rem; background: var(--primary-color); color: #0a0e23; font-weight: 600; border-radius: 30px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(13,202,240,0.4); }
 /* PRODUCTS SECTION */
-.products-section { padding: 6rem 2rem; background: var(--bg-color); margin-top: 0; position: relative; z-index: 10; overflow: hidden; }
+.products-section { padding: 6rem 2rem; background: var(--bg-color); margin-top: 0; position: relative; overflow: visible; }
 .product-highlight { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2rem; margin-bottom: 4rem; }
 .macro-slider { position: relative; max-width: 700px; width: 100%; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); overflow: hidden; }
 .macro-slide { width: 100%; height: auto; }
