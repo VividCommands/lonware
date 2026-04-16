@@ -275,9 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                               // ── Scroll reveal animations ─────────────────────────────────────────
                               const revealElements = document.querySelectorAll(
-                                          '.product-highlight, .product-card, .benefit-item, .benefits-description, ' +
-                                          '.testimonials-section, .purchase-feed-section, .product-grid, .hero-title, ' +
-                                          '.hero-subtitle, .cta-button, .metrics .metric, h2, .section-subtitle'
+                                                  '.product-highlight, .product-card, .benefit-item, .benefits-description, ' +
+                                        '.testimonials-section, .purchase-feed-section, .product-grid, ' +
+                                        '.metrics .metric, .section-subtitle'
                                       );
         revealElements.forEach(el => {
                     el.classList.add('scroll-reveal');
