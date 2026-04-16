@@ -1,57 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
-
-/* Global font consistency for ALL pages */
-html, body {
-    font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-}
-h1, h2, h3, h4, h5, h6, .logo, header a, footer, nav a {
-    font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-}
-
-/* Announcement bar/div consistency for product pages */
-.announcement, .announcement-bar {
-    font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 0.85rem !important;
-    letter-spacing: 1.2px !important;
-    text-transform: uppercase !important;
-    text-align: center !important;
-    padding: 8px 16px !important;
-    background: linear-gradient(90deg, #001a1a, #002a2a, #001a1a) !important;
-    color: #00e5ff !important;
-    border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
-}
-
-/* Product page header consistency */
-header {
-    font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-}
-header .logo, header a.logo {
-    font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-    font-weight: 700 !important;
-    letter-spacing: 1.5px !important;
-}
-header .nav-links a, header nav a {
-    font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.8px !important;
-}
-
-/* Product page footer consistency */
-footer {
-    font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.5px !important;
-}
-
 /*
  * Lonware Clone Stylesheet
  *
  * This stylesheet defines the core look and feel of the Lonware clone site.
- * The design embraces a dark, space‑inspired aesthetic with a subtle star field
+ * The design embraces a dark, space-inspired aesthetic with a subtle star field
  * backdrop. Cards, buttons and sections are styled to mirror the original
  * Lonware layout while correcting typographic inconsistencies and visual bugs.
- */
+ */ */
 
 /* Reset some default margins and paddings */
 *, *::before, *::after {
