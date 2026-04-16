@@ -1,42 +1,37 @@
 /* === Lonware Custom Overrides (April 2026) === */
 
-/* -- SCROLL FIX: Allow touch scrolling on all pages -- */
-html {
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-  height: 100%;
+/* -- SCROLL FIX: Allow touch scrolling everywhere -- */
+html, body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  height: auto !important;
+  min-height: 100% !important;
+  position: static !important;
 }
-body {
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-  min-height: 100%;
-  position: relative;
-}
-/* Remove overflow:hidden from sections that block scrolling */
-.hero,
-.products-section,
-.packages-section,
-.testimonials-section,
-.purchase-feed-section,
-.benefits-section,
-.community-section {
+
+/* Prevent ALL sections/divs from trapping scroll - only clip the small components */
+section, header, footer, main, article, aside, .hero,
+.products-section, .packages-section, .testimonials-section,
+.purchase-feed-section, .benefits-section, .community-section,
+.product-highlight, .product-grid, .packages-grid,
+.benefits-grid, .community-section {
   overflow: visible !important;
+  -webkit-overflow-scrolling: touch !important;
 }
-/* Only clip overflow on specific small components, not whole sections */
-.macro-slider,
-.product-media,
-.testimonials-container,
-.testimonial-track {
-  overflow: hidden;
-}
-/* Particle canvas must not block scroll */
+
+/* Only these small UI components keep overflow:hidden */
+.macro-slider { overflow: hidden !important; }
+.product-media { overflow: hidden; }
+.testimonials-container { overflow: hidden; }
+.testimonial-track { overflow: hidden; }
+
+/* Particle canvas must NEVER block scroll or touch */
 #particle-canvas {
   pointer-events: none !important;
   touch-action: none !important;
+  z-index: 0 !important;
 }
 
 /* -- TYPOGRAPHY: Gamer-esque font, bolder, more legible -- */
@@ -224,7 +219,6 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   color: #00e5ff;
   font-size: 0.95rem;
 }
-/* Nav arrows */
 .testimonial-nav {
   position: absolute;
   top: 50%;
@@ -253,13 +247,8 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 .testimonial-nav::before {
   display: none !important;
 }
-.testimonial-nav.left {
-  left: -60px;
-}
-.testimonial-nav.right {
-  right: -60px;
-}
-/* Dot indicators */
+.testimonial-nav.left { left: -60px; }
+.testimonial-nav.right { right: -60px; }
 .testimonial-dots {
   display: flex;
   justify-content: center;
@@ -325,9 +314,7 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   font-size: 0.9rem;
   transition: color 0.3s;
 }
-.footer-links a:hover {
-  color: #00e5ff;
-}
+.footer-links a:hover { color: #00e5ff; }
 .copyright {
   font-size: 0.75rem !important;
   opacity: 0.5;
@@ -335,15 +322,19 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   letter-spacing: 0.5px;
 }
 
-/* -- SCROLL REVEAL: Fade-in elements as they appear on scroll -- */
+/* -- SCROLL REVEAL: Elements fade in from below as they enter viewport --
+   CRITICAL: pointer-events:none on hidden state so they NEVER trap scroll/touch */
 .reveal-hidden {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
+  pointer-events: none !important;
+  -webkit-overflow-scrolling: touch;
 }
 .reveal-visible {
   opacity: 1 !important;
   transform: translateY(0) !important;
+  pointer-events: auto !important;
 }
 
 /* -- PRODUCT CARDS -- */
@@ -384,16 +375,10 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 }
 
 /* -- BENEFIT ITEMS -- */
-.benefit-item h3 {
-  font-weight: 700 !important;
-  letter-spacing: 1px;
-}
+.benefit-item h3 { font-weight: 700 !important; letter-spacing: 1px; }
 
 /* -- METRICS -- */
-.metric strong {
-  font-weight: 700 !important;
-  letter-spacing: 0.5px;
-}
+.metric strong { font-weight: 700 !important; letter-spacing: 0.5px; }
 
 /* -- NEW BADGE -- */
 .new-badge {
@@ -406,12 +391,17 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 /* --- MOBILE STYLES --- */
 @media (max-width: 768px) {
   html, body {
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  /* All sections must be scrollable on mobile */
+  section, div, header, footer {
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
-    width: 100%;
-    max-width: 100vw;
   }
   .navbar {
     padding: 10px 16px;
@@ -420,9 +410,7 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
     justify-content: space-between;
     flex-direction: row !important;
   }
-  .navbar .logo {
-    font-size: 1.1rem;
-  }
+  .navbar .logo { font-size: 1.1rem; }
   .navbar .nav-links {
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -466,19 +454,13 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
     font-size: 1.2rem;
     background: rgba(0, 20, 40, 0.8);
   }
-  .testimonial-slide {
-    padding: 24px 16px;
-  }
-  #particle-canvas {
-    z-index: 0 !important;
-  }
+  .testimonial-slide { padding: 24px 16px; }
+  #particle-canvas { z-index: 0 !important; }
 }
 
 /* Desktop styles */
 @media (min-width: 769px) {
-  .navbar.scrolled {
-    min-width: unset;
-  }
+  .navbar.scrolled { min-width: unset; }
   .testimonial-nav.left { left: -60px; }
   .testimonial-nav.right { right: -60px; }
   .announcement-bar {
