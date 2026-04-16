@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
           while(feedList.children.length>5){feedList.removeChild(feedList.lastChild);}
     }
     if(feedList){for(let i=0;i<5;i++)addPurchaseItem();setInterval(addPurchaseItem,4000);}
-    const revealEls=document.querySelectorAll('section:not(.hero),.product-card,.stat-item,.testimonials-section,.purchase-feed-section,footer');
+    const revealEls=document.querySelectorAll('section:not(.hero),.product-card,.package-card,.stat-item,.benefit-item,.testimonials-section,.purchase-feed-section,.metric,footer');
     if(revealEls.length){
           revealEls.forEach(el=>{if(!el.closest('.hero'))el.classList.add('reveal-hidden');});
           const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('reveal-visible');entry.target.classList.remove('reveal-hidden');obs.unobserve(entry.target);}});},{threshold:0.12});
