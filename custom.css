@@ -1,40 +1,47 @@
 /* === Lonware Custom Overrides (April 2026) === */
 
-/* -- SCROLL FIX: Allow touch scrolling everywhere -- */
-html, body {
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  touch-action: pan-y !important;
-  height: auto !important;
-  min-height: 100% !important;
-  position: static !important;
+/* -- SCROLL FIX --
+   Only body scrolls. html is overflow:hidden so there is no double scrollbar.
+   body is the single scroll container with -webkit-overflow-scrolling for iOS.
+*/
+html {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100%;
+}
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  min-height: 100%;
+  position: relative;
 }
 
-/* Prevent ALL sections/divs from trapping scroll - only clip the small components */
-section, header, footer, main, article, aside, .hero,
-.products-section, .packages-section, .testimonials-section,
-.purchase-feed-section, .benefits-section, .community-section,
+/* All page sections must allow scroll to pass through */
+section, header, footer, main, article, aside,
+.hero, .products-section, .packages-section,
+.testimonials-section, .purchase-feed-section,
+.benefits-section, .community-section,
 .product-highlight, .product-grid, .packages-grid,
-.benefits-grid, .community-section {
+.benefits-grid {
   overflow: visible !important;
-  -webkit-overflow-scrolling: touch !important;
 }
 
-/* Only these small UI components keep overflow:hidden */
+/* Only these small UI components keep clipping */
 .macro-slider { overflow: hidden !important; }
 .product-media { overflow: hidden; }
 .testimonials-container { overflow: hidden; }
 .testimonial-track { overflow: hidden; }
 
-/* Particle canvas must NEVER block scroll or touch */
+/* Particle canvas never intercepts touch or scroll */
 #particle-canvas {
   pointer-events: none !important;
   touch-action: none !important;
   z-index: 0 !important;
 }
 
-/* -- TYPOGRAPHY: Gamer-esque font, bolder, more legible -- */
+/* -- TYPOGRAPHY -- */
 body {
   font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
   font-weight: 500;
@@ -65,7 +72,7 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   font-size: clamp(1.4rem, 3.5vw, 2rem) !important;
 }
 
-/* -- ANNOUNCEMENT BAR: Consistent dark teal across all pages -- */
+/* -- ANNOUNCEMENT BAR -- */
 .announcement-bar {
   font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
   font-weight: 600 !important;
@@ -84,7 +91,7 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   animation: none !important;
 }
 
-/* -- NAVBAR: Compact pill on scroll, logo better separated -- */
+/* -- NAVBAR -- */
 .navbar {
   font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
   font-weight: 600 !important;
@@ -119,12 +126,8 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   align-items: center !important;
   justify-content: center !important;
 }
-.navbar.scrolled .logo {
-  margin-right: 20px !important;
-}
-.navbar.scrolled .nav-links {
-  gap: 18px !important;
-}
+.navbar.scrolled .logo { margin-right: 20px !important; }
+.navbar.scrolled .nav-links { gap: 18px !important; }
 .navbar .logo {
   font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
@@ -136,64 +139,33 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   letter-spacing: 0.8px !important;
 }
 
-/* -- MACRO SLIDER: Proper image cycling -- */
-.macro-slider {
-  position: relative;
-  overflow: hidden;
-}
-.macro-slide {
-  display: none;
-  width: 100%;
-}
-.macro-slide.active {
-  display: block !important;
-}
-.macro-slide video, .macro-slide img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.macro-slider .macro-slide img {
-  width: 80%;
-  margin: 0 auto;
-}
+/* -- MACRO SLIDER -- */
+.macro-slider { position: relative; overflow: hidden; }
+.macro-slide { display: none; width: 100%; }
+.macro-slide.active { display: block !important; }
+.macro-slide video, .macro-slide img { width: 100%; height: auto; display: block; }
+.macro-slider .macro-slide img { width: 80%; margin: 0 auto; }
 
-/* -- HERO PLANET: Glow animation via CSS custom properties -- */
-.hero {
-  --glow-intensity: 1;
-  --glow-spread: 80px;
-}
+/* -- HERO -- */
+.hero { --glow-intensity: 1; --glow-spread: 80px; }
 .hero::before {
   filter: brightness(calc(var(--glow-intensity) * 1.3)) drop-shadow(0 0 var(--glow-spread) rgba(0, 229, 255, calc(var(--glow-intensity) * 0.4))) !important;
 }
 
-/* -- TESTIMONIALS: Tab-based slider with arrows and dots -- */
+/* -- TESTIMONIALS -- */
 .testimonials-section h2 {
   font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
-.testimonials-container {
-  position: relative;
-  max-width: 700px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-.testimonial-track {
-  position: relative;
-  width: 100%;
-  min-height: 200px;
-  display: block !important;
-  overflow: hidden !important;
-}
+.testimonials-container { position: relative; max-width: 700px; margin: 0 auto; overflow: hidden; }
+.testimonial-track { position: relative; width: 100%; min-height: 200px; display: block !important; overflow: hidden !important; }
 .testimonial-slide {
   display: none !important;
   opacity: 0;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 0; left: 0; width: 100%;
   transition: opacity 0.5s ease;
   background: rgba(0, 20, 40, 0.5);
   border: 1px solid rgba(0, 229, 255, 0.1);
@@ -202,134 +174,47 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   box-sizing: border-box;
   text-align: center;
 }
-.testimonial-slide.active {
-  display: block !important;
-  opacity: 1 !important;
-  position: relative;
-}
-.testimonial-slide p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 16px;
-  font-style: italic;
-}
-.testimonial-slide .testimonial-author {
-  font-weight: 700;
-  color: #00e5ff;
-  font-size: 0.95rem;
-}
+.testimonial-slide.active { display: block !important; opacity: 1 !important; position: relative; }
+.testimonial-slide p { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 16px; font-style: italic; }
+.testimonial-slide .testimonial-author { font-weight: 700; color: #00e5ff; font-size: 0.95rem; }
 .testimonial-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 229, 255, 0.1);
-  border: 1px solid rgba(0, 229, 255, 0.2);
-  color: #00e5ff;
-  font-size: 1.5rem;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 5;
-  padding: 0;
-  line-height: 1;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.2);
+  color: #00e5ff; font-size: 1.5rem; width: 44px; height: 44px;
+  border-radius: 50%; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; transition: all 0.3s ease; z-index: 5; padding: 0; line-height: 1;
 }
-.testimonial-nav:hover {
-  background: rgba(0, 229, 255, 0.2);
-  border-color: rgba(0, 229, 255, 0.4);
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
-}
-.testimonial-nav::before {
-  display: none !important;
-}
+.testimonial-nav:hover { background: rgba(0,229,255,0.2); border-color: rgba(0,229,255,0.4); box-shadow: 0 0 15px rgba(0,229,255,0.15); }
+.testimonial-nav::before { display: none !important; }
 .testimonial-nav.left { left: -60px; }
 .testimonial-nav.right { right: -60px; }
-.testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 24px;
-}
-.testimonial-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0, 229, 255, 0.4);
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s ease;
-}
-.testimonial-dot.active {
-  background: #00e5ff;
-  border-color: #00e5ff;
-  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
-}
-.testimonial-dot:hover {
-  border-color: #00e5ff;
-  background: rgba(0, 229, 255, 0.3);
-}
+.testimonial-dots { display: flex; justify-content: center; gap: 10px; margin-top: 24px; }
+.testimonial-dot { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid rgba(0,229,255,0.4); background: transparent; cursor: pointer; padding: 0; transition: all 0.3s ease; }
+.testimonial-dot.active { background: #00e5ff; border-color: #00e5ff; box-shadow: 0 0 8px rgba(0,229,255,0.4); }
+.testimonial-dot:hover { border-color: #00e5ff; background: rgba(0,229,255,0.3); }
 
-/* -- FOOTER: Consistent across all pages -- */
+/* -- FOOTER -- */
 .footer {
   font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
   background: var(--bg-color, #01010d) !important;
   border-top: 1px solid rgba(0, 229, 255, 0.15) !important;
   padding: 40px 20px 20px !important;
 }
-.footer-content {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-.footer-logo {
-  font-size: 1.5rem !important;
-  margin-bottom: 8px !important;
-}
-.footer-tagline {
-  font-size: 0.85rem !important;
-  opacity: 0.6;
-  margin-bottom: 20px !important;
-  letter-spacing: 1px;
-}
-.footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  padding: 0;
-  margin: 0 0 20px 0;
-}
-.footer-links a {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.8px !important;
-  color: rgba(255, 255, 255, 0.65);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s;
-}
+.footer-content { max-width: 600px; margin: 0 auto; text-align: center; }
+.footer-logo { font-size: 1.5rem !important; margin-bottom: 8px !important; }
+.footer-tagline { font-size: 0.85rem !important; opacity: 0.6; margin-bottom: 20px !important; letter-spacing: 1px; }
+.footer-links { list-style: none; display: flex; justify-content: center; gap: 24px; padding: 0; margin: 0 0 20px 0; }
+.footer-links a { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-weight: 600 !important; letter-spacing: 0.8px !important; color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
 .footer-links a:hover { color: #00e5ff; }
-.copyright {
-  font-size: 0.75rem !important;
-  opacity: 0.5;
-  margin-top: 8px !important;
-  letter-spacing: 0.5px;
-}
+.copyright { font-size: 0.75rem !important; opacity: 0.5; margin-top: 8px !important; letter-spacing: 0.5px; }
 
-/* -- SCROLL REVEAL: Elements fade in from below as they enter viewport --
-   CRITICAL: pointer-events:none on hidden state so they NEVER trap scroll/touch */
+/* -- SCROLL REVEAL --
+   pointer-events:none is critical - stops invisible elements eating mobile touch events */
 .reveal-hidden {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
   pointer-events: none !important;
-  -webkit-overflow-scrolling: touch;
 }
 .reveal-visible {
   opacity: 1 !important;
@@ -343,128 +228,40 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   border-radius: 16px !important;
   border: 1px solid rgba(0, 229, 255, 0.08) !important;
 }
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 40px rgba(0, 229, 255, 0.12);
-}
-.product-card h3 {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-}
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 8px 40px rgba(0,229,255,0.12); }
+.product-card h3 { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-weight: 700 !important; }
 
-/* -- CTA / Package buttons -- */
 .cta-button, .package-button {
   font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px !important;
-  text-transform: uppercase !important;
+  font-weight: 700 !important; letter-spacing: 1.5px !important; text-transform: uppercase !important;
 }
+.purchase-feed-section h2 { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-weight: 700 !important; text-transform: uppercase; letter-spacing: 1.5px; }
+.purchase-feed-list li { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-size: 0.9rem !important; font-weight: 500 !important; }
+.benefit-item h3 { font-weight: 700 !important; }
+.metric strong { font-weight: 700 !important; }
+.new-badge { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-weight: 700 !important; text-transform: uppercase; }
 
-/* -- PURCHASE FEED -- */
-.purchase-feed-section h2 {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-.purchase-feed-list li {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-size: 0.9rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.3px;
-}
-
-/* -- BENEFIT ITEMS -- */
-.benefit-item h3 { font-weight: 700 !important; letter-spacing: 1px; }
-
-/* -- METRICS -- */
-.metric strong { font-weight: 700 !important; letter-spacing: 0.5px; }
-
-/* -- NEW BADGE -- */
-.new-badge {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* --- MOBILE STYLES --- */
+/* --- MOBILE --- */
 @media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y !important;
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-  /* All sections must be scrollable on mobile */
-  section, div, header, footer {
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
-  }
-  .navbar {
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row !important;
-  }
+  html { overflow-x: hidden; overflow-y: hidden; height: 100%; }
+  body { overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; max-width: 100%; width: 100%; }
+  .navbar { padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; flex-direction: row !important; }
   .navbar .logo { font-size: 1.1rem; }
-  .navbar .nav-links {
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 8px !important;
-    margin-top: 0 !important;
-  }
-  .navbar.scrolled {
-    position: fixed !important;
-    top: 8px !important;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) !important;
-    width: auto !important;
-    min-width: unset;
-    max-width: 92%;
-    padding: 6px 16px !important;
-    border-radius: 50px !important;
-    background: rgba(0, 12, 24, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(0, 229, 255, 0.12) !important;
-    box-shadow: 0 4px 20px rgba(0, 229, 255, 0.06) !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    gap: 10px !important;
-  }
-  .navbar.scrolled .nav-links {
-    margin-top: 0 !important;
-    width: auto !important;
-  }
-  .announcement-bar {
-    font-size: 0.75rem !important;
-    padding: 6px 12px !important;
-    letter-spacing: 1px !important;
-  }
+  .navbar .nav-links { flex-direction: row !important; flex-wrap: nowrap !important; gap: 8px !important; margin-top: 0 !important; }
+  .navbar.scrolled { position: fixed !important; top: 8px !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; width: auto !important; min-width: unset; max-width: 92%; padding: 6px 16px !important; border-radius: 50px !important; background: rgba(0,12,24,0.95) !important; backdrop-filter: blur(20px) !important; -webkit-backdrop-filter: blur(20px) !important; border: 1px solid rgba(0,229,255,0.12) !important; box-shadow: 0 4px 20px rgba(0,229,255,0.06) !important; flex-direction: row !important; justify-content: center !important; gap: 10px !important; }
+  .navbar.scrolled .nav-links { margin-top: 0 !important; width: auto !important; }
+  .announcement-bar { font-size: 0.75rem !important; padding: 6px 12px !important; }
   .testimonial-nav.left { left: 4px; }
   .testimonial-nav.right { right: 4px; }
-  .testimonial-nav {
-    width: 36px;
-    height: 36px;
-    font-size: 1.2rem;
-    background: rgba(0, 20, 40, 0.8);
-  }
+  .testimonial-nav { width: 36px; height: 36px; font-size: 1.2rem; background: rgba(0,20,40,0.8); }
   .testimonial-slide { padding: 24px 16px; }
   #particle-canvas { z-index: 0 !important; }
 }
 
-/* Desktop styles */
+/* --- DESKTOP --- */
 @media (min-width: 769px) {
   .navbar.scrolled { min-width: unset; }
   .testimonial-nav.left { left: -60px; }
   .testimonial-nav.right { right: -60px; }
-  .announcement-bar {
-    font-size: 0.85rem !important;
-    letter-spacing: 1.2px !important;
-  }
+  .announcement-bar { font-size: 0.85rem !important; letter-spacing: 1.2px !important; }
 }
