@@ -1,178 +1,324 @@
-/* === Lonware custom UI fixes (September 2025) === */
+/* === Lonware Custom Overrides (April 2026) === */
 
-/* 1. Announcement Bar: white background, smooth marquee, pause on hover, reduced motion friendly */
-.banner {
-  background: #ffffff !important;
-  color: #111 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-}
-.banner .lw-msg {
-  filter: none !important; /* remove wave effects */
-  white-space: nowrap !important;
-  display: inline-block !important;
-  padding: 0.65rem 1rem !important;
-  letter-spacing: 0.2px !important;
-  will-change: transform !important;
-  animation: lwMarquee 18s linear infinite !important;
-}
-/* duplicate content via data-dup attribute; set via JS */
-.banner .lw-msg::after {
-  /* Remove duplicate discount message and spacing; show only a single announcement */
-  content: "";
-  padding-left: 0;
-}
-.banner:hover .lw-msg {
-  animation-play-state: paused !important;
-}
-@keyframes lwMarquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .banner .lw-msg { animation: none !important; }
-}
-
-/* 2. Replace top-left logo image with shiny text pill button for Lonware */
-header .logo {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-}
-header .logo img {
-  display: none !important; /* hide image */
-}
-header .logo::after {
-  content: "Lonware";
-  font: 700 clamp(16px, 2.2vw, 20px)/1.1 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  letter-spacing: 0.3px;
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  color: #2b2b2b;
-  background: linear-gradient(180deg, #f8f8f8, #dcdcdc);
-  border: 1px solid #c9c9c9;
-  box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, 0.06);
-}
-header .logo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  pointer-events: none;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 40%);
-  mix-blend-mode: screen;
-  transform: translateY(-30%);
-  mask: linear-gradient(#000, transparent 60%);
-}
-
-/* 3. Center hero and neutralize stray transforms */
-.landing {
-  display: grid !important;
-  place-items: center !important;
-  min-height: 72vh !important;
-}
-.landing .hero-art {
-  margin-inline: auto !important;
-}
-.landing, .landing * {
-  left: auto !important;
-  right: auto !important;
-  transform: none !important;
-}
-
-/* 4. Mobile tweaks: smaller cubes, airy spacing, less jank */
-@media (max-width: 768px) {
-  .landing { min-height: 65vh; padding: 32px 20px; }
-}
-@media (max-width: 520px) {
-  .landing .cube {
-    --size: clamp(56px, 24vw, 96px) !important;
-    width: var(--size) !important;
-    height: var(--size) !important;
-    animation-duration: 32s !important; /* calmer on phones */
-  }
-  /* reposition cubes for better balance */
-  .landing .cube:nth-child(1) { top: 52% !important; left: 12% !important; }
-  .landing .cube:nth-child(2) { top: 20% !important; left: 46% !important; }
-  .landing .cube:nth-child(3) { top: 64% !important; left: 78% !important; }
-  section { margin-block: 40px; }
-  nav a, button { min-height: 44px; } /* thumb-friendly targets */
-}
-
-/* 5. Performance niceties */
-img[loading="lazy"] {
-  content-visibility: auto;
-}
-.section-large {
-  content-visibility: auto;
-  contain-intrinsic-size: 1000px 800px;
-}
-
-
-/* Custom mobile adjustments */
-@media (max-width: 640px) {
-  /* Hide video slider navigation arrows on small screens */
-  .video-slider .prev-slide,
-  .video-slider .next-slide {
-    display: none !important;
-  }
-  /* Center release card in New Releases section */
-  .new-release .wrap {
-    display: flex !important;
-    justify-content: center !important;
-  }
-  .new-release .release-card {
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  /* Ensure buy buttons align properly */
-  .product-card .buy-btn {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-
-/* === Custom navigation & mobile adjustments (March 2026) === */
-/* Oval sticky header with reduced height and top spacing */
-header {
-  border-radius: 999px !important;
-  padding: 0.25rem 1rem !important;
-  top: 0.5rem !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  width: fit-content !important;
-}
-
-/* Ensure header spans full width on larger screens while keeping rounded shape */
-@media (min-width: 768px) {
-  header {
-    width: auto !important;
-    margin: 0 1rem !important;
-  }
-}
-
-/* Prevent horizontal scrolling on mobile */
+/* ── TYPOGRAPHY: Gamer-esque font, bolder, more legible ─────────────── */
 body {
-  overflow-x: hidden !important;
+      font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+      font-weight: 500;
+      letter-spacing: 0.3px;
 }
 
-/* Planet (logo ring) pulsing animation */
-header .logo::before {
-  animation: planetPulse 3s ease-in-out infinite !important;
+h1, h2, h3, .hero-title, .footer-logo, .logo {
+      font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+      font-weight: 700 !important;
+      letter-spacing: 1px;
 }
 
-/* Keyframes for pulsing glow around the planet */
-@keyframes planetPulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(255,255,255,0.4);
-    transform: translateY(-30%) scale(1);
-  }
-  50% {
-    box-shadow: 0 0 15px 4px rgba(255,255,255,0.7);
-    transform: translateY(-30%) scale(1.05);
-  }
+.hero-title {
+      font-size: clamp(1.8rem, 5vw, 3.2rem) !important;
+      font-weight: 700 !important;
+      text-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+}
+
+.hero-subtitle {
+      font-weight: 500 !important;
+      font-size: clamp(0.95rem, 2vw, 1.15rem) !important;
+      letter-spacing: 0.4px;
+}
+
+p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-quote {
+      font-weight: 500;
+}
+
+.product-info h2, .benefits-section h2, .testimonials-section h2, .purchase-feed-section h2 {
+      font-weight: 700 !important;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: clamp(1.4rem, 3.5vw, 2rem) !important;
+}
+
+/* ── NAVBAR: Mobile pill fix, no transition, centered logo ────────── */
+@media (max-width: 768px) {
+      .navbar {
+                position: fixed !important;
+                top: 0 !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: 92% !important;
+                max-width: 400px !important;
+                border-radius: 50px !important;
+                padding: 10px 20px !important;
+                background: rgba(14, 23, 40, 0.92) !important;
+                backdrop-filter: blur(16px) !important;
+                -webkit-backdrop-filter: blur(16px) !important;
+                border: 1px solid rgba(0, 229, 255, 0.15) !important;
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 229, 255, 0.08) !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 16px !important;
+                margin-top: 8px !important;
+                z-index: 10000 !important;
+                transition: none !important;
+                animation: none !important;
+      }
+
+    .navbar .logo {
+              font-size: 1.1rem !important;
+              white-space: nowrap !important;
+              text-align: center !important;
+              flex-shrink: 0 !important;
+    }
+
+    .navbar .nav-links {
+              display: flex !important;
+              gap: 12px !important;
+              flex-shrink: 0 !important;
+    }
+
+    .navbar .nav-links a {
+              font-size: 0.85rem !important;
+              white-space: nowrap !important;
+    }
+
+    .navbar.scrolled {
+              top: 0 !important;
+              left: 50% !important;
+              transform: translateX(-50%) !important;
+              width: 92% !important;
+              max-width: 400px !important;
+              border-radius: 50px !important;
+              margin-top: 8px !important;
+              transition: none !important;
+              animation: none !important;
+    }
+
+    .announcement-bar {
+              display: none !important;
+    }
+}
+
+/* Refined pill shape on desktop scroll */
+.navbar.scrolled {
+      border-radius: 50px !important;
+      padding: 10px 28px !important;
+      background: rgba(14, 23, 40, 0.92) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(0, 229, 255, 0.12) !important;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.06) !important;
+}
+
+/* ── PLANET/GLOBE: Bigger, enhanced glow ──────────────────────────── */
+.hero {
+      --glow-intensity: 1;
+      --glow-spread: 80px;
+}
+
+.hero::before {
+      transform: scale(1.15) !important;
+      filter: brightness(calc(var(--glow-intensity) * 1.3)) drop-shadow(0 0 var(--glow-spread) rgba(0, 229, 255, calc(var(--glow-intensity) * 0.4))) !important;
+}
+
+.hero::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(circle, rgba(0, 229, 255, calc(var(--glow-intensity) * 0.06)) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ── WHAT PLAYERS SAY: Manual scroll ─────────────────────────────── */
+.testimonials-container {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+}
+
+.testimonial-track {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 16px;
+      padding: 0 16px;
+}
+
+.testimonial-slide {
+      display: block !important;
+      opacity: 1 !important;
+      flex: 0 0 auto !important;
+      width: 80% !important;
+      max-width: 500px !important;
+      scroll-snap-align: center;
+      background: var(--card-bg, #0e1728) !important;
+      border-radius: 16px !important;
+      padding: 24px !important;
+      border: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+/* ── SCROLL REVEAL ANIMATIONS ─────────────────────────────────────── */
+.scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+}
+
+/* ── FOOTER: Clean separator, natural colors, tighter spacing ─────── */
+.footer {
+      background: var(--bg-color, #01010d) !important;
+      border-top: 1px solid rgba(0, 229, 255, 0.15) !important;
+      padding: 32px 20px 20px !important;
+}
+
+.footer-content {
+      gap: 8px !important;
+      text-align: center;
+}
+
+.footer-logo {
+      font-size: 1.6rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 3px !important;
+      color: var(--primary-color, #0dcaf0) !important;
+      margin-bottom: 4px !important;
+}
+
+.footer-tagline {
+      font-size: 0.9rem !important;
+      margin-bottom: 8px !important;
+      opacity: 0.7;
+      letter-spacing: 1px;
+}
+
+.footer-links {
+      gap: 12px !important;
+      margin-bottom: 8px !important;
+}
+
+.footer-links a {
+      font-weight: 600 !important;
+      letter-spacing: 0.5px;
+}
+
+.social-icons {
+      gap: 12px !important;
+      margin-bottom: 8px !important;
+}
+
+.copyright {
+      font-size: 0.75rem !important;
+      opacity: 0.5;
+      margin-top: 8px !important;
+      letter-spacing: 0.5px;
+}
+
+/* ── PRODUCT CARD VIDEO HOVER (PC - Bloom Reducer) ────────────────── */
+@media (hover: hover) {
+      .product-card .product-media {
+                position: relative;
+                overflow: hidden;
+      }
+
+    .product-card .product-media video {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              opacity: 0;
+              transition: opacity 0.4s ease;
+              z-index: 2;
+    }
+
+    .product-card:hover .product-media video {
+              opacity: 1;
+    }
+}
+
+/* ── PURCHASE FEED LIST REFINEMENTS ──────────────────────────────── */
+.purchase-feed-list li {
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.3px;
+      padding: 12px 20px !important;
+      border-radius: 10px !important;
+      background: rgba(14, 23, 40, 0.6) !important;
+      border: 1px solid rgba(0, 229, 255, 0.06) !important;
+      animation: feedSlideIn 0.5s ease forwards;
+}
+
+@keyframes feedSlideIn {
+      from {
+                opacity: 0;
+                transform: translateY(-10px);
+      }
+      to {
+                opacity: 1;
+                transform: translateY(0);
+      }
+}
+
+/* ── GENERAL POLISH ──────────────────────────────────────────────── */
+.product-card {
+      border-radius: 16px !important;
+      border: 1px solid rgba(0, 229, 255, 0.08) !important;
+      transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.product-card:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 8px 32px rgba(0, 229, 255, 0.12) !important;
+}
+
+.cta-button, .package-button {
+      font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+      font-weight: 700 !important;
+      letter-spacing: 1.5px !important;
+      text-transform: uppercase !important;
+}
+
+/* ── METRICS STYLING ──────────────────────────────────────────────── */
+.metric strong {
+      font-weight: 700 !important;
+      letter-spacing: 0.5px;
+}
+
+/* ── BENEFIT ITEMS ────────────────────────────────────────────────── */
+.benefit-item h3 {
+      font-weight: 700 !important;
+      letter-spacing: 1px;
+}
+
+/* ── ANNOUNCEMENT BAR (desktop) ──────────────────────────────────── */
+@media (min-width: 769px) {
+      .announcement-bar {
+                font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+                font-weight: 600 !important;
+                letter-spacing: 1px;
+      }
+}
+
+/* ── NEW BADGE ────────────────────────────────────────────────────── */
+.new-badge {
+      font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+      font-weight: 700 !important;
+      letter-spacing: 1px;
+      text-transform: uppercase;
 }
