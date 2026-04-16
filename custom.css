@@ -2,397 +2,480 @@
 
 /* -- TYPOGRAPHY: Gamer-esque font, bolder, more legible -- */
 body {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 500;
-        letter-spacing: 0.3px;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 500;
+          letter-spacing: 0.3px;
 }
 
 h1, h2, h3, .hero-title, .footer-logo, .logo {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 700 !important;
-        letter-spacing: 1px;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 700 !important;
+          letter-spacing: 1px;
 }
 
 .hero-title {
-        font-size: clamp(1.8rem, 5vw, 3.2rem) !important;
-        font-weight: 700 !important;
-        text-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+          font-size: clamp(1.8rem, 5vw, 3.2rem) !important;
+          font-weight: 700 !important;
+          text-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
 }
 
 .hero-subtitle {
-        font-weight: 500 !important;
-        font-size: clamp(0.95rem, 2vw, 1.15rem) !important;
-        letter-spacing: 0.4px;
+          font-weight: 500 !important;
+          font-size: clamp(0.95rem, 2vw, 1.15rem) !important;
+          letter-spacing: 0.4px;
 }
 
-/* -- ANNOUNCEMENT BAR: Consistent across all states -- */
+p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-quote {
+          font-weight: 500;
+}
+
+.product-info h2, .benefits-section h2, .testimonials-section h2, .purchase-feed-section h2 {
+          font-weight: 700 !important;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          font-size: clamp(1.4rem, 3.5vw, 2rem) !important;
+}
+
+/* -- ANNOUNCEMENT BAR: Consistent across all pages and states -- */
 .announcement-bar {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 600 !important;
-        font-size: 0.85rem !important;
-        letter-spacing: 1.2px !important;
-        text-transform: uppercase !important;
-        text-align: center !important;
-        padding: 8px 16px !important;
-        background: linear-gradient(90deg, #001a1a, #002a2a, #001a1a) !important;
-        color: #00e5ff !important;
-        border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
-        position: relative;
-        z-index: 1001;
-        width: 100%;
-        box-sizing: border-box;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 600 !important;
+          font-size: 0.85rem !important;
+          letter-spacing: 1.2px !important;
+          text-transform: uppercase !important;
+          text-align: center !important;
+          padding: 8px 16px !important;
+          background: linear-gradient(90deg, #001a1a, #002a2a, #001a1a) !important;
+          color: #00e5ff !important;
+          border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
+          position: relative;
+          z-index: 1001;
+          width: 100%;
+          box-sizing: border-box;
+          animation: none !important;
 }
 
-/* -- NAVBAR: Desktop refined pill on scroll, Mobile starts normal then pill -- */
+/* -- NAVBAR: Desktop refined pill on scroll -- */
 .navbar {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.8px !important;
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        width: 100%;
-        background: rgba(0, 10, 20, 0.95);
-        padding: 12px 24px;
-        box-sizing: border-box;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 600 !important;
+          letter-spacing: 0.8px !important;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          width: 100%;
+          background: rgba(0, 10, 20, 0.95);
+          padding: 12px 24px;
+          box-sizing: border-box;
 }
 
 .navbar.scrolled {
-        position: fixed;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto;
-        min-width: 600px;
-        max-width: 90%;
-        border-radius: 50px;
-        background: rgba(0, 12, 24, 0.92);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(0, 229, 255, 0.1);
-        box-shadow: 0 4px 30px rgba(0, 229, 255, 0.08);
-        padding: 10px 32px;
+          position: fixed !important;
+          top: 12px !important;
+          left: 50% !important;
+          right: auto !important;
+          transform: translateX(-50%) !important;
+          width: auto !important;
+          min-width: 600px;
+          max-width: 90%;
+          border-radius: 50px !important;
+          background: rgba(0, 12, 24, 0.92) !important;
+          backdrop-filter: blur(20px) !important;
+          -webkit-backdrop-filter: blur(20px) !important;
+          border: 1px solid rgba(0, 229, 255, 0.1) !important;
+          box-shadow: 0 4px 30px rgba(0, 229, 255, 0.08) !important;
+          padding: 10px 32px !important;
 }
 
 .navbar .logo {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 700 !important;
-        letter-spacing: 1.5px !important;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 700 !important;
+          letter-spacing: 1.5px !important;
 }
 
 .navbar .nav-links a {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.8px !important;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 600 !important;
+          letter-spacing: 0.8px !important;
 }
 
-/* -- TESTIMONIALS: Tab-based slider, not horizontal scroll -- */
+/* -- MACRO SLIDER: Proper image cycling -- */
+.macro-slider {
+          position: relative;
+          overflow: hidden;
+}
+
+.macro-slide {
+          display: none;
+          width: 100%;
+}
+
+.macro-slide.active {
+          display: block !important;
+}
+
+.macro-slide video,
+.macro-slide img {
+          width: 100%;
+          height: auto;
+          display: block;
+}
+
+.macro-slider .macro-slide img {
+          width: 80%;
+          margin: 0 auto;
+}
+
+/* -- HERO PLANET: Glow animation via CSS custom properties -- */
+.hero {
+          --glow-intensity: 1;
+          --glow-spread: 80px;
+}
+
+.hero::before {
+          filter: brightness(calc(var(--glow-intensity) * 1.3)) drop-shadow(0 0 var(--glow-spread) rgba(0, 229, 255, calc(var(--glow-intensity) * 0.4))) !important;
+}
+
+/* -- TESTIMONIALS: Tab-based slider with arrows and dots -- */
 .testimonials-section h2 {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 700 !important;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 700 !important;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
 }
 
 .testimonials-container {
-        position: relative;
-        max-width: 700px;
-        margin: 0 auto;
-        overflow: hidden;
+          position: relative;
+          max-width: 700px;
+          margin: 0 auto;
+          overflow: hidden;
 }
 
 .testimonial-track {
-        position: relative;
-        width: 100%;
-        min-height: 200px;
-        display: block !important;
-        overflow: hidden !important;
-        flex-wrap: nowrap;
+          position: relative;
+          width: 100%;
+          min-height: 200px;
+          display: block !important;
+          overflow: hidden !important;
 }
 
 .testimonial-slide {
-        display: none !important;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        transition: opacity 0.5s ease;
-        background: rgba(0, 20, 40, 0.5);
-        border: 1px solid rgba(0, 229, 255, 0.1);
-        border-radius: 16px;
-        padding: 32px;
-        box-sizing: border-box;
-        text-align: center;
+          display: none !important;
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          transition: opacity 0.5s ease;
+          background: rgba(0, 20, 40, 0.5);
+          border: 1px solid rgba(0, 229, 255, 0.1);
+          border-radius: 16px;
+          padding: 32px;
+          box-sizing: border-box;
+          text-align: center;
 }
 
 .testimonial-slide.active {
-        display: block !important;
-        opacity: 1 !important;
-        position: relative;
-}
-
-.testimonial-slide .stars {
-        color: #00e5ff;
-        font-size: 1.3rem;
-        margin-bottom: 12px;
+          display: block !important;
+          opacity: 1 !important;
+          position: relative;
 }
 
 .testimonial-slide p {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.85);
-        margin-bottom: 16px;
-        font-style: italic;
+          font-size: 1rem;
+          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.85);
+          margin-bottom: 16px;
+          font-style: italic;
 }
 
 .testimonial-slide .testimonial-author {
-        font-weight: 700;
-        color: #00e5ff;
-        font-size: 0.95rem;
+          font-weight: 700;
+          color: #00e5ff;
+          font-size: 0.95rem;
 }
 
 /* Nav arrows */
 .testimonial-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 229, 255, 0.1);
-        border: 1px solid rgba(0, 229, 255, 0.2);
-        color: #00e5ff;
-        font-size: 1.5rem;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        z-index: 5;
-        padding: 0;
-        line-height: 1;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(0, 229, 255, 0.1);
+          border: 1px solid rgba(0, 229, 255, 0.2);
+          color: #00e5ff;
+          font-size: 1.5rem;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+          z-index: 5;
+          padding: 0;
+          line-height: 1;
 }
 
 .testimonial-nav:hover {
-        background: rgba(0, 229, 255, 0.2);
-        border-color: rgba(0, 229, 255, 0.4);
-        box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
+          background: rgba(0, 229, 255, 0.2);
+          border-color: rgba(0, 229, 255, 0.4);
+          box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
 }
 
-.testimonial-nav.left {
-        left: -60px;
+.testimonial-nav::before {
+          display: none !important;
 }
 
-.testimonial-nav.right {
-        right: -60px;
-}
+.testimonial-nav.left { left: -60px; }
+.testimonial-nav.right { right: -60px; }
 
 /* Dot indicators */
 .testimonial-dots {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 24px;
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          margin-top: 24px;
 }
 
 .testimonial-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        border: 1.5px solid rgba(0, 229, 255, 0.4);
-        background: transparent;
-        cursor: pointer;
-        padding: 0;
-        transition: all 0.3s ease;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          border: 1.5px solid rgba(0, 229, 255, 0.4);
+          background: transparent;
+          cursor: pointer;
+          padding: 0;
+          transition: all 0.3s ease;
 }
 
 .testimonial-dot.active {
-        background: #00e5ff;
-        border-color: #00e5ff;
-        box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+          background: #00e5ff;
+          border-color: #00e5ff;
+          box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
 }
 
 .testimonial-dot:hover {
-        border-color: #00e5ff;
-        background: rgba(0, 229, 255, 0.3);
+          border-color: #00e5ff;
+          background: rgba(0, 229, 255, 0.3);
 }
 
-/* -- FOOTER: Natural color scheme with separator -- */
+/* -- FOOTER: Same background color as page with clear outline separator -- */
 .footer {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        border-top: 1px solid rgba(0, 229, 255, 0.1);
-        padding-top: 40px;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          background: var(--bg-color, #01010d) !important;
+          border-top: 1px solid rgba(0, 229, 255, 0.15) !important;
+          padding: 40px 20px 20px !important;
 }
 
 .footer-content {
-        max-width: 600px;
-        margin: 0 auto;
-        text-align: center;
+          max-width: 600px;
+          margin: 0 auto;
+          text-align: center;
 }
 
 .footer-logo {
-        font-size: 1.5rem;
-        margin-bottom: 8px;
+          font-size: 1.5rem !important;
+          margin-bottom: 8px !important;
 }
 
 .footer-tagline {
-        font-size: 0.85rem;
-        opacity: 0.6;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
+          font-size: 0.85rem !important;
+          opacity: 0.6;
+          margin-bottom: 20px !important;
+          letter-spacing: 1px;
 }
 
 .footer-links {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        gap: 24px;
-        padding: 0;
-        margin: 0 0 20px 0;
+          list-style: none;
+          display: flex;
+          justify-content: center;
+          gap: 24px;
+          padding: 0;
+          margin: 0 0 20px 0;
 }
 
 .footer-links a {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.8px !important;
-        color: rgba(255, 255, 255, 0.65);
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: color 0.3s;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 600 !important;
+          letter-spacing: 0.8px !important;
+          color: rgba(255, 255, 255, 0.65);
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: color 0.3s;
 }
 
 .footer-links a:hover {
-        color: #00e5ff;
+          color: #00e5ff;
+}
+
+.copyright {
+          font-size: 0.75rem !important;
+          opacity: 0.5;
+          margin-top: 8px !important;
+          letter-spacing: 0.5px;
 }
 
 /* -- SCROLL REVEAL -- */
 .reveal-hidden {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .reveal-visible {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
+          opacity: 1 !important;
+          transform: translateY(0) !important;
 }
 
 /* -- PRODUCT CARDS -- */
 .product-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border-radius: 16px !important;
+          border: 1px solid rgba(0, 229, 255, 0.08) !important;
 }
 
 .product-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 8px 40px rgba(0, 229, 255, 0.12);
+          transform: translateY(-6px);
+          box-shadow: 0 8px 40px rgba(0, 229, 255, 0.12);
 }
 
 .product-card h3 {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 700 !important;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 700 !important;
 }
 
-/* -- HERO SECTION -- */
-.hero-section {
-        position: relative;
-        z-index: 2;
-}
-
-.hero-image {
-        position: relative;
-        z-index: 2;
+/* -- CTA / Package buttons -- */
+.cta-button, .package-button {
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 700 !important;
+          letter-spacing: 1.5px !important;
+          text-transform: uppercase !important;
 }
 
 /* -- PURCHASE FEED -- */
 .purchase-feed-section h2 {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-        font-weight: 700 !important;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 700 !important;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
 }
 
-.purchase-item {
-        font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+.purchase-feed-list li {
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-size: 0.9rem !important;
+          font-weight: 500 !important;
+          letter-spacing: 0.3px;
+}
+
+/* -- BENEFIT ITEMS -- */
+.benefit-item h3 {
+          font-weight: 700 !important;
+          letter-spacing: 1px;
+}
+
+/* -- METRICS -- */
+.metric strong {
+          font-weight: 700 !important;
+          letter-spacing: 0.5px;
+}
+
+/* -- NEW BADGE -- */
+.new-badge {
+          font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+          font-weight: 700 !important;
+          letter-spacing: 1px;
+          text-transform: uppercase;
 }
 
 /* --- MOBILE STYLES --- */
 @media (max-width: 768px) {
-
-  /* Mobile navbar: starts normal, becomes pill on scroll */
+          /* Mobile navbar: starts normal, becomes pill on scroll */
   .navbar {
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+              padding: 10px 16px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              flex-direction: row !important;
   }
 
   .navbar .logo {
-            font-size: 1.1rem;
+              font-size: 1.1rem;
+  }
+
+  .navbar .nav-links {
+              flex-direction: row !important;
+              flex-wrap: nowrap !important;
+              gap: 8px !important;
+              margin-top: 0 !important;
   }
 
   .navbar.scrolled {
-            position: fixed;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: auto;
-            min-width: unset;
-            max-width: 92%;
-            padding: 8px 20px;
-            border-radius: 50px;
-            background: rgba(0, 12, 24, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 229, 255, 0.12);
-            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.06);
+              position: fixed !important;
+              top: 8px !important;
+              left: 50% !important;
+              right: auto !important;
+              transform: translateX(-50%) !important;
+              width: auto !important;
+              min-width: unset;
+              max-width: 92%;
+              padding: 8px 20px !important;
+              border-radius: 50px !important;
+              background: rgba(0, 12, 24, 0.95) !important;
+              backdrop-filter: blur(20px) !important;
+              -webkit-backdrop-filter: blur(20px) !important;
+              border: 1px solid rgba(0, 229, 255, 0.12) !important;
+              box-shadow: 0 4px 20px rgba(0, 229, 255, 0.06) !important;
+              flex-direction: row !important;
+              justify-content: center !important;
+              gap: 12px !important;
+  }
+
+  .navbar.scrolled .nav-links {
+              margin-top: 0 !important;
+              width: auto !important;
   }
 
   /* Announcement bar mobile */
   .announcement-bar {
-            font-size: 0.75rem !important;
-            padding: 6px 12px !important;
-            letter-spacing: 1px !important;
+              font-size: 0.75rem !important;
+              padding: 6px 12px !important;
+              letter-spacing: 1px !important;
   }
 
   /* Testimonial arrows inside on mobile */
-  .testimonial-nav.left {
-            left: 4px;
-  }
-
-  .testimonial-nav.right {
-            right: 4px;
-  }
-
-  .testimonial-nav {
-            width: 36px;
-            height: 36px;
-            font-size: 1.2rem;
-            background: rgba(0, 20, 40, 0.8);
-  }
+  .testimonial-nav.left { left: 4px; }
+          .testimonial-nav.right { right: 4px; }
+          .testimonial-nav {
+                      width: 36px;
+                      height: 36px;
+                      font-size: 1.2rem;
+                      background: rgba(0, 20, 40, 0.8);
+          }
 
   .testimonial-slide {
-            padding: 24px 16px;
+              padding: 24px 16px;
   }
 
   /* Particle canvas behind content on mobile */
   #particle-canvas {
-            z-index: 0 !important;
+              z-index: 0 !important;
   }
 }
 
 /* Desktop styles */
 @media (min-width: 769px) {
-        .navbar.scrolled {
-                  min-width: 600px;
-        }
+          .navbar.scrolled {
+                      min-width: 600px;
+          }
 
-  .testimonial-nav.left {
-            left: -60px;
-  }
+  .testimonial-nav.left { left: -60px; }
+          .testimonial-nav.right { right: -60px; }
 
-  .testimonial-nav.right {
-            right: -60px;
+  /* Announcement bar desktop */
+  .announcement-bar {
+              font-size: 0.85rem !important;
+              letter-spacing: 1.2px !important;
   }
 }
