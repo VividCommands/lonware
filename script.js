@@ -142,24 +142,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if(feedList){for(let i=0;i<5;i++)addPurchaseItem();setInterval(addPurchaseItem,4000);}
 
-    // SCROLL REVEAL: Fade-in elements as they scroll into view
-    // Uses threshold:0 + rootMargin so elements reveal as soon as ANY part enters viewport
-    const revealEls = document.querySelectorAll('section:not(.hero),.product-card,.package-card,.stat-item,.benefit-item,.testimonials-section,.purchase-feed-section,.metric,footer');
+    // SCROLL REVEAL: Elements fade up as they enter the viewport
+    // FIX: Use requestAnimationFrame to ensure classes are applied before observer fires
+    // This prevents the observer from immediately triggering for already-in-viewport elements
+    const revealSelectors = 'section:not(.hero),.product-card,.package-card,.stat-item,.benefit-item,.testimonials-section,.purchase-feed-section,.metric,footer';
+    const revealEls = document.querySelectorAll(revealSelectors);
+
     if (revealEls.length) {
+        // Step 1: Add hidden class to all elements immediately
         revealEls.forEach(el => {
             if (!el.closest('.hero')) el.classList.add('reveal-hidden');
         });
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal-visible');
-                    entry.target.classList.remove('reveal-hidden');
-                    obs.unobserve(entry.target);
-                }
+
+        // Step 2: After browser paints the hidden state, set up the observer
+        // Using two rAF calls ensures the CSS transition is applied first
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                const obs = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-visible');
+                            entry.target.classList.remove('reveal-hidden');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
+
+                revealEls.forEach(el => {
+                    if (el.classList.contains('reveal-hidden')) obs.observe(el);
+                });
             });
-        }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-        revealEls.forEach(el => {
-            if (el.classList.contains('reveal-hidden')) obs.observe(el);
         });
     }
 
