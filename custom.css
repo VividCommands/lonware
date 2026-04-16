@@ -9,10 +9,14 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible !important;
   -webkit-overflow-scrolling: touch;
   margin: 0;
-  position: relative;
+  position: static;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
 }
 
 /* All page sections must allow scroll to pass through */
@@ -198,7 +202,7 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 .copyright { font-size: 0.75rem !important; opacity: 0.5; margin-top: 8px !important; letter-spacing: 0.5px; }
 
 /* -- SCROLL REVEAL -- pointer-events:none stops invisible elements eating mobile touch events */
-.reveal-hidden { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none !important; }
+.reveal-hidden { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none !important; will-change: opacity, transform; }
 .reveal-visible { opacity: 1 !important; transform: translateY(0) !important; pointer-events: auto !important; }
 
 /* -- PRODUCT CARDS -- */
@@ -219,10 +223,12 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
     -webkit-overflow-scrolling: touch;
   }
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
+    overflow-y: visible !important;
     -webkit-overflow-scrolling: touch;
     max-width: 100%;
     width: 100%;
+    height: auto !important;
   }
   .navbar { padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; flex-direction: row !important; }
   .navbar .logo { font-size: 1.1rem; }
