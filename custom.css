@@ -1,20 +1,17 @@
 /* === Lonware Custom Overrides (April 2026) === */
 
 /* -- SCROLL FIX --
-   Only body scrolls. html is overflow:hidden so there is no double scrollbar.
-   body is the single scroll container with -webkit-overflow-scrolling for iOS.
-*/
+   Use the browser's NATIVE scrolling. Don't force html or body overflow/height.
+   Only prevent horizontal overflow. This is what the browser does by default
+   and it avoids double scrollbars AND fixes mobile touch scrolling. */
 html {
   overflow-x: hidden;
-  overflow-y: hidden;
-  height: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 body {
   overflow-x: hidden;
-  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-  min-height: 100%;
+  margin: 0;
   position: relative;
 }
 
@@ -23,8 +20,7 @@ section, header, footer, main, article, aside,
 .hero, .products-section, .packages-section,
 .testimonials-section, .purchase-feed-section,
 .benefits-section, .community-section,
-.product-highlight, .product-grid, .packages-grid,
-.benefits-grid {
+.product-highlight, .product-grid, .packages-grid, .benefits-grid {
   overflow: visible !important;
 }
 
@@ -162,17 +158,10 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 .testimonials-container { position: relative; max-width: 700px; margin: 0 auto; overflow: hidden; }
 .testimonial-track { position: relative; width: 100%; min-height: 200px; display: block !important; overflow: hidden !important; }
 .testimonial-slide {
-  display: none !important;
-  opacity: 0;
-  position: absolute;
-  top: 0; left: 0; width: 100%;
-  transition: opacity 0.5s ease;
-  background: rgba(0, 20, 40, 0.5);
-  border: 1px solid rgba(0, 229, 255, 0.1);
-  border-radius: 16px;
-  padding: 32px;
-  box-sizing: border-box;
-  text-align: center;
+  display: none !important; opacity: 0; position: absolute; top: 0; left: 0; width: 100%;
+  transition: opacity 0.5s ease; background: rgba(0, 20, 40, 0.5);
+  border: 1px solid rgba(0, 229, 255, 0.1); border-radius: 16px; padding: 32px;
+  box-sizing: border-box; text-align: center;
 }
 .testimonial-slide.active { display: block !important; opacity: 1 !important; position: relative; }
 .testimonial-slide p { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 16px; font-style: italic; }
@@ -180,9 +169,9 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 .testimonial-nav {
   position: absolute; top: 50%; transform: translateY(-50%);
   background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.2);
-  color: #00e5ff; font-size: 1.5rem; width: 44px; height: 44px;
-  border-radius: 50%; cursor: pointer; display: flex; align-items: center;
-  justify-content: center; transition: all 0.3s ease; z-index: 5; padding: 0; line-height: 1;
+  color: #00e5ff; font-size: 1.5rem; width: 44px; height: 44px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease; z-index: 5; padding: 0; line-height: 1;
 }
 .testimonial-nav:hover { background: rgba(0,229,255,0.2); border-color: rgba(0,229,255,0.4); box-shadow: 0 0 15px rgba(0,229,255,0.15); }
 .testimonial-nav::before { display: none !important; }
@@ -208,33 +197,15 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 .footer-links a:hover { color: #00e5ff; }
 .copyright { font-size: 0.75rem !important; opacity: 0.5; margin-top: 8px !important; letter-spacing: 0.5px; }
 
-/* -- SCROLL REVEAL --
-   pointer-events:none is critical - stops invisible elements eating mobile touch events */
-.reveal-hidden {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-  pointer-events: none !important;
-}
-.reveal-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  pointer-events: auto !important;
-}
+/* -- SCROLL REVEAL -- pointer-events:none stops invisible elements eating mobile touch events */
+.reveal-hidden { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none !important; }
+.reveal-visible { opacity: 1 !important; transform: translateY(0) !important; pointer-events: auto !important; }
 
 /* -- PRODUCT CARDS -- */
-.product-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 16px !important;
-  border: 1px solid rgba(0, 229, 255, 0.08) !important;
-}
+.product-card { transition: transform 0.3s ease, box-shadow 0.3s ease; border-radius: 16px !important; border: 1px solid rgba(0, 229, 255, 0.08) !important; }
 .product-card:hover { transform: translateY(-6px); box-shadow: 0 8px 40px rgba(0,229,255,0.12); }
 .product-card h3 { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-weight: 700 !important; }
-
-.cta-button, .package-button {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important; letter-spacing: 1.5px !important; text-transform: uppercase !important;
-}
+.cta-button, .package-button { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-weight: 700 !important; letter-spacing: 1.5px !important; text-transform: uppercase !important; }
 .purchase-feed-section h2 { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-weight: 700 !important; text-transform: uppercase; letter-spacing: 1.5px; }
 .purchase-feed-list li { font-family: 'Rajdhani', 'Montserrat', sans-serif !important; font-size: 0.9rem !important; font-weight: 500 !important; }
 .benefit-item h3 { font-weight: 700 !important; }
@@ -243,12 +214,27 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 
 /* --- MOBILE --- */
 @media (max-width: 768px) {
-  html { overflow-x: hidden; overflow-y: hidden; height: 100%; }
-  body { overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; max-width: 100%; width: 100%; }
+  html {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    width: 100%;
+  }
   .navbar { padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; flex-direction: row !important; }
   .navbar .logo { font-size: 1.1rem; }
   .navbar .nav-links { flex-direction: row !important; flex-wrap: nowrap !important; gap: 8px !important; margin-top: 0 !important; }
-  .navbar.scrolled { position: fixed !important; top: 8px !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; width: auto !important; min-width: unset; max-width: 92%; padding: 6px 16px !important; border-radius: 50px !important; background: rgba(0,12,24,0.95) !important; backdrop-filter: blur(20px) !important; -webkit-backdrop-filter: blur(20px) !important; border: 1px solid rgba(0,229,255,0.12) !important; box-shadow: 0 4px 20px rgba(0,229,255,0.06) !important; flex-direction: row !important; justify-content: center !important; gap: 10px !important; }
+  .navbar.scrolled {
+    position: fixed !important; top: 8px !important; left: 50% !important; right: auto !important;
+    transform: translateX(-50%) !important; width: auto !important; min-width: unset; max-width: 92%;
+    padding: 6px 16px !important; border-radius: 50px !important; background: rgba(0,12,24,0.95) !important;
+    backdrop-filter: blur(20px) !important; -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(0,229,255,0.12) !important; box-shadow: 0 4px 20px rgba(0,229,255,0.06) !important;
+    flex-direction: row !important; justify-content: center !important; gap: 10px !important;
+  }
   .navbar.scrolled .nav-links { margin-top: 0 !important; width: auto !important; }
   .announcement-bar { font-size: 0.75rem !important; padding: 6px 12px !important; }
   .testimonial-nav.left { left: 4px; }
@@ -265,3 +251,4 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   .testimonial-nav.right { right: -60px; }
   .announcement-bar { font-size: 0.85rem !important; letter-spacing: 1.2px !important; }
 }
+
