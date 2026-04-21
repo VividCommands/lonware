@@ -258,3 +258,152 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   .announcement-bar { font-size: 0.85rem !important; letter-spacing: 1.2px !important; }
 }
 
+
+
+/* =============================================
+   SCROLL-DOWN INDICATOR ARROW
+   (Added April 2026)
+   Appears on the hero on PC and mobile, glows softly, and fades out as the user scrolls.
+   ============================================= */
+.scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin: 2.25rem auto 0;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: #00e5ff;
+  text-decoration: none;
+  box-shadow:
+    0 0 18px rgba(0, 229, 255, 0.45),
+    0 0 42px rgba(0, 229, 255, 0.25),
+    inset 0 0 10px rgba(0, 229, 255, 0.12);
+  animation: scroll-indicator-bob 2.4s ease-in-out infinite, scroll-indicator-glow 2.4s ease-in-out infinite;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+  opacity: 1;
+  visibility: visible;
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+.scroll-indicator svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  fill: currentColor;
+  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.85));
+}
+.scroll-indicator:hover {
+  background: rgba(0, 229, 255, 0.18);
+  border-color: rgba(0, 229, 255, 0.6);
+  transform: translateY(2px);
+}
+.scroll-indicator.is-hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  visibility: hidden;
+}
+@keyframes scroll-indicator-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+@keyframes scroll-indicator-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 18px rgba(0, 229, 255, 0.45),
+      0 0 42px rgba(0, 229, 255, 0.25),
+      inset 0 0 10px rgba(0, 229, 255, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 0 26px rgba(0, 229, 255, 0.7),
+      0 0 60px rgba(0, 229, 255, 0.4),
+      inset 0 0 14px rgba(0, 229, 255, 0.2);
+  }
+}
+@media (max-width: 768px) {
+  .scroll-indicator {
+    width: 42px;
+    height: 42px;
+    margin-top: 1.75rem;
+  }
+  .scroll-indicator svg { width: 22px; height: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator { animation: none; }
+}
+
+/* =============================================
+   PACKAGE CARD ACTIONS (View + Buy Now)
+   (Added April 2026)
+   ============================================= */
+.package-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.package-actions .package-button {
+  flex: 1 1 auto;
+  min-width: 110px;
+  text-align: center;
+  padding: 0.55rem 1.25rem;
+}
+.package-view-button {
+  background: transparent !important;
+  color: #00e5ff !important;
+  border: 1px solid rgba(0, 229, 255, 0.5) !important;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.08) inset;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+.package-view-button:hover {
+  background: rgba(0, 229, 255, 0.12) !important;
+  border-color: rgba(0, 229, 255, 0.85) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(0, 229, 255, 0.25);
+  transform: translateY(-2px);
+}
+@media (max-width: 480px) {
+  .package-actions { gap: 0.5rem; }
+  .package-actions .package-button {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+/* =============================================
+   MOBILE PRODUCT GRID FIX
+   (Added April 2026)
+   On the homepage, mobile product cards had uneven heights because
+   the PC Optimizations image had a different aspect ratio than the
+   others. Locking the image area to a consistent aspect ratio and
+   using object-fit: cover keeps each card the same height.
+   ============================================= */
+@media (max-width: 768px) {
+  .product-grid .product-media {
+    aspect-ratio: 16 / 10;
+    width: 100%;
+  }
+  .product-grid .product-media img,
+  .product-grid .product-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .product-grid .product-card-link { display: flex; }
+  .product-grid .product-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  .product-grid .product-card h3 { margin-top: 0.75rem; }
+}
