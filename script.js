@@ -147,15 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // This prevents the observer from immediately triggering for already-in-viewport elements
     const revealSelectors = 'section:not(.hero),.product-card,.package-card,.stat-item,.benefit-item,.testimonials-section,.purchase-feed-section,.metric,footer';
     const revealEls = document.querySelectorAll(revealSelectors);
-
     if (revealEls.length) {
-        // Step 1: Add hidden class to all elements immediately
-        revealEls.forEach(el => {
-            if (!el.closest('.hero')) el.classList.add('reveal-hidden');
-        });
-
-        // Step 2: After browser paints the hidden state, set up the observer
-        // Using two rAF calls ensures the CSS transition is applied first
+        revealEls.forEach(el => { if (!el.closest('.hero')) el.classList.add('reveal-hidden'); });
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 const obs = new IntersectionObserver(entries => {
@@ -167,10 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-
-                revealEls.forEach(el => {
-                    if (el.classList.contains('reveal-hidden')) obs.observe(el);
-                });
+                revealEls.forEach(el => { if (el.classList.contains('reveal-hidden')) obs.observe(el); });
             });
         });
     }
@@ -200,4 +190,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const heroVideo=document.querySelector('.macro-slide.active video');
     if(heroVideo)heroVideo.play().catch(()=>{});
+
+    // SCROLL-DOWN INDICATOR: fade out as user begins scrolling past the hero
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+        const updateScrollIndicator = () => {
+            // Hide once the user has scrolled a small amount (gradual fade handled via CSS transition)
+            if (window.scrollY > 40) {
+                scrollIndicator.classList.add('is-hidden');
+            } else {
+                scrollIndicator.classList.remove('is-hidden');
+            }
+        };
+        window.addEventListener('scroll', updateScrollIndicator, { passive: true });
+        updateScrollIndicator();
+    }
 });
