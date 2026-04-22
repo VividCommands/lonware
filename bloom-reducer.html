@@ -3,8 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bloom Reducer – Lonware</title>
+  <title>Bloom Reducer â Lonware</title>
   <link rel="stylesheet" href="style.css?v=3">
+  <style>
+    /* Bloom Reducer: hover-to-play video preview (mirrors homepage behavior) */
+    .bloom-preview-media {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .bloom-preview-media img,
+    .bloom-preview-media video {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: opacity 0.4s ease;
+    }
+    .bloom-preview-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .bloom-preview-media:hover .bloom-preview-video { opacity: 1; pointer-events: auto; }
+    .bloom-preview-media:hover .bloom-preview-img { opacity: 0; }
+    @media (hover: none) {
+      .bloom-preview-video { opacity: 1; position: relative; pointer-events: auto; }
+      .bloom-preview-img { display: none; }
+    }
+  </style>
 </head>
 <body>
   <div class="announcement">
@@ -24,7 +58,10 @@
       <div class="video-slider">
         <div class="slides">
           <div class="slide">
-            <video src="https://lonware.com/bloom.mp4" controls preload="metadata"></video>
+            <div class="bloom-preview-media">
+              <img src="aim_product.png" alt="Bloom Reducer preview" class="bloom-preview-img" />
+              <video class="bloom-preview-video" src="https://lonware.com/bloom.mp4" muted loop playsinline preload="metadata" controls></video>
+            </div>
           </div>
           <div class="slide">
             <iframe src="https://www.youtube-nocookie.com/embed/ycqSC46RnnQ?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Bloom Reducer Preview 1" frameborder="0" allowfullscreen></iframe>
@@ -33,8 +70,8 @@
             <iframe src="https://www.youtube-nocookie.com/embed/dIXx7q_W8zE?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Bloom Reducer Preview 2" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
-        <button class="prev-slide" aria-label="Previous video">❮</button>
-        <button class="next-slide" aria-label="Next video">❯</button>
+        <button class="prev-slide" aria-label="Previous video">â®</button>
+        <button class="next-slide" aria-label="Next video">â¯</button>
       </div>
       <div class="product-details">
         <h1>Bloom Reducer</h1>
@@ -44,11 +81,11 @@
           <a href="https://payhip.com/buy?link=1Htr4" class="btn-primary" target="_blank" rel="noopener">Buy Now</a>
         </div>
         <div class="overview">
-          Bloom Reducer cuts through distracting bloom and excessive brightness, giving you clearer visuals when it counts. Whether you’re honing your aim or exploring vast worlds, our tool lets you tailor visual clarity without altering the core feel of your games.
+          Bloom Reducer cuts through distracting bloom and excessive brightness, giving you clearer visuals when it counts. Whether youâre honing your aim or exploring vast worlds, our tool lets you tailor visual clarity without altering the core feel of your games.
         </div>
         <h2 style="font-size:1.4rem;margin-bottom:0.6rem;color:#00c4ff;">Key Features</h2>
         <ul>
-          <li>Reduces on‑screen bloom and glare for sharper imagery.</li>
+          <li>Reduces onâscreen bloom and glare for sharper imagery.</li>
           <li>Enhances color accuracy and contrast while maintaining performance.</li>
           <li>Customizable intensity presets to suit different games and setups.</li>
           <li>Works across a wide range of popular FPS and adventure titles.</li>
@@ -59,9 +96,9 @@
     <div class="tos">
       <h2>Terms of Service</h2>
       <ul>
-        <li><strong>Digital‑only products:</strong> All items are delivered in digital format only. No physical goods will be shipped.</li>
+        <li><strong>Digitalâonly products:</strong> All items are delivered in digital format only. No physical goods will be shipped.</li>
         <!-- Consolidated refund language into a single bullet to avoid repetition -->
-        <li><strong>All sales are final:</strong> Due to the nature of downloadable products, purchases are non‑refundable and no exchanges are offered.</li>
+        <li><strong>All sales are final:</strong> Due to the nature of downloadable products, purchases are nonârefundable and no exchanges are offered.</li>
         <li><strong>Intellectual property:</strong> All files and software are the property of their respective creators. Redistribution is prohibited.</li>
         <li><strong>User responsibility:</strong> Ensure compatibility before purchasing. Misuse may result in account suspension.</li>
         <li><strong>Terms subject to change:</strong> These terms may be updated at any time. Continued use implies acceptance of any changes.</li>
@@ -69,12 +106,21 @@
     </div>
   </main>
   <footer>
-    © 2025 Lonware. All rights reserved.
+    Â©Â 2025Â Lonware. All rights reserved.
   </footer>
 
   <!-- Simple slider script for product videos -->
   <script>
   document.addEventListener('DOMContentLoaded', function() {
+    function isBloomMobile(){return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;}
+    if (!isBloomMobile()) {
+      document.querySelectorAll('.bloom-preview-media').forEach(function(box){
+        var v = box.querySelector('.bloom-preview-video');
+        if (!v) return;
+        box.addEventListener('mouseenter', function(){ v.play().catch(function(){}); });
+        box.addEventListener('mouseleave', function(){ v.pause(); v.currentTime = 0; });
+      });
+    }
     const slider = document.querySelector('.video-slider');
     if (!slider) return;
     const slides = slider.querySelectorAll('.slide');
