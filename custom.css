@@ -1,4 +1,4 @@
-/* === Lonware Custom Overrides (April 2026) === */
+REPLACEMENT/* === Lonware Custom Overrides (April 2026) === */
 
 /* -- SCROLL FIX --
    Use the browser's NATIVE scrolling. Don't force html or body overflow/height.
@@ -628,4 +628,53 @@ p, li, a, span, button,
     height: 100%;
   }
   .product-grid .product-card h3 { margin-top: 0.75rem; }
+}
+
+
+/* =============================================
+   MOBILE HERO BUTTON CLEARANCE (Added April 2026)
+   Ensure the "See Products" CTA isn't obscured by the
+   absolutely-positioned scroll-indicator on mobile.
+============================================= */
+@media (max-width: 768px) {
+  .hero {
+    position: relative;
+    padding-bottom: 110px !important;
+  }
+  .hero .cta-button {
+    position: relative;
+    z-index: 3;
+  }
+  .scroll-indicator {
+    z-index: 2;
+  }
+}
+
+/* =============================================
+   PC PACKAGE BUTTON SYMMETRY (Added April 2026)
+   Force Buy Now and View buttons on the packages page
+   to be the same width and height on desktop.
+============================================= */
+@media (min-width: 769px) {
+  .package-actions {
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .package-actions .package-button {
+    flex: 1 1 0 !important;
+    width: 50% !important;
+    min-width: 0 !important;
+    max-width: 50% !important;
+    padding: 0.75rem 1rem !important;
+    min-height: 48px !important;
+    height: 48px !important;
+    line-height: 1.2 !important;
+    font-size: 0.95rem !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
 }
