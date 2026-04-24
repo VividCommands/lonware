@@ -1,680 +1,670 @@
-REPLACEMENT/* === Lonware Custom Overrides (April 2026) === */
+/* === Lonware Custom Overrides === */
 
-/* -- SCROLL FIX --
-   Use the browser's NATIVE scrolling. Don't force html or body overflow/height.
-   Only prevent horizontal overflow. This is what the browser does by default
-   and it avoids double scrollbars AND fixes mobile touch scrolling. */
+/* -- SCROLL FIX -- */
 html {
-  overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
+     overflow-x: hidden;
+     -webkit-text-size-adjust: 100%;
 }
 body {
-  overflow-x: clip;
-  overflow-y: visible !important;
-  -webkit-overflow-scrolling: touch;
-  margin: 0;
-  position: static;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
+     overflow-x: clip;
+     overflow-y: visible !important;
+     -webkit-overflow-scrolling: touch;
+     margin: 0;
+     position: static;
+     height: auto !important;
+     min-height: 0 !important;
+     max-height: none !important;
 }
-
-/* All page sections must allow scroll to pass through */
 section, header, footer, main, article, aside,
 .hero, .products-section, .packages-section,
 .testimonials-section, .purchase-feed-section,
 .benefits-section, .community-section,
 .product-highlight, .product-grid, .packages-grid, .benefits-grid {
-  overflow: visible !important;
+     overflow: visible !important;
 }
-
-/* Only these small UI components keep clipping */
 .macro-slider { overflow: hidden !important; }
 .product-media { overflow: hidden; }
 .testimonials-container { overflow: hidden; }
 .testimonial-track { overflow: hidden; }
-
-/* Particle canvas never intercepts touch or scroll */
 #particle-canvas {
-  pointer-events: none !important;
-  touch-action: none !important;
-  z-index: 0 !important;
+     pointer-events: none !important;
+     touch-action: none !important;
+     z-index: 0 !important;
 }
 
 /* -- TYPOGRAPHY -- */
 body {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 500;
-  letter-spacing: 0.3px;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 500;
+     letter-spacing: 0.3px;
 }
 h1, h2, h3, .hero-title, .footer-logo, .logo {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 1px;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 700 !important;
+     letter-spacing: 1px;
 }
 .hero-title {
-  font-size: clamp(1.8rem, 5vw, 3.2rem) !important;
-  font-weight: 700 !important;
-  text-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+     font-size: clamp(1.8rem, 5vw, 3.2rem) !important;
+     font-weight: 700 !important;
+     text-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
 }
 .hero-subtitle {
-  font-weight: 500 !important;
-  font-size: clamp(0.95rem, 2vw, 1.15rem) !important;
-  letter-spacing: 0.4px;
+     font-weight: 500 !important;
+     font-size: clamp(0.95rem, 2vw, 1.15rem) !important;
+     letter-spacing: 0.4px;
 }
-p, li, a, span, button,
-.product-card-desc, .benefits-description, .testimonial-quote {
-  font-weight: 500;
+p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-quote {
+     font-weight: 500;
 }
-.product-info h2,
-.benefits-section h2,
-.testimonials-section h2,
-.purchase-feed-section h2 {
-  font-weight: 700 !important;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-size: clamp(1.4rem, 3.5vw, 2rem) !important;
+.product-info h2, .benefits-section h2,
+.testimonials-section h2, .purchase-feed-section h2 {
+     font-weight: 700 !important;
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
+     font-size: clamp(1.4rem, 3.5vw, 2rem) !important;
 }
 
 /* -- ANNOUNCEMENT BAR -- */
 .announcement-bar {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 0.85rem !important;
-  letter-spacing: 1.2px !important;
-  text-transform: uppercase !important;
-  text-align: center !important;
-  padding: 8px 16px !important;
-  background: #001414 !important;
-  color: #00e5ff !important;
-  border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
-  position: relative;
-  z-index: 1001;
-  width: 100%;
-  box-sizing: border-box;
-  animation: none !important;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 600 !important;
+     font-size: 0.85rem !important;
+     letter-spacing: 1.2px !important;
+     text-transform: uppercase !important;
+     text-align: center !important;
+     padding: 8px 16px !important;
+     background: #001414 !important;
+     color: #00e5ff !important;
+     border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
+     position: relative;
+     z-index: 1001;
+     width: 100%;
+     box-sizing: border-box;
+     animation: none !important;
 }
 
-/* -- NAVBAR -- */
+/* =============================================
+   NAVBAR — Improved Smooth Animation
+   Key fix: use will-change + consistent
+   transition so expand & collapse both feel
+   equally smooth and logical.
+   ============================================= */
 .navbar {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.8px !important;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  background: rgba(0, 10, 20, 0.95);
-  padding: 12px 24px;
-  box-sizing: border-box;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 600 !important;
+     letter-spacing: 0.8px !important;
+     position: sticky;
+     top: 0;
+     z-index: 1000;
+     width: 100%;
+     background: rgba(0, 10, 20, 0.95);
+     padding: 12px 24px;
+     box-sizing: border-box;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     border-radius: 0;
+     border: 1px solid transparent;
+     box-shadow: none;
+     will-change: top, left, width, padding, border-radius, background, box-shadow, transform;
+     transition:
+            top 0.45s cubic-bezier(0.34, 1.10, 0.64, 1),
+            left 0.45s cubic-bezier(0.34, 1.10, 0.64, 1),
+            width 0.45s cubic-bezier(0.34, 1.10, 0.64, 1),
+            padding 0.45s cubic-bezier(0.34, 1.10, 0.64, 1),
+            border-radius 0.45s cubic-bezier(0.34, 1.10, 0.64, 1),
+            background 0.45s ease,
+            box-shadow 0.45s ease,
+            border-color 0.45s ease,
+            transform 0.45s cubic-bezier(0.34, 1.10, 0.64, 1) !important;
 }
+
+/* Scrolled pill state */
 .navbar.scrolled {
-  position: fixed !important;
-  top: 10px !important;
-  left: 50% !important;
-  right: auto !important;
-  transform: translateX(-50%) !important;
-  width: auto !important;
-  min-width: unset;
-  max-width: 80%;
-  border-radius: 50px !important;
-  background: rgba(0, 12, 24, 0.92) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(0, 229, 255, 0.1) !important;
-  box-shadow: 0 4px 30px rgba(0, 229, 255, 0.08) !important;
-  padding: 6px 22px !important;
-  gap: 28px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+     position: fixed !important;
+     top: 10px !important;
+     left: 50% !important;
+     right: auto !important;
+     transform: translateX(-50%) !important;
+     width: auto !important;
+     min-width: unset;
+     max-width: 80%;
+     border-radius: 50px !important;
+     background: rgba(0, 12, 24, 0.92) !important;
+     backdrop-filter: blur(20px) !important;
+     -webkit-backdrop-filter: blur(20px) !important;
+     border: 1px solid rgba(0, 229, 255, 0.12) !important;
+     box-shadow: 0 4px 30px rgba(0, 229, 255, 0.08) !important;
+     padding: 6px 22px !important;
+     gap: 20px !important;
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
 }
-.navbar.scrolled .logo { margin-right: 20px !important; }
-.navbar.scrolled .nav-links { gap: 18px !important; }
+.navbar.scrolled .logo { margin-right: 12px !important; }
+.navbar.scrolled .nav-links { gap: 14px !important; }
+
+/* Nav link base */
 .navbar .logo {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px !important;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 700 !important;
+     letter-spacing: 1.5px !important;
 }
 .navbar .nav-links a {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.8px !important;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 600 !important;
+     letter-spacing: 0.8px !important;
+}
+
+/* =============================================
+   DISCORD BUTTON — Navbar
+   Fits the cyan/dark aesthetic, Discord
+   purple accent, smooth glow on hover.
+   ============================================= */
+.nav-discord-btn {
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     padding: 6px 16px;
+     background: rgba(88, 101, 242, 0.15);
+     color: #ffffff !important;
+     border: 1px solid rgba(88, 101, 242, 0.5);
+     border-radius: 50px;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 700 !important;
+     font-size: 0.88rem;
+     letter-spacing: 0.8px;
+     text-decoration: none !important;
+     white-space: nowrap;
+     transition:
+            background 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease,
+            transform 0.2s ease;
+     cursor: pointer;
+     flex-shrink: 0;
+}
+.nav-discord-btn:hover {
+     background: rgba(88, 101, 242, 0.35) !important;
+     border-color: rgba(88, 101, 242, 0.85) !important;
+     box-shadow: 0 0 16px rgba(88, 101, 242, 0.35) !important;
+     transform: translateY(-1px);
+     color: #ffffff !important;
+}
+.nav-discord-btn:active {
+     transform: translateY(0);
+}
+.nav-discord-btn svg {
+     width: 16px;
+     height: 16px;
+     flex-shrink: 0;
+     fill: currentColor;
+}
+
+/* Shrink the button slightly in the pill state so it stays compact */
+.navbar.scrolled .nav-discord-btn {
+     padding: 4px 13px;
+     font-size: 0.85rem;
 }
 
 /* -- MACRO SLIDER -- */
 .macro-slider { position: relative; overflow: hidden; }
 .macro-slide { display: none; width: 100%; }
 .macro-slide.active { display: block !important; }
-.macro-slide video, .macro-slide img {
-  width: 100%; height: auto; display: block;
-}
+.macro-slide video, .macro-slide img { width: 100%; height: auto; display: block; }
 .macro-slider .macro-slide img { width: 80%; margin: 0 auto; }
 
 /* -- HERO -- */
 .hero { --glow-intensity: 1; --glow-spread: 80px; }
 .hero::before {
-  filter: brightness(calc(var(--glow-intensity) * 1.3))
-          drop-shadow(0 0 var(--glow-spread) rgba(0, 229, 255, calc(var(--glow-intensity) * 0.4))) !important;
+     filter: brightness(calc(var(--glow-intensity) * 1.3))
+             drop-shadow(0 0 var(--glow-spread) rgba(0, 229, 255, calc(var(--glow-intensity) * 0.4))) !important;
 }
 
 /* -- TESTIMONIALS -- */
 .testimonials-section h2 {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 700 !important;
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
 }
 .testimonials-container {
-  position: relative;
-  max-width: 700px;
-  margin: 0 auto;
-  overflow: hidden;
+     position: relative;
+     max-width: 700px;
+     margin: 0 auto;
+     overflow: hidden;
 }
 .testimonial-track {
-  position: relative;
-  width: 100%;
-  min-height: 200px;
-  display: block !important;
-  overflow: hidden !important;
+     position: relative;
+     width: 100%;
+     min-height: 200px;
+     display: block !important;
+     overflow: hidden !important;
 }
 .testimonial-slide {
-  display: none !important;
-  opacity: 0;
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  transition: opacity 0.5s ease;
-  background: rgba(0, 20, 40, 0.5);
-  border: 1px solid rgba(0, 229, 255, 0.1);
-  border-radius: 16px;
-  padding: 32px;
-  box-sizing: border-box;
-  text-align: center;
+     display: none !important;
+     opacity: 0;
+     position: absolute;
+     top: 0; left: 0;
+     width: 100%;
+     transition: opacity 0.5s ease;
+     background: rgba(0, 20, 40, 0.5);
+     border: 1px solid rgba(0, 229, 255, 0.1);
+     border-radius: 16px;
+     padding: 32px;
+     box-sizing: border-box;
+     text-align: center;
 }
 .testimonial-slide.active {
-  display: block !important;
-  opacity: 1 !important;
-  position: relative;
+     display: block !important;
+     opacity: 1 !important;
+     position: relative;
 }
 .testimonial-slide p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.85);
-  margin-bottom: 16px;
-  font-style: italic;
+     font-size: 1rem;
+     line-height: 1.6;
+     color: rgba(255,255,255,0.85);
+     margin-bottom: 16px;
+     font-style: italic;
 }
 .testimonial-slide .testimonial-author {
-  font-weight: 700;
-  color: #00e5ff;
-  font-size: 0.95rem;
+     font-weight: 700;
+     color: #00e5ff;
+     font-size: 0.95rem;
 }
 .testimonial-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 229, 255, 0.1);
-  border: 1px solid rgba(0, 229, 255, 0.2);
-  color: #00e5ff;
-  font-size: 1.5rem;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 5;
-  padding: 0;
-  line-height: 1;
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     background: rgba(0, 229, 255, 0.1);
+     border: 1px solid rgba(0, 229, 255, 0.2);
+     color: #00e5ff;
+     font-size: 1.5rem;
+     width: 44px; height: 44px;
+     border-radius: 50%;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     transition: all 0.3s ease;
+     z-index: 5;
+     padding: 0;
+     line-height: 1;
 }
 .testimonial-nav:hover {
-  background: rgba(0,229,255,0.2);
-  border-color: rgba(0,229,255,0.4);
-  box-shadow: 0 0 15px rgba(0,229,255,0.15);
+     background: rgba(0,229,255,0.2);
+     border-color: rgba(0,229,255,0.4);
+     box-shadow: 0 0 15px rgba(0,229,255,0.15);
 }
 .testimonial-nav::before { display: none !important; }
 .testimonial-nav.left { left: -60px; }
 .testimonial-nav.right { right: -60px; }
 .testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 24px;
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+     margin-top: 24px;
 }
 .testimonial-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0,229,255,0.4);
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s ease;
+     width: 10px; height: 10px;
+     border-radius: 50%;
+     border: 1.5px solid rgba(0,229,255,0.4);
+     background: transparent;
+     cursor: pointer;
+     padding: 0;
+     transition: all 0.3s ease;
 }
 .testimonial-dot.active {
-  background: #00e5ff;
-  border-color: #00e5ff;
-  box-shadow: 0 0 8px rgba(0,229,255,0.4);
+     background: #00e5ff;
+     border-color: #00e5ff;
+     box-shadow: 0 0 8px rgba(0,229,255,0.4);
 }
 .testimonial-dot:hover {
-  border-color: #00e5ff;
-  background: rgba(0,229,255,0.3);
+     border-color: #00e5ff;
+     background: rgba(0,229,255,0.3);
 }
 
 /* -- FOOTER -- */
 .footer {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  background: var(--bg-color, #01010d) !important;
-  border-top: 1px solid rgba(0, 229, 255, 0.15) !important;
-  padding: 40px 20px 20px !important;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     background: var(--bg-color, #01010d) !important;
+     border-top: 1px solid rgba(0, 229, 255, 0.15) !important;
+     padding: 40px 20px 20px !important;
 }
-.footer-content {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
+.footer-content { max-width: 600px; margin: 0 auto; text-align: center; }
 .footer-logo { font-size: 1.5rem !important; margin-bottom: 8px !important; }
-.footer-tagline {
-  font-size: 0.85rem !important;
-  opacity: 0.6;
-  margin-bottom: 20px !important;
-  letter-spacing: 1px;
-}
+.footer-tagline { font-size: 0.85rem !important; opacity: 0.6; margin-bottom: 20px !important; letter-spacing: 1px; }
 .footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  padding: 0;
-  margin: 0 0 20px 0;
+     list-style: none;
+     display: flex;
+     justify-content: center;
+     gap: 24px;
+     padding: 0;
+     margin: 0 0 20px 0;
 }
 .footer-links a {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.8px !important;
-  color: rgba(255,255,255,0.65);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 600 !important;
+     letter-spacing: 0.8px !important;
+     color: rgba(255,255,255,0.65);
+     text-decoration: none;
+     font-size: 0.9rem;
+     transition: color 0.3s;
 }
 .footer-links a:hover { color: #00e5ff; }
-.copyright {
-  font-size: 0.75rem !important;
-  opacity: 0.5;
-  margin-top: 8px !important;
-  letter-spacing: 0.5px;
-}
+.copyright { font-size: 0.75rem !important; opacity: 0.5; margin-top: 8px !important; letter-spacing: 0.5px; }
 
-/* -- SCROLL REVEAL -- pointer-events:none stops invisible elements eating mobile touch events */
+/* -- SCROLL REVEAL -- */
 .reveal-hidden {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-  pointer-events: none !important;
-  will-change: opacity, transform;
+     opacity: 0;
+     transform: translateY(30px);
+     transition: opacity 0.7s ease, transform 0.7s ease;
+     pointer-events: none !important;
+     will-change: opacity, transform;
 }
 .reveal-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  pointer-events: auto !important;
+     opacity: 1 !important;
+     transform: translateY(0) !important;
+     pointer-events: auto !important;
 }
 
 /* -- PRODUCT CARDS -- */
 .product-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 16px !important;
-  border: 1px solid rgba(0, 229, 255, 0.08) !important;
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+     border-radius: 16px !important;
+     border: 1px solid rgba(0, 229, 255, 0.08) !important;
 }
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 40px rgba(0,229,255,0.12);
+     transform: translateY(-6px);
+     box-shadow: 0 8px 40px rgba(0,229,255,0.12);
 }
 .product-card h3 {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 700 !important;
 }
 .cta-button, .package-button {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px !important;
-  text-transform: uppercase !important;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 700 !important;
+     letter-spacing: 1.5px !important;
+     text-transform: uppercase !important;
 }
 .purchase-feed-section h2 {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 700 !important;
+     text-transform: uppercase;
+     letter-spacing: 1.5px;
 }
 .purchase-feed-list li {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-size: 0.9rem !important;
-  font-weight: 500 !important;
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-size: 0.9rem !important;
+     font-weight: 500 !important;
 }
 .benefit-item h3 { font-weight: 700 !important; }
 .metric strong { font-weight: 700 !important; }
 .new-badge {
-  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-  font-weight: 700 !important;
-  text-transform: uppercase;
-}
-
-/* --- MOBILE --- */
-@media (max-width: 768px) {
-  html {
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-  body {
-    overflow-x: clip;
-    overflow-y: visible !important;
-    -webkit-overflow-scrolling: touch;
-    max-width: 100%;
-    width: 100%;
-    height: auto !important;
-  }
-  .navbar {
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row !important;
-  }
-  .navbar .logo { font-size: 1.1rem; }
-  .navbar .nav-links {
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 8px !important;
-    margin-top: 0 !important;
-  }
-  .navbar.scrolled {
-    position: fixed !important;
-    top: 8px !important;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) !important;
-    width: auto !important;
-    min-width: unset;
-    max-width: 92%;
-    padding: 6px 16px !important;
-    border-radius: 50px !important;
-    background: rgba(0,12,24,0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(0,229,255,0.12) !important;
-    box-shadow: 0 4px 20px rgba(0,229,255,0.06) !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    gap: 10px !important;
-  }
-  .navbar.scrolled .nav-links {
-    margin-top: 0 !important;
-    width: auto !important;
-  }
-  .announcement-bar {
-    font-size: 0.75rem !important;
-    padding: 6px 12px !important;
-  }
-  .testimonial-nav.left { left: 4px; }
-  .testimonial-nav.right { right: 4px; }
-  .testimonial-nav {
-    width: 36px; height: 36px;
-    font-size: 1.2rem;
-    background: rgba(0,20,40,0.8);
-  }
-  .testimonial-slide { padding: 24px 16px; }
-  #particle-canvas { z-index: 0 !important; }
-}
-
-/* --- DESKTOP --- */
-@media (min-width: 769px) {
-  .navbar.scrolled { min-width: unset; }
-  .testimonial-nav.left { left: -60px; }
-  .testimonial-nav.right { right: -60px; }
-  .announcement-bar {
-    font-size: 0.85rem !important;
-    letter-spacing: 1.2px !important;
-  }
+     font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+     font-weight: 700 !important;
+     text-transform: uppercase;
 }
 
 /* =============================================
-   SCROLL-DOWN INDICATOR ARROW (Added April 2026)
-   Appears on the hero on PC and mobile, glows softly,
-   and fades out as the user scrolls.
+   MOBILE
+   ============================================= */
+@media (max-width: 768px) {
+     html {
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+     }
+     body {
+            overflow-x: clip;
+            overflow-y: visible !important;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+            width: 100%;
+            height: auto !important;
+     }
+
+  /* Mobile navbar — full-width at top when not scrolled */
+  .navbar {
+         padding: 10px 16px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         flex-direction: row !important;
+  }
+     .navbar .logo { font-size: 1.1rem; }
+     .navbar .nav-links {
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 6px !important;
+            margin-top: 0 !important;
+     }
+
+  /* Mobile navbar — pill state when scrolled */
+  .navbar.scrolled {
+         position: fixed !important;
+         top: 8px !important;
+         left: 50% !important;
+         right: auto !important;
+         transform: translateX(-50%) !important;
+         width: auto !important;
+         min-width: unset;
+         max-width: 96%;
+         padding: 5px 14px !important;
+         border-radius: 50px !important;
+         background: rgba(0,12,24,0.95) !important;
+         backdrop-filter: blur(20px) !important;
+         -webkit-backdrop-filter: blur(20px) !important;
+         border: 1px solid rgba(0,229,255,0.12) !important;
+         box-shadow: 0 4px 20px rgba(0,229,255,0.06) !important;
+         flex-direction: row !important;
+         justify-content: center !important;
+         gap: 8px !important;
+  }
+     .navbar.scrolled .nav-links {
+            margin-top: 0 !important;
+            width: auto !important;
+     }
+
+  /* Discord button — mobile size */
+  .nav-discord-btn {
+         padding: 5px 11px;
+         font-size: 0.82rem;
+         gap: 5px;
+  }
+     .nav-discord-btn svg { width: 14px; height: 14px; }
+     .navbar.scrolled .nav-discord-btn {
+            padding: 3px 10px;
+            font-size: 0.80rem;
+     }
+
+  .announcement-bar { font-size: 0.75rem !important; padding: 6px 12px !important; }
+     .testimonial-nav.left { left: 4px; }
+     .testimonial-nav.right { right: 4px; }
+     .testimonial-nav {
+            width: 36px; height: 36px;
+            font-size: 1.2rem;
+            background: rgba(0,20,40,0.8);
+     }
+     .testimonial-slide { padding: 24px 16px; }
+     #particle-canvas { z-index: 0 !important; }
+}
+
+/* =============================================
+   DESKTOP
+   ============================================= */
+@media (min-width: 769px) {
+     .navbar.scrolled { min-width: unset; }
+     .testimonial-nav.left { left: -60px; }
+     .testimonial-nav.right { right: -60px; }
+     .announcement-bar { font-size: 0.85rem !important; letter-spacing: 1.2px !important; }
+}
+
+/* =============================================
+   SCROLL-DOWN INDICATOR
    ============================================= */
 .scroll-indicator {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  margin: 2.25rem auto 0;
-  padding: 0;
-  border-radius: 50%;
-  background: rgba(0, 229, 255, 0.08);
-  border: 1px solid rgba(0, 229, 255, 0.35);
-  color: #00e5ff;
-  text-decoration: none;
-  box-shadow:
-    0 0 18px rgba(0, 229, 255, 0.45),
-    0 0 42px rgba(0, 229, 255, 0.25),
-    inset 0 0 10px rgba(0, 229, 255, 0.12);
-  animation:
-    scroll-indicator-bob 2.4s ease-in-out infinite,
-    scroll-indicator-glow 2.4s ease-in-out infinite;
-  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
-  opacity: 1;
-  visibility: visible;
-  cursor: pointer;
-  pointer-events: auto;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-  z-index: 2;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     width: 46px; height: 46px;
+     margin: 2.25rem auto 0;
+     padding: 0;
+     border-radius: 50%;
+     background: rgba(0, 229, 255, 0.08);
+     border: 1px solid rgba(0, 229, 255, 0.35);
+     color: #00e5ff;
+     text-decoration: none;
+     box-shadow:
+            0 0 18px rgba(0, 229, 255, 0.45),
+            0 0 42px rgba(0, 229, 255, 0.25),
+            inset 0 0 10px rgba(0, 229, 255, 0.12);
+     animation:
+            scroll-indicator-bob 2.4s ease-in-out infinite,
+            scroll-indicator-glow 2.4s ease-in-out infinite;
+     transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+     opacity: 1;
+     visibility: visible;
+     cursor: pointer;
+     pointer-events: auto;
+     -webkit-tap-highlight-color: transparent;
+     position: relative;
+     z-index: 2;
 }
 .scroll-indicator svg {
-  width: 24px;
-  height: 24px;
-  display: block;
-  fill: currentColor;
-  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.85));
+     width: 24px; height: 24px;
+     display: block;
+     fill: currentColor;
+     filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.85));
 }
 .scroll-indicator:hover {
-  background: rgba(0, 229, 255, 0.18);
-  border-color: rgba(0, 229, 255, 0.6);
-  transform: translateY(2px);
+     background: rgba(0, 229, 255, 0.18);
+     border-color: rgba(0, 229, 255, 0.6);
+     transform: translateY(2px);
 }
 .scroll-indicator.is-hidden {
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-  visibility: hidden;
+     opacity: 0;
+     transform: translateY(10px);
+     pointer-events: none;
+     visibility: hidden;
 }
-
 @keyframes scroll-indicator-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(6px); }
+     0%, 100% { transform: translateY(0); }
+     50% { transform: translateY(6px); }
 }
 @keyframes scroll-indicator-glow {
-  0%, 100% {
-    box-shadow:
-      0 0 18px rgba(0, 229, 255, 0.45),
-      0 0 42px rgba(0, 229, 255, 0.25),
-      inset 0 0 10px rgba(0, 229, 255, 0.12);
-  }
-  50% {
-    box-shadow:
-      0 0 26px rgba(0, 229, 255, 0.7),
-      0 0 60px rgba(0, 229, 255, 0.4),
-      inset 0 0 14px rgba(0, 229, 255, 0.2);
-  }
+     0%, 100% { box-shadow: 0 0 18px rgba(0,229,255,0.45), 0 0 42px rgba(0,229,255,0.25), inset 0 0 10px rgba(0,229,255,0.12); }
+     50% { box-shadow: 0 0 26px rgba(0,229,255,0.7), 0 0 60px rgba(0,229,255,0.4), inset 0 0 14px rgba(0,229,255,0.2); }
 }
-
 @media (max-width: 768px) {
-  /* On mobile, pin the arrow to the bottom of the hero so it is always
-     visible on first paint regardless of hero content height. */
-  .scroll-indicator {
-    position: absolute;
-    left: 50%;
-    bottom: 22px;
-    width: 44px;
-    height: 44px;
-    margin: 0;
-    transform: translateX(-50%);
-    animation:
-      scroll-indicator-bob-mobile 2.4s ease-in-out infinite,
-      scroll-indicator-glow 2.4s ease-in-out infinite;
-  }
-  .scroll-indicator svg { width: 22px; height: 22px; }
-  .scroll-indicator:hover {
-    transform: translate(-50%, 2px);
-  }
-  .scroll-indicator.is-hidden {
-    transform: translate(-50%, 10px);
-  }
+     .scroll-indicator {
+            position: absolute;
+            left: 50%; bottom: 22px;
+            width: 44px; height: 44px;
+            margin: 0;
+            transform: translateX(-50%);
+            animation:
+                     scroll-indicator-bob-mobile 2.4s ease-in-out infinite,
+                     scroll-indicator-glow 2.4s ease-in-out infinite;
+     }
+     .scroll-indicator svg { width: 22px; height: 22px; }
+     .scroll-indicator:hover { transform: translate(-50%, 2px); }
+     .scroll-indicator.is-hidden { transform: translate(-50%, 10px); }
 }
-
-/* Mobile bob keyframe keeps the X centering while bobbing Y */
 @keyframes scroll-indicator-bob-mobile {
-  0%, 100% { transform: translate(-50%, 0); }
-  50%      { transform: translate(-50%, 6px); }
+     0%, 100% { transform: translate(-50%, 0); }
+     50% { transform: translate(-50%, 6px); }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-indicator { animation: none; }
-}
+@media (prefers-reduced-motion: reduce) { .scroll-indicator { animation: none; } }
 
 /* =============================================
-   PACKAGE CARD ACTIONS (View + Buy Now)
-   (Added April 2026, refined for mobile)
+   PACKAGE CARD ACTIONS
    ============================================= */
 .package-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: stretch;
+     gap: 0.75rem;
+     margin-top: 0.75rem;
 }
 .package-actions .package-button {
-  flex: 1 1 0;
-  min-width: 120px;
-  text-align: center;
-  padding: 0.65rem 1.25rem;
-  line-height: 1.2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  min-height: 44px;
+     flex: 1 1 0;
+     min-width: 120px;
+     text-align: center;
+     padding: 0.65rem 1.25rem;
+     line-height: 1.2;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     box-sizing: border-box;
+     min-height: 44px;
 }
 .package-view-button {
-  background: transparent !important;
-  color: #00e5ff !important;
-  border: 1px solid rgba(0, 229, 255, 0.5) !important;
-  box-shadow: 0 0 12px rgba(0, 229, 255, 0.08) inset;
-  transition: background 0.25s ease, color 0.25s ease,
-              border-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+     background: transparent !important;
+     color: #00e5ff !important;
+     border: 1px solid rgba(0, 229, 255, 0.5) !important;
+     box-shadow: 0 0 12px rgba(0, 229, 255, 0.08) inset;
+     transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 .package-view-button:hover {
-  background: rgba(0, 229, 255, 0.12) !important;
-  border-color: rgba(0, 229, 255, 0.85) !important;
-  color: #ffffff !important;
-  box-shadow: 0 6px 18px rgba(0, 229, 255, 0.25);
-  transform: translateY(-2px);
+     background: rgba(0, 229, 255, 0.12) !important;
+     border-color: rgba(0, 229, 255, 0.85) !important;
+     color: #ffffff !important;
+     box-shadow: 0 6px 18px rgba(0, 229, 255, 0.25);
+     transform: translateY(-2px);
 }
-
-/* On mobile, stack the two buttons full-width so they always look
-   balanced and never go side-by-side with uneven sizing. */
 @media (max-width: 768px) {
-  .package-actions {
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-top: 0.9rem;
-  }
-  .package-actions .package-button {
-    flex: 1 1 100%;
-    width: 100%;
-    min-width: 0;
-    padding: 0.75rem 1rem;
-    font-size: 0.95rem;
-    min-height: 48px;
-  }
+     .package-actions { flex-direction: column; gap: 0.6rem; margin-top: 0.9rem; }
+     .package-actions .package-button {
+            flex: 1 1 100%; width: 100%; min-width: 0;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            min-height: 48px;
+     }
 }
 
 /* =============================================
-   MOBILE PRODUCT GRID FIX (Added April 2026)
-   On the homepage, mobile product cards had uneven heights
-   because the PC Optimizations image had a different aspect
-   ratio than the others. Locking the image area to a consistent
-   aspect ratio and using object-fit: cover keeps each card the
-   same height.
+   MOBILE PRODUCT GRID FIX
    ============================================= */
 @media (max-width: 768px) {
-  .product-grid .product-media {
-    aspect-ratio: 16 / 10;
-    width: 100%;
-  }
-  .product-grid .product-media img,
-  .product-grid .product-media video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .product-grid .product-card-link { display: flex; }
-  .product-grid .product-card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-  }
-  .product-grid .product-card h3 { margin-top: 0.75rem; }
+     .product-grid .product-media { aspect-ratio: 16 / 10; width: 100%; }
+     .product-grid .product-media img, .product-grid .product-media video {
+            width: 100%; height: 100%; object-fit: cover;
+     }
+     .product-grid .product-card-link { display: flex; }
+     .product-grid .product-card { display: flex; flex-direction: column; width: 100%; height: 100%; }
+     .product-grid .product-card h3 { margin-top: 0.75rem; }
 }
 
-
 /* =============================================
-   MOBILE HERO BUTTON CLEARANCE (Added April 2026)
-   Ensure the "See Products" CTA isn't obscured by the
-   absolutely-positioned scroll-indicator on mobile.
-============================================= */
+   MOBILE HERO BUTTON CLEARANCE
+   ============================================= */
 @media (max-width: 768px) {
-  .hero {
-    position: relative;
-    padding-bottom: 110px !important;
-  }
-  .hero .cta-button {
-    position: relative;
-    z-index: 3;
-  }
-  .scroll-indicator {
-    z-index: 2;
-  }
+     .hero { position: relative; padding-bottom: 110px !important; }
+     .hero .cta-button { position: relative; z-index: 3; }
+     .scroll-indicator { z-index: 2; }
 }
 
 /* =============================================
-   PC PACKAGE BUTTON SYMMETRY (Added April 2026)
-   Force Buy Now and View buttons on the packages page
-   to be the same width and height on desktop.
-============================================= */
+   PC PACKAGE BUTTON SYMMETRY
+   ============================================= */
 @media (min-width: 769px) {
-  .package-actions {
-    flex-wrap: nowrap;
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-  .package-actions .package-button {
-    flex: 1 1 0 !important;
-    width: 50% !important;
-    min-width: 0 !important;
-    max-width: 50% !important;
-    padding: 0.75rem 1rem !important;
-    min-height: 48px !important;
-    height: 48px !important;
-    line-height: 1.2 !important;
-    font-size: 0.95rem !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
+     .package-actions { flex-wrap: nowrap; align-items: stretch; gap: 0.75rem; }
+     .package-actions .package-button {
+            flex: 1 1 0 !important;
+            width: 50% !important;
+            min-width: 0 !important;
+            max-width: 50% !important;
+            padding: 0.75rem 1rem !important;
+            min-height: 48px !important;
+            height: 48px !important;
+            line-height: 1.2 !important;
+            font-size: 0.95rem !important;
+            box-sizing: border-box !important;
+            text-align: center !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+     }
 }
