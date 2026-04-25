@@ -5,34 +5,54 @@ document.addEventListener('DOMContentLoaded', () => {
   const dynamicWord = document.getElementById('dynamic-word');
   const words = ['performance','optimization','precision','control','efficiency'];
   let wordIndex = 0;
-  const updateWord = () => {
-    if (!dynamicWord) return;
-    dynamicWord.textContent = words[wordIndex];
-    wordIndex = (wordIndex + 1) % words.length;
-  };
+  const updateWord = () => { if (!dynamicWord) return; dynamicWord.textContent = words[wordIndex]; wordIndex = (wordIndex + 1) % words.length; };
   if (dynamicWord) { updateWord(); setInterval(updateWord, 2000); }
 
-  /* Navbar - always fixed, pad body to prevent overlap */
+  /* Navbar & announcement bar */
+  const announcementBar = document.querySelector('.announcement-bar');
   const navbar = document.querySelector('.navbar');
-  function setNavbarPadding() {
+
+  // Position navbar below announcement bar (when at top)
+  // On scroll: becomes a floating pill at top: 10px
+  function positionNavbar() {
     if (!navbar) return;
-    document.body.style.paddingTop = navbar.offsetHeight + 'px';
+    const annH = (announcementBar && window.scrollY < 5) ? announcementBar.offsetHeight : 0;
+    if (!navbar.classList.contains('scrolled')) {
+      navbar.style.top = annH + 'px';
+    }
   }
 
-  /* Navbar scroll with hysteresis - prevents flicker at threshold */
+  // Pad body so content isn't hidden behind fixed navbar + announcement bar
+  function setBodyPadding() {
+    if (!navbar) return;
+    const annH = announcementBar ? announcementBar.offsetHeight : 0;
+    const navH = navbar.offsetHeight;
+    document.body.style.paddingTop = (annH + navH) + 'px';
+  }
+
+  /* Navbar scroll with hysteresis */
   const SCROLL_IN  = 60;
   const SCROLL_OUT = 20;
   let isScrolled = false;
   function updateNavbar() {
     if (!navbar) return;
     const y = window.scrollY;
-    if (!isScrolled && y > SCROLL_IN) { isScrolled = true; navbar.classList.add('scrolled'); }
-    else if (isScrolled && y < SCROLL_OUT) { isScrolled = false; navbar.classList.remove('scrolled'); }
+    if (!isScrolled && y > SCROLL_IN) {
+      isScrolled = true;
+      navbar.classList.add('scrolled');
+      navbar.style.top = ''; // let CSS handle pill top
+    } else if (isScrolled && y < SCROLL_OUT) {
+      isScrolled = false;
+      navbar.classList.remove('scrolled');
+      positionNavbar();
+    }
   }
+
   window.addEventListener('scroll', updateNavbar, { passive: true });
-  window.addEventListener('resize', setNavbarPadding);
+  window.addEventListener('resize', () => { positionNavbar(); setBodyPadding(); });
+  positionNavbar();
+  setBodyPadding();
   updateNavbar();
-  setNavbarPadding();
 
   /* Mobile menu toggle */
   const menuToggle = document.querySelector('.menu-toggle');
