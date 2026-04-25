@@ -77,8 +77,11 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
        background: #001414 !important;
        color: #00e5ff !important;
        border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
-       position: relative;
-       z-index: 1001;
+       position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1002;
        width: 100%;
        box-sizing: border-box;
        animation: none !important;
