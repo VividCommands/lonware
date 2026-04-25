@@ -5,59 +5,101 @@ document.addEventListener('DOMContentLoaded', () => {
   const dynamicWord = document.getElementById('dynamic-word');
   const words = ['performance','optimization','precision','control','efficiency'];
   let wordIndex = 0;
-  const updateWord = () => { if (!dynamicWord) return; dynamicWord.textContent = words[wordIndex]; wordIndex = (wordIndex + 1) % words.length; };
+  const updateWord = () => {
+    if (!dynamicWord) return;
+    dynamicWord.textContent = words[wordIndex];
+    wordIndex = (wordIndex + 1) % words.length;
+  };
   if (dynamicWord) { updateWord(); setInterval(updateWord, 2000); }
 
-  /* Navbar & announcement bar */
+  /* =============================================
+     ANNOUNCEMENT BAR + NAVBAR POSITIONING
+     Layout order (top to bottom):
+       1. Announcement bar  — fixed, top: 0, z-index: 1002
+       2. Navbar            — fixed, top: annBarH, z-index: 1000
+     On scroll down (past SCROLL_IN px):
+       - Announcement bar slides up and hides (transform: translateY(-100%))
+       - Navbar becomes floating pill at top: 10px
+     On scroll back up (below SCROLL_OUT px):
+       - Announcement bar slides back into view
+       - Navbar returns to full-width below announcement bar
+  ============================================= */
   const announcementBar = document.querySelector('.announcement-bar');
   const navbar = document.querySelector('.navbar');
 
-  // Position navbar below announcement bar (when at top)
-  // On scroll: becomes a floating pill at top: 10px
+  // Add smooth transition to announcement bar
+  if (announcementBar) {
+    announcementBar.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+  }
+
+  function getAnnHeight() {
+    return announcementBar ? announcementBar.offsetHeight : 0;
+  }
+
   function positionNavbar() {
     if (!navbar) return;
-    const annH = (announcementBar && window.scrollY < 5) ? announcementBar.offsetHeight : 0;
     if (!navbar.classList.contains('scrolled')) {
-      navbar.style.top = annH + 'px';
+      navbar.style.top = getAnnHeight() + 'px';
     }
   }
 
-  // Pad body so content isn't hidden behind fixed navbar + announcement bar
   function setBodyPadding() {
     if (!navbar) return;
-    const annH = announcementBar ? announcementBar.offsetHeight : 0;
+    const annH = getAnnHeight();
     const navH = navbar.offsetHeight;
     document.body.style.paddingTop = (annH + navH) + 'px';
   }
 
-  /* Navbar scroll with hysteresis */
-  const SCROLL_IN  = 60;
+  /* Scroll with hysteresis */
+  const SCROLL_IN = 60;
   const SCROLL_OUT = 20;
   let isScrolled = false;
+
   function updateNavbar() {
-    if (!navbar) return;
     const y = window.scrollY;
+
     if (!isScrolled && y > SCROLL_IN) {
       isScrolled = true;
-      navbar.classList.add('scrolled');
-      navbar.style.top = ''; // let CSS handle pill top
+      // Hide announcement bar (slide up)
+      if (announcementBar) {
+        announcementBar.style.transform = 'translateY(-100%)';
+      }
+      // Navbar becomes pill — CSS handles positioning via .scrolled
+      if (navbar) {
+        navbar.classList.add('scrolled');
+        navbar.style.top = ''; // let CSS .scrolled rule handle top: 10px
+      }
     } else if (isScrolled && y < SCROLL_OUT) {
       isScrolled = false;
-      navbar.classList.remove('scrolled');
-      positionNavbar();
+      // Show announcement bar again
+      if (announcementBar) {
+        announcementBar.style.transform = 'translateY(0)';
+      }
+      // Navbar returns to full-width below announcement bar
+      if (navbar) {
+        navbar.classList.remove('scrolled');
+        positionNavbar();
+      }
     }
   }
 
   window.addEventListener('scroll', updateNavbar, { passive: true });
-  window.addEventListener('resize', () => { positionNavbar(); setBodyPadding(); });
+  window.addEventListener('resize', () => { positionNavbar(); setBodyPadding(); }, { passive: true });
+
+  // Initial state
   positionNavbar();
   setBodyPadding();
   updateNavbar();
 
   /* Mobile menu toggle */
   const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks   = document.querySelector('.nav-links');
-  if (menuToggle && navLinks) { menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); menuToggle.classList.toggle('active'); }); }
+  const navLinks = document.querySelector('.nav-links');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+  }
 
   /* Particle background */
   (function initParticles() {
@@ -73,16 +115,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
     const PARTICLE_COUNT = isMobile ? 25 : 40;
     let mouseX = -9999, mouseY = -9999;
-    if (!isMobile) { document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; }); document.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; }); }
+    if (!isMobile) {
+      document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+      document.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; });
+    }
     const particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) { particles.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3, radius: Math.random()*2+0.5, opacity: Math.random()*0.15+0.05, baseOpacity: Math.random()*0.15+0.05, pulseSpeed: Math.random()*0.005+0.002, pulsePhase: Math.random()*Math.PI*2 }); }
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3,
+        radius: Math.random()*2+0.5,
+        opacity: Math.random()*0.15+0.05,
+        baseOpacity: Math.random()*0.15+0.05,
+        pulseSpeed: Math.random()*0.005+0.002,
+        pulsePhase: Math.random()*Math.PI*2
+      });
+    }
     function animate() {
       ctx.clearRect(0,0,W,H);
       for (let i=0;i<particles.length;i++) {
         const p=particles[i];
-        p.x+=p.vx; p.y+=p.vy; p.pulsePhase+=p.pulseSpeed; p.opacity=p.baseOpacity+Math.sin(p.pulsePhase)*0.04;
-        if (!isMobile && mouseX>-9000) { const dx=mouseX-p.x,dy=mouseY-p.y,dist=Math.sqrt(dx*dx+dy*dy); if(dist<200&&dist>0){const f=(1-dist/200)*0.015;p.vx+=dx/dist*f;p.vy+=dy/dist*f;p.opacity=Math.min(p.baseOpacity+0.12,0.35);} }
-        p.vx*=0.995;p.vy*=0.995; const spd=Math.sqrt(p.vx*p.vx+p.vy*p.vy); if(spd>0.5){p.vx=p.vx/spd*0.5;p.vy=p.vy/spd*0.5;}
+        p.x+=p.vx; p.y+=p.vy;
+        p.pulsePhase+=p.pulseSpeed;
+        p.opacity=p.baseOpacity+Math.sin(p.pulsePhase)*0.04;
+        if (!isMobile && mouseX>-9000) {
+          const dx=mouseX-p.x,dy=mouseY-p.y,dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<200&&dist>0){const f=(1-dist/200)*0.015;p.vx+=dx/dist*f;p.vy+=dy/dist*f;p.opacity=Math.min(p.baseOpacity+0.12,0.35);}
+        }
+        p.vx*=0.995;p.vy*=0.995;
+        const spd=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+        if(spd>0.5){p.vx=p.vx/spd*0.5;p.vy=p.vy/spd*0.5;}
         if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;if(p.y<-10)p.y=H+10;if(p.y>H+10)p.y=-10;
         ctx.beginPath();ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);ctx.fillStyle='rgba(0,255,255,'+p.opacity+')';ctx.fill();
       }
@@ -94,7 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Macro slider */
   const macroSlides = document.querySelectorAll('.macro-slide');
   let macroIndex = 0;
-  function showMacroSlide(index) { if (!macroSlides.length) return; macroIndex=((index%macroSlides.length)+macroSlides.length)%macroSlides.length; macroSlides.forEach((s,i)=>s.classList.toggle('active',i===macroIndex)); }
+  function showMacroSlide(index) {
+    if (!macroSlides.length) return;
+    macroIndex=((index%macroSlides.length)+macroSlides.length)%macroSlides.length;
+    macroSlides.forEach((s,i)=>s.classList.toggle('active',i===macroIndex));
+  }
   if (macroSlides.length > 1) { setInterval(()=>showMacroSlide(macroIndex+1),4000); }
 
   /* Testimonial slider */
@@ -105,10 +171,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const testimonialContainer = document.querySelector('.testimonials-container');
   let dotsContainer = null;
   if (testimonialSlides.length > 0 && testimonialContainer) {
-    dotsContainer = document.createElement('div'); dotsContainer.className = 'testimonial-dots'; testimonialContainer.parentElement.appendChild(dotsContainer);
-    for (let i=0;i<testimonialSlides.length;i++) { const dot=document.createElement('button'); dot.className='testimonial-dot'+(i===0?' active':''); dot.setAttribute('aria-label','Go to testimonial '+(i+1)); dot.addEventListener('click',()=>showSlide(i)); dotsContainer.appendChild(dot); }
+    dotsContainer = document.createElement('div');
+    dotsContainer.className = 'testimonial-dots';
+    testimonialContainer.parentElement.appendChild(dotsContainer);
+    for (let i=0;i<testimonialSlides.length;i++) {
+      const dot=document.createElement('button');
+      dot.className='testimonial-dot'+(i===0?' active':'');
+      dot.setAttribute('aria-label','Go to testimonial '+(i+1));
+      dot.addEventListener('click',()=>showSlide(i));
+      dotsContainer.appendChild(dot);
+    }
   }
-  function showSlide(index) { if (!testimonialSlides.length) return; currentSlide=((index%testimonialSlides.length)+testimonialSlides.length)%testimonialSlides.length; testimonialSlides.forEach((s,i)=>s.classList.toggle('active',i===currentSlide)); if(dotsContainer){dotsContainer.querySelectorAll('.testimonial-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));} }
+  function showSlide(index) {
+    if (!testimonialSlides.length) return;
+    currentSlide=((index%testimonialSlides.length)+testimonialSlides.length)%testimonialSlides.length;
+    testimonialSlides.forEach((s,i)=>s.classList.toggle('active',i===currentSlide));
+    if(dotsContainer){dotsContainer.querySelectorAll('.testimonial-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));}
+  }
   if(prevBtn)prevBtn.addEventListener('click',()=>showSlide(currentSlide-1));
   if(nextBtn)nextBtn.addEventListener('click',()=>showSlide(currentSlide+1));
   if(testimonialSlides.length>1){setInterval(()=>showSlide(currentSlide+1),6000);}
@@ -127,12 +206,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const revealEls = document.querySelectorAll(revealSelectors);
   if (revealEls.length) {
     revealEls.forEach(el=>{if(!el.closest('.hero'))el.classList.add('reveal-hidden');});
-    requestAnimationFrame(()=>{requestAnimationFrame(()=>{const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('reveal-visible');entry.target.classList.remove('reveal-hidden');obs.unobserve(entry.target);}});},{threshold:0,rootMargin:'0px 0px 0px 0px'});revealEls.forEach(el=>{if(el.classList.contains('reveal-hidden'))obs.observe(el);});});});
+    requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+      const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('reveal-visible');entry.target.classList.remove('reveal-hidden');obs.unobserve(entry.target);}});},{threshold:0,rootMargin:'0px 0px 0px 0px'});
+      revealEls.forEach(el=>{if(el.classList.contains('reveal-hidden'))obs.observe(el);});
+    });});
   }
 
   /* Hero glow pulse */
   const planet = document.querySelector('.hero');
-  if (planet && planet.tagName) { let glowPhase=0; const ag=()=>{glowPhase+=0.02;const i=0.3+Math.sin(glowPhase)*0.15,s=80+Math.sin(glowPhase*0.7)*30;planet.style.setProperty('--glow-intensity',i);planet.style.setProperty('--glow-spread',s+'px');requestAnimationFrame(ag);}; ag(); }
+  if (planet && planet.tagName) {
+    let glowPhase=0;
+    const ag=()=>{glowPhase+=0.02;const i=0.3+Math.sin(glowPhase)*0.15,s=80+Math.sin(glowPhase*0.7)*30;planet.style.setProperty('--glow-intensity',i);planet.style.setProperty('--glow-spread',s+'px');requestAnimationFrame(ag);};
+    ag();
+  }
 
   /* Video hover desktop only */
   function isMobileDevice(){return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)||window.innerWidth<768;}
