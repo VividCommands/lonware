@@ -66,24 +66,16 @@ body {
                 box-shadow 0.35s ease,
                 transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* NAVBAR - Scrolled pill state (ZTweaks style) */
+/* NAVBAR - Scrolled pill state: handled by custom.css */
 .navbar.scrolled {
-    top: 0.75rem !important;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) !important;
-    width: auto !important;
-    min-width: 280px;
-    max-width: 560px;
-    padding: 0.5rem 1.25rem;
-    border-radius: 999px;
-    background: rgba(10, 14, 35, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06) inset;
-    border: 1px solid rgba(13, 202, 240, 0.18);
+    top: 10px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 85%;
+    border-radius: 50px;
     justify-content: center;
-    gap: 0.75rem;
 }
 .navbar nav {
     position: static;
@@ -298,16 +290,7 @@ body {
   body { overflow-x: hidden; overflow-y: visible; touch-action: pan-y; max-width: 100%; width: 100%; }
     * { box-sizing: border-box; }
     .navbar { flex-direction: column; align-items: flex-start; padding: 0.75rem 1.25rem; }
-    .navbar.scrolled {
-        left: 0.5rem !important;
-        right: 0.5rem !important;
-        transform: none !important;
-        width: calc(100% - 1rem) !important;
-        min-width: unset;
-        max-width: unset;
-        top: 0.5rem !important;
-        justify-content: space-between;
-    }
+    /* navbar.scrolled mobile handled in custom.css */
     .nav-links { flex-direction: row; flex-wrap: wrap; width: 100%; gap: 0.25rem; margin-top: 0.5rem; }
     .nav-links a { font-size: 0.85rem; padding: 0.35rem 0.6rem; }
     .hero { padding: 3rem 1rem 2rem; min-height: auto; overflow: hidden; }
