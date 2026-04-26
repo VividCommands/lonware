@@ -195,28 +195,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Purchase feed */
   const feedList = document.getElementById('purchase-feed-list');
+  // Names sourced from real gaming leaderboards (Fortnite Tracker) — authentic username styles
   const NAMES = [
-    // Gamertags / usernames
-    'xKlutch','NovaStrike_','ColdFront_','Zerolag404','RogueSniper77','NightHawk99',
-    'SilentReaper','FrostByte_','PixelGhost','BladeX','StormBreaker_','IronSight',
-    'NeonPulse','CrimsonFang','QuantumShift','OmegaForce_','DeltaX','ShadowDrop__',
-    'VoidKing','ArcticFox_','GlitchHunter','NitroSnipe','PrecisionX','PhantomDrift',
-    'ZephyrAim','HyperFocus_','VortexPlayer','Gridlock99','EclipseShot','NullPointer_',
-    // First names only
-    'Tyler','Jaylen','Marcus','Damian','Connor','Nathan','Brandon','Derek','Cameron','Kevin',
-    'Sofia','Priya','Alicia','Jasmine','Lexi','Megan','Kayla','Brianna','Ashley','Dani',
-    'Jordan','Riley','Alex','Casey','Blake','Morgan','Taylor','Jesse','Avery','Reese',
-    // First name + last initial
-    'Chris M.','Jake R.','Liam W.','Ethan B.','Noah C.','Owen T.','Mason H.',
-    'Zach K.','Dylan P.','Hunter S.','Kyle F.','Caleb J.','Sean A.','Andre L.',
-    'Mia R.','Emma D.','Olivia S.','Ava N.','Chloe B.','Sara K.','Isabel T.',
-    // Mixed styles that look like real accounts
-    'ttvNightOwl','xd_clutchking','not_a_bot_lol','tryhard2024','lowpingonly',
-    'forti_fanatic','consolekid_','pcmr_user','ranked_grinder','aimlab_daily',
-    'sweaty_setups','controller_god','mnk_player','fps_nerd_','comp_player99',
-    // Numbers/year-style handles
-    'jake2024_','m.sanchez','r.patel99','k.nguyen_','luis_gm','dev0n_','t.brooks',
-    'j_rivera','a.johnson2k','sam_the_goat','nick_fps','gabe.w','will_lonware'
+    // Real-style gamertags from leaderboard data
+    'Raskology','Domstaa','Avxry','ItsWiKKiD','Albinoyogurt','RuflessCat','FlyWyd',
+    'StackyZB','Honsq.','Zero3ffort','Shock-N-Awe','NykZB','Magadian','Mud McFly',
+    'Repulsives Beard','Prospering','DannyYoshida','AlexanderTheDad','Pup-pi',
+    'H0RIBLE','stealthreaperXY','Carnseyy_','earthjad3','Nytrixz','AcidicWolfXBL',
+    'C4_Monster_','QuietLlama42','Droev','NoScopeTaxes','blackandwhiteBob',
+    'Liam5011','RakuaFN','polgot','anomalo2.0','biz da don','m1nsook',
+    'Santi_Rocks','Disciple Taiyo','Vincenzo Cassano','Imonmobile_LOL1',
+    'LuvDaCookieDough','dargun bol','Bobalt2862','TT UsuallyDolo','JZVL',
+    'tt cassiusoffwb','ElSenorJorge','JustCallMeDaddy6','999Ghostboy999',
+    'jeis3r70','Vinnies Goodboy','MK1NG1','kumakumao8888','BLMGamingYT',
+    // Plausible everyday-player handles
+    'wicked_aim','tryhard_sean','lowping_only','clutch_or_kick','daily_grinder',
+    'consoleplayer_','notasmurfacc','sweaty_kyle','mw3_veteran','backline_tyler',
+    'pc_masterrace_','ranked_anxiety','aimlab_daily','controller_tyler',
+    'lagged_out_','tryingmybest_','diamond_grind','noscope_daily','respectfully_',
+    'just_vibing99','2nd_account_lol','wifi_warrior_','couchgamer2k','spamming_daily',
+    'fps_brainrot','stopspawning_','oneshot_wonder','warmup_routine','hardstuck_plat',
+    // First name + number / casual handles
+    'ryanfps','jaylen2k','devontae_','connorw_gg','tyler_builds','dkgaming_',
+    'chasethegame','mikey_fps','bryanplays','nathan_does','lukas_gamer',
+    'kyleishere','derekplays','seanw_','andrewg_gg','bradly_plays',
+    'nate_on_pc','jakewins','matthewgg','hunter_fps','caleb_clutch',
+    // More realistic first+last or first+initial styles
+    'Chris M.','Jake R.','Liam W.','Ethan B.','Noah C.','Owen T.',
+    'Zach K.','Dylan P.','Hunter S.','Kyle F.','Caleb J.','Sean A.',
+    'Mia R.','Emma D.','Olivia S.','Sofia N.','Lexi B.'
   ];
   const PRODUCTS = ['PC Optimizations','Console Tweaks','Ping Optimizations','Bloom Reducer','Controller Macro'];
 
@@ -238,13 +245,11 @@ document.addEventListener('DOMContentLoaded', () => {
       li.style.transform = 'translateY(0)';
     });
     while (feedList.children.length > 5) { feedList.removeChild(feedList.lastChild); }
-    // Schedule next purchase at a random interval (2.5s–7s) so it feels organic
     const nextDelay = 2500 + Math.floor(Math.random() * 4500);
     setTimeout(addPurchaseItem, nextDelay);
   }
 
   if (feedList) {
-    // Stagger the initial 5 items so they don't all appear at once
     for (let i = 0; i < 5; i++) {
       setTimeout(addPurchaseItem, i * 600);
     }
