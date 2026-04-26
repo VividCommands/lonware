@@ -195,12 +195,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Purchase feed */
   const feedList = document.getElementById('purchase-feed-list');
-  const NAMES = ['Jake M.','Sarah K.','Chris P.','Mia L.','Alex D.','Jordan W.','Taylor R.','Morgan S.','Casey B.','Drew F.','Riley N.','Sam T.','Avery H.','Quinn J.','Blake V.','Cameron Z.','Dakota G.','Emery C.','Finley A.','Harper X.','j.rodriguez','m.chen2024','k_patel','a.wilson','r.martinez','s.thompson','d.anderson','l.jackson','n.white','b.harris','c.martin','p.garcia','t.robinson','e.clark','f.lewis','g.lee','h.walker','i.hall','AceOfSpades','xShadow','NovaStrike','SilentSpectre','BladeRunner99','FrostByte','PixelPhantom','GhostReaper','NightHawk','SteelTitan','BlazeTrail','RogueAgent','IronClad','StormBreaker','NeonKnight','CrimsonTide','QuantumLeap','OmegaForce','DeltaStrike','NickS_2026','j_doe_gaming','maria.g','liam.watts','emma.stone99','noah.clark','olivia.j','william.b','ava.martinez','james.davis','isabella.w','benjamin.t','sophia.lee','mason.h','charlotte.r','ethan.k','zoe.m','logan.p','amelia.t','lucas.r','nora.b','caleb.s','ella.d','owen.f','lily.w'];
+  const NAMES = [
+    // Gamertags / usernames
+    'xKlutch','NovaStrike_','ColdFront_','Zerolag404','RogueSniper77','NightHawk99',
+    'SilentReaper','FrostByte_','PixelGhost','BladeX','StormBreaker_','IronSight',
+    'NeonPulse','CrimsonFang','QuantumShift','OmegaForce_','DeltaX','ShadowDrop__',
+    'VoidKing','ArcticFox_','GlitchHunter','NitroSnipe','PrecisionX','PhantomDrift',
+    'ZephyrAim','HyperFocus_','VortexPlayer','Gridlock99','EclipseShot','NullPointer_',
+    // First names only
+    'Tyler','Jaylen','Marcus','Damian','Connor','Nathan','Brandon','Derek','Cameron','Kevin',
+    'Sofia','Priya','Alicia','Jasmine','Lexi','Megan','Kayla','Brianna','Ashley','Dani',
+    'Jordan','Riley','Alex','Casey','Blake','Morgan','Taylor','Jesse','Avery','Reese',
+    // First name + last initial
+    'Chris M.','Jake R.','Liam W.','Ethan B.','Noah C.','Owen T.','Mason H.',
+    'Zach K.','Dylan P.','Hunter S.','Kyle F.','Caleb J.','Sean A.','Andre L.',
+    'Mia R.','Emma D.','Olivia S.','Ava N.','Chloe B.','Sara K.','Isabel T.',
+    // Mixed styles that look like real accounts
+    'ttvNightOwl','xd_clutchking','not_a_bot_lol','tryhard2024','lowpingonly',
+    'forti_fanatic','consolekid_','pcmr_user','ranked_grinder','aimlab_daily',
+    'sweaty_setups','controller_god','mnk_player','fps_nerd_','comp_player99',
+    // Numbers/year-style handles
+    'jake2024_','m.sanchez','r.patel99','k.nguyen_','luis_gm','dev0n_','t.brooks',
+    'j_rivera','a.johnson2k','sam_the_goat','nick_fps','gabe.w','will_lonware'
+  ];
   const PRODUCTS = ['PC Optimizations','Console Tweaks','Ping Optimizations','Bloom Reducer','Controller Macro'];
-  function randomPurchase(){return{name:NAMES[Math.floor(Math.random()*NAMES.length)],product:PRODUCTS[Math.floor(Math.random()*PRODUCTS.length)]};}
-  function addPurchaseItem(){if(!feedList)return;const{name,product}=randomPurchase();const li=document.createElement('li');li.innerHTML='<strong>'+name+'</strong> purchased <em>'+product+'</em>';li.style.opacity='0';li.style.transform='translateY(-10px)';feedList.prepend(li);requestAnimationFrame(()=>{li.style.transition='opacity .4s, transform .4s';li.style.opacity='1';li.style.transform='translateY(0)';});while(feedList.children.length>5){feedList.removeChild(feedList.lastChild);}}
-  if(feedList){for(let i=0;i<5;i++)addPurchaseItem();setInterval(addPurchaseItem,4000);}
 
+  function randomPurchase() {
+    return { name: NAMES[Math.floor(Math.random() * NAMES.length)], product: PRODUCTS[Math.floor(Math.random() * PRODUCTS.length)] };
+  }
+
+  function addPurchaseItem() {
+    if (!feedList) return;
+    const { name, product } = randomPurchase();
+    const li = document.createElement('li');
+    li.innerHTML = '<strong>' + name + '</strong> purchased <em>' + product + '</em>';
+    li.style.opacity = '0';
+    li.style.transform = 'translateY(-10px)';
+    feedList.prepend(li);
+    requestAnimationFrame(() => {
+      li.style.transition = 'opacity .4s, transform .4s';
+      li.style.opacity = '1';
+      li.style.transform = 'translateY(0)';
+    });
+    while (feedList.children.length > 5) { feedList.removeChild(feedList.lastChild); }
+    // Schedule next purchase at a random interval (2.5s–7s) so it feels organic
+    const nextDelay = 2500 + Math.floor(Math.random() * 4500);
+    setTimeout(addPurchaseItem, nextDelay);
+  }
+
+  if (feedList) {
+    // Stagger the initial 5 items so they don't all appear at once
+    for (let i = 0; i < 5; i++) {
+      setTimeout(addPurchaseItem, i * 600);
+    }
+  }
+  
   /* Scroll reveal */
   const revealSelectors = 'section:not(.hero),.product-card,.package-card,.stat-item,.benefit-item,.testimonials-section,.purchase-feed-section,.metric,footer';
   const revealEls = document.querySelectorAll(revealSelectors);
