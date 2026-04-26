@@ -88,93 +88,80 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 }
 
 /* =============================================
-   NAVBAR — Smooth pill animation
-   Strategy: navbar is ALWAYS position:fixed.
-   At top: full-width, flush. On scroll: pill.
-   No position-mode switch = no jump.
-   ============================================= */
+   NAVBAR — Premium pill animation
+   Strategy: navbar ALWAYS position:fixed.
+   Non-scrolled: max-width:100vw, border-radius:0, flush to top.
+   Scrolled: max-width shrinks to pill size, border-radius rounds.
+   We always use left:50% + translateX(-50%) so the shrink is
+   perfectly symmetrical — no left/right jumps, purely GPU-driven.
+   Only max-width, padding, border-radius, background, box-shadow
+   are transitioned — all are interpolatable by the browser.
+============================================= */
 .navbar {
-       font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-       font-weight: 600 !important;
-       letter-spacing: 0.8px !important;
-       position: fixed !important;
-       top: 0;
-       left: 0;
-       right: 0;
-       width: 100% !important;
-       background: rgba(0, 10, 20, 0.95);
-       padding: 14px 28px;
-       box-sizing: border-box;
-       display: flex;
-       align-items: center;
-       justify-content: space-between;
-       border-radius: 0;
-       border: 1px solid transparent;
-       box-shadow: none;
-       z-index: 1000;
-       /* Single unified transition — no position change so no jump */
+  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px !important;
+  position: fixed !important;
+  /* Always centered — shrink is symmetrical */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Full width in default state */
+  width: 100%;
+  max-width: 100vw;
+  background: rgba(0, 10, 20, 0.95);
+  padding: 14px 28px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0;
+  border: 1px solid transparent;
+  box-shadow: none;
+  z-index: 1000;
+  /* Transition only GPU-friendly / interpolatable properties */
   transition:
-           top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-           left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-           right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-           width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-           padding 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-           border-radius 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-           background 0.4s ease,
-           box-shadow 0.4s ease,
-           border-color 0.4s ease !important;
-       will-change: top, left, right, width, padding, border-radius;
+    max-width   0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    padding     0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    top         0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    background  0.45s ease,
+    box-shadow  0.45s ease,
+    border-color 0.45s ease !important;
+  will-change: max-width, border-radius, padding;
 }
 
-/* Spacer so page content isn't hidden under fixed navbar */
-body::before {
-       content: '';
-       display: block;
-       height: 0;
-}
-
-/* Scrolled pill state */
+/* Scrolled pill state — symmetrical shrink from center */
 .navbar.scrolled {
-       top: 10px !important;
-       left: 50% !important;
-       right: auto !important;
-       width: auto !important;
-       min-width: unset;
-       max-width: 85%;
-       transform: translateX(-50%);
-       border-radius: 50px !important;
-       background: rgba(0, 12, 24, 0.94) !important;
-       backdrop-filter: blur(22px) !important;
-       -webkit-backdrop-filter: blur(22px) !important;
-       border: 1px solid rgba(0, 229, 255, 0.13) !important;
-       box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 229, 255, 0.06) inset !important;
-       padding: 6px 20px !important;
-       gap: 16px !important;
-       justify-content: center !important;
+  top: 10px !important;
+  max-width: 620px !important;
+  width: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  border-radius: 50px !important;
+  background: rgba(0, 12, 24, 0.94) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+  border: 1px solid rgba(0, 229, 255, 0.13) !important;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 229, 255, 0.06) inset !important;
+  padding: 6px 20px !important;
+  gap: 16px !important;
+  justify-content: center !important;
 }
 
-/* Keep transform stable for non-scrolled so there's no flash */
-.navbar:not(.scrolled) {
-       transform: translateX(0);
-}
-
-.navbar.scrolled .logo {
-       margin-right: 10px !important;
-}
-.navbar.scrolled .nav-links {
-       gap: 10px !important;
-}
+.navbar.scrolled .logo { margin-right: 10px !important; }
+.navbar.scrolled .nav-links { gap: 10px !important; }
 
 /* Nav link base */
 .navbar .logo {
-       font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-       font-weight: 700 !important;
-       letter-spacing: 1.5px !important;
+  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
 }
 .navbar .nav-links a {
-       font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
-       font-weight: 600 !important;
-       letter-spacing: 0.8px !important;
+  font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px !important;
 }
 
 /* =============================================
@@ -503,23 +490,22 @@ body::before {
 
   /* Mobile pill state */
   .navbar.scrolled {
-           top: 6px !important;
-           left: 50% !important;
-           right: auto !important;
-           transform: translateX(-50%);
-           width: auto !important;
-           max-width: 97%;
-           min-width: unset;
-           padding: 5px 14px !important;
-           border-radius: 50px !important;
-           background: rgba(0, 12, 24, 0.96) !important;
-           backdrop-filter: blur(22px) !important;
-           -webkit-backdrop-filter: blur(22px) !important;
-           border: 1px solid rgba(0, 229, 255, 0.12) !important;
-           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
-           flex-direction: row !important;
-           justify-content: center !important;
-           gap: 8px !important;
+    top: 6px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    max-width: 92vw !important;
+    min-width: unset;
+    padding: 5px 14px !important;
+    border-radius: 50px !important;
+    background: rgba(0, 12, 24, 0.96) !important;
+    backdrop-filter: blur(22px) !important;
+    -webkit-backdrop-filter: blur(22px) !important;
+    border: 1px solid rgba(0, 229, 255, 0.12) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 8px !important;
   }
        .navbar.scrolled .nav-links {
                 margin-top: 0 !important;
