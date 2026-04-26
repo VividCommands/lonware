@@ -121,21 +121,20 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
   z-index: 1000;
   /* Transition only GPU-friendly / interpolatable properties */
   transition:
-    max-width   0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    width       0.55s cubic-bezier(0.4, 0, 0.2, 1),
     padding     0.55s cubic-bezier(0.4, 0, 0.2, 1),
     border-radius 0.55s cubic-bezier(0.4, 0, 0.2, 1),
     top         0.55s cubic-bezier(0.4, 0, 0.2, 1),
     background  0.45s ease,
     box-shadow  0.45s ease,
     border-color 0.45s ease !important;
-  will-change: max-width, border-radius, padding;
+  will-change: width, border-radius, padding;
 }
 
 /* Scrolled pill state — symmetrical shrink from center */
 .navbar.scrolled {
   top: 10px !important;
-  max-width: 620px !important;
-  width: 100% !important;
+  width: 620px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   border-radius: 50px !important;
@@ -493,8 +492,7 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
     top: 6px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    width: 100% !important;
-    max-width: 92vw !important;
+    width: 92vw !important;
     min-width: unset;
     padding: 5px 14px !important;
     border-radius: 50px !important;
