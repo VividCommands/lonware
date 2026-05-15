@@ -1541,6 +1541,17 @@ NEW PAGE STYLES — About, Docs, FAQ, Contact
          background: rgba(0, 20, 40, 0.5);
          cursor: pointer;
          user-select: none;
+
+/* One Day button style */
+.package-actions .one-day-button {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.package-actions .one-day-button:hover {
+    background-color: #f7f7f7 !important;
+}
 }
 .faq-question h3 {
          font-size: 0.95rem;
