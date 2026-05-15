@@ -134,7 +134,7 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 /* Scrolled pill state — symmetrical shrink from center */
 .navbar.scrolled {
   top: 10px !important;
-  width: 620px !important;
+  width: 700px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   border-radius: 50px !important;
