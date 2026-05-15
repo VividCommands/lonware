@@ -772,3 +772,923 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
                 justify-content: center !important;
        }
 }
+
+
+/* =============================================
+PARTICLE CANVAS — always behind all content
+============================================= */
+#particle-canvas {
+         position: fixed !important;
+         top: 0 !important;
+         left: 0 !important;
+         width: 100% !important;
+         height: 100% !important;
+         pointer-events: none !important;
+         touch-action: none !important;
+         z-index: 0 !important;
+}
+
+/* All content sections must sit above particles */
+.announcement-bar { z-index: 1002 !important; }
+.navbar { z-index: 1000 !important; }
+.hero { z-index: 1 !important; }
+.hero > * { position: relative; z-index: 2; }
+.products-section,
+.benefits-section,
+.testimonials-section,
+.purchase-feed-section,
+.discord-cta-section,
+.footer { position: relative; z-index: 1; }
+
+.product-card,
+.product-card *,
+.metric,
+.macro-slider,
+.macro-slide,
+.macro-slide img,
+.macro-slide video { position: relative; z-index: 2; }
+
+/* =============================================
+HERO BADGE
+============================================= */
+.hero-badge {
+         display: inline-flex;
+         align-items: center;
+         gap: 6px;
+         background: rgba(0, 229, 255, 0.08);
+         border: 1px solid rgba(0, 229, 255, 0.2);
+         color: #00e5ff;
+         font-size: 0.75rem;
+         font-weight: 700;
+         letter-spacing: 1.5px;
+         text-transform: uppercase;
+         padding: 6px 14px;
+         border-radius: 50px;
+         margin-bottom: 1.5rem;
+}
+
+/* =============================================
+HERO CTAs — dual button row
+============================================= */
+.hero-ctas {
+         display: flex;
+         gap: 1rem;
+         justify-content: center;
+         align-items: center;
+         flex-wrap: wrap;
+         margin-top: 1.5rem;
+         margin-bottom: 0.5rem;
+         position: relative;
+         z-index: 3;
+}
+.cta-primary {
+         background: var(--primary-color, #0dcaf0);
+         color: #0a0e23;
+         border: none;
+}
+.cta-secondary {
+         background: rgba(88, 101, 242, 0.18);
+         color: #fff;
+         border: 1px solid rgba(88, 101, 242, 0.55);
+         display: inline-flex;
+         align-items: center;
+         gap: 7px;
+}
+.cta-secondary:hover {
+         background: rgba(88, 101, 242, 0.35) !important;
+         border-color: rgba(88, 101, 242, 0.85) !important;
+         box-shadow: 0 0 18px rgba(88, 101, 242, 0.35) !important;
+         color: #fff !important;
+}
+
+/* =============================================
+HERO STATS ROW
+============================================= */
+.hero-stats {
+         display: flex;
+         gap: 2.5rem;
+         justify-content: center;
+         align-items: center;
+         flex-wrap: wrap;
+         margin: 1.5rem 0 0.5rem;
+         padding: 1.25rem 2rem;
+         background: rgba(0, 229, 255, 0.04);
+         border: 1px solid rgba(0, 229, 255, 0.1);
+         border-radius: 16px;
+         position: relative;
+         z-index: 3;
+}
+.hero-stat {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         gap: 2px;
+}
+.hero-stat-num {
+         font-size: 1.6rem;
+         font-weight: 700;
+         color: #00e5ff;
+         line-height: 1;
+}
+.hero-stat-label {
+         font-size: 0.72rem;
+         font-weight: 600;
+         color: rgba(255,255,255,0.55);
+         text-transform: uppercase;
+         letter-spacing: 1px;
+}
+
+/* =============================================
+DISCORD CTA SECTIONS
+============================================= */
+.discord-cta-section {
+         padding: 4rem 2rem;
+         background: rgba(0, 229, 255, 0.03);
+         border-top: 1px solid rgba(0, 229, 255, 0.08);
+         border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+         position: relative;
+         z-index: 1;
+}
+.discord-cta-bottom {
+         background: rgba(88, 101, 242, 0.04);
+         border-top: 1px solid rgba(88, 101, 242, 0.1);
+         border-bottom: 1px solid rgba(88, 101, 242, 0.1);
+}
+.discord-cta-inner {
+         max-width: 900px;
+         margin: 0 auto;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 2rem;
+         flex-wrap: wrap;
+}
+.discord-cta-text h2 {
+         font-size: clamp(1.3rem, 3vw, 1.8rem);
+         color: #fff;
+         margin: 0 0 0.5rem;
+}
+.discord-cta-text p {
+         color: rgba(255,255,255,0.6);
+         font-size: 0.95rem;
+         margin: 0;
+         max-width: 500px;
+}
+.discord-cta-btn {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         padding: 12px 24px;
+         background: rgba(88, 101, 242, 0.9);
+         color: #fff !important;
+         border: 1px solid rgba(88, 101, 242, 0.8);
+         border-radius: 50px;
+         font-family: 'Rajdhani', sans-serif;
+         font-weight: 700;
+         font-size: 0.95rem;
+         letter-spacing: 0.8px;
+         text-decoration: none !important;
+         transition: all 0.25s ease;
+         white-space: nowrap;
+         flex-shrink: 0;
+}
+.discord-cta-btn svg {
+         width: 18px;
+         height: 18px;
+         fill: currentColor;
+         flex-shrink: 0;
+}
+.discord-cta-btn:hover {
+         background: rgba(88, 101, 242, 1) !important;
+         box-shadow: 0 0 24px rgba(88, 101, 242, 0.5) !important;
+         transform: translateY(-2px);
+}
+.contact-stats {
+         display: flex;
+         gap: 2rem;
+         margin-top: 1rem;
+         flex-wrap: wrap;
+}
+.contact-stat {
+         display: flex;
+         flex-direction: column;
+}
+.contact-stat-val {
+         font-size: 1.2rem;
+         font-weight: 700;
+         color: #00e5ff;
+}
+.contact-stat-label {
+         font-size: 0.75rem;
+         color: rgba(255,255,255,0.5);
+         text-transform: uppercase;
+         letter-spacing: 0.8px;
+}
+.contact-btns {
+         display: flex;
+         gap: 1rem;
+         flex-wrap: wrap;
+         align-items: center;
+}
+.contact-cta-btn {
+         display: inline-flex;
+         align-items: center;
+         padding: 12px 24px;
+         background: transparent;
+         color: #00e5ff !important;
+         border: 1px solid rgba(0, 229, 255, 0.4);
+         border-radius: 50px;
+         font-family: 'Rajdhani', sans-serif;
+         font-weight: 700;
+         font-size: 0.95rem;
+         letter-spacing: 0.8px;
+         text-decoration: none !important;
+         transition: all 0.25s ease;
+         white-space: nowrap;
+}
+.contact-cta-btn:hover {
+         background: rgba(0, 229, 255, 0.1) !important;
+         border-color: rgba(0, 229, 255, 0.8) !important;
+         transform: translateY(-2px);
+}
+
+/* =============================================
+BENEFITS SECTION — Remastered
+============================================= */
+.section-label {
+         font-size: 0.75rem;
+         font-weight: 700;
+         letter-spacing: 2px;
+         color: rgba(0, 229, 255, 0.6);
+         text-transform: uppercase;
+         margin-bottom: 0.75rem;
+}
+.benefits-section h2 {
+         font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
+         line-height: 1.1;
+         margin-bottom: 1.5rem;
+}
+.benefits-intro {
+         color: rgba(255,255,255,0.6);
+         max-width: 640px;
+         margin: 0 auto 3rem;
+         font-size: 1rem;
+         line-height: 1.7;
+}
+.benefits-features {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+         gap: 1.5rem;
+         max-width: 1000px;
+         margin: 0 auto 3rem;
+         text-align: left;
+}
+.benefit-feature {
+         display: flex;
+         gap: 1.25rem;
+         align-items: flex-start;
+         background: rgba(0, 20, 40, 0.4);
+         border: 1px solid rgba(0, 229, 255, 0.08);
+         border-radius: 16px;
+         padding: 1.5rem;
+         transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.benefit-feature:hover {
+         border-color: rgba(0, 229, 255, 0.2);
+         transform: translateY(-4px);
+}
+.benefit-num {
+         font-size: 2rem;
+         font-weight: 700;
+         color: rgba(0, 229, 255, 0.25);
+         line-height: 1;
+         flex-shrink: 0;
+         font-family: 'Rajdhani', sans-serif;
+         min-width: 40px;
+}
+.benefit-content h3 {
+         font-size: 1rem;
+         font-weight: 700;
+         color: #fff;
+         margin: 0 0 0.5rem;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+}
+.benefit-content p {
+         font-size: 0.875rem;
+         color: rgba(255,255,255,0.55);
+         margin: 0;
+         line-height: 1.6;
+}
+.benefits-stats {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 1px;
+         background: rgba(0, 229, 255, 0.1);
+         border: 1px solid rgba(0, 229, 255, 0.1);
+         border-radius: 16px;
+         overflow: hidden;
+         max-width: 900px;
+         margin: 0 auto;
+}
+.benefit-stat {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         padding: 1.5rem 1rem;
+         background: rgba(0, 10, 25, 0.8);
+         gap: 4px;
+}
+.stat-num {
+         font-size: 2rem;
+         font-weight: 700;
+         color: #00e5ff;
+         font-family: 'Rajdhani', sans-serif;
+}
+.stat-label {
+         font-size: 0.72rem;
+         color: rgba(255,255,255,0.5);
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         text-align: center;
+}
+
+/* =============================================
+RESULTS GRID (replaces testimonials carousel)
+============================================= */
+.testimonials-section {
+         text-align: center;
+}
+.section-subtitle-text {
+         color: rgba(255,255,255,0.55);
+         font-size: 0.95rem;
+         margin-bottom: 2.5rem;
+}
+.results-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+         gap: 1.5rem;
+         max-width: 1000px;
+         margin: 0 auto 2.5rem;
+}
+.result-card {
+         background: rgba(0, 20, 40, 0.5);
+         border: 1px solid rgba(0, 229, 255, 0.1);
+         border-radius: 16px;
+         padding: 1.75rem;
+         text-align: left;
+         transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.result-card:hover {
+         border-color: rgba(0, 229, 255, 0.25);
+         transform: translateY(-4px);
+}
+.result-product {
+         font-size: 0.72rem;
+         font-weight: 700;
+         letter-spacing: 1.5px;
+         text-transform: uppercase;
+         color: rgba(0, 229, 255, 0.7);
+         margin-bottom: 0.5rem;
+}
+.result-metric {
+         font-size: 1.8rem;
+         font-weight: 700;
+         color: #00e5ff;
+         font-family: 'Rajdhani', sans-serif;
+         margin-bottom: 0.75rem;
+         line-height: 1;
+}
+.result-desc {
+         font-size: 0.875rem;
+         color: rgba(255,255,255,0.6);
+         line-height: 1.6;
+         margin: 0 0 1rem;
+}
+.result-tag {
+         display: inline-block;
+         font-size: 0.7rem;
+         font-weight: 700;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+         color: rgba(255,255,255,0.4);
+         background: rgba(255,255,255,0.05);
+         padding: 4px 10px;
+         border-radius: 50px;
+}
+.testimonials-cta {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         gap: 1rem;
+         flex-wrap: wrap;
+         margin-top: 1rem;
+}
+.testimonials-cta p {
+         color: rgba(255,255,255,0.5);
+         font-size: 0.9rem;
+         margin: 0;
+}
+.discord-inline-btn {
+         display: inline-flex;
+         align-items: center;
+         gap: 6px;
+         padding: 8px 18px;
+         background: rgba(88, 101, 242, 0.2);
+         color: #fff !important;
+         border: 1px solid rgba(88, 101, 242, 0.5);
+         border-radius: 50px;
+         font-weight: 700;
+         font-size: 0.85rem;
+         text-decoration: none !important;
+         transition: all 0.25s ease;
+}
+.discord-inline-btn svg {
+         width: 14px;
+         height: 14px;
+         fill: currentColor;
+}
+.discord-inline-btn:hover {
+         background: rgba(88, 101, 242, 0.4) !important;
+         border-color: rgba(88, 101, 242, 0.8) !important;
+}
+.faq-inline-btn {
+         display: inline-flex;
+         align-items: center;
+         padding: 8px 18px;
+         background: transparent;
+         color: #00e5ff !important;
+         border: 1px solid rgba(0, 229, 255, 0.3);
+         border-radius: 50px;
+         font-weight: 700;
+         font-size: 0.85rem;
+         text-decoration: none !important;
+         transition: all 0.25s ease;
+}
+.faq-inline-btn:hover {
+         background: rgba(0, 229, 255, 0.1) !important;
+         border-color: rgba(0, 229, 255, 0.6) !important;
+}
+
+/* =============================================
+FOOTER — Remastered multi-column
+============================================= */
+.footer-top {
+         display: flex;
+         justify-content: space-between;
+         align-items: flex-start;
+         gap: 3rem;
+         flex-wrap: wrap;
+         margin-bottom: 2rem;
+         text-align: left;
+         width: 100%;
+}
+.footer-brand {
+         display: flex;
+         flex-direction: column;
+         gap: 0.5rem;
+         max-width: 240px;
+}
+.footer-discord-btn {
+         display: inline-flex;
+         align-items: center;
+         gap: 7px;
+         padding: 8px 16px;
+         background: rgba(88, 101, 242, 0.2);
+         color: #fff !important;
+         border: 1px solid rgba(88, 101, 242, 0.4);
+         border-radius: 50px;
+         font-family: 'Rajdhani', sans-serif;
+         font-weight: 700;
+         font-size: 0.82rem;
+         letter-spacing: 0.8px;
+         text-decoration: none !important;
+         transition: all 0.25s ease;
+         margin-top: 0.5rem;
+         width: fit-content;
+}
+.footer-discord-btn svg {
+         width: 14px;
+         height: 14px;
+         fill: currentColor;
+}
+.footer-discord-btn:hover {
+         background: rgba(88, 101, 242, 0.38) !important;
+         border-color: rgba(88, 101, 242, 0.7) !important;
+}
+.footer-nav-cols {
+         display: flex;
+         gap: 3rem;
+         flex-wrap: wrap;
+}
+.footer-col h4 {
+         font-size: 0.7rem;
+         font-weight: 700;
+         letter-spacing: 1.5px;
+         text-transform: uppercase;
+         color: rgba(255,255,255,0.4);
+         margin: 0 0 0.75rem;
+}
+.footer-col ul {
+         list-style: none;
+         padding: 0;
+         margin: 0;
+         display: flex;
+         flex-direction: column;
+         gap: 0.5rem;
+}
+.footer-col ul li a {
+         font-size: 0.9rem;
+         color: rgba(255,255,255,0.65);
+         text-decoration: none;
+         transition: color 0.25s ease;
+         font-family: 'Rajdhani', sans-serif;
+         font-weight: 600;
+}
+.footer-col ul li a:hover { color: #00e5ff; }
+
+/* =============================================
+NEW PAGE STYLES — About, Docs, FAQ, Contact
+============================================= */
+.page-hero {
+         padding: 8rem 2rem 4rem;
+         text-align: center;
+         background: var(--bg-color, #01010d);
+         position: relative;
+         z-index: 1;
+}
+.page-hero .section-label { margin-bottom: 1rem; }
+.page-hero h1 {
+         font-size: clamp(2rem, 5vw, 3.5rem);
+         font-weight: 700;
+         color: #fff;
+         margin: 0 0 1rem;
+         font-family: 'Rajdhani', sans-serif;
+}
+.page-hero p {
+         color: rgba(255,255,255,0.6);
+         font-size: 1rem;
+         max-width: 560px;
+         margin: 0 auto;
+}
+.page-content {
+         max-width: 900px;
+         margin: 0 auto;
+         padding: 4rem 2rem 6rem;
+         position: relative;
+         z-index: 1;
+}
+
+/* About page */
+.about-story { margin-bottom: 4rem; }
+.about-story h2 {
+         font-size: 1.6rem;
+         font-weight: 700;
+         color: #fff;
+         margin-bottom: 1rem;
+}
+.about-story p {
+         color: rgba(255,255,255,0.65);
+         line-height: 1.8;
+         margin-bottom: 1rem;
+}
+.about-values {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 1.5rem;
+         margin-bottom: 4rem;
+}
+.about-value {
+         background: rgba(0, 20, 40, 0.5);
+         border: 1px solid rgba(0, 229, 255, 0.08);
+         border-radius: 16px;
+         padding: 1.5rem;
+         transition: border-color 0.3s ease;
+}
+.about-value:hover { border-color: rgba(0, 229, 255, 0.2); }
+.about-value-num {
+         font-size: 1.6rem;
+         font-weight: 700;
+         color: rgba(0, 229, 255, 0.25);
+         font-family: 'Rajdhani', sans-serif;
+         margin-bottom: 0.5rem;
+}
+.about-value h3 {
+         font-size: 0.95rem;
+         font-weight: 700;
+         color: #fff;
+         margin: 0 0 0.5rem;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+}
+.about-value p {
+         font-size: 0.85rem;
+         color: rgba(255,255,255,0.55);
+         margin: 0;
+         line-height: 1.6;
+}
+
+/* Docs page */
+.docs-nav {
+         display: flex;
+         gap: 0.5rem;
+         flex-wrap: wrap;
+         margin-bottom: 2rem;
+}
+.docs-nav-btn {
+         padding: 6px 14px;
+         background: rgba(0, 229, 255, 0.06);
+         border: 1px solid rgba(0, 229, 255, 0.15);
+         border-radius: 50px;
+         color: rgba(255,255,255,0.7);
+         font-family: 'Rajdhani', sans-serif;
+         font-weight: 600;
+         font-size: 0.85rem;
+         cursor: pointer;
+         transition: all 0.25s ease;
+         text-decoration: none;
+         display: inline-block;
+}
+.docs-nav-btn:hover, .docs-nav-btn.active {
+         background: rgba(0, 229, 255, 0.15);
+         border-color: rgba(0, 229, 255, 0.4);
+         color: #00e5ff;
+}
+.docs-section {
+         margin-bottom: 3rem;
+}
+.docs-section h2 {
+         font-size: 1.3rem;
+         font-weight: 700;
+         color: #fff;
+         margin-bottom: 1.25rem;
+         padding-bottom: 0.5rem;
+         border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+}
+.docs-req-grid {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 1.5rem;
+}
+.docs-req-card {
+         background: rgba(0, 20, 40, 0.5);
+         border: 1px solid rgba(0, 229, 255, 0.08);
+         border-radius: 16px;
+         padding: 1.5rem;
+}
+.docs-req-card h3 {
+         font-size: 0.8rem;
+         font-weight: 700;
+         letter-spacing: 1.5px;
+         text-transform: uppercase;
+         color: rgba(0, 229, 255, 0.7);
+         margin: 0 0 1rem;
+}
+.docs-req-card ul {
+         list-style: none;
+         padding: 0;
+         margin: 0;
+         display: flex;
+         flex-direction: column;
+         gap: 0.5rem;
+}
+.docs-req-card li {
+         font-size: 0.875rem;
+         color: rgba(255,255,255,0.7);
+         padding-left: 1.25rem;
+         position: relative;
+         line-height: 1.5;
+}
+.docs-req-card li::before {
+         content: '✓';
+         position: absolute;
+         left: 0;
+         color: #00e5ff;
+         font-weight: 700;
+}
+.docs-steps {
+         display: flex;
+         flex-direction: column;
+         gap: 1rem;
+}
+.docs-step {
+         display: flex;
+         gap: 1rem;
+         align-items: flex-start;
+         background: rgba(0, 20, 40, 0.4);
+         border: 1px solid rgba(0, 229, 255, 0.06);
+         border-radius: 12px;
+         padding: 1.25rem;
+}
+.docs-step-num {
+         font-size: 1.4rem;
+         font-weight: 700;
+         color: rgba(0, 229, 255, 0.3);
+         font-family: 'Rajdhani', sans-serif;
+         line-height: 1;
+         flex-shrink: 0;
+         min-width: 32px;
+}
+.docs-step-content h4 {
+         font-size: 0.95rem;
+         font-weight: 700;
+         color: #fff;
+         margin: 0 0 0.35rem;
+}
+.docs-step-content p {
+         font-size: 0.85rem;
+         color: rgba(255,255,255,0.55);
+         margin: 0;
+         line-height: 1.5;
+}
+.docs-note {
+         background: rgba(0, 229, 255, 0.05);
+         border: 1px solid rgba(0, 229, 255, 0.12);
+         border-radius: 12px;
+         padding: 1rem 1.25rem;
+         font-size: 0.875rem;
+         color: rgba(255,255,255,0.65);
+         line-height: 1.6;
+         margin-top: 1rem;
+}
+.docs-note strong { color: #00e5ff; }
+
+/* FAQ page */
+.faq-group { margin-bottom: 3rem; }
+.faq-group-label {
+         font-size: 0.7rem;
+         font-weight: 700;
+         letter-spacing: 2px;
+         text-transform: uppercase;
+         color: rgba(0, 229, 255, 0.5);
+         margin-bottom: 1rem;
+         padding-bottom: 0.5rem;
+         border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+}
+.faq-item {
+         border: 1px solid rgba(0, 229, 255, 0.08);
+         border-radius: 12px;
+         margin-bottom: 0.75rem;
+         overflow: hidden;
+         transition: border-color 0.3s ease;
+}
+.faq-item:hover { border-color: rgba(0, 229, 255, 0.18); }
+.faq-question {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 1.1rem 1.25rem;
+         background: rgba(0, 20, 40, 0.5);
+         cursor: pointer;
+         user-select: none;
+}
+.faq-question h3 {
+         font-size: 0.95rem;
+         font-weight: 600;
+         color: #fff;
+         margin: 0;
+}
+.faq-icon {
+         color: rgba(0, 229, 255, 0.6);
+         font-size: 1.4rem;
+         line-height: 1;
+         flex-shrink: 0;
+         transition: transform 0.3s ease;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+         max-height: 0;
+         overflow: hidden;
+         transition: max-height 0.4s ease, padding 0.4s ease;
+         background: rgba(0, 15, 30, 0.5);
+}
+.faq-item.open .faq-answer {
+         max-height: 400px;
+         padding: 1rem 1.25rem 1.25rem;
+}
+.faq-answer p {
+         font-size: 0.875rem;
+         color: rgba(255,255,255,0.65);
+         line-height: 1.7;
+         margin: 0;
+}
+.faq-still {
+         text-align: center;
+         padding: 3rem 2rem;
+         background: rgba(0, 20, 40, 0.4);
+         border: 1px solid rgba(0, 229, 255, 0.08);
+         border-radius: 16px;
+         margin-top: 2rem;
+}
+.faq-still h3 { font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; }
+.faq-still p { color: rgba(255,255,255,0.55); font-size: 0.9rem; margin-bottom: 1.5rem; }
+.faq-still .discord-cta-btn { margin-right: 0.75rem; }
+
+/* Contact page */
+.contact-cards {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+         gap: 1.5rem;
+         margin-bottom: 3rem;
+}
+.contact-card {
+         background: rgba(0, 20, 40, 0.5);
+         border: 1px solid rgba(0, 229, 255, 0.08);
+         border-radius: 16px;
+         padding: 2rem;
+         text-align: center;
+         transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.contact-card:hover {
+         border-color: rgba(0, 229, 255, 0.22);
+         transform: translateY(-4px);
+}
+.contact-card-icon {
+         width: 48px;
+         height: 48px;
+         border-radius: 12px;
+         background: rgba(0, 229, 255, 0.1);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin: 0 auto 1rem;
+         font-size: 1.4rem;
+}
+.contact-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin: 0 0 0.5rem; }
+.contact-card p { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin: 0 0 1.25rem; line-height: 1.6; }
+.contact-link {
+         display: inline-flex;
+         align-items: center;
+         gap: 6px;
+         color: #00e5ff !important;
+         text-decoration: none;
+         font-weight: 700;
+         font-size: 0.9rem;
+         transition: opacity 0.25s;
+}
+.contact-link:hover { opacity: 0.75; }
+.contact-response-info {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 1rem;
+         margin-bottom: 3rem;
+}
+.contact-response-item {
+         background: rgba(0, 229, 255, 0.04);
+         border: 1px solid rgba(0, 229, 255, 0.08);
+         border-radius: 12px;
+         padding: 1.25rem;
+         text-align: center;
+}
+.contact-response-item .val {
+         font-size: 1.4rem;
+         font-weight: 700;
+         color: #00e5ff;
+         font-family: 'Rajdhani', sans-serif;
+         display: block;
+         margin-bottom: 0.25rem;
+}
+.contact-response-item .lbl {
+         font-size: 0.75rem;
+         color: rgba(255,255,255,0.45);
+         text-transform: uppercase;
+         letter-spacing: 1px;
+}
+.contact-pre-answers h2 {
+         font-size: 1.2rem;
+         font-weight: 700;
+         color: #fff;
+         margin-bottom: 1rem;
+}
+.contact-qa {
+         background: rgba(0, 20, 40, 0.4);
+         border: 1px solid rgba(0, 229, 255, 0.07);
+         border-radius: 12px;
+         padding: 1.25rem;
+         margin-bottom: 0.75rem;
+}
+.contact-qa h4 { font-size: 0.9rem; font-weight: 700; color: #fff; margin: 0 0 0.4rem; }
+.contact-qa p { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin: 0; line-height: 1.6; }
+
+/* =============================================
+MOBILE RESPONSIVE ADDITIONS
+============================================= */
+@media (max-width: 768px) {
+         .hero-stats { gap: 1.5rem; padding: 1rem; }
+         .hero-stat-num { font-size: 1.3rem; }
+         .discord-cta-inner { flex-direction: column; text-align: center; }
+         .discord-cta-text p { margin: 0 auto; }
+         .contact-stats { justify-content: center; }
+         .contact-btns { justify-content: center; }
+         .discord-cta-btn, .contact-cta-btn { justify-content: center; }
+         .benefits-features { grid-template-columns: 1fr; }
+         .benefits-stats { grid-template-columns: repeat(2, 1fr); }
+         .results-grid { grid-template-columns: 1fr; }
+         .footer-top { flex-direction: column; text-align: center; }
+         .footer-brand { max-width: 100%; align-items: center; }
+         .footer-nav-cols { justify-content: center; gap: 2rem; }
+         .docs-req-grid { grid-template-columns: 1fr; }
+         .hero-ctas { flex-direction: column; align-items: stretch; }
+         .hero-ctas .cta-button { text-align: center; justify-content: center; }
+         .testimonials-cta { flex-direction: column; }
+}
