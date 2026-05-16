@@ -1,4 +1,4 @@
-/* === Lonware Custom Overrides v2.0 — Liquid Glass Edition === */
+/* === Lonware Custom Overrides v2.0 â Liquid Glass Edition === */
 
 /* -- SCROLL FIX -- */
 
@@ -100,7 +100,7 @@ p, li, a, span, button, .product-card-desc, .benefits-description, .testimonial-
 }
 
 /* ==============================================
-NAVBAR — Liquid Glass Pill
+NAVBAR â Liquid Glass Pill
 Smooth animation from full-width to pill state.
 Uses only GPU-composited properties for silky
 60fps transition regardless of scroll speed.
@@ -174,7 +174,7 @@ Uses only GPU-composited properties for silky
 }
 
 /* ==============================================
-DISCORD BUTTON — Navbar (Liquid Glass style)
+DISCORD BUTTON â Navbar (Liquid Glass style)
 ============================================== */
 .nav-discord-btn {
   display: inline-flex;
@@ -241,7 +241,7 @@ DISCORD BUTTON — Navbar (Liquid Glass style)
 }
 
 /* ==============================================
-LIQUID GLASS BASE — applied to all major cards
+LIQUID GLASS BASE â applied to all major cards
 ============================================== */
 .product-card,
 .why-box,
@@ -260,7 +260,7 @@ LIQUID GLASS BASE — applied to all major cards
 }
 
 /* ==============================================
-HERO BACKGROUND — More Vibrant
+HERO BACKGROUND â More Vibrant
 ============================================== */
 body {
   background: radial-gradient(ellipse at 70% 0%, rgba(0, 50, 100, 0.35) 0%, transparent 60%),
@@ -269,7 +269,7 @@ body {
 }
 
 /* ==============================================
-PRODUCT GRID CARDS — Fully Remastered
+PRODUCT GRID CARDS â Fully Remastered
 Inspired by competitive-edge box style
 ============================================== */
 .product-grid {
@@ -399,11 +399,11 @@ Inspired by competitive-edge box style
   gap: 8px;
 }
 .product-card-explore::after {
-  content: '→';
+  content: 'â';
   font-size: 0.85rem;
 }
 
-/* Bloom Reducer — video preview button on hover */
+/* Bloom Reducer â video preview button on hover */
 .bloom-video-hint {
   position: absolute;
   bottom: 0.75rem;
@@ -430,7 +430,7 @@ Inspired by competitive-edge box style
 }
 
 /* ==============================================
-MACRO BUY SECTION — Consistent Spacing
+MACRO BUY SECTION â Consistent Spacing
 All 3 tiers get equal gap/padding.
 Cards align-items: stretch for same height.
 ============================================== */
@@ -544,7 +544,7 @@ Cards align-items: stretch for same height.
   display: block;
 }
 
-/* Description block — consistent across all tiers */
+/* Description block â consistent across all tiers */
 .macro-tier-desc-block {
   flex: 1;
   display: flex;
@@ -573,7 +573,7 @@ Cards align-items: stretch for same height.
   line-height: 1.5;
 }
 
-/* Price block — push to bottom consistently */
+/* Price block â push to bottom consistently */
 .macro-tier-price {
   display: flex;
   flex-direction: column;
@@ -645,7 +645,7 @@ Cards align-items: stretch for same height.
 }
 
 /* ==============================================
-PACKAGES PAGE — Button Symmetry
+PACKAGES PAGE â Button Symmetry
 VIEW and BUY NOW pinned to bottom, equal height
 ============================================== */
 .package-card {
@@ -740,7 +740,7 @@ VIEW and BUY NOW pinned to bottom, equal height
 }
 
 /* ==============================================
-PURCHASE FEED — Hidden (Trusted by players)
+PURCHASE FEED â Hidden (Trusted by players)
 ============================================== */
 #purchase-feed,
 .purchase-feed-section {
@@ -748,7 +748,7 @@ PURCHASE FEED — Hidden (Trusted by players)
 }
 
 /* ==============================================
-TOS SECTION — Liquid Glass, Consistent
+TOS SECTION â Liquid Glass, Consistent
 ============================================== */
 .tos {
   max-width: 900px;
@@ -790,7 +790,7 @@ TOS SECTION — Liquid Glass, Consistent
   position: relative;
 }
 .tos li::before {
-  content: '·';
+  content: 'Â·';
   position: absolute;
   left: 0;
   color: #00e5ff;
@@ -889,7 +889,7 @@ TESTIMONIALS
 }
 
 /* ==============================================
-FEATURE BOXES — Liquid Glass
+FEATURE BOXES â Liquid Glass
 ============================================== */
 .feature-boxes {
   display: grid;
@@ -996,7 +996,7 @@ WHY LONWARE SECTION
 .why-box p { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin: 0; line-height: 1.6; }
 
 /* ==============================================
-FOOTER — Liquid Glass
+FOOTER â Liquid Glass
 ============================================== */
 .footer {
   font-family: 'Rajdhani', 'Montserrat', sans-serif !important;
@@ -1330,7 +1330,7 @@ MOBILE RESPONSIVE
   html { overflow-x: hidden; -webkit-overflow-scrolling: touch; }
   body { overflow-x: clip; overflow-y: visible !important; max-width: 100%; width: 100%; }
 
-  /* Navbar mobile — full-width, no overflow */
+  /* Navbar mobile â full-width, no overflow */
   .navbar {
     padding: 8px 14px !important;
     width: 100% !important;
@@ -1348,7 +1348,7 @@ MOBILE RESPONSIVE
   }
   .nav-discord-btn svg { width: 11px !important; height: 11px !important; }
 
-  /* Mobile scrolled navbar — no overflow */
+  /* Mobile scrolled navbar â no overflow */
   .navbar.scrolled {
     top: 6px !important;
     left: 0 !important;
@@ -1383,7 +1383,7 @@ MOBILE RESPONSIVE
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .hero-ctas .cta-button { text-align: center; justify-content: center; }
 
-  /* Product grid — 2x2 compact on mobile, good proportions */
+  /* Product grid â 2x2 compact on mobile, good proportions */
   .product-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.65rem !important;
@@ -1449,4 +1449,382 @@ MOBILE RESPONSIVE
   .results-grid { grid-template-columns: 1fr; }
   .feature-boxes { grid-template-columns: 1fr; }
   .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.5rem !important; }
+}
+
+
+/* ==============================================
+   ABOUT PAGE — Values Grid
+============================================== */
+.about-story {
+  margin-bottom: 3rem;
+}
+.about-story h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 1rem;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.about-story p {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin: 0 0 1rem;
+}
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: 2rem 0 3rem;
+}
+.about-value {
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.about-value:hover {
+  border-color: rgba(0, 229, 255, 0.3) !important;
+  transform: translateY(-4px);
+}
+.about-value-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(0, 229, 255, 0.55);
+  margin-bottom: 0.25rem;
+}
+.about-value h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.about-value p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+  line-height: 1.6;
+}
+.faq-still {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2.5rem;
+  border-radius: 16px;
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  background: rgba(0, 15, 40, 0.45) !important;
+  border: 1px solid rgba(0, 229, 255, 0.1) !important;
+}
+.faq-still h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  font-family: 'Rajdhani', sans-serif;
+}
+.faq-still p {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+
+/* ==============================================
+   DOCS PAGE — Steps + Req Grid
+============================================== */
+.docs-nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.docs-nav-btn {
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.25s ease;
+  font-family: 'Rajdhani', sans-serif;
+}
+.docs-nav-btn:hover,
+.docs-nav-btn.active {
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.1);
+  border-color: rgba(0, 229, 255, 0.35);
+}
+.docs-section {
+  margin-bottom: 3.5rem;
+}
+.docs-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 1.5rem;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+}
+.docs-req-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.docs-req-card {
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+.docs-req-card h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(0, 229, 255, 0.8);
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Rajdhani', sans-serif;
+}
+.docs-req-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.docs-req-card li {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.5;
+}
+.docs-req-card li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #00e5ff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+.docs-note {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  padding: 0.75rem 1rem;
+  background: rgba(0, 229, 255, 0.04);
+  border-left: 2px solid rgba(0, 229, 255, 0.3);
+  border-radius: 0 8px 8px 0;
+  line-height: 1.6;
+}
+.docs-note a { color: #00e5ff; }
+.docs-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.docs-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.07) !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  transition: background 0.25s ease;
+}
+.docs-step:first-child {
+  border-radius: 14px 14px 0 0;
+  border-top: 1px solid rgba(0, 229, 255, 0.07) !important;
+}
+.docs-step:last-child {
+  border-radius: 0 0 14px 14px;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.07) !important;
+}
+.docs-steps {
+  border-radius: 14px;
+  border: 1px solid rgba(0, 229, 255, 0.1);
+  overflow: hidden;
+  background: rgba(0, 15, 40, 0.35);
+  backdrop-filter: blur(12px);
+}
+.docs-step:hover {
+  background: rgba(0, 229, 255, 0.04) !important;
+}
+.docs-step-num {
+  min-width: 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  color: #00e5ff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.docs-step-content h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.3rem;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.docs-step-content p {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ==============================================
+   FAQ PAGE
+============================================== */
+.faq-group {
+  margin-bottom: 2.5rem;
+}
+.faq-group-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(0, 229, 255, 0.55);
+  margin: 0 0 1rem;
+}
+.faq-item {
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  background: rgba(0, 15, 40, 0.45) !important;
+  border: 1px solid rgba(0, 229, 255, 0.1) !important;
+  transition: border-color 0.25s ease;
+}
+.faq-item.open,
+.faq-item:hover {
+  border-color: rgba(0, 229, 255, 0.25) !important;
+}
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+  cursor: pointer;
+  gap: 1rem;
+  user-select: none;
+}
+.faq-question h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+.faq-icon {
+  font-size: 1.3rem;
+  color: rgba(0, 229, 255, 0.6);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, color 0.25s ease;
+  font-weight: 300;
+  line-height: 1;
+}
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  color: #00e5ff;
+}
+.faq-answer {
+  display: none;
+  padding: 0 1.5rem 1.25rem;
+  border-top: 1px solid rgba(0, 229, 255, 0.08);
+}
+.faq-item.open .faq-answer {
+  display: block;
+}
+.faq-answer p {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0.75rem 0 0;
+  line-height: 1.75;
+}
+
+/* ==============================================
+   CONTACT PAGE
+============================================== */
+.contact-card {
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.contact-qa {
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ==============================================
+   ABOUT / FAQ CONTACT CTA BUTTON
+============================================== */
+.contact-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.75) !important;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.8px;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+}
+.contact-cta-btn:hover {
+  background: rgba(255,255,255,0.12) !important;
+  border-color: rgba(255,255,255,0.35) !important;
+  color: #fff !important;
+}
+
+/* ==============================================
+   MOBILE — About / Docs / FAQ
+============================================== */
+@media (max-width: 768px) {
+  .about-values { grid-template-columns: 1fr; }
+  .docs-req-grid { grid-template-columns: 1fr; }
+  .docs-step { padding: 1rem; gap: 0.9rem; }
+  .faq-question { padding: 1rem 1.1rem; }
+  .faq-answer { padding: 0 1.1rem 1rem; }
+  .page-content { padding: 2.5rem 1.25rem 4rem; }
 }
