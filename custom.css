@@ -1,6 +1,8 @@
-/* === Lonware Custom Overrides v2.0 — Liquid Glass Edition === */
+X/* === Lonware Custom Overrides v2.0 — Liquid Glass Edition === */
 
 /* -- SCROLL FIX -- */
+
+@import url("mobile-nav.css");
 html {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
