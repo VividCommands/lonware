@@ -1,0 +1,15 @@
+/* Mobile navigation improvements: symmetrical layout on small screens */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+    flex: 1 1 auto !important;
+    justify-content: space-evenly !important;
+  }
+  .navbar.scrolled .nav-links {
+    flex: 1 1 auto !important;
+    justify-content: space-evenly !important;
+  }
+  .navbar .nav-discord-btn {
+    margin-left: 0 !important;
+    align-self: center !important;
+  }
+}
