@@ -1734,6 +1734,7 @@ FEATURE BOXES — Macro.io highlight (replaces metrics)
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
   margin-top: 1rem;
+  max-width: 100%;
 }
 .feature-box {
   display: flex;
@@ -1761,9 +1762,16 @@ FEATURE BOXES — Macro.io highlight (replaces metrics)
   color: #00e5ff;
 }
 .feature-box-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
   fill: currentColor;
+  flex-shrink: 0;
+}
+.feature-box-icon {
+  flex-shrink: 0;
+  overflow: hidden;
 }
 .feature-box-content {
   display: flex;
