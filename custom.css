@@ -1867,7 +1867,7 @@ ULTIMATE BUNDLE CARD
 /* 5-column grid for products including bundle */
 .product-grid-5 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.85fr 1.15fr;
+               grid-template-columns: repeat(4, 1fr) 1.15fr;
   gap: 1.5rem;
   max-width: 1300px;
   margin: 0 auto;
@@ -1875,7 +1875,7 @@ ULTIMATE BUNDLE CARD
 
 @media (min-width: 769px) {
   .product-grid-5 {
-    grid-template-columns: 1fr 1fr 1fr 0.85fr 1.15fr !important;
+                 grid-template-columns: repeat(4, 1fr) 1.15fr !important;
   }
 }
 
@@ -1885,4 +1885,13 @@ ULTIMATE BUNDLE CARD
     gap: 0.65rem !important;
     max-width: 100% !important;
   }
+}
+
+/* Custom design for Ultimate Bundle card */
+.product-card-bundle .product-media img {
+  display: none;
+}
+
+.product-card-bundle .product-media {
+  background: linear-gradient(135deg, #09203f 0%, #537895 100%);
 }
