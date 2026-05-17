@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* Scroll with hysteresis */
-  const SCROLL_IN = 60;
-  const SCROLL_OUT = 20;
+  const SCROLL_IN = 80;
+  const SCROLL_OUT = 30;
   let isScrolled = false;
 
   function updateNavbar() {
@@ -83,13 +83,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  window.addEventListener('scroll', updateNavbar, { passive: true });
+  let _navScrollRaf = null;
+  function throttledUpdateNavbar() {
+    if (_navScrollRaf) return;
+    _navScrollRaf = requestAnimationFrame(() => {
+      _navScrollRaf = null;
+      if (typeof throttledUpdateNavbar !== "undefined") throttledUpdateNavbar(); else updateNavbar();
+    });
+  }
+  window.addEventListener('scroll', throttledUpdateNavbar, { passive: true });
   window.addEventListener('resize', () => { positionNavbar(); setBodyPadding(); }, { passive: true });
 
   // Initial state
   positionNavbar();
   setBodyPadding();
-  updateNavbar();
+  if (typeof throttledUpdateNavbar !== "undefined") throttledUpdateNavbar(); else updateNavbar();
 
   /* Mobile menu toggle */
   const menuToggle = document.querySelector('.menu-toggle');
