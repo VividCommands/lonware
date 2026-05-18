@@ -278,6 +278,7 @@ Inspired by competitive-edge box style
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  align-items: start;
 }
 .product-card-link {
   text-decoration: none;
@@ -293,7 +294,6 @@ Inspired by competitive-edge box style
               box-shadow 0.35s ease,
               border-color 0.35s ease !important;
   cursor: pointer;
-  min-height: 280px;
   display: flex;
   flex-direction: column;
 }
@@ -790,7 +790,7 @@ TOS SECTION â Liquid Glass, Consistent
   position: relative;
 }
 .tos li::before {
-  content: 'Â·';
+  content: '\2022';
   position: absolute;
   left: 0;
   color: #00e5ff;
@@ -1871,6 +1871,7 @@ ULTIMATE BUNDLE CARD
   gap: 1.25rem;
   max-width: 1400px;
   margin: 0 auto;
+  align-items: start;
 }
 
 @media (min-width: 769px) {
