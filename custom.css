@@ -1949,3 +1949,108 @@ ULTIMATE BUNDLE CARD
   position: relative;
   z-index: 1;
 }
+
+
+/* ==============================================
+GLOBAL SECTION BACKGROUND FIX
+Eliminates all discoloration across pages
+============================================== */
+section,
+.page-content,
+.page-hero,
+.about-page,
+.faq-section,
+.docs-section,
+.contact-section,
+[class*="-section"],
+[class*="-content"],
+[class*="-page"] {
+  background: transparent !important;
+}
+
+/* Force all secondary backgrounds to match site dark */
+.page-hero,
+.page-content {
+  background: transparent !important;
+}
+
+/* Section alternating backgrounds — remove them all */
+section:nth-child(even),
+section:nth-child(odd) {
+  background: transparent !important;
+}
+
+/* About/FAQ/Docs/Contact hero areas */
+.about-hero,
+.faq-hero,
+.docs-hero,
+.contact-hero,
+.hero-inner,
+.inner-hero {
+  background: transparent !important;
+  padding-top: 6rem;
+}
+
+/* TOS bullets — fix corrupted CSS character */
+.tos ul {
+  list-style: disc !important;
+  padding-left: 1.5rem !important;
+}
+.tos ul li {
+  list-style-type: disc !important;
+  padding-left: 0 !important;
+}
+.tos ul li::before {
+  display: none !important;
+}
+
+/* ==============================================
+FAQ / DOCS / ABOUT / CONTACT — Card polish
+============================================== */
+.about-value,
+.faq-item,
+.docs-req-card,
+.docs-step,
+.contact-card,
+.contact-qa {
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.about-value:hover,
+.contact-card:hover {
+  border-color: rgba(0, 229, 255, 0.28) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 229, 255, 0.08) !important;
+}
+
+/* Contact page broken layout fix */
+.contact-section,
+.contact-wrapper,
+.contact-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Better section headings on sub-pages */
+.page-content h2,
+.page-content h3 {
+  color: #fff !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px;
+}
+.page-content p,
+.page-content li {
+  color: rgba(255,255,255,0.6) !important;
+  line-height: 1.7;
+}
+
+/* Fix any white/light backgrounds on sub-pages */
+.about-story,
+.about-team,
+.faq-group,
+.docs-section,
+.contact-form-wrap {
+  background: transparent !important;
+}
