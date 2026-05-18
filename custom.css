@@ -2054,3 +2054,7 @@ FAQ / DOCS / ABOUT / CONTACT — Card polish
 .contact-form-wrap {
   background: transparent !important;
 }
+
+
+/* HERO SECTION FIX */
+.page-hero { background: transparent !important; }
