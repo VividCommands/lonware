@@ -2058,3 +2058,32 @@ FAQ / DOCS / ABOUT / CONTACT — Card polish
 
 /* HERO SECTION FIX */
 .page-hero { background: transparent !important; }
+
+
+/* === HOMEPAGE BUG FIXES === */
+
+/* Fix 1: Macro slider ghost box - remove width constraint so image fills container */
+.macro-slider { box-shadow: none !important; border: none !important; }
+.macro-slider .macro-slide img { width: 100% !important; margin: 0 !important; }
+
+/* Fix 2: Product cards equal height for non-bundle cards in 5-col grid */
+@media (min-width: 769px) {
+  .product-grid-5 {
+    align-items: stretch !important;
+  }
+  .product-grid-5 .product-card-link {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .product-grid-5 .product-card {
+    flex: 1 !important;
+  }
+  /* Bundle card: don't stretch, keep natural height */
+  .product-grid-5 .product-card-link:last-child {
+    align-self: start !important;
+  }
+  .product-grid-5 .product-card-link:last-child .product-card {
+    flex: none !important;
+    height: auto !important;
+  }
+}
