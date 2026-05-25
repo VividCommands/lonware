@@ -2087,3 +2087,17 @@ FAQ / DOCS / ABOUT / CONTACT — Card polish
     height: auto !important;
   }
 }
+
+/* === AUDIT FIXES (May 2026) === */
+
+/* Packages page: when Ultimate Bundle is the 6th/last card sitting alone on a row, center it with a sane width so it doesn't leave dead space */
+@media (min-width: 769px) {
+  .packages-grid > .package-card:nth-child(6):last-child {
+      grid-column: 1 / -1;
+          max-width: 460px;
+              justify-self: center;
+                  margin-left: auto;
+                      margin-right: auto;
+                        }
+                        }
+                                        
