@@ -135,7 +135,7 @@ Uses only GPU-composited properties for silky
     box-shadow 0.35s ease,
     border-color 0.35s ease,
     backdrop-filter 0.35s ease !important;
-  will-change: width, border-radius, padding, top, background;
+  will-change: transform;
 }
 
 /* Scrolled pill state */
@@ -146,8 +146,8 @@ Uses only GPU-composited properties for silky
   transform: translateX(-50%) !important;
   border-radius: 50px !important;
   background: rgba(0, 8, 20, 0.82) !important;
-  backdrop-filter: blur(28px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   border: 1px solid rgba(0, 229, 255, 0.16) !important;
   box-shadow:
     0 4px 32px rgba(0, 0, 0, 0.4),
@@ -249,8 +249,8 @@ LIQUID GLASS BASE â applied to all major cards
 .feature-box,
 .macro-tier-card,
 .package-card {
-  backdrop-filter: blur(16px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
   background: rgba(0, 15, 40, 0.52) !important;
   border: 1px solid rgba(0, 229, 255, 0.14) !important;
   box-shadow:
@@ -1031,7 +1031,7 @@ SCROLL REVEAL
   opacity: 0; transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
   pointer-events: none !important;
-  will-change: opacity, transform;
+  will-change: auto;
 }
 .reveal-visible {
   opacity: 1 !important; transform: translateY(0) !important;
@@ -1292,8 +1292,8 @@ PAGE HERO (About, Docs etc)
 
 /* About, FAQ, contact - liquid glass cards */
 .about-value, .contact-card, .result-card, .why-box, .docs-req-card, .docs-step, .contact-qa {
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   background: rgba(0, 15, 40, 0.45) !important;
   border: 1px solid rgba(0, 229, 255, 0.1) !important;
 }
@@ -1514,8 +1514,8 @@ MOBILE RESPONSIVE
   margin-top: 3rem;
   padding: 2.5rem;
   border-radius: 16px;
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   background: rgba(0, 15, 40, 0.45) !important;
   border: 1px solid rgba(0, 229, 255, 0.1) !important;
 }
@@ -1717,8 +1717,8 @@ MOBILE RESPONSIVE
   border-radius: 12px;
   margin-bottom: 0.5rem;
   overflow: hidden;
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   background: rgba(0, 15, 40, 0.45) !important;
   border: 1px solid rgba(0, 229, 255, 0.1) !important;
   transition: border-color 0.25s ease;
