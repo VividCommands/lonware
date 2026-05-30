@@ -121,7 +121,7 @@ if (menuToggle && navLinks) {
   resize();
   window.addEventListener('resize', resize);
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-  const PARTICLE_COUNT = isMobile ? 25 : 40;
+  const PARTICLE_COUNT = isMobile ? 15 : 25;
   let mouseX = -9999, mouseY = -9999;
   if (!isMobile) {
     document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
@@ -139,7 +139,7 @@ if (menuToggle && navLinks) {
       pulsePhase: Math.random()*Math.PI*2
     });
   }
-  function animate() {
+  function animate() {if(document.hidden){requestAnimationFrame(animate);return;}
     ctx.clearRect(0,0,W,H);
     for (let i=0;i<particles.length;i++) {
       const p=particles[i];
