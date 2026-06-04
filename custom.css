@@ -2087,3 +2087,87 @@ FAQ / DOCS / ABOUT / CONTACT — Card polish
     height: auto !important;
   }
 }
+
+
+/* ==============================================
+   MOBILE LAYOUT REFINEMENT (appended override)
+   Fixes: 1) navbar tall stacked box -> single clean row
+          2) feature boxes long rectangles -> balanced 2x2 grid
+   ============================================== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    padding: 8px 10px !important;
+    gap: 4px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    transform: none !important;
+    box-sizing: border-box !important;
+  }
+  .navbar .logo {
+    font-size: 1rem !important;
+    letter-spacing: 1px !important;
+    flex-shrink: 0 !important;
+  }
+  .navbar .nav-links {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: auto !important;
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    margin: 0 !important;
+  }
+  .navbar .nav-links a {
+    font-size: 0.68rem !important;
+    padding: 0.3rem 0.32rem !important;
+    letter-spacing: 0.3px !important;
+    white-space: nowrap !important;
+  }
+  .navbar .nav-discord-btn {
+    flex-shrink: 0 !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 5px 9px !important;
+    font-size: 0.7rem !important;
+    gap: 4px !important;
+  }
+  .navbar .nav-discord-btn svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .feature-boxes {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+    align-items: stretch !important;
+  }
+  .feature-box {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+    gap: 0.45rem !important;
+    padding: 0.85rem 0.6rem !important;
+    height: 100% !important;
+  }
+  .feature-box-content {
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .feature-box-content strong {
+    font-size: 0.76rem !important;
+  }
+  .feature-box-content span {
+    font-size: 0.68rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .feature-boxes {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+  }
+}
