@@ -2171,3 +2171,186 @@ FAQ / DOCS / ABOUT / CONTACT — Card polish
     gap: 0.5rem !important;
   }
 }
+
+
+/* === 2026-07 MOBILE CONSISTENCY PASS === */
+/* One authoritative layer for navigation and compact-screen layout. */
+.navbar .nav-links a.active {
+  color: #00e5ff !important;
+  background: rgba(0, 229, 255, 0.08) !important;
+}
+
+@media (max-width: 768px) {
+  .navbar,
+  .navbar.scrolled {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    gap: 4px !important;
+    left: 0 !important;
+    right: auto !important;
+    transform: none !important;
+    max-width: none !important;
+  }
+
+  .navbar {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 8px 10px !important;
+    border-radius: 0 !important;
+  }
+
+  .navbar.scrolled {
+    top: 6px !important;
+    width: calc(100% - 16px) !important;
+    margin: 0 8px !important;
+    padding: 6px 8px !important;
+    border-radius: 14px !important;
+  }
+
+  .navbar .logo,
+  .navbar.scrolled .logo {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    font-size: 0.98rem !important;
+    letter-spacing: 0.8px !important;
+    line-height: 1 !important;
+  }
+
+  .navbar .nav-links,
+  .navbar.scrolled .nav-links {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .navbar .nav-links a,
+  .navbar.scrolled .nav-links a {
+    flex: 0 1 auto !important;
+    font-size: clamp(0.58rem, 2.2vw, 0.68rem) !important;
+    line-height: 1 !important;
+    padding: 0.34rem clamp(0.18rem, 0.9vw, 0.34rem) !important;
+    letter-spacing: 0.15px !important;
+    white-space: nowrap !important;
+  }
+
+  .navbar .nav-discord-btn,
+  .navbar.scrolled .nav-discord-btn {
+    flex: 0 0 auto !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 5px 8px !important;
+    font-size: 0.66rem !important;
+    line-height: 1 !important;
+    gap: 3px !important;
+  }
+
+  .navbar .nav-discord-btn svg,
+  .navbar.scrolled .nav-discord-btn svg {
+    width: 11px !important;
+    height: 11px !important;
+  }
+
+  .page-content,
+  .page-wrap,
+  .contact-section,
+  .contact-wrapper,
+  .contact-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .products-section,
+  .benefits-section,
+  .testimonials-section,
+  .purchase-feed-section,
+  .discord-cta-section,
+  .community-section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .footer-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .footer-top {
+    gap: 2rem !important;
+  }
+
+  .product-card,
+  .package-card,
+  .about-story-block,
+  .about-values-block,
+  .about-tile,
+  .about-discord-block,
+  .contact-card,
+  .docs-req-card {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .navbar,
+  .navbar.scrolled {
+    gap: 2px !important;
+  }
+
+  .navbar .logo,
+  .navbar.scrolled .logo {
+    font-size: 0.88rem !important;
+  }
+
+  .navbar .nav-links a,
+  .navbar.scrolled .nav-links a {
+    font-size: clamp(0.54rem, 2.15vw, 0.62rem) !important;
+    padding-left: 0.16rem !important;
+    padding-right: 0.16rem !important;
+  }
+
+  .navbar .nav-discord-btn,
+  .navbar.scrolled .nav-discord-btn {
+    padding: 5px 6px !important;
+    font-size: 0 !important;
+  }
+
+  .navbar .nav-discord-btn svg,
+  .navbar.scrolled .nav-discord-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .hero-title {
+    overflow-wrap: anywhere;
+  }
+
+  .hero-stats,
+  .stat-row {
+    justify-content: center !important;
+  }
+
+  .footer-nav-cols {
+    width: 100%;
+  }
+}
