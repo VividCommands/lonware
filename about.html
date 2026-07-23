@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-.about-hero-wrap{min-height:auto;display:flex;flex-direction:column;align-itemhsh:center;justify-content:center;text-align:center;padding:5rem 2rem 3rem;position:relative;overflow:hidden;}
+.about-hero-wrap{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 3rem;position:relative;overflow:hidden;}
 .about-hero-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,229,255,.06) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 20% 80%,rgba(0,100,200,.08) 0%,transparent 60%);pointer-events:none;}
 .about-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(0,229,255,.6);margin-bottom:1rem;display:block;}
 .about-hero-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(2rem,6vw,4.5rem);line-height:.95;text-transform:uppercase;margin:0 0 1rem;color:#fff;letter-spacing:-1px;}
@@ -58,6 +58,23 @@
 .stat-item{text-align:center;}
 .stat-item .num{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:#00e5ff;line-height:1;}
 .stat-item .lbl{font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;}
+/* Mobile About refinement */
+@media(max-width:768px){
+  .about-hero-wrap{padding:3.5rem 1rem 2.25rem;}
+  .page-wrap{padding:0 1rem 4rem;}
+  .about-story-block,.about-values-block,.about-discord-block{padding:1.5rem;border-radius:16px;}
+  .about-tile{padding:1.5rem;border-radius:16px;min-height:132px;}
+  .stat-row{justify-content:center;gap:1.25rem;}
+}
+@media(max-width:430px){
+  .about-hero-wrap{padding-top:3rem;}
+  .about-hero-sub{font-size:.88rem;}
+  .about-story-block,.about-values-block,.about-discord-block{padding:1.25rem;}
+  .value-item{gap:.85rem;}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;width:100%;}
+  .stat-item .num{font-size:1.5rem;}
+  .stat-item .lbl{font-size:.58rem;letter-spacing:.8px;}
+}
 </style>
 </head>
 <body>
