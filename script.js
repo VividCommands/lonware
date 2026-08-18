@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Dynamic hero word */
 const dynamicWord = document.getElementById('dynamic-word');
-const words = ['performance','optimization','precision','control','efficiency'];
+const words = ['faster','smoother','steadier','simpler','yours'];
 let wordIndex = 0;
 const updateWord = () => {
   if (!dynamicWord) return;
@@ -161,15 +161,44 @@ if (menuToggle && navLinks) {
   animate();
 })();
 
-/* Macro slider */
-const macroSlides = document.querySelectorAll('.macro-slide');
-let macroIndex = 0;
-function showMacroSlide(index) {
-  if (!macroSlides.length) return;
-  macroIndex=((index%macroSlides.length)+macroSlides.length)%macroSlides.length;
-  macroSlides.forEach((s,i)=>s.classList.toggle('active',i===macroIndex));
+/* Product lineup carousel */
+const lineup = document.querySelector('.lineup-showcase');
+if (lineup) {
+  const slides = [...lineup.querySelectorAll('.lineup-slide')];
+  const controls = lineup.querySelector('.lineup-controls');
+  let activeProduct = 0;
+  let lineupTimer;
+
+  slides.forEach((slide, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'lineup-dot' + (index === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Show ' + slide.querySelector('h2').textContent);
+    dot.addEventListener('click', () => { showProduct(index); restartLineup(); });
+    controls.appendChild(dot);
+  });
+
+  function showProduct(index) {
+    activeProduct = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === activeProduct);
+      slide.setAttribute('aria-hidden', i === activeProduct ? 'false' : 'true');
+    });
+    controls.querySelectorAll('.lineup-dot').forEach((dot, i) => dot.classList.toggle('active', i === activeProduct));
+  }
+
+  function restartLineup() {
+    clearInterval(lineupTimer);
+    lineupTimer = setInterval(() => showProduct(activeProduct + 1), 6500);
+  }
+
+  lineup.querySelector('.lineup-prev').addEventListener('click', () => { showProduct(activeProduct - 1); restartLineup(); });
+  lineup.querySelector('.lineup-next').addEventListener('click', () => { showProduct(activeProduct + 1); restartLineup(); });
+  lineup.addEventListener('mouseenter', () => clearInterval(lineupTimer));
+  lineup.addEventListener('mouseleave', restartLineup);
+  showProduct(0);
+  restartLineup();
 }
-if (macroSlides.length > 1) { setInterval(()=>showMacroSlide(macroIndex+1),4000); }
 
 /* Testimonial slider */
 const testimonialSlides = document.querySelectorAll('.testimonial-slide');
@@ -282,7 +311,7 @@ function isMobileDevice(){return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMob
 if(!isMobileDevice()){document.querySelectorAll('.product-card').forEach(card=>{const video=card.querySelector('.product-media video');if(!video)return;card.addEventListener('mouseenter',()=>video.play());card.addEventListener('mouseleave',()=>{video.pause();video.currentTime=0;});});}
 
 /* Hero video autoplay */
-const heroVideo=document.querySelector('.macro-slide.active video');
+const heroVideo=document.querySelector('.lineup-slide.active video');
 if(heroVideo)heroVideo.play().catch(()=>{});
 
 /* Scroll-down indicator */
