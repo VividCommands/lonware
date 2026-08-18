@@ -230,6 +230,44 @@ DISCORD BUTTON â Navbar (Liquid Glass style)
 .macro-slide video, .macro-slide img { width: 100%; height: auto; display: block; }
 .macro-slider .macro-slide img { width: 80%; margin: 0 auto; }
 
+/* -- FEATURED PRODUCT LINEUP -- */
+.lineup-showcase { position: relative; max-width: 1240px; margin: 0 auto 5rem; padding: 1rem 4.5rem 3.5rem; }
+.lineup-stage { position: relative; min-height: 510px; }
+.lineup-slide { position: absolute; inset: 0; display: grid; grid-template-columns: 1.18fr .82fr; align-items: center; gap: 4rem; opacity: 0; visibility: hidden; transform: translateX(28px) scale(.985); transition: opacity .55s ease, transform .55s ease, visibility .55s; pointer-events: none; }
+.lineup-slide.active { position: relative; opacity: 1; visibility: visible; transform: translateX(0) scale(1); pointer-events: auto; }
+.lineup-visual { min-width: 0; perspective: 1100px; }
+.lineup-stack { position: relative; height: 390px; display: grid; place-items: center; }
+.stack-image { position: absolute; width: min(92%, 650px); height: 330px; object-fit: contain; border-radius: 18px; background: rgba(0, 8, 20, .96); border: 1px solid rgba(0,229,255,.18); box-shadow: 0 26px 70px rgba(0,0,0,.55), 0 0 42px rgba(0,229,255,.08); transition: transform .55s ease, opacity .55s ease; }
+.stack-front { z-index: 3; transform: translateZ(45px); }
+.stack-back { z-index: 1; width: 67%; height: 265px; opacity: .42; filter: saturate(.72) brightness(.7); }
+.stack-left { transform: translate(-25%, 2%) rotateY(18deg) rotateZ(-3deg); }
+.stack-right { transform: translate(25%, 2%) rotateY(-18deg) rotateZ(3deg); }
+.lineup-slide.active .stack-left { transform: translate(-28%, 0) rotateY(18deg) rotateZ(-3deg); }
+.lineup-slide.active .stack-right { transform: translate(28%, 0) rotateY(-18deg) rotateZ(3deg); }
+.lineup-stack.single .stack-front { width: min(88%, 620px); }
+.lineup-copy { position: relative; z-index: 4; }
+.lineup-kicker { color: rgba(0,229,255,.72); font: 700 .68rem/1 'Rajdhani',sans-serif; letter-spacing: 2.4px; text-transform: uppercase; }
+.lineup-copy h2 { margin: .65rem 0 1rem; font: 700 clamp(2.2rem,4vw,4rem)/.95 'Rajdhani',sans-serif; letter-spacing: -.03em; color: #fff; }
+.lineup-copy p { color: rgba(255,255,255,.64); line-height: 1.75; max-width: 480px; }
+.lineup-chips { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.35rem 0 1.65rem; }
+.lineup-chips span { padding: .45rem .72rem; border: 1px solid rgba(0,229,255,.15); border-radius: 999px; background: rgba(0,229,255,.055); color: rgba(255,255,255,.72); font-size: .72rem; }
+.lineup-arrow { position: absolute; top: 45%; z-index: 8; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(0,229,255,.2); background: rgba(0,12,28,.72); color: #fff; font-size: 1.1rem; cursor: pointer; backdrop-filter: blur(14px); transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+.lineup-arrow:hover { transform: scale(1.08); background: rgba(0,229,255,.12); border-color: rgba(0,229,255,.45); }
+.lineup-prev { left: .5rem; }
+.lineup-next { right: .5rem; }
+.lineup-controls { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: .55rem; z-index: 8; }
+.lineup-dot { width: 30px; height: 4px; padding: 0; border: 0; border-radius: 99px; background: rgba(255,255,255,.16); cursor: pointer; transition: width .25s ease, background .25s ease, box-shadow .25s ease; }
+.lineup-dot.active { width: 52px; background: #00e5ff; box-shadow: 0 0 15px rgba(0,229,255,.55); }
+@media (max-width: 900px) { .lineup-showcase { padding: 0 1rem 3.5rem; margin-bottom: 3rem; } .lineup-stage { min-height: 650px; } .lineup-slide { grid-template-columns: 1fr; gap: 1.25rem; text-align: center; } .lineup-stack { height: 340px; } .stack-image { height: 280px; } .stack-back { height: 225px; } .lineup-copy p { margin-left: auto; margin-right: auto; } .lineup-chips { justify-content: center; } .lineup-arrow { top: 28%; } }
+@media (max-width: 560px) { .lineup-stage { min-height: 600px; } .lineup-stack { height: 275px; } .stack-image { width: 94%; height: 225px; border-radius: 12px; } .stack-back { width: 72%; height: 190px; } .lineup-arrow { width: 38px; height: 38px; top: 23%; } .lineup-prev { left: 0; } .lineup-next { right: 0; } .lineup-copy h2 { font-size: 2.35rem; } }
+
+/* Keep every source screenshot inside one consistent frame. */
+.macro-slide { height: 329px; }
+.macro-slide img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+
+/* The navigation uses the same solid base on every page before it becomes glass. */
+body .navbar:not(.scrolled) { background: rgba(0, 8, 16, .98) !important; border-color: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+
 /* -- HERO LIQUID GLASS -- */
 .hero {
   --glow-intensity: 1;
@@ -1934,7 +1972,10 @@ ULTIMATE BUNDLE CARD
   align-items: center;
   justify-content: center;
   color: #3287fa;
+  font: 700 .68rem/1 'Rajdhani', sans-serif;
 }
+
+.package-media .bundle-media-custom { margin-bottom: 1rem; border-radius: 8px; min-height: 185px; }
 .bundle-media-custom .bundle-icon svg {
   width: 18px;
   height: 18px;
