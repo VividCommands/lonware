@@ -1,51 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
   <title id="title">Lonware Ultimate Bundle</title>
-  <desc id="desc">A dark premium illustration with a luminous Lonware monolith and orbiting rings.</desc>
+  <desc id="desc">Four refined symbols represent Macro.io, Optii, Ping Optimization, and Bloom Reducer.</desc>
   <defs>
-    <linearGradient id="bg" x1="70" y1="20" x2="700" y2="430" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0A2034"/>
-      <stop offset=".5" stop-color="#050D18"/>
-      <stop offset="1" stop-color="#02060D"/>
-    </linearGradient>
-    <linearGradient id="face" x1="350" y1="95" x2="485" y2="345" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#183D55"/>
-      <stop offset=".48" stop-color="#0B1C2B"/>
-      <stop offset="1" stop-color="#050A12"/>
-    </linearGradient>
-    <linearGradient id="edge" x1="319" y1="96" x2="488" y2="336" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E7F8FF"/>
-      <stop offset=".38" stop-color="#63D9FF"/>
-      <stop offset="1" stop-color="#1E6592"/>
-    </linearGradient>
-    <radialGradient id="halo">
-      <stop stop-color="#38BDEF" stop-opacity=".22"/>
-      <stop offset=".55" stop-color="#1473A4" stop-opacity=".07"/>
-      <stop offset="1" stop-color="#06101D" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="8"/>
-    </filter>
+    <linearGradient id="bg" x1="65" y1="22" x2="735" y2="430" gradientUnits="userSpaceOnUse"><stop stop-color="#0B2032"/><stop offset=".52" stop-color="#06111D"/><stop offset="1" stop-color="#02070E"/></linearGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102C40"/><stop offset="1" stop-color="#07111C"/></linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#C9F4FF"/><stop offset=".45" stop-color="#62D3FF"/><stop offset="1" stop-color="#2A78A4"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#47C8FA" stop-opacity=".18"/><stop offset="1" stop-color="#47C8FA" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="12" stdDeviation="13" flood-color="#000" flood-opacity=".5"/></filter>
   </defs>
-  <rect width="800" height="450" rx="18" fill="url(#bg)"/>
-  <circle cx="408" cy="222" r="196" fill="url(#halo)"/>
-  <g fill="none" stroke="#57CFFF" stroke-opacity=".12">
-    <ellipse cx="408" cy="224" rx="262" ry="117" transform="rotate(-10 408 224)"/>
-    <ellipse cx="408" cy="224" rx="214" ry="88" transform="rotate(16 408 224)"/>
+  <rect width="800" height="450" rx="20" fill="url(#bg)"/>
+  <ellipse cx="400" cy="210" rx="300" ry="190" fill="url(#halo)"/>
+  <g opacity=".16" fill="none" stroke="#68D6FF"><path d="M89 363C208 230 257 108 403 107s197 127 308 257"/><path d="M95 88h610M95 371h610"/></g>
+  <g filter="url(#shadow)">
+    <g transform="translate(92 92)">
+      <rect width="142" height="180" rx="18" fill="url(#tile)" stroke="#77D9FF" stroke-opacity=".26"/>
+      <rect x="31" y="39" width="80" height="55" rx="7" fill="none" stroke="url(#cyan)" stroke-width="4"/>
+      <path d="M53 112h36M71 95v17" stroke="#87E1FF" stroke-width="4" stroke-linecap="round"/>
+      <text x="71" y="145" text-anchor="middle" fill="#EAF9FF" font-family="Montserrat,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">OPTII</text>
+      <text x="71" y="163" text-anchor="middle" fill="#6F9CB1" font-family="Montserrat,Arial,sans-serif" font-size="7" font-weight="600" letter-spacing="1.2">PC HEALTH</text>
+    </g>
+    <g transform="translate(250 65)">
+      <rect width="142" height="180" rx="18" fill="url(#tile)" stroke="#77D9FF" stroke-opacity=".26"/>
+      <g fill="none" stroke="url(#cyan)" stroke-width="4" stroke-linecap="round">
+        <path d="M34 59c21-20 53-20 74 0"/><path d="M47 73c14-13 34-13 48 0"/><path d="M60 87c7-6 15-6 22 0"/>
+      </g>
+      <circle cx="71" cy="98" r="4" fill="#9DE8FF"/>
+      <text x="71" y="145" text-anchor="middle" fill="#EAF9FF" font-family="Montserrat,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">PING</text>
+      <text x="71" y="163" text-anchor="middle" fill="#6F9CB1" font-family="Montserrat,Arial,sans-serif" font-size="7" font-weight="600" letter-spacing="1.2">NETWORK</text>
+    </g>
+    <g transform="translate(408 65)">
+      <rect width="142" height="180" rx="18" fill="url(#tile)" stroke="#77D9FF" stroke-opacity=".26"/>
+      <g fill="none" stroke="url(#cyan)" stroke-width="4" stroke-linecap="round">
+        <circle cx="71" cy="70" r="31"/><circle cx="71" cy="70" r="13"/><path d="M71 29v15M71 96v15M30 70h15M97 70h15"/>
+      </g>
+      <text x="71" y="145" text-anchor="middle" fill="#EAF9FF" font-family="Montserrat,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">BLOOM</text>
+      <text x="71" y="163" text-anchor="middle" fill="#6F9CB1" font-family="Montserrat,Arial,sans-serif" font-size="7" font-weight="600" letter-spacing="1.2">AIM SETTINGS</text>
+    </g>
+    <g transform="translate(566 92)">
+      <rect width="142" height="180" rx="18" fill="url(#tile)" stroke="#77D9FF" stroke-opacity=".26"/>
+      <rect x="28" y="40" width="86" height="61" rx="8" fill="none" stroke="url(#cyan)" stroke-width="4"/>
+      <g fill="#8FE4FF"><rect x="40" y="53" width="12" height="10" rx="2"/><rect x="58" y="53" width="12" height="10" rx="2"/><rect x="76" y="53" width="12" height="10" rx="2"/><rect x="94" y="53" width="8" height="10" rx="2"/><rect x="40" y="70" width="18" height="10" rx="2"/><rect x="64" y="70" width="38" height="10" rx="2"/></g>
+      <text x="71" y="145" text-anchor="middle" fill="#EAF9FF" font-family="Montserrat,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">MACRO.IO</text>
+      <text x="71" y="163" text-anchor="middle" fill="#6F9CB1" font-family="Montserrat,Arial,sans-serif" font-size="7" font-weight="600" letter-spacing="1.2">INPUT TOOLS</text>
+    </g>
   </g>
-  <g fill="#BDEFFF">
-    <circle cx="160" cy="264" r="3" opacity=".55"/>
-    <circle cx="629" cy="126" r="2.5" opacity=".7"/>
-    <circle cx="660" cy="302" r="2" opacity=".45"/>
-  </g>
-  <path d="M327 127 410 79l111 63-83 49-111-64Z" fill="#15384D" stroke="url(#edge)" stroke-width="1.5"/>
-  <path d="m327 127 111 64v157l-111-64V127Z" fill="url(#face)" stroke="#55CEF7" stroke-opacity=".45" stroke-width="1.5"/>
-  <path d="m438 191 83-49v157l-83 49V191Z" fill="#06111D" stroke="#55CEF7" stroke-opacity=".35" stroke-width="1.5"/>
-  <path d="M365 162v98l55 32" fill="none" stroke="#84E1FF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M365 162v98l55 32" fill="none" stroke="#49C7F3" stroke-opacity=".45" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
-  <path d="m458 206 42-25v95l-42 25v-95Z" fill="#0E2638" stroke="#6DDAFF" stroke-opacity=".42"/>
-  <path d="m468 238 22-13M468 254l22-13M468 270l14-8" stroke="#8BE4FF" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
-  <g font-family="Montserrat,Arial,sans-serif" text-anchor="middle">
-    <text x="400" y="397" fill="#EAF9FF" font-size="22" font-weight="600" letter-spacing="7">ULTIMATE BUNDLE</text>
-    <text x="400" y="422" fill="#6C9AAF" font-size="9" font-weight="600" letter-spacing="4">THE COMPLETE LONWARE COLLECTION</text>
-  </g>
+  <g font-family="Montserrat,Arial,sans-serif" text-anchor="middle"><text x="400" y="333" fill="#F2FBFF" font-size="23" font-weight="700" letter-spacing="6">ULTIMATE BUNDLE</text><text x="400" y="359" fill="#76A6BB" font-size="9" font-weight="600" letter-spacing="3.5">FOUR TOOLS · ONE COLLECTION</text></g>
 </svg>
