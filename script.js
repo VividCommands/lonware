@@ -275,11 +275,19 @@ document.querySelectorAll('.bloom-preview-card').forEach(card=>{
   const frame=card.querySelector('.bloom-card-video');
   const trigger=card.querySelector('.bloom-mobile-preview');
   if(!frame)return;
-  const command=func=>frame.contentWindow?.postMessage(JSON.stringify({event:'command',func,args:[]}), '*');
-  const start=()=>{card.classList.add('is-previewing');command('playVideo');};
-  const stop=()=>{command('pauseVideo');card.classList.remove('is-previewing');};
+  let hoverTimer;
+  const start=()=>{
+    clearTimeout(hoverTimer);
+    if(frame.getAttribute('src')==='about:blank')frame.setAttribute('src',frame.dataset.previewSrc);
+    card.classList.add('is-previewing');
+  };
+  const stop=()=>{
+    clearTimeout(hoverTimer);
+    card.classList.remove('is-previewing');
+    frame.setAttribute('src','about:blank');
+  };
   const coarse=window.matchMedia('(hover: none), (pointer: coarse)');
-  card.addEventListener('mouseenter',()=>{if(!coarse.matches)start();});
+  card.addEventListener('mouseenter',()=>{if(!coarse.matches)hoverTimer=setTimeout(start,180);});
   card.addEventListener('mouseleave',()=>{if(!coarse.matches)stop();});
   if(trigger)trigger.addEventListener('click',event=>{
     event.preventDefault();
