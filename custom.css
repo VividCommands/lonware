@@ -2775,6 +2775,10 @@ body.about-page-body .about-hero-wrap::before { display: none !important; }
 }
 
 /* === OPTII PRODUCT EXPERIENCE === */
+.optii-page {
+  background: radial-gradient(ellipse at 70% 0%, rgba(0,50,100,.35) 0%, transparent 60%), radial-gradient(ellipse at 0% 80%, rgba(0,30,80,.3) 0%, transparent 50%), #01010d !important;
+  color: #e6f2ff !important;
+}
 .optii-page main { overflow: hidden; }
 .optii-page .navbar { border-bottom-color: rgba(130, 225, 255, .18) !important; }
 .optii-hero,
