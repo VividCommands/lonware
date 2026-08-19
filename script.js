@@ -161,43 +161,60 @@ if (menuToggle && navLinks) {
   animate();
 })();
 
-/* Product lineup carousel */
-const lineup = document.querySelector('.lineup-showcase');
-if (lineup) {
-  const slides = [...lineup.querySelectorAll('.lineup-slide')];
-  const controls = lineup.querySelector('.lineup-controls');
+/* Circular product stage with an independent screenshot shuffle per product */
+const orbit = document.querySelector('.product-orbit');
+if (orbit) {
+  const products = [...orbit.querySelectorAll('.orbit-product')];
+  const controls = orbit.querySelector('.orbit-controls');
   let activeProduct = 0;
-  let lineupTimer;
+  let orbitTimer;
 
-  slides.forEach((slide, index) => {
+  products.forEach((product, index) => {
+    product.dataset.shot = '0';
     const dot = document.createElement('button');
     dot.type = 'button';
-    dot.className = 'lineup-dot' + (index === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Show ' + slide.querySelector('h2').textContent);
-    dot.addEventListener('click', () => { showProduct(index); restartLineup(); });
+    dot.className = 'orbit-dot' + (index === 0 ? ' is-current' : '');
+    dot.setAttribute('aria-label', 'Bring ' + product.querySelector('h2').textContent + ' forward');
+    dot.addEventListener('click', () => { rotateProducts(index, index < activeProduct ? -1 : 1); restartOrbit(); });
     controls.appendChild(dot);
   });
 
-  function showProduct(index) {
-    activeProduct = (index + slides.length) % slides.length;
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === activeProduct);
-      slide.setAttribute('aria-hidden', i === activeProduct ? 'false' : 'true');
+  function rotateProducts(index, direction = 1) {
+    const next = (index + products.length) % products.length;
+    if (next === activeProduct) return;
+    const outgoing = products[activeProduct];
+    const incoming = products[next];
+    outgoing.className = 'orbit-product is-leaving ' + (direction > 0 ? 'to-left' : 'to-right');
+    incoming.className = 'orbit-product is-entering ' + (direction > 0 ? 'from-right' : 'from-left');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      outgoing.className = 'orbit-product is-behind ' + (direction > 0 ? 'behind-left' : 'behind-right');
+      incoming.className = 'orbit-product is-front';
+    }));
+    activeProduct = next;
+    controls.querySelectorAll('.orbit-dot').forEach((dot, i) => dot.classList.toggle('is-current', i === activeProduct));
+  }
+
+  function advanceShots() {
+    products.forEach(product => {
+      const shots = [...product.querySelectorAll('.orbit-shot')];
+      if (shots.length < 2) return;
+      const next = (Number(product.dataset.shot) + 1) % shots.length;
+      shots.forEach((shot, i) => shot.classList.toggle('is-current', i === next));
+      product.dataset.shot = String(next);
     });
-    controls.querySelectorAll('.lineup-dot').forEach((dot, i) => dot.classList.toggle('active', i === activeProduct));
   }
 
-  function restartLineup() {
-    clearInterval(lineupTimer);
-    lineupTimer = setInterval(() => showProduct(activeProduct + 1), 6500);
+  function restartOrbit() {
+    clearInterval(orbitTimer);
+    orbitTimer = setInterval(() => rotateProducts(activeProduct + 1, 1), 7000);
   }
 
-  lineup.querySelector('.lineup-prev').addEventListener('click', () => { showProduct(activeProduct - 1); restartLineup(); });
-  lineup.querySelector('.lineup-next').addEventListener('click', () => { showProduct(activeProduct + 1); restartLineup(); });
-  lineup.addEventListener('mouseenter', () => clearInterval(lineupTimer));
-  lineup.addEventListener('mouseleave', restartLineup);
-  showProduct(0);
-  restartLineup();
+  orbit.querySelector('.orbit-prev').addEventListener('click', () => { rotateProducts(activeProduct - 1, -1); restartOrbit(); });
+  orbit.querySelector('.orbit-next').addEventListener('click', () => { rotateProducts(activeProduct + 1, 1); restartOrbit(); });
+  orbit.addEventListener('mouseenter', () => clearInterval(orbitTimer));
+  orbit.addEventListener('mouseleave', restartOrbit);
+  setInterval(advanceShots, 2600);
+  restartOrbit();
 }
 
 /* Testimonial slider */
@@ -230,63 +247,6 @@ if(nextBtn)nextBtn.addEventListener('click',()=>showSlide(currentSlide+1));
 if(testimonialSlides.length>1){setInterval(()=>showSlide(currentSlide+1),6000);}
 showSlide(0);
 
-/* Purchase feed */
-const feedList = document.getElementById('purchase-feed-list');
-const NAMES = [
-  'Raskology','Domstaa','Avxry','ItsWiKKiD','Albinoyogurt','RuflessCat','FlyWyd',
-  'StackyZB','Honsq.','Zero3ffort','Shock-N-Awe','NykZB','Magadian','Mud McFly',
-  'Repulsives Beard','Prospering','DannyYoshida','AlexanderTheDad','Pup-pi',
-  'H0RIBLE','stealthreaperXY','Carnseyy_','earthjad3','Nytrixz','AcidicWolfXBL',
-  'C4_Monster_','QuietLlama42','Droev','NoScopeTaxes','blackandwhiteBob',
-  'Liam5011','RakuaFN','polgot','anomalo2.0','biz da don','m1nsook',
-  'Santi_Rocks','Disciple Taiyo','Vincenzo Cassano','Imonmobile_LOL1',
-  'LuvDaCookieDough','dargun bol','Bobalt2862','TT UsuallyDolo','JZVL',
-  'tt cassiusoffwb','ElSenorJorge','JustCallMeDaddy6','999Ghostboy999',
-  'jeis3r70','Vinnies Goodboy','MK1NG1','kumakumao8888','BLMGamingYT',
-  'wicked_aim','tryhard_sean','lowping_only','clutch_or_kick','daily_grinder',
-  'consoleplayer_','notasmurfacc','sweaty_kyle','mw3_veteran','backline_tyler',
-  'pc_masterrace_','ranked_anxiety','aimlab_daily','controller_tyler',
-  'lagged_out_','tryingmybest_','diamond_grind','noscope_daily','respectfully_',
-  'just_vibing99','2nd_account_lol','wifi_warrior_','couchgamer2k','spamming_daily',
-  'fps_brainrot','stopspawning_','oneshot_wonder','warmup_routine','hardstuck_plat',
-  'ryanfps','jaylen2k','devontae_','connorw_gg','tyler_builds','dkgaming_',
-  'chasethegame','mikey_fps','bryanplays','nathan_does','lukas_gamer',
-  'kyleishere','derekplays','seanw_','andrewg_gg','bradly_plays',
-  'nate_on_pc','jakewins','matthewgg','hunter_fps','caleb_clutch',
-  'Chris M.','Jake R.','Liam W.','Ethan B.','Noah C.','Owen T.',
-  'Zach K.','Dylan P.','Hunter S.','Kyle F.','Caleb J.','Sean A.',
-  'Mia R.','Emma D.','Olivia S.','Sofia N.','Lexi B.'
-];
-const PRODUCTS = ['PC Optimizations','Console Tweaks','Ping Optimizations','Bloom Reducer','Controller Macro'];
-
-function randomPurchase() {
-  return { name: NAMES[Math.floor(Math.random() * NAMES.length)], product: PRODUCTS[Math.floor(Math.random() * PRODUCTS.length)] };
-}
-
-function addPurchaseItem() {
-  if (!feedList) return;
-  const { name, product } = randomPurchase();
-  const li = document.createElement('li');
-  li.innerHTML = '<strong>' + name + '</strong> purchased <em>' + product + '</em>';
-  li.style.opacity = '0';
-  li.style.transform = 'translateY(-10px)';
-  feedList.prepend(li);
-  requestAnimationFrame(() => {
-    li.style.transition = 'opacity .4s, transform .4s';
-    li.style.opacity = '1';
-    li.style.transform = 'translateY(0)';
-  });
-  while (feedList.children.length > 5) { feedList.removeChild(feedList.lastChild); }
-  const nextDelay = 2500 + Math.floor(Math.random() * 4500);
-  setTimeout(addPurchaseItem, nextDelay);
-}
-
-if (feedList) {
-  for (let i = 0; i < 5; i++) {
-    setTimeout(addPurchaseItem, i * 600);
-  }
-}
-
 /* Scroll reveal */
 const revealSelectors = 'section:not(.hero),.product-card,.package-card,.stat-item,.benefit-item,.testimonials-section,.purchase-feed-section,.metric,footer';
 const revealEls = document.querySelectorAll(revealSelectors);
@@ -311,7 +271,7 @@ function isMobileDevice(){return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMob
 if(!isMobileDevice()){document.querySelectorAll('.product-card').forEach(card=>{const video=card.querySelector('.product-media video');if(!video)return;card.addEventListener('mouseenter',()=>video.play());card.addEventListener('mouseleave',()=>{video.pause();video.currentTime=0;});});}
 
 /* Hero video autoplay */
-const heroVideo=document.querySelector('.lineup-slide.active video');
+const heroVideo=document.querySelector('.orbit-product.is-front video');
 if(heroVideo)heroVideo.play().catch(()=>{});
 
 /* Scroll-down indicator */
