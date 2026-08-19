@@ -270,6 +270,27 @@ if (planet && planet.tagName) {
 function isMobileDevice(){return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)||window.innerWidth<768;}
 if(!isMobileDevice()){document.querySelectorAll('.product-card').forEach(card=>{const video=card.querySelector('.product-media video');if(!video)return;card.addEventListener('mouseenter',()=>video.play());card.addEventListener('mouseleave',()=>{video.pause();video.currentTime=0;});});}
 
+/* Bloom card: intentional desktop hover, explicit mobile tap. */
+document.querySelectorAll('.bloom-preview-card').forEach(card=>{
+  const frame=card.querySelector('.bloom-card-video');
+  const trigger=card.querySelector('.bloom-mobile-preview');
+  if(!frame)return;
+  const command=func=>frame.contentWindow?.postMessage(JSON.stringify({event:'command',func,args:[]}), '*');
+  const start=()=>{card.classList.add('is-previewing');command('playVideo');};
+  const stop=()=>{command('pauseVideo');card.classList.remove('is-previewing');};
+  const coarse=window.matchMedia('(hover: none), (pointer: coarse)');
+  card.addEventListener('mouseenter',()=>{if(!coarse.matches)start();});
+  card.addEventListener('mouseleave',()=>{if(!coarse.matches)stop();});
+  if(trigger)trigger.addEventListener('click',event=>{
+    event.preventDefault();
+    event.stopPropagation();
+    card.classList.contains('is-previewing')?stop():start();
+    trigger.textContent=card.classList.contains('is-previewing')?'Stop':'Preview';
+  });
+  const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stop();},{threshold:.15});
+  observer.observe(card);
+});
+
 /* Hero video autoplay */
 const heroVideo=document.querySelector('.orbit-product.is-front video');
 if(heroVideo)heroVideo.play().catch(()=>{});
