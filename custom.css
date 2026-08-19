@@ -2773,3 +2773,147 @@ body.about-page-body .about-hero-wrap::before { display: none !important; }
 @media (prefers-reduced-motion: reduce) {
   .orbit-product, .orbit-shot { transition-duration: .01ms !important; }
 }
+
+/* === OPTII PRODUCT EXPERIENCE === */
+.optii-page main { overflow: hidden; }
+.optii-page .navbar { border-bottom-color: rgba(130, 225, 255, .18) !important; }
+.optii-hero,
+.optii-intro,
+.optii-workflow,
+.optii-showcase,
+.optii-details,
+.optii-final {
+  width: min(1180px, calc(100% - 40px));
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+.optii-hero {
+  min-height: 760px;
+  display: grid;
+  grid-template-columns: .78fr 1.22fr;
+  align-items: center;
+  gap: 3.5rem;
+  padding: 8.5rem 0 5rem;
+}
+.optii-kicker {
+  display: inline-block;
+  color: #76d9ff;
+  font: 700 .68rem/1 'Montserrat', sans-serif;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.optii-hero h1 {
+  margin: .9rem 0 1.2rem;
+  color: #f5fbff;
+  font: 700 clamp(4.5rem, 8vw, 7.7rem)/.78 'Rajdhani', sans-serif;
+  letter-spacing: -.045em;
+}
+.optii-hero h1 span { color: #78d8ff; }
+.optii-lead {
+  max-width: 560px;
+  margin: 0;
+  color: rgba(230, 243, 250, .67);
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+.optii-price-row { display: flex; align-items: center; gap: .8rem; margin: 1.75rem 0 1.4rem; }
+.optii-price-row strong { color: #f4fbff; font: 700 2rem/1 'Rajdhani', sans-serif; }
+.optii-was { color: rgba(255,255,255,.35); text-decoration: line-through; font-weight: 600; }
+.optii-sale {
+  padding: .35rem .58rem;
+  border: 1px solid rgba(98, 220, 171, .32);
+  border-radius: 999px;
+  color: #83e9bd;
+  background: rgba(55, 184, 132, .09);
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.optii-actions { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; }
+.optii-buy,
+.optii-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  box-sizing: border-box;
+  border-radius: 9px;
+  padding: 0 1.15rem;
+  text-decoration: none !important;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.optii-buy { color: #04101a !important; background: #82dcff; box-shadow: 0 12px 32px rgba(68, 185, 230, .18); }
+.optii-buy:hover { background: #b7ecff; transform: translateY(-1px); }
+.optii-secondary { color: rgba(229,245,255,.75) !important; border: 1px solid rgba(123, 213, 249, .2); background: #08131f; }
+.optii-trust { display: flex; flex-wrap: wrap; gap: .65rem 1.1rem; margin-top: 1.5rem; color: rgba(199, 224, 236, .47); font-size: .67rem; text-transform: uppercase; letter-spacing: .08em; }
+.optii-trust span::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: .5rem; border-radius: 50%; background: #77d9ff; vertical-align: 1px; }
+.optii-hero-media { position: relative; }
+.optii-hero-media::before { content: ''; position: absolute; inset: 12% 8%; border-radius: 50%; background: rgba(48, 168, 218, .18); filter: blur(70px); }
+.optii-hero-media img { position: relative; z-index: 1; display: block; width: 100%; height: auto; filter: drop-shadow(0 30px 55px rgba(0,0,0,.55)); }
+.optii-intro { max-width: 900px; padding: 6.5rem 0 3rem; text-align: center; }
+.optii-intro h2,
+.optii-showcase h2,
+.optii-details h2,
+.optii-final h2 { margin: .75rem 0 1.2rem; color: #f4faff; font: 700 clamp(2.2rem, 5vw, 4rem)/.98 'Rajdhani', sans-serif; letter-spacing: -.025em; }
+.optii-intro p { max-width: 800px; margin: 0 auto 1rem; color: rgba(220, 237, 246, .61); line-height: 1.85; }
+.optii-workflow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 3rem; margin-bottom: 8rem; border: 1px solid rgba(103, 200, 239, .15); border-radius: 16px; overflow: hidden; background: rgba(103, 200, 239, .15); }
+.optii-workflow article { min-height: 250px; padding: 2rem; background: #06101b; }
+.optii-workflow article > span { color: rgba(113, 216, 255, .43); font: 700 .7rem/1 'Montserrat',sans-serif; letter-spacing: .14em; }
+.optii-workflow h3,
+.optii-detail-grid h3 { margin: 2.7rem 0 .65rem; color: #eaf8ff; font: 700 1.25rem/1 'Rajdhani',sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+.optii-workflow p,
+.optii-detail-grid p,
+.optii-showcase p,
+.optii-final p { color: rgba(214,233,242,.56); line-height: 1.75; font-size: .86rem; }
+.optii-showcase { display: grid; grid-template-columns: .68fr 1.32fr; align-items: center; gap: 3.5rem; padding: 4.5rem; border: 1px solid rgba(109, 207, 245, .15); border-radius: 22px; background: linear-gradient(140deg, rgba(9,25,39,.92), rgba(3,8,15,.95)); }
+.optii-showcase img { display: block; width: 100%; height: auto; filter: drop-shadow(0 24px 38px rgba(0,0,0,.52)); }
+.optii-details { display: grid; grid-template-columns: .72fr 1.28fr; gap: 5rem; padding: 9rem 0 7rem; }
+.optii-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.optii-detail-grid article { padding: 1.6rem; border-top: 1px solid rgba(105, 206, 247, .2); background: linear-gradient(180deg, rgba(14,37,53,.36), transparent); }
+.optii-detail-grid h3 { margin: .3rem 0 .55rem; }
+.optii-final { margin-bottom: 7rem; padding: 5.5rem 2rem; border: 1px solid rgba(115, 216, 255, .18); border-radius: 22px; text-align: center; background: radial-gradient(circle at 50% 0, rgba(50,155,198,.15), transparent 55%), #050d17; }
+.optii-final p { max-width: 600px; margin: 0 auto; }
+.optii-final .optii-price-row { justify-content: center; }
+.package-old-price { margin-right: .35rem; color: rgba(255,255,255,.33); font-size: .75em; }
+
+/* Exact optical centering for every Products-page feature mark. */
+.packages-section .package-features li { min-height: 22px; padding-left: 2rem; }
+.packages-section .package-features li::before {
+  content: '' !important;
+  top: 50% !important;
+  left: 0 !important;
+  width: 19px !important;
+  height: 19px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Crect x='.75' y='.75' width='18.5' height='18.5' rx='5.25' fill='%230A1C29' stroke='%2349BDE9' stroke-opacity='.58' stroke-width='1.5'/%3E%3Cpath d='m5.7 10.1 2.65 2.7 5.95-6' fill='none' stroke='%23BDEFFF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 19px 19px no-repeat !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,.22) !important;
+  transform: translateY(-50%) !important;
+}
+.packages-section .package-features li::after { display: none !important; }
+
+@media (max-width: 900px) {
+  .optii-hero { min-height: 0; grid-template-columns: 1fr; padding-top: 8rem; text-align: center; }
+  .optii-lead { margin-left: auto; margin-right: auto; }
+  .optii-price-row, .optii-actions, .optii-trust { justify-content: center; }
+  .optii-hero-media { max-width: 780px; margin: 1rem auto 0; }
+  .optii-workflow { grid-template-columns: 1fr 1fr; }
+  .optii-showcase, .optii-details { grid-template-columns: 1fr; }
+  .optii-showcase-copy, .optii-details > div:first-child { text-align: center; }
+}
+@media (max-width: 600px) {
+  .optii-hero, .optii-intro, .optii-workflow, .optii-showcase, .optii-details, .optii-final { width: min(100% - 24px, 1180px); }
+  .optii-hero { gap: 2rem; }
+  .optii-hero h1 { font-size: 4.3rem; }
+  .optii-workflow, .optii-detail-grid { grid-template-columns: 1fr; }
+  .optii-workflow { margin-bottom: 5rem; }
+  .optii-workflow article { min-height: 0; }
+  .optii-showcase { padding: 2rem 1rem; }
+  .optii-details { gap: 2rem; padding: 6rem 0 5rem; }
+  .optii-final { margin-bottom: 4rem; padding: 4rem 1rem; }
+}
