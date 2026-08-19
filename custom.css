@@ -3106,3 +3106,80 @@ body.about-page-body .about-hero-wrap::before { display: none !important; }
   width: calc(100% + 4px) !important;
   height: calc(100% + 4px) !important;
 }
+
+/* === RESPONSIVE QUALITY REPAIR === */
+@media (max-width: 768px) {
+  .navbar,
+  .navbar.scrolled {
+    gap: 6px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  .navbar .nav-links,
+  .navbar.scrolled .nav-links {
+    justify-content: space-evenly !important;
+    gap: 2px !important;
+  }
+  .navbar .nav-links a,
+  .navbar.scrolled .nav-links a {
+    flex: 0 0 auto !important;
+    font-size: clamp(0.7rem, 2.15vw, 0.78rem) !important;
+    padding: 0.42rem clamp(0.28rem, 1vw, 0.48rem) !important;
+    letter-spacing: 0.2px !important;
+  }
+  .navbar .nav-discord-btn,
+  .navbar.scrolled .nav-discord-btn {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    font-size: 0 !important;
+  }
+  .navbar .nav-discord-btn svg,
+  .navbar.scrolled .nav-discord-btn svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+  .docs-hero {
+    padding: 8.75rem 1.25rem 3rem !important;
+  }
+  .docs-page-wrap {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .docs-section-block,
+  .docs-cta-block {
+    padding: 1.5rem !important;
+    border-radius: 16px !important;
+  }
+}
+@media (max-width: 430px) {
+  .navbar,
+  .navbar.scrolled {
+    gap: 3px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  .navbar .logo,
+  .navbar.scrolled .logo {
+    font-size: 0.9rem !important;
+  }
+  .navbar .nav-links a,
+  .navbar.scrolled .nav-links a {
+    font-size: clamp(0.64rem, 2.75vw, 0.72rem) !important;
+    padding: 0.4rem 0.24rem !important;
+  }
+  .navbar .nav-discord-btn,
+  .navbar.scrolled .nav-discord-btn {
+    width: 29px !important;
+    height: 29px !important;
+  }
+  .docs-tab-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .docs-tab {
+    text-align: center !important;
+    padding: 10px 8px !important;
+  }
+}
