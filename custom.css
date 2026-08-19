@@ -3055,3 +3055,54 @@ body.about-page-body .about-hero-wrap::before { display: none !important; }
   height: 100% !important;
 }
 .bloom-card-video { min-width: 0 !important; max-width: 100% !important; }
+
+/* === QUALITY UPDATE: seamless, correctly proportioned media === */
+.optii-hero-media {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.orbit-visual:has(img[src*="optii-"]) {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.orbit-visual:has(img[src*="optii-"]) .orbit-shot {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 8px;
+}
+.product-media:has(img[src*="optii-cover-card"]) {
+  padding: 0 !important;
+  background: #05090c !important;
+}
+.product-media:has(img[src*="optii-cover-card"]) img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 0 !important;
+  transform: none !important;
+}
+.product-card:hover .product-media:has(img[src*="optii-cover-card"]) img {
+  opacity: 1 !important;
+  transform: none !important;
+}
+.bloom-preview-media {
+  overflow: hidden;
+  background: #05080a !important;
+}
+.bloom-preview-media > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+.bloom-card-video {
+  inset: -2px !important;
+  width: calc(100% + 4px) !important;
+  height: calc(100% + 4px) !important;
+}
