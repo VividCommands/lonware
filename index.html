@@ -47,26 +47,29 @@ Use code <strong>UPD!</strong> for 12% off
 </a>
 </section>
 <section id="products" class="products-section">
-<div class="lineup-showcase" aria-roledescription="carousel" aria-label="Featured Lonware products">
-  <button class="lineup-arrow lineup-prev" type="button" aria-label="Previous product">&#8592;</button>
-  <div class="lineup-stage">
-    <article class="lineup-slide active" data-accent="cyan">
-      <div class="lineup-visual">
-        <div class="lineup-stack" aria-label="Macro.io screenshots">
-          <img src="img/macro-controller-screenshot.png" alt="Macro.io controller setup" class="stack-image stack-back stack-left" />
-          <img src="img/macro-lite-screenshot.png" alt="Macro.io Lite interface" class="stack-image stack-back stack-right" />
-          <img src="img/macro-lifetime-screenshot.png" alt="Macro.io main interface" class="stack-image stack-front" />
-        </div>
+<div class="product-orbit" aria-roledescription="carousel" aria-label="Featured Lonware products">
+  <div class="orbit-stage">
+    <article class="orbit-product is-front" data-product-index="0">
+      <div class="orbit-visual" aria-label="Macro.io screenshots">
+        <img src="img/macro-lifetime-screenshot.png" alt="Macro.io main interface" class="orbit-shot is-current" />
+        <img src="img/macro-controller-screenshot.png" alt="Macro.io controller setup" class="orbit-shot" />
+        <img src="img/macro-spam-screenshot.png" alt="Macro.io edit controls" class="orbit-shot" />
+        <img src="img/macro-lite-screenshot.png" alt="Macro.io Lite interface" class="orbit-shot" />
       </div>
-      <div class="lineup-copy"><span class="lineup-kicker">Input toolkit</span><h2>Macro.io</h2><p>Build keyboard and controller routines around the way you actually play. Set your binds, tune the timing, save configurations, and keep everything in one clean interface.</p><div class="lineup-chips"><span>Keyboard + controller</span><span>Custom timing</span><span>Saved configs</span></div><a href="macro.html" class="package-button">Explore Macro.io</a></div>
+      <div class="orbit-copy"><span class="lineup-kicker">Input toolkit</span><h2>Macro.io</h2><p>Build keyboard and controller routines around the way you actually play. Set your binds, tune the timing, save configurations, and keep everything in one clean interface.</p><div class="lineup-chips"><span>Keyboard + controller</span><span>Custom timing</span><span>Saved configs</span></div><a href="macro.html" class="package-button">Explore Macro.io</a></div>
     </article>
-    <article class="lineup-slide" data-accent="blue">
-      <div class="lineup-visual"><div class="lineup-stack"><img src="pc1.webp" alt="PC Optimizations settings" class="stack-image stack-back stack-left" /><img src="pc2.webp" alt="PC performance setup" class="stack-image stack-back stack-right" /><img src="pc_new.webp" alt="Lonware PC Optimizations" class="stack-image stack-front" /></div></div>
-      <div class="lineup-copy"><span class="lineup-kicker">System cleanup</span><h2>PC Optimizations</h2><p>A guided way to cut unnecessary Windows overhead and clean up the settings that can make games feel uneven. Apply what fits your PC and keep a clear path back.</p><div class="lineup-chips"><span>Windows 10 + 11</span><span>Guided setup</span><span>Restore support</span></div><a href="pc.html" class="package-button">Explore PC Optimizations</a></div>
+    <article class="orbit-product is-behind" data-product-index="1">
+      <div class="orbit-visual" aria-label="PC Optimizations screenshots">
+        <img src="pc_new.webp" alt="Lonware PC Optimizations" class="orbit-shot is-current" />
+        <img src="pc1.webp" alt="PC Optimizations settings" class="orbit-shot" />
+        <img src="pc2.webp" alt="PC performance setup" class="orbit-shot" />
+      </div>
+      <div class="orbit-copy"><span class="lineup-kicker">System cleanup</span><h2>PC Optimizations</h2><p>A guided way to cut unnecessary Windows overhead and clean up the settings that can make games feel uneven. Apply what fits your PC and keep a clear path back.</p><div class="lineup-chips"><span>Windows 10 + 11</span><span>Guided setup</span><span>Restore support</span></div><a href="pc.html" class="package-button">Explore PC Optimizations</a></div>
     </article>
   </div>
-  <button class="lineup-arrow lineup-next" type="button" aria-label="Next product">&#8594;</button>
-  <div class="lineup-controls" aria-label="Choose a featured product"></div>
+  <button class="orbit-arrow orbit-prev" type="button" aria-label="Bring previous product forward">&#8592;</button>
+  <button class="orbit-arrow orbit-next" type="button" aria-label="Bring next product forward">&#8594;</button>
+  <div class="orbit-controls" aria-label="Choose a featured product"></div>
 </div>
 <div class="product-grid product-grid-5" id="product-grid">
 <a href="pc.html" class="product-card-link">
