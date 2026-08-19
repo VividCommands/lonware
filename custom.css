@@ -2486,47 +2486,88 @@ FAQ / DOCS / ABOUT / CONTACT — Card polish
   .lineup-showcase { border-radius: 18px; }
 }
 
-/* About begins beneath the same continuous page background as every other page. */
+/* About uses the same solid navigation surface and uninterrupted page backdrop as every page. */
+body.about-page-body,
+body.about-page-body .about-hero-wrap {
+  background-color: #01010d !important;
+  background-image: radial-gradient(ellipse at 70% 0%, rgba(0,50,100,.35) 0%, transparent 60%), radial-gradient(ellipse at 0% 80%, rgba(0,30,80,.3) 0%, transparent 50%) !important;
+  background-attachment: fixed !important;
+}
+
+body.about-page-body .about-hero-wrap {
+  background: transparent !important;
+}
+
+body.about-page-body .about-hero-wrap::before { display: none !important; }
+
 @media (min-width: 769px) {
-  body.about-page-body .navbar:not(.scrolled) {
-    background: transparent !important;
+  body.about-page-body .navbar,
+  body.about-page-body .navbar:not(.scrolled),
+  body.about-page-body .navbar.scrolled {
+    background: #050d18 !important;
     background-image: none !important;
-    border-bottom-color: rgba(74, 202, 255, 0.1) !important;
-    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom: 1px solid rgba(74, 202, 255, 0.14) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24) !important;
   }
 }
 
-/* Ultimate Bundle uses the products themselves instead of abstract icons or letters. */
-.bundle-product-collage {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 4px;
-  padding: 7px;
-  box-sizing: border-box;
-  background: #06101f;
+/* A single, dedicated visual identity for the Ultimate Bundle. */
+.bundle-artwork-wrap {
+  aspect-ratio: 16 / 9;
+  min-height: 0 !important;
+  padding: 0;
+  overflow: hidden;
+  background: #030914;
 }
 
-.bundle-product-collage::before { display: none; }
+.bundle-artwork-wrap::before { display: none; }
 
-.bundle-product-collage img {
-  position: relative;
-  z-index: 1;
+.bundle-artwork {
   display: block;
   width: 100%;
   height: 100%;
-  min-width: 0;
-  min-height: 0;
   object-fit: cover;
-  object-position: center;
-  border: 1px solid rgba(92, 207, 255, 0.16);
-  border-radius: 5px;
-  background: #030914;
-  filter: none;
+  border: 0;
+  border-radius: inherit;
+  opacity: 1 !important;
+  filter: none !important;
 }
 
-.product-card .bundle-product-collage { aspect-ratio: 16 / 9; }
-.package-media .bundle-product-collage { aspect-ratio: 16 / 9; min-height: 0; }
+/* Precision feature marks: a restrained badge with a clean drawn tick. */
+.packages-section .package-features li {
+  min-height: 20px;
+  margin-bottom: 0.7rem;
+  padding-left: 1.9rem;
+}
+
+.packages-section .package-features li::before {
+  content: '' !important;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  box-sizing: border-box;
+  border: 1px solid rgba(93, 218, 255, 0.42);
+  border-radius: 5px;
+  background: linear-gradient(145deg, rgba(36, 158, 205, 0.17), rgba(5, 20, 35, 0.78));
+  background-image: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 3px 10px rgba(0, 0, 0, .22);
+}
+
+.packages-section .package-features li::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  width: 6px;
+  height: 3px;
+  border-left: 1.7px solid #bcefff;
+  border-bottom: 1.7px solid #bcefff;
+  transform: rotate(-45deg);
+}
 .product-card:hover .product-media-static img { opacity: 1 !important; }
 
 /* === CIRCULAR FEATURED PRODUCT STAGE === */
