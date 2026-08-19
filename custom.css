@@ -3091,6 +3091,26 @@ body.about-page-body .about-hero-wrap::before { display: none !important; }
   opacity: 1 !important;
   transform: none !important;
 }
+
+/* Homepage Optii card uses its own edge-to-edge crop. */
+.optii-grid-card .product-media {
+  background: #11171b !important;
+}
+.optii-grid-card .product-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  opacity: 1 !important;
+  filter: brightness(.98) contrast(1.02);
+  transform: scale(1) !important;
+  transition: filter .28s ease, transform .28s ease !important;
+}
+.optii-grid-card:hover .product-media img {
+  opacity: 1 !important;
+  filter: brightness(1.07) contrast(1.09) saturate(1.04);
+  transform: scale(1.025) !important;
+}
 .bloom-preview-media {
   overflow: hidden;
   background: #05080a !important;
