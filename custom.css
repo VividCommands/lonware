@@ -2988,3 +2988,70 @@ body.about-page-body .about-hero-wrap::before { display: none !important; }
   .bloom-mobile-preview { display: inline-flex; align-items: center; justify-content: center; }
   .bloom-preview-card.is-previewing .bloom-mobile-preview { background: rgba(22, 92, 119, .94); }
 }
+
+/* === FULL-FRAME PRODUCT MEDIA FIX === */
+.optii-hero-media {
+  padding: 12px;
+  border: 1px solid rgba(116, 213, 250, .18);
+  border-radius: 14px;
+  background: #10171c;
+  box-shadow: 0 24px 55px rgba(0,0,0,.38);
+}
+.optii-hero-media img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  border-radius: 7px;
+}
+.optii-showcase img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+}
+.orbit-visual:has(img[src*="optii-"]) {
+  overflow: hidden;
+  border: 1px solid rgba(116, 213, 250, .16);
+  border-radius: 14px;
+  background: #10171c;
+}
+.orbit-visual:has(img[src*="optii-"]) .orbit-shot {
+  inset: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  object-fit: contain !important;
+}
+.product-media:has(img[src*="optii-cover-quality"]) {
+  box-sizing: border-box;
+  padding: 8px;
+  background: #10171c;
+}
+.product-media:has(img[src*="optii-cover-quality"]) img {
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 6px;
+}
+
+/* Every product occupies the same grid track and card width. */
+.product-grid-5 { align-items: stretch !important; }
+.product-grid-5 .product-card-link {
+  display: flex !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  align-self: stretch !important;
+}
+.product-grid-5 .product-card {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+}
+.product-grid-5 .product-card-link:last-child,
+.product-grid-5 .product-card-link:last-child .product-card {
+  align-self: stretch !important;
+  height: 100% !important;
+}
+.bloom-card-video { min-width: 0 !important; max-width: 100% !important; }
