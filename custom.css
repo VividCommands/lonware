@@ -2528,3 +2528,207 @@ FAQ / DOCS / ABOUT / CONTACT — Card polish
 .product-card .bundle-product-collage { aspect-ratio: 16 / 9; }
 .package-media .bundle-product-collage { aspect-ratio: 16 / 9; min-height: 0; }
 .product-card:hover .product-media-static img { opacity: 1 !important; }
+
+/* === CIRCULAR FEATURED PRODUCT STAGE === */
+.product-orbit {
+  position: relative;
+  max-width: 1240px;
+  min-height: 570px;
+  margin: 0 auto 4.5rem;
+  padding: 0 4.5rem 3.25rem;
+  perspective: 1500px;
+  isolation: isolate;
+}
+
+.orbit-stage {
+  position: relative;
+  min-height: 510px;
+  transform-style: preserve-3d;
+}
+
+.orbit-product {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1.18fr .82fr;
+  align-items: center;
+  gap: 4rem;
+  transform-origin: 50% 50%;
+  transition: transform .9s cubic-bezier(.2,.75,.18,1), opacity .72s ease, filter .72s ease;
+  will-change: transform, opacity;
+}
+
+.orbit-product.is-front {
+  z-index: 5;
+  opacity: 1;
+  filter: none;
+  transform: translate3d(0,0,80px) scale(1);
+  pointer-events: auto;
+}
+
+.orbit-product.is-behind,
+.orbit-product.is-entering {
+  z-index: 1;
+  opacity: .34;
+  filter: brightness(.58) saturate(.72);
+  pointer-events: none;
+}
+
+.orbit-product.is-behind,
+.orbit-product.is-entering.from-right,
+.orbit-product.is-behind.behind-right {
+  transform: translate3d(43%, -4%, -240px) scale(.64);
+}
+
+.orbit-product.is-behind.behind-left,
+.orbit-product.is-entering.from-left {
+  transform: translate3d(-43%, -4%, -240px) scale(.64);
+}
+
+.orbit-product.is-leaving.to-left {
+  z-index: 3;
+  opacity: .34;
+  filter: brightness(.58) saturate(.72);
+  transform: translate3d(-43%, -4%, -240px) scale(.64);
+  pointer-events: none;
+}
+
+.orbit-product.is-leaving.to-right {
+  z-index: 3;
+  opacity: .34;
+  filter: brightness(.58) saturate(.72);
+  transform: translate3d(43%, -4%, -240px) scale(.64);
+  pointer-events: none;
+}
+
+.orbit-visual {
+  position: relative;
+  height: 360px;
+  min-width: 0;
+}
+
+.orbit-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  transform: translateY(8px) scale(.985);
+  transition: opacity .55s ease, transform .65s cubic-bezier(.2,.75,.18,1);
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.orbit-shot.is-current {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.orbit-copy {
+  position: relative;
+  z-index: 3;
+  opacity: 1;
+  transition: opacity .4s ease, transform .72s ease;
+}
+
+.orbit-product:not(.is-front) .orbit-copy {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.orbit-copy h2 {
+  margin: .65rem 0 1rem;
+  font: 700 clamp(2.2rem,4vw,4rem)/.95 'Rajdhani',sans-serif;
+  letter-spacing: -.03em;
+  color: #fff;
+}
+
+.orbit-copy p {
+  max-width: 480px;
+  color: rgba(255,255,255,.68);
+  line-height: 1.75;
+}
+
+.orbit-arrow {
+  position: absolute;
+  top: 43%;
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  color: rgba(255,255,255,.86);
+  background: rgba(7,19,33,.82);
+  box-shadow: 0 8px 20px rgba(0,0,0,.32);
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.orbit-arrow:hover { transform: scale(1.08); background: #0b2034; }
+.orbit-prev { left: .35rem; }
+.orbit-next { right: .35rem; }
+
+.orbit-controls {
+  position: absolute;
+  bottom: .85rem;
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  gap: .55rem;
+  transform: translateX(-50%);
+}
+
+.orbit-dot {
+  width: 30px;
+  height: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 99px;
+  background: rgba(255,255,255,.18);
+  cursor: pointer;
+  transition: width .25s ease, background .25s ease;
+}
+
+.orbit-dot.is-current { width: 50px; background: rgba(255,255,255,.82); }
+
+/* Retire the previous framed showcase completely. */
+.lineup-showcase { border: 0 !important; background: transparent !important; box-shadow: none !important; }
+.lineup-showcase::before { display: none !important; }
+
+@media (max-width: 900px) {
+  .product-orbit { min-height: 650px; padding: 0 1rem 3.25rem; margin-bottom: 3rem; }
+  .orbit-stage { min-height: 610px; }
+  .orbit-product { grid-template-columns: 1fr; gap: 1.2rem; text-align: center; }
+  .orbit-visual { height: 300px; }
+  .orbit-copy p { margin-left: auto; margin-right: auto; }
+  .orbit-copy .lineup-chips { justify-content: center; }
+  .orbit-arrow { top: 24%; }
+  .orbit-product.is-behind,
+  .orbit-product.is-entering.from-right,
+  .orbit-product.is-behind.behind-right { transform: translate3d(30%, -7%, -220px) scale(.66); }
+  .orbit-product.is-behind.behind-left,
+  .orbit-product.is-entering.from-left { transform: translate3d(-30%, -7%, -220px) scale(.66); }
+  .orbit-product.is-leaving.to-left { transform: translate3d(-30%, -7%, -220px) scale(.66); }
+  .orbit-product.is-leaving.to-right { transform: translate3d(30%, -7%, -220px) scale(.66); }
+}
+
+@media (max-width: 560px) {
+  .product-orbit { min-height: 590px; }
+  .orbit-stage { min-height: 550px; }
+  .orbit-visual { height: 245px; }
+  .orbit-copy h2 { font-size: 2.35rem; }
+  .orbit-arrow { width: 38px; height: 38px; top: 20%; }
+  .orbit-prev { left: 0; }
+  .orbit-next { right: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-product, .orbit-shot { transition-duration: .01ms !important; }
+}
