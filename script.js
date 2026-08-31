@@ -14,90 +14,56 @@ if (dynamicWord) { updateWord(); setInterval(updateWord, 2000); }
 
 /* =============================================
 ANNOUNCEMENT BAR + NAVBAR POSITIONING
-Layout order (top to bottom):
-1. Announcement bar — fixed, top: 0, z-index: 1002
-2. Navbar — fixed, top: annBarH, z-index: 1000
-On scroll down (past SCROLL_IN px):
-- Announcement bar slides up and hides (transform: translateY(-100%))
-- Navbar becomes floating pill at top: 10px
-On scroll back up (below SCROLL_OUT px):
-- Announcement bar slides back into view
-- Navbar returns to full-width below announcement bar
+Single synchronized state prevents stepped or sticky transitions.
 ============================================= */
 const announcementBar = document.querySelector('.announcement-bar');
 const navbar = document.querySelector('.navbar');
+const SCROLL_IN = 72;
+const SCROLL_OUT = 24;
+let isScrolled = window.scrollY > SCROLL_IN;
+let navFrame = 0;
 
-// Add smooth transition to announcement bar
-if (announcementBar) {
-  announcementBar.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
-}
-
-function getAnnHeight() {
-  return announcementBar ? announcementBar.offsetHeight : 0;
-}
-
-function positionNavbar() {
+function syncNavMetrics() {
   if (!navbar) return;
-  if (!navbar.classList.contains('scrolled')) {
-    navbar.style.top = getAnnHeight() + 'px';
-  }
-}
-
-function setBodyPadding() {
-  if (!navbar) return;
-  const annH = getAnnHeight();
-  const navH = navbar.offsetHeight;
+  const annH = announcementBar ? announcementBar.getBoundingClientRect().height : 0;
+  const navH = navbar.getBoundingClientRect().height;
+  document.documentElement.style.setProperty('--announcement-height', annH + 'px');
   document.body.style.paddingTop = (annH + navH) + 'px';
+  if (!isScrolled) navbar.style.top = annH + 'px';
 }
-
-/* Scroll with hysteresis */
-const SCROLL_IN = 80;
-const SCROLL_OUT = 30;
-let isScrolled = false;
-
-function updateNavbar() {
-  const y = window.scrollY;
-
-  if (!isScrolled && y > SCROLL_IN) {
-    isScrolled = true;
-    // Hide announcement bar (slide up)
-    if (announcementBar) {
-      announcementBar.style.transform = 'translateY(-100%)';
-    }
-    // Navbar becomes pill — CSS handles positioning via .scrolled
-    if (navbar) {
-      navbar.classList.add('scrolled');
-      navbar.style.top = ''; // let CSS .scrolled rule handle top: 10px
-    }
-  } else if (isScrolled && y < SCROLL_OUT) {
-    isScrolled = false;
-    // Show announcement bar again
-    if (announcementBar) {
-      announcementBar.style.transform = 'translateY(0)';
-    }
-    // Navbar returns to full-width below announcement bar
-    if (navbar) {
-      navbar.classList.remove('scrolled');
-      positionNavbar();
-    }
+function paintNavbarState() {
+  if (!navbar) return;
+  navbar.classList.toggle('scrolled', isScrolled);
+  if (announcementBar) {
+    announcementBar.style.transform = isScrolled ? 'translate3d(0,-100%,0)' : 'translate3d(0,0,0)';
   }
+  navbar.style.top = isScrolled ? '' : 'var(--announcement-height)';
 }
-
-let _navScrollRaf = null;
-function throttledUpdateNavbar() {
-  if (_navScrollRaf) return;
-  _navScrollRaf = requestAnimationFrame(() => {
-    _navScrollRaf = null;
-    updateNavbar();
+function queueNavbarUpdate() {
+  if (navFrame) return;
+  navFrame = requestAnimationFrame(() => {
+    navFrame = 0;
+    const y = Math.max(0, window.scrollY);
+    const next = isScrolled ? y > SCROLL_OUT : y > SCROLL_IN;
+    if (next !== isScrolled) {
+      isScrolled = next;
+      paintNavbarState();
+    }
   });
 }
-window.addEventListener('scroll', throttledUpdateNavbar, { passive: true });
-window.addEventListener('resize', () => { positionNavbar(); setBodyPadding(); }, { passive: true });
-
-// Initial state
-positionNavbar();
-setBodyPadding();
-updateNavbar();
+if (announcementBar) {
+  announcementBar.style.transition = 'transform .34s cubic-bezier(.22,1,.36,1)';
+  announcementBar.style.willChange = 'transform';
+}
+if ('ResizeObserver' in window) {
+  const navResizeObserver = new ResizeObserver(syncNavMetrics);
+  if (navbar) navResizeObserver.observe(navbar);
+  if (announcementBar) navResizeObserver.observe(announcementBar);
+}
+window.addEventListener('scroll', queueNavbarUpdate, {passive:true});
+window.addEventListener('resize', syncNavMetrics, {passive:true});
+syncNavMetrics();
+paintNavbarState();
 
 /* Mobile menu toggle */
 const menuToggle = document.querySelector('.menu-toggle');
