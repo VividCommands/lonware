@@ -1,9 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
-<title id="title">Four Ultimate Bundle tools</title><desc id="desc">Four consistent product icons for Macro.io, Optii, Ping Optimization, and Bloom Reducer.</desc>
-<defs><linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2fcff"/><stop offset=".55" stop-color="#8ce4ff"/><stop offset="1" stop-color="#2bbcff"/></linearGradient></defs>
-<g fill="none" stroke="url(#s)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-<g transform="translate(30 28)"><path d="M22 99V25l52 48-30 4 19 30-18 10-18-31-5 13z"/><path d="M91 27h34M108 10v34"/></g>
-<g transform="translate(205 27)"><path d="M18 25h112v78H18z"/><path d="M53 128h42M74 103v25"/><path d="M38 78l20-20 18 13 27-31"/></g>
-<g transform="translate(387 29)"><circle cx="67" cy="65" r="8" fill="#56ceff" stroke="none"/><circle cx="25" cy="28" r="9"/><circle cx="116" cy="31" r="9"/><circle cx="30" cy="108" r="9"/><circle cx="119" cy="106" r="9"/><path d="M34 34l26 24M108 38L75 59M37 102l24-29M110 100L75 72"/></g>
-<g transform="translate(570 25)"><circle cx="65" cy="65" r="43"/><circle cx="65" cy="65" r="15"/><path d="M65 0v29M65 101v29M0 65h29M101 65h29"/><path d="M27 24l14 14M89 92l14 14M103 24L89 38M41 92l-14 14"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-labelledby="title desc">
+<title id="title">Ultimate Bundle tools</title><desc id="desc">Four clean product icons for Macro.io, Optii, Ping Optimization, and Bloom Reducer.</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".5" stop-color="#a9e6ff"/><stop offset="1" stop-color="#8e9cff"/></linearGradient></defs>
+<g fill="url(#g)">
+<!-- Macro.io: controller -->
+<path d="M91 48c-19 0-31 9-38 27l-15 39c-4 11 1 20 10 20 6 0 10-3 15-10l11-17h54l11 17c5 7 9 10 15 10 9 0 14-9 10-20l-15-39c-7-18-19-27-38-27H91zm-14 23h11v11h11v10H88v11H77V92H66V82h11V71zm48 4a7 7 0 110 14 7 7 0 010-14zm18 15a7 7 0 110 14 7 7 0 010-14z"/>
+<!-- Optii: performance gauge -->
+<path d="M270 35a61 61 0 00-50 96h22a41 41 0 1157 0h22a61 61 0 00-51-96zm32 25-39 28a15 15 0 1020 20l27-40-8-8z"/>
+<!-- Ping: connected route -->
+<path d="M415 45a18 18 0 1034 8h38a18 18 0 1034-8h-38a18 18 0 00-34 0h-34zm17 51a18 18 0 1034 8h39a18 18 0 1034-8h-39a18 18 0 00-34 0h-34z"/>
+<!-- Bloom: precision reticle -->
+<path d="M630 24h12v24a42 42 0 0134 34h24v12h-24a42 42 0 01-34 34v24h-12v-24a42 42 0 01-34-34h-24V82h24a42 42 0 0134-34V24zm6 36a28 28 0 100 56 28 28 0 000-56zm0 18a10 10 0 110 20 10 10 0 010-20z"/>
 </g></svg>
