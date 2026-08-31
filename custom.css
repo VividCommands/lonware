@@ -3438,3 +3438,299 @@ body.about-page-body .about-hero-wrap::before { display: none !important; }
   .orbit-visual { height: 205px !important; }
   .orbit-arrow { top: 84px !important; }
 }
+
+/* ==========================================================
+   2026-08-31 LONWARE MATERIAL SYSTEM
+   Restrained graphite, ice-blue undertones, performance glass.
+   ========================================================== */
+:root {
+  --lw-bg: #05080c;
+  --lw-bg-deep: #020407;
+  --lw-surface: rgba(18, 25, 32, .78);
+  --lw-surface-strong: rgba(16, 23, 30, .93);
+  --lw-surface-soft: rgba(23, 32, 41, .58);
+  --lw-line: rgba(183, 218, 235, .13);
+  --lw-line-strong: rgba(163, 211, 234, .22);
+  --lw-highlight: rgba(255, 255, 255, .075);
+  --lw-blue: #8ccce8;
+  --lw-blue-strong: #a8ddf3;
+  --lw-blue-muted: #659eb8;
+  --lw-text: #f0f4f6;
+  --lw-text-soft: #b5c0c7;
+  --lw-text-muted: #7f8c94;
+  --lw-shadow: 0 18px 48px rgba(0, 0, 0, .32);
+  --lw-shadow-soft: 0 10px 28px rgba(0, 0, 0, .24);
+  --primary-color: var(--lw-blue);
+  --secondary-color: var(--lw-blue-muted);
+  --card-bg: var(--lw-surface);
+  --text-color: var(--lw-text);
+  --muted-text: var(--lw-text-soft);
+  --glow-color: transparent;
+}
+
+html { background: var(--lw-bg-deep) !important; }
+body {
+  color: var(--lw-text) !important;
+  background:
+    radial-gradient(900px 620px at 82% -8%, rgba(77, 137, 166, .13), transparent 64%),
+    radial-gradient(720px 560px at -8% 42%, rgba(54, 93, 113, .08), transparent 68%),
+    linear-gradient(180deg, #070b10 0%, var(--lw-bg) 42%, var(--lw-bg-deep) 100%) !important;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  letter-spacing: -.01em !important;
+}
+
+body::before {
+  opacity: .18 !important;
+  filter: saturate(.35) brightness(.55) !important;
+}
+
+#particle-canvas { opacity: .22 !important; }
+
+h1, h2, h3, h4, .hero-title, .footer-logo, .logo,
+.product-card h3, .package-card h3, .macro-tier-name {
+  color: var(--lw-text) !important;
+  text-shadow: none !important;
+  letter-spacing: -.025em !important;
+}
+
+p, li, .product-card-desc, .benefits-intro, .testimonial-quote,
+.page-hero p, .optii-lead, .orbit-copy p {
+  color: var(--lw-text-soft) !important;
+}
+
+.highlight, #dynamic-word, .section-label, .lineup-kicker,
+.stat-num, .hero-stat-num, .product-card-explore,
+.package-price, .macro-tier-amount, .optii-kicker {
+  color: var(--lw-blue-strong) !important;
+  text-shadow: none !important;
+}
+
+/* Thin, calm announcement treatment. */
+.announcement-bar {
+  min-height: 28px !important;
+  padding: 6px 14px !important;
+  color: #c9e8f5 !important;
+  background: rgba(7, 15, 20, .96) !important;
+  border-bottom: 1px solid rgba(151, 205, 229, .12) !important;
+  box-shadow: none !important;
+  animation: none !important;
+  font-size: .7rem !important;
+  letter-spacing: .09em !important;
+}
+
+/* Navigation glass: layered material instead of neon glow. */
+body .navbar,
+body .navbar:not(.scrolled),
+body .navbar.scrolled {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.055), transparent 52%),
+    rgba(10, 16, 21, .82) !important;
+  border: 1px solid var(--lw-line) !important;
+  border-top-color: rgba(255,255,255,.11) !important;
+  box-shadow: 0 12px 34px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.045) !important;
+  backdrop-filter: blur(18px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
+}
+
+body .navbar:not(.scrolled) {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-top: 0 !important;
+  border-radius: 0 !important;
+}
+
+body .navbar.scrolled { border-radius: 16px !important; }
+.navbar .logo { color: #f4f7f8 !important; }
+.navbar .nav-links a {
+  color: rgba(231,239,243,.72) !important;
+  border: 1px solid transparent !important;
+  text-shadow: none !important;
+}
+.navbar .nav-links a:hover,
+.navbar .nav-links a.active {
+  color: #f4f8fa !important;
+  background: rgba(149, 206, 231, .08) !important;
+  border-color: rgba(170, 216, 236, .11) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.035) !important;
+}
+.nav-discord-btn {
+  color: #e9f4f8 !important;
+  background: linear-gradient(180deg, rgba(159,212,235,.16), rgba(97,151,176,.08)) !important;
+  border: 1px solid rgba(164, 211, 231, .22) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.07) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.nav-discord-btn:hover {
+  background: rgba(129, 187, 213, .17) !important;
+  border-color: rgba(175, 221, 240, .32) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.08), 0 8px 20px rgba(0,0,0,.2) !important;
+}
+
+/* Hero: editorial restraint, no synthetic halo. */
+.hero, .products-section, .packages-section, .benefits-section,
+.why-lonware-section, .testimonials-section, .purchase-feed-section,
+.discord-cta-section, .page-hero, .page-content {
+  background: transparent !important;
+}
+.hero::before {
+  width: min(48vw, 620px) !important;
+  height: min(48vw, 620px) !important;
+  background: radial-gradient(circle, rgba(120, 186, 214, .11), rgba(72, 123, 145, .035) 42%, transparent 72%) !important;
+  box-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+}
+.hero-title { text-shadow: none !important; }
+.hero-badge {
+  color: #b9dce9 !important;
+  background: rgba(136, 193, 218, .065) !important;
+  border-color: rgba(161, 207, 227, .14) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.035) !important;
+  backdrop-filter: none !important;
+}
+.hero-stats {
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008)), rgba(15,22,28,.58) !important;
+  border-color: var(--lw-line) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.045), var(--lw-shadow-soft) !important;
+  backdrop-filter: blur(12px) saturate(112%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(112%) !important;
+}
+.hero-stat-label { color: var(--lw-text-muted) !important; }
+.scroll-indicator {
+  color: var(--lw-blue-strong) !important;
+  background: rgba(20,30,38,.72) !important;
+  border-color: var(--lw-line-strong) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 10px 24px rgba(0,0,0,.25) !important;
+  animation: scroll-indicator-bob 2.8s ease-in-out infinite !important;
+}
+.scroll-indicator svg { filter: none !important; }
+
+/* Shared liquid glass surfaces. */
+.product-card, .package-card, .why-box, .result-card, .feature-box,
+.macro-tier-card, .about-value, .about-tile, .about-story-block,
+.about-discord-block, .contact-card, .contact-qa, .docs-req-card,
+.docs-step, .docs-section-block, .docs-cta-block, .optii-workflow,
+.optii-showcase, .optii-detail-grid article, .optii-final,
+.benefits-stats, .testimonial-card, .metric {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.008) 52%),
+    var(--lw-surface) !important;
+  border: 1px solid var(--lw-line) !important;
+  border-top-color: rgba(255,255,255,.1) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.04), var(--lw-shadow-soft) !important;
+  backdrop-filter: blur(14px) saturate(112%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(112%) !important;
+}
+.product-card, .package-card, .macro-tier-card { border-radius: 14px !important; }
+.why-box, .result-card, .feature-box, .contact-card,
+.docs-req-card, .docs-step { border-radius: 12px !important; }
+
+.product-card:hover, .package-card:hover, .macro-tier-card:hover, .why-box:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(171, 216, 235, .24) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.055), 0 18px 42px rgba(0,0,0,.3) !important;
+}
+.product-card h3, .package-card h3 { color: #eaf1f4 !important; }
+.product-media, .package-media, .macro-tier-image {
+  border-radius: 11px 11px 0 0 !important;
+  border-color: rgba(255,255,255,.07) !important;
+  background: #0a0f14 !important;
+}
+.product-card-explore { opacity: .72; }
+
+/* Buttons use solid material contrast, not blue bloom. */
+.cta-button, .package-button, .macro-buy-btn, .optii-buy,
+.optii-secondary, .discord-cta-btn, .footer-discord-btn,
+.discord-inline-btn, button:not(.orbit-dot) {
+  border-radius: 10px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.075), 0 8px 20px rgba(0,0,0,.2) !important;
+  text-shadow: none !important;
+}
+.cta-primary, .package-button, .optii-buy, .macro-buy-regular {
+  color: #071016 !important;
+  background: linear-gradient(180deg, #b8dfef, #84bfd8) !important;
+  border: 1px solid rgba(211,239,249,.42) !important;
+}
+.cta-primary:hover, .package-button:hover, .optii-buy:hover, .macro-buy-regular:hover {
+  background: linear-gradient(180deg, #c6e7f3, #93c9df) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.12), 0 10px 24px rgba(0,0,0,.24) !important;
+}
+.cta-secondary, .optii-secondary, .macro-buy-lite,
+.discord-cta-btn, .footer-discord-btn, .discord-inline-btn {
+  color: #dcebf1 !important;
+  background: linear-gradient(180deg, rgba(153,203,225,.12), rgba(85,133,154,.07)) !important;
+  border: 1px solid rgba(163,209,229,.19) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Featured product controls. */
+.orbit-arrow {
+  color: #e8f1f5 !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.055), transparent), rgba(15,23,30,.9) !important;
+  border: 1px solid var(--lw-line) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.055), 0 8px 22px rgba(0,0,0,.28) !important;
+}
+.orbit-dot { background: rgba(189,211,222,.18) !important; }
+.orbit-dot.is-current { background: #b7d9e7 !important; }
+.lineup-chips span, .optii-sale, .macro-tier-badge, .bundle-badge {
+  color: #b8dce9 !important;
+  background: rgba(131,185,208,.065) !important;
+  border-color: rgba(155,205,226,.13) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.025) !important;
+}
+
+/* Community and footer material. */
+.discord-cta-section {
+  border-color: rgba(165, 207, 225, .08) !important;
+  background: linear-gradient(180deg, rgba(113,165,188,.035), transparent) !important;
+  backdrop-filter: none !important;
+}
+.footer {
+  background: linear-gradient(180deg, rgba(15,22,28,.88), rgba(5,8,11,.96)) !important;
+  border-top: 1px solid rgba(170,211,229,.1) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.02) !important;
+}
+.footer-col h4 { color: var(--lw-text-muted) !important; }
+.footer-col ul li a, .footer-links a { color: var(--lw-text-soft) !important; }
+.footer-col ul li a:hover, .footer-links a:hover { color: #eef6f8 !important; }
+
+/* Product page cleanup. */
+.optii-page { background: transparent !important; }
+.optii-hero-media::before { background: rgba(92,151,176,.09) !important; filter: blur(52px) !important; }
+.optii-workflow { gap: 1px !important; background: rgba(154,202,221,.09) !important; }
+.optii-workflow article { background: rgba(8,13,18,.82) !important; }
+.optii-showcase, .optii-final { background-color: rgba(12,18,24,.84) !important; }
+
+/* Performance policy: glass stays premium without taxing touch devices. */
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
+  #particle-canvas { display: none !important; }
+  body::before { display: none !important; }
+  .hero::before { opacity: .55 !important; }
+  .scroll-indicator { animation: none !important; }
+  .product-card, .package-card, .why-box, .result-card, .feature-box,
+  .macro-tier-card, .about-value, .about-tile, .about-story-block,
+  .about-discord-block, .contact-card, .contact-qa, .docs-req-card,
+  .docs-step, .docs-section-block, .docs-cta-block, .benefits-stats,
+  .hero-stats, .navbar, .navbar.scrolled {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(15,22,28,.94) !important;
+  }
+  .product-card:hover, .package-card:hover, .macro-tier-card:hover, .why-box:hover {
+    transform: none !important;
+  }
+  .navbar, .navbar.scrolled {
+    box-shadow: 0 8px 24px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.04) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
