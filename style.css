@@ -1134,3 +1134,74 @@ footer {
     grid-template-columns: repeat(6, 1fr);
   }
 }
+
+/* 2026-08-31 refined material pass for legacy product routes */
+:root {
+  --legacy-bg: #05080c;
+  --legacy-surface: rgba(17, 24, 31, .9);
+  --legacy-line: rgba(171, 211, 228, .14);
+  --legacy-blue: #9ed2e7;
+  --legacy-text: #eef3f5;
+  --legacy-muted: #a7b4bb;
+}
+
+html, body {
+  color: var(--legacy-text) !important;
+  background:
+    radial-gradient(800px 560px at 80% -10%, rgba(72, 128, 153, .13), transparent 65%),
+    linear-gradient(180deg, #080d12, var(--legacy-bg)) !important;
+}
+body::before { opacity: .14 !important; animation: none !important; }
+h1, h2, h3 { color: var(--legacy-text) !important; text-shadow: none !important; }
+p, li { color: var(--legacy-muted); }
+
+.announcement {
+  color: #cce7f2 !important;
+  background: rgba(7, 15, 20, .97) !important;
+  border-bottom: 1px solid rgba(160, 207, 227, .12) !important;
+}
+
+header, nav, .navbar {
+  background: linear-gradient(180deg, rgba(255,255,255,.05), transparent), rgba(11,17,22,.88) !important;
+  border-color: var(--legacy-line) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.04) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+}
+
+.card, .product-card, .package-card, .panel, .feature,
+.pricing-card, .content-card, .faq-item, .video-slider {
+  background: linear-gradient(145deg, rgba(255,255,255,.04), transparent 55%), var(--legacy-surface) !important;
+  border: 1px solid var(--legacy-line) !important;
+  border-top-color: rgba(255,255,255,.09) !important;
+  border-radius: 13px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.035), 0 14px 36px rgba(0,0,0,.26) !important;
+  backdrop-filter: blur(12px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(110%) !important;
+}
+
+button, .btn, .cta, .buy-button, .package-button, a.button {
+  color: #071116 !important;
+  background: linear-gradient(180deg, #bae0ee, #87bdd4) !important;
+  border: 1px solid rgba(213,239,248,.4) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.1), 0 8px 20px rgba(0,0,0,.2) !important;
+  text-shadow: none !important;
+}
+
+a { color: var(--legacy-blue); }
+footer {
+  color: var(--legacy-muted) !important;
+  background: rgba(7,11,15,.94) !important;
+  border-top: 1px solid rgba(170,211,229,.1) !important;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
+  body::before { display: none !important; }
+  header, nav, .navbar, .card, .product-card, .package-card, .panel,
+  .feature, .pricing-card, .content-card, .faq-item, .video-slider {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(15,22,28,.95) !important;
+  }
+}
