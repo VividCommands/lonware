@@ -2396,6 +2396,211 @@ FAQ / DOCS / ABOUT / CONTACT — Card polish
   }
 }
 
+/* === 2026-08-31 MOBILE LAYOUT SYSTEM ===
+   Final compact-screen authority. Keeps spacing and alignment consistent
+   across the homepage, shared calls-to-action, and every modern footer. */
+@media (max-width: 768px) {
+  :root { --mobile-gutter: clamp(16px, 4.8vw, 22px); }
+
+  /* Homepage hero: compact, readable, and free of oversized empty space. */
+  .hero {
+    min-height: auto !important;
+    padding: 7.4rem var(--mobile-gutter) 5.25rem !important;
+    box-sizing: border-box !important;
+  }
+  .hero-badge {
+    margin-bottom: 1rem !important;
+    padding: 5px 11px !important;
+    font-size: .64rem !important;
+    letter-spacing: 1.15px !important;
+  }
+  .hero-title {
+    max-width: 560px !important;
+    margin-bottom: .8rem !important;
+    font-size: clamp(2rem, 9vw, 2.75rem) !important;
+    line-height: 1.03 !important;
+  }
+  .hero-subtitle {
+    max-width: 520px !important;
+    margin: 0 auto 1.15rem !important;
+    font-size: clamp(.9rem, 3.7vw, 1rem) !important;
+    line-height: 1.55 !important;
+  }
+  .hero-ctas {
+    width: min(100%, 390px) !important;
+    margin: .8rem auto 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: .7rem !important;
+  }
+  .hero-ctas .cta-button {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 42px !important;
+    padding: .7rem .65rem !important;
+    box-sizing: border-box !important;
+    font-size: .76rem !important;
+    letter-spacing: .75px !important;
+  }
+  .hero-stats {
+    width: min(100%, 430px) !important;
+    margin: 1rem auto 0 !important;
+    padding: .9rem .65rem !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: .35rem !important;
+    border-radius: 13px !important;
+  }
+  .hero-stat { min-width: 0 !important; }
+  .hero-stat-num { font-size: 1.08rem !important; }
+  .hero-stat-label {
+    font-size: clamp(.53rem, 2.25vw, .64rem) !important;
+    line-height: 1.25 !important;
+    letter-spacing: .45px !important;
+    overflow-wrap: anywhere !important;
+  }
+  .hero .progress-container { display: none !important; }
+  .hero .scroll-indicator {
+    bottom: 13px !important;
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  /* Featured Macro/Optii switcher: dots occupy a dedicated row below CTA. */
+  .products-section { padding-top: 3.25rem !important; }
+  .product-orbit {
+    width: 100% !important;
+    max-width: 560px !important;
+    min-height: 550px !important;
+    margin: 0 auto 3.5rem !important;
+    padding: 0 0 52px !important;
+    box-sizing: border-box !important;
+  }
+  .orbit-stage { min-height: 498px !important; }
+  .orbit-product {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 224px auto !important;
+    align-content: start !important;
+    gap: .8rem !important;
+    padding: 0 4px !important;
+  }
+  .orbit-visual { height: 224px !important; }
+  .orbit-copy { padding: 0 .5rem !important; }
+  .orbit-copy h2 {
+    margin: .4rem 0 .6rem !important;
+    font-size: 2.15rem !important;
+  }
+  .orbit-copy p {
+    margin: 0 auto .8rem !important;
+    font-size: .86rem !important;
+    line-height: 1.5 !important;
+  }
+  .orbit-copy .lineup-chips { margin-bottom: .75rem !important; }
+  .orbit-copy .lineup-chips span { font-size: .65rem !important; }
+  .orbit-copy .package-button {
+    min-height: 42px !important;
+    padding: .68rem 1rem !important;
+    font-size: .78rem !important;
+  }
+  .orbit-arrow {
+    top: 92px !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .orbit-prev { left: 2px !important; }
+  .orbit-next { right: 2px !important; }
+  .orbit-controls {
+    bottom: 8px !important;
+    min-height: 24px !important;
+    align-items: center !important;
+    gap: .45rem !important;
+  }
+  .orbit-dot { width: 26px !important; height: 4px !important; }
+  .orbit-dot.is-current { width: 42px !important; }
+
+  /* Community CTA buttons stay centered on every page. */
+  .discord-cta-section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  .discord-cta-inner {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.25rem !important;
+  }
+  .discord-cta-text { width: 100% !important; text-align: center !important; }
+  .discord-cta-text p { margin-left: auto !important; margin-right: auto !important; }
+  .discord-cta-btn,
+  .discord-inline-btn {
+    align-self: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-content: center !important;
+  }
+
+  /* Shared footer: centered columns, equal breathing room, no left-side crush. */
+  .footer {
+    padding: 2.75rem var(--mobile-gutter) 1.5rem !important;
+    text-align: center !important;
+  }
+  .footer-content {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    align-items: center !important;
+  }
+  .footer-top {
+    width: 100% !important;
+    margin: 0 auto 1.75rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    align-items: start !important;
+    gap: 1.8rem !important;
+    text-align: center !important;
+  }
+  .footer-brand {
+    width: 100% !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .footer-logo { justify-content: center !important; }
+  .footer-tagline { margin-left: auto !important; margin-right: auto !important; }
+  .footer-discord-btn {
+    margin: .35rem auto 0 !important;
+    align-self: center !important;
+    justify-content: center !important;
+  }
+  .footer-nav-cols {
+    width: min(100%, 330px) !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+    justify-items: center !important;
+    text-align: center !important;
+  }
+  .footer-col { width: 100% !important; text-align: center !important; }
+  .footer-col ul { align-items: center !important; }
+  .footer-links,
+  .social-icons { justify-content: center !important; flex-wrap: wrap !important; }
+  .copyright { margin: 0 auto !important; text-align: center !important; }
+}
+
+@media (max-width: 390px) {
+  .hero { padding-left: 14px !important; padding-right: 14px !important; }
+  .hero-ctas { gap: .55rem !important; }
+  .hero-ctas .cta-button { font-size: .7rem !important; }
+  .product-orbit { min-height: 535px !important; }
+  .orbit-stage { min-height: 483px !important; }
+  .orbit-product { grid-template-rows: 205px auto !important; }
+  .orbit-visual { height: 205px !important; }
+  .orbit-arrow { top: 84px !important; }
+}
+
 /* === 2026-08 SHARP SURFACE PASS ===
    Final authoritative desktop treatment for navigation and product showcase. */
 @media (min-width: 769px) {
@@ -3202,4 +3407,34 @@ body.about-page-body .about-hero-wrap::before { display: none !important; }
     text-align: center !important;
     padding: 10px 8px !important;
   }
+}
+
+/* Final cascade lock for the compact featured-product switcher. */
+@media (max-width: 768px) {
+  .product-orbit {
+    width: 100% !important;
+    max-width: 560px !important;
+    min-height: 550px !important;
+    margin: 0 auto 3.5rem !important;
+    padding: 0 0 52px !important;
+  }
+  .orbit-stage { min-height: 498px !important; }
+  .orbit-product {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 224px auto !important;
+    align-content: start !important;
+    gap: .8rem !important;
+    padding: 0 4px !important;
+  }
+  .orbit-visual { height: 224px !important; }
+  .orbit-arrow { top: 92px !important; }
+  .orbit-controls { bottom: 8px !important; }
+}
+
+@media (max-width: 390px) {
+  .product-orbit { min-height: 535px !important; }
+  .orbit-stage { min-height: 483px !important; }
+  .orbit-product { grid-template-rows: 205px auto !important; }
+  .orbit-visual { height: 205px !important; }
+  .orbit-arrow { top: 84px !important; }
 }
