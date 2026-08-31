@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" role="img" aria-labelledby="title desc">
-<title id="title">Ultimate Bundle icons</title><desc id="desc">Four matching icons for Macro.io, Optii, Ping Optimization, and Bloom Reducer.</desc>
-<defs><linearGradient id="iconStroke" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eafaff"/><stop offset="1" stop-color="#52cfff"/></linearGradient></defs>
-<g fill="none" stroke="url(#iconStroke)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-<g transform="translate(65 65)"><path d="M18 88l39-44 30 34 35-48"/><path d="M18 120h104"/><circle cx="122" cy="30" r="7" fill="#52cfff" stroke="none"/></g>
-<g transform="translate(245 58)"><rect x="8" y="8" width="132" height="94" rx="12"/><path d="M49 139h50M74 102v37"/><path d="M36 50h16M64 50h16M92 50h20"/></g>
-<g transform="translate(430 64)"><path d="M4 52c42-40 106-40 148 0M32 86c26-25 66-25 92 0"/><path d="M61 118c9-9 21-9 30 0"/><circle cx="76" cy="138" r="7" fill="#52cfff" stroke="none"/></g>
-<g transform="translate(625 55)"><circle cx="75" cy="75" r="58"/><circle cx="75" cy="75" r="23"/><path d="M75 0v34M75 116v34M0 75h34M116 75h34"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
+<title id="title">Four Ultimate Bundle tools</title><desc id="desc">Four consistent product icons for Macro.io, Optii, Ping Optimization, and Bloom Reducer.</desc>
+<defs><linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2fcff"/><stop offset=".55" stop-color="#8ce4ff"/><stop offset="1" stop-color="#2bbcff"/></linearGradient></defs>
+<g fill="none" stroke="url(#s)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<g transform="translate(30 28)"><path d="M22 99V25l52 48-30 4 19 30-18 10-18-31-5 13z"/><path d="M91 27h34M108 10v34"/></g>
+<g transform="translate(205 27)"><path d="M18 25h112v78H18z"/><path d="M53 128h42M74 103v25"/><path d="M38 78l20-20 18 13 27-31"/></g>
+<g transform="translate(387 29)"><circle cx="67" cy="65" r="8" fill="#56ceff" stroke="none"/><circle cx="25" cy="28" r="9"/><circle cx="116" cy="31" r="9"/><circle cx="30" cy="108" r="9"/><circle cx="119" cy="106" r="9"/><path d="M34 34l26 24M108 38L75 59M37 102l24-29M110 100L75 72"/></g>
+<g transform="translate(570 25)"><circle cx="65" cy="65" r="43"/><circle cx="65" cy="65" r="15"/><path d="M65 0v29M65 101v29M0 65h29M101 65h29"/><path d="M27 24l14 14M89 92l14 14M103 24L89 38M41 92l-14 14"/></g>
 </g></svg>
