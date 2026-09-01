@@ -3524,3 +3524,58 @@ body .navbar:not(.scrolled){width:100%!important;max-width:none!important;border
 .bundle-package-media .bundle-artwork{max-height:126px!important}
 .packages-grid .package-card:has(.bundle-package-media){border-color:rgba(120,126,255,.3)!important;background:linear-gradient(150deg,rgba(28,30,83,.68),rgba(0,18,45,.88))!important}
 @media(max-width:600px){.bundle-artwork-wrap,.product-grid-5 .bundle-artwork-wrap{padding:18px!important}.bundle-package-media{height:150px!important;padding:18px!important}.bundle-package-media .bundle-artwork{max-height:100px!important}}
+
+/* === Full layout cleanup v11 === */
+/* Mobile nav uses a stable opaque surface so it cannot half-render. */
+@media(max-width:768px){
+  .navbar,.navbar.scrolled,body .navbar:not(.scrolled){box-sizing:border-box!important;width:100%!important;max-width:100%!important;left:0!important;right:0!important;transform:none!important;top:var(--announcement-height)!important;min-height:52px!important;height:52px!important;padding:7px 9px!important;border-radius:0!important;background:#000d1d!important;border:0!important;border-bottom:1px solid rgba(0,196,255,.18)!important;box-shadow:0 8px 24px rgba(0,0,0,.3)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;contain:none!important;overflow:visible!important;transition:transform .28s ease,top .28s ease!important}
+  .navbar.scrolled{top:0!important}
+  .navbar .logo{flex:0 0 64px!important;margin:0!important;font-size:.88rem!important}
+  .navbar .nav-links{display:flex!important;flex:1 1 auto!important;min-width:0!important;margin:0!important;gap:0!important;align-items:center!important;justify-content:space-evenly!important}
+  .navbar .nav-links a{padding:5px 3px!important;font-size:clamp(.6rem,2.45vw,.76rem)!important;white-space:nowrap!important}
+  .navbar .nav-discord-btn{flex:0 0 29px!important;width:29px!important;height:29px!important;padding:0!important;margin:0!important;display:grid!important;place-items:center!important}
+  .navbar .nav-discord-btn svg{width:15px!important;height:15px!important}
+}
+/* Keep the three homepage tools in one clean row on phones. */
+@media(max-width:720px){
+  .setup-rail{width:calc(100% - 24px)!important;max-width:430px!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;border-radius:10px!important}
+  .setup-rail-item{min-width:0!important;min-height:49px!important;padding:8px 5px!important;justify-content:center!important;text-align:center!important}
+  .setup-rail-item+.setup-rail-item{border-top:0!important;border-left:1px solid rgba(0,196,255,.13)!important}
+  .setup-rail-item>span:last-child{align-items:center!important;text-align:center!important}
+  .setup-rail strong{font-size:clamp(.58rem,2.4vw,.7rem)!important;letter-spacing:.25px!important}
+  .setup-rail small{display:none!important}
+}
+/* The bundle now uses the normal product-card construction. */
+.product-card-bundle,.product-grid-5 .product-card-bundle{position:relative!important;isolation:auto!important;background:linear-gradient(155deg,rgba(6,27,55,.91),rgba(9,20,45,.96))!important;border:1px solid rgba(88,157,224,.25)!important;box-shadow:inset 0 1px rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.22)!important;overflow:hidden!important}
+.product-card-bundle::before,.product-grid-5 .product-card-bundle::before{display:none!important;content:none!important}
+.product-card-bundle .product-card-body{position:relative!important;z-index:1!important;background:transparent!important}
+.product-card-bundle h3{color:#fff!important}
+.product-card-bundle .product-card-desc{color:inherit!important}
+.bundle-media-custom{height:190px!important;padding:0!important;background:rgba(0,20,46,.54)!important;border-radius:17px 17px 0 0!important;overflow:hidden!important}
+.bundle-icon-grid{box-sizing:border-box;width:100%;height:100%;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;gap:10px;padding:28px 24px}
+.bundle-icon-grid span{min-width:0;aspect-ratio:1;display:grid;place-items:center;border:1px solid rgba(111,191,236,.2);border-radius:12px;background:rgba(19,53,88,.46)}
+.bundle-icon-grid svg{width:58%;height:58%;fill:none;stroke:#bfeeff;stroke-width:3.1;stroke-linecap:round;stroke-linejoin:round;filter:none}
+.bundle-icon-grid circle{fill:none}
+.bundle-package-media{height:215px!important;padding:0!important;background:rgba(0,20,46,.54)!important}
+.bundle-package-media .bundle-icon-grid{max-width:none!important;max-height:none!important}
+@media(max-width:600px){.bundle-media-custom{height:155px!important}.bundle-icon-grid{gap:6px;padding:22px 14px}.bundle-icon-grid span{border-radius:9px}.bundle-package-media{height:190px!important}}
+
+/* Products grid: identical geometry from image through buttons. */
+.packages-section>h2{margin-bottom:.35rem!important}
+.packages-section>.section-subtitle{max-width:610px!important;margin:0 auto 2.2rem!important;line-height:1.55!important}
+.packages-grid{align-items:stretch!important}
+.packages-grid .package-card{box-sizing:border-box!important;display:flex!important;flex-direction:column!important;height:100%!important;padding:1.35rem!important}
+.packages-grid .package-media{box-sizing:border-box!important;width:100%!important;height:215px!important;min-height:215px!important;margin:0 0 1rem!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:10px!important;overflow:hidden!important;background:rgba(0,12,30,.58)!important}
+.packages-grid .package-media>img{box-sizing:border-box!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important;border-radius:10px!important;object-fit:contain!important;object-position:center!important}
+.packages-grid .package-media>img[src*="macro-controller"]{width:112%!important;max-width:none!important;height:112%!important}
+.packages-grid .package-tag{box-sizing:border-box!important;min-height:24px!important;height:24px!important;align-self:flex-start!important;display:inline-flex!important;align-items:center!important;margin:0 0 .65rem!important}
+.packages-grid .package-card h3{min-height:34px!important;margin:0 0 .2rem!important;display:flex!important;align-items:center!important}
+.packages-grid .package-subtitle{min-height:42px!important;margin:0 0 .45rem!important}
+.packages-grid .package-price{min-height:38px!important;margin:0 0 .75rem!important}
+.packages-grid .package-details{grid-template-columns:1fr!important;grid-template-rows:repeat(4,minmax(42px,1fr))!important;gap:7px!important;min-height:189px!important;margin:.4rem 0 1.2rem!important}
+.packages-grid .package-detail{box-sizing:border-box!important;min-height:42px!important;height:100%!important;display:flex!important;align-items:center!important;padding:8px 10px!important;border:1px solid rgba(0,196,255,.12)!important;border-radius:8px!important;background:rgba(0,30,62,.24)!important;color:rgba(222,241,250,.74)!important;font-size:.73rem!important;line-height:1.28!important}
+.packages-grid .package-actions{margin-top:auto!important;padding-top:.2rem!important}
+.packages-grid .package-card:has(.bundle-package-media){background:linear-gradient(155deg,rgba(7,28,56,.88),rgba(8,19,43,.96))!important;border-color:rgba(88,157,224,.25)!important}
+@media(max-width:600px){.packages-grid .package-card{padding:1.1rem!important}.packages-grid .package-media{height:190px!important;min-height:190px!important}.packages-grid .package-details{min-height:0!important}}
+/* Let below-the-fold images decode without blocking the first render. */
+img{height:auto}
