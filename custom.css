@@ -3920,6 +3920,110 @@ img{height:auto}
 }
 
 /* ==========================================================
+   PRODUCTS BLUE SHARP v14
+   Restores the Lonware palette with hard, clean geometry.
+   ========================================================== */
+.products-catalog::before {
+  opacity: .72 !important;
+  background: radial-gradient(ellipse, rgba(35, 127, 190, .18), transparent 68%) !important;
+}
+.products-catalog .package-card,
+.products-catalog .package-card:has(.bundle-package-media) {
+  border: 1px solid #17476d !important;
+  border-top-color: #27658f !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(145deg, rgba(31, 102, 151, .14), transparent 38%),
+    linear-gradient(160deg, #0a2540 0%, #071b32 52%, #06172c 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(169, 220, 246, .09) !important;
+  transform: none;
+  backface-visibility: visible;
+}
+.products-catalog .package-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: #2f78a8 !important;
+  border-top-color: #4693bd !important;
+  box-shadow:
+    inset 0 1px 0 rgba(187, 228, 248, .12) !important;
+}
+
+/* Keep the product artwork directly on the blue card—no inner panel. */
+.products-catalog .package-media,
+.products-catalog .bundle-package-media,
+.products-catalog .package-card-macro .package-media {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.products-catalog .package-media::after {
+  display: none !important;
+  content: none !important;
+}
+
+.products-catalog .package-tag,
+.products-catalog .package-card-bundle .package-tag {
+  border: 1px solid #2e6387 !important;
+  color: #d9effa !important;
+  background: #0b2943 !important;
+  box-shadow: 0 4px 10px rgba(1, 12, 27, .22) !important;
+}
+.products-catalog .package-card h3 { color: #edf8fd !important; }
+.products-catalog .package-subtitle { color: rgba(203, 229, 241, .6) !important; }
+.products-catalog .package-price { color: #dff4ff !important; }
+.products-catalog .package-detail {
+  border-bottom-color: rgba(96, 174, 215, .18) !important;
+  color: rgba(211, 233, 243, .72) !important;
+}
+.products-catalog .package-detail::before {
+  width: 4px !important;
+  height: 4px !important;
+  background: #62b7e2 !important;
+}
+
+/* Smaller controls with a clear hierarchy. */
+.products-catalog .package-actions {
+  width: min(100%, 390px) !important;
+  margin: auto auto 0 !important;
+  gap: 7px !important;
+}
+.products-catalog .package-actions .package-button {
+  min-height: 38px !important;
+  height: 38px !important;
+  padding: 0 12px !important;
+  border: 1px solid #3b8aba !important;
+  border-radius: 7px !important;
+  color: #f2fbff !important;
+  background: #247fb8 !important;
+  box-shadow: inset 0 1px 0 rgba(217, 244, 255, .18) !important;
+  font-size: .67rem !important;
+}
+.products-catalog .package-actions .package-button:hover {
+  background: #2e91ca !important;
+  border-color: #56a7d3 !important;
+}
+.products-catalog .package-actions .package-view-button {
+  color: #cbe8f6 !important;
+  background: #0a2a45 !important;
+  border-color: #285d80 !important;
+  box-shadow: inset 0 1px 0 rgba(181, 224, 244, .055) !important;
+}
+.products-catalog .package-actions .package-view-button:hover {
+  color: #eefaff !important;
+  background: #0d3657 !important;
+  border-color: #37779e !important;
+}
+.products-catalog .bundle-icon-grid svg {
+  stroke: #9dd9f5 !important;
+}
+
+@media (max-width: 520px) {
+  .products-catalog .package-actions {
+    width: 100% !important;
+  }
+}
+
+/* ==========================================================
    PRODUCTS POLISH v13
    One card surface, direct imagery, neutral palette, clean markers.
    ========================================================== */
