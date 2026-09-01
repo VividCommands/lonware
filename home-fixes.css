@@ -1,0 +1,152 @@
+/* Homepage-only layout corrections. */
+
+/* Keep both hero buttons level and center their labels vertically. */
+#home .hero-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+#home .hero-ctas .cta-button {
+  display: inline-flex !important;
+  width: 176px;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 1.25rem !important;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Match the lighter compatibility ribbon treatment used lower on the page. */
+#home .setup-rail {
+  display: grid !important;
+  width: min(920px, 92%) !important;
+  margin: 2.4rem auto 0 !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(0, 196, 255, 0.22) !important;
+  border-bottom: 1px solid rgba(0, 196, 255, 0.16) !important;
+  border-radius: 0 !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 75, 130, 0.13), transparent) !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#home .setup-rail-item {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 8px 14px !important;
+  border: 0 !important;
+  text-align: center;
+}
+
+#home .setup-rail-item + .setup-rail-item::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 1px;
+  background: rgba(0, 196, 255, 0.14);
+}
+
+#home .setup-rail-item > span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+#home .setup-rail strong {
+  color: #dff6ff;
+  font: 700 0.78rem/1.2 "Rajdhani", sans-serif;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+}
+
+#home .setup-rail small {
+  color: rgba(176, 218, 237, 0.55);
+  font-size: 0.65rem;
+  letter-spacing: 0.25px;
+  white-space: normal;
+}
+
+/* Keep the five homepage product cards centered as one balanced row. */
+#products .product-grid-5 {
+  box-sizing: border-box;
+  width: min(1400px, calc(100% - 4rem)) !important;
+  max-width: 1400px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  #home .hero-ctas {
+    width: min(390px, calc(100% - 24px));
+  }
+
+  #home .hero-ctas .cta-button {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    min-height: 50px;
+    padding: 0 0.8rem !important;
+  }
+
+  #products .product-grid-5 {
+    width: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #products .product-grid-5 > .product-card-link:last-child {
+    grid-column: 1 / -1;
+    width: calc(50% - 0.325rem) !important;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  #home .setup-rail {
+    width: calc(100% - 24px) !important;
+    max-width: 430px !important;
+    margin-top: 2rem !important;
+  }
+
+  #home .setup-rail-item {
+    min-height: 52px;
+    padding: 7px 5px !important;
+  }
+
+  #home .setup-rail-item + .setup-rail-item::before {
+    top: 12px;
+    bottom: 12px;
+  }
+
+  #home .setup-rail small {
+    display: none;
+  }
+}
+
+@media (max-width: 390px) {
+  #home .hero-ctas {
+    gap: 0.55rem;
+  }
+
+  #home .hero-ctas .cta-button {
+    font-size: 0.68rem !important;
+    letter-spacing: 0.25px;
+  }
+}
