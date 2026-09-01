@@ -4190,6 +4190,34 @@ body.about-page-body .value-body h4 { font-size: 1.18rem !important; }
   .packages-page-polish .package-media { height: 205px !important; min-height: 205px !important; }
   .packages-page-polish .package-actions .package-button { min-height: 48px !important; }
 }
+
+/* Final Products QA: simple markers instead of boxed checkmarks. */
+.packages-page-polish .package-features {
+  font-size: .88rem !important;
+  color: rgba(224, 239, 247, .75) !important;
+}
+.packages-page-polish .package-features li {
+  min-height: 22px !important;
+  padding-left: 1.35rem !important;
+  line-height: 1.5 !important;
+}
+.packages-page-polish .package-features li::before {
+  content: '' !important;
+  top: 50% !important;
+  left: .1rem !important;
+  width: 8px !important;
+  height: 2px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #58bce8 !important;
+  background-image: none !important;
+  box-shadow: 0 0 8px rgba(88, 188, 232, .34) !important;
+  transform: translateY(-50%) !important;
+}
+.packages-page-polish .package-features li::after {
+  display: none !important;
+  content: none !important;
+}
 .products-catalog .bundle-icon-grid svg {
   stroke: #9dd9f5 !important;
 }
