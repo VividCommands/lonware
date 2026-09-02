@@ -151,13 +151,20 @@
     gap: 16px !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
-    scroll-snap-type: x proximity;
-    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
     padding: 0 16px 14px !important;
     scrollbar-width: thin;
   }
 
-  .packages-page-polish .package-card { scroll-snap-align: start; }
+  .packages-page-polish .package-card {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
 }
 
 @media (max-width: 780px) {
@@ -170,6 +177,9 @@
   .packages-page-polish .packages-grid {
     grid-template-columns: repeat(6, minmax(84vw, 1fr)) !important;
     gap: 12px !important;
+    scroll-padding-inline: 8vw;
+    padding-right: 8vw !important;
+    padding-left: 8vw !important;
   }
 
   .packages-page-polish .package-media,
