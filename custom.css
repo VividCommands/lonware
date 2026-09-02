@@ -3570,7 +3570,7 @@ body .navbar:not(.scrolled){width:100%!important;max-width:none!important;border
   .navbar .nav-links{display:flex!important;flex:1 1 auto!important;min-width:0!important;margin:0!important;gap:0!important;align-items:center!important;justify-content:space-evenly!important}
   .navbar .nav-links a{padding:5px 3px!important;font-size:clamp(.6rem,2.45vw,.76rem)!important;white-space:nowrap!important}
   .navbar .nav-discord-btn{flex:0 0 29px!important;width:29px!important;height:29px!important;padding:0!important;margin:0!important;display:grid!important;place-items:center!important}
-  .navbar .nav-discord-btn svg{width:15px!important;height:15px!important}
+  .navbar .nav-discord-btn svg{display:block!important;width:15px!important;height:15px!important;transform:translateY(1px)!important}
 }
 /* Keep the three homepage tools in one clean row on phones. */
 @media(max-width:720px){

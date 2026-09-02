@@ -85,69 +85,22 @@
 /* Keep the five homepage product cards centered as one balanced row. */
 #products .product-grid-5 {
   box-sizing: border-box;
-  width: min(1560px, calc(100% - 4rem)) !important;
-  max-width: 1560px !important;
+  width: min(1400px, calc(100% - 4rem)) !important;
+  max-width: 1400px !important;
   margin-right: auto !important;
   margin-left: auto !important;
   grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   justify-content: center;
 }
 
-/* Let the artwork belong to the card instead of sitting in a second box. */
-#products .product-grid-5 .product-media,
-#products .product-grid-5 .bundle-media-custom {
-  height: 190px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 17px 17px 0 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-#products .product-grid-5 .product-media::before,
-#products .product-grid-5 .product-media::after,
-#products .product-grid-5 .bundle-media-custom::before,
-#products .product-grid-5 .bundle-media-custom::after {
-  display: none !important;
-  content: none !important;
-}
-
-#products .product-grid-5 .product-media > img {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  object-fit: contain !important;
+/* Crop the rebuilt Optii cover to the application window itself. */
+#products .optii-grid-card .product-media > img[src*="optii-card-enhanced"] {
+  width: 108% !important;
+  height: 108% !important;
+  max-width: none !important;
+  margin: -4% !important;
+  object-fit: cover !important;
   object-position: center !important;
-  box-shadow: none !important;
-}
-
-#products .product-grid-5 .product-card:not(.optii-grid-card):not(.bloom-preview-card):not(.product-card-bundle) .product-media > img {
-  width: 90% !important;
-  margin: 0 auto !important;
-  mix-blend-mode: screen;
-}
-
-/* Keep the bundle artwork clean: one icon group, no panel inside a panel. */
-#products .product-card-bundle .bundle-icon-grid {
-  gap: 12px;
-  padding: 26px 22px;
-  background: transparent !important;
-}
-
-#products .product-card-bundle .bundle-icon-grid span {
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-#products .product-card-bundle .product-card-body {
-  border-top: 0 !important;
-  background: transparent !important;
 }
 
 @media (max-width: 900px) {
