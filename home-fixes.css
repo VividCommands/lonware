@@ -83,6 +83,16 @@
 }
 
 /* Keep the five homepage product cards centered as one balanced row. */
+#products .orbit-copy h2 {
+  margin: 0 0 1.55rem !important;
+  font-size: clamp(4rem, 6vw, 5.8rem) !important;
+  line-height: 0.88 !important;
+}
+
+#products .orbit-copy .lineup-chips {
+  margin-top: 0 !important;
+}
+
 #products .product-grid-5 {
   box-sizing: border-box;
   width: min(1400px, calc(100% - 4rem)) !important;
@@ -119,6 +129,11 @@
   #products .product-grid-5 {
     width: 100% !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #products .orbit-copy h2 {
+    margin-bottom: 1rem !important;
+    font-size: clamp(3rem, 12vw, 4.6rem) !important;
   }
 
   #products .product-grid-5 > .product-card-link:last-child {
