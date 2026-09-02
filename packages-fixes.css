@@ -22,8 +22,8 @@
 .packages-page-polish .package-card-bundle-home .package-media,
 .packages-page-polish .package-card-bundle-home .bundle-media-custom {
   width: 100% !important;
-  height: 190px !important;
-  min-height: 190px !important;
+  height: 225px !important;
+  min-height: 225px !important;
   margin: 0 0 1rem !important;
   padding: 0 !important;
   border: 0 !important;
@@ -64,11 +64,19 @@
 }
 
 .packages-page-polish .package-card:nth-child(2) .package-media > img {
-  width: 108% !important;
-  height: 108% !important;
-  max-width: none !important;
-  margin: -4% !important;
-  object-fit: cover !important;
+  width: 96% !important;
+  height: 96% !important;
+  max-width: 96% !important;
+  margin: auto !important;
+  object-fit: contain !important;
+}
+
+.packages-page-polish .package-card:first-child .package-media > img {
+  width: 98% !important;
+  height: 98% !important;
+  max-width: 98% !important;
+  margin: auto !important;
+  object-fit: contain !important;
 }
 
 .packages-page-polish .package-video-media {
@@ -167,7 +175,7 @@
   .packages-page-polish .package-media,
   .packages-page-polish .package-card-bundle-home .package-media,
   .packages-page-polish .package-card-bundle-home .bundle-media-custom {
-    height: 205px !important;
-    min-height: 205px !important;
+    height: 225px !important;
+    min-height: 225px !important;
   }
 }

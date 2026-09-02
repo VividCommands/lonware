@@ -94,12 +94,12 @@
 }
 
 /* Crop the rebuilt Optii cover to the application window itself. */
-#products .optii-grid-card .product-media > img[src*="optii-card-enhanced"] {
-  width: 108% !important;
-  height: 108% !important;
-  max-width: none !important;
-  margin: -4% !important;
-  object-fit: cover !important;
+#products .optii-grid-card .product-media > img[src*="optii-card-clean"] {
+  width: 96% !important;
+  height: 96% !important;
+  max-width: 96% !important;
+  margin: auto !important;
+  object-fit: contain !important;
   object-position: center !important;
 }
 
