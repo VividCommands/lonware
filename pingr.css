@@ -17,3 +17,13 @@
 .pingr-plan .pingr-button{box-sizing:border-box;max-width:100%;white-space:normal;text-align:center}
 @media(max-width:900px){.pingr-hero{grid-template-columns:1fr}.pingr-showcase-copy{max-width:620px;margin:auto}}
 @media(max-width:620px){.pingr-library-visual{width:calc(100% + 10px);margin-left:-5px}}
+
+/* Compact purchase cards and native-resolution artwork. */
+.pingr-hero-visual img{max-width:870px;image-rendering:auto}
+.pingr-plan-heading{margin-bottom:28px}.pingr-plan-heading h2{margin-bottom:0}
+.pingr-plan-grid{max-width:820px;margin-inline:auto;gap:14px}
+.pingr-plan{min-height:220px;padding:24px 26px;border-radius:13px;background:#091016;box-shadow:inset 0 1px rgba(255,255,255,.04),0 14px 32px rgba(0,0,0,.24)}
+.pingr-plan-featured{background:#0a1217;border-color:rgba(85,220,161,.22)}
+.pingr-plan h3{margin:10px 0 2px;font-size:1.75rem}.pingr-price{margin:2px 0 10px}.pingr-price strong{font-size:2.65rem}
+.pingr-plan .pingr-button{min-height:44px;margin-top:auto}
+@media(max-width:620px){.pingr-plan{min-height:205px;padding:22px}}
