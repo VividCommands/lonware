@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dIXx7q_W8zE.html
+Disallow: /ycqSC46RnnQ.html
+
+Sitemap: https://lonware.com/sitemap.xml
