@@ -27,3 +27,15 @@
 .pingr-plan h3{margin:10px 0 2px;font-size:1.75rem}.pingr-price{margin:2px 0 10px}.pingr-price strong{font-size:2.65rem}
 .pingr-plan .pingr-button{min-height:44px;margin-top:auto}
 @media(max-width:620px){.pingr-plan{min-height:205px;padding:22px}}
+
+/* One document scrollbar only; avoids nested mobile scroll capture. */
+html:has(body.pingr-page){height:auto!important;overflow-x:clip!important;overflow-y:auto!important}
+body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible!important;overflow-x:clip!important;overscroll-behavior-y:auto}
+.pingr-page main{overflow:visible!important}
+
+/* Sharper source presentation. */
+.pingr-hero-visual img{max-width:720px}
+.pingr-library-visual{width:110%;margin-left:-5%}
+.pingr-orbit-visual .orbit-shot[src*="game-library-hq"]{inset:-4%!important;width:108%!important;height:108%!important}
+@media(max-width:900px){.pingr-library-visual{width:104%;margin-left:-2%}}
+@media(max-width:620px){.pingr-library-visual{width:100%;margin-left:0}}
