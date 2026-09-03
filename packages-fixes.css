@@ -168,18 +168,39 @@
 }
 
 @media (max-width: 780px) {
+  body {
+    overflow-x: clip !important;
+  }
+
   .packages-page-polish .packages-grid {
-    grid-template-columns: repeat(6, minmax(78vw, 1fr)) !important;
+    width: min(100%, 560px) !important;
+    max-width: 560px !important;
+    margin-inline: auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+    scroll-padding: 0 !important;
+    overscroll-behavior: auto !important;
+    touch-action: pan-y !important;
+    padding: 0 16px 20px !important;
+    scrollbar-width: auto;
+  }
+
+  .packages-page-polish .package-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
   }
 }
 
 @media (max-width: 560px) {
   .packages-page-polish .packages-grid {
-    grid-template-columns: repeat(6, minmax(84vw, 1fr)) !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 12px !important;
-    scroll-padding-inline: 8vw;
-    padding-right: 8vw !important;
-    padding-left: 8vw !important;
+    padding-right: 14px !important;
+    padding-left: 14px !important;
   }
 
   .packages-page-polish .package-media,
