@@ -36,6 +36,6 @@ body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible
 /* Sharper source presentation. */
 .pingr-hero-visual img{max-width:720px}
 .pingr-library-visual{width:110%;margin-left:-5%}
-.pingr-orbit-visual .orbit-shot[src*="game-library-transparent-v2"]{inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;image-rendering:auto}
+.pingr-orbit-visual .orbit-shot[src*="game-library-transparent-v3"]{inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;image-rendering:auto}
 @media(max-width:900px){.pingr-library-visual{width:104%;margin-left:-2%}}
 @media(max-width:620px){.pingr-library-visual{width:100%;margin-left:0}}
