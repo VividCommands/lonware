@@ -52,7 +52,7 @@ body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible
   margin:0 auto 140px;
   padding:clamp(30px,5vw,58px);
   display:grid;
-  grid-template-columns:auto minmax(0,1fr);
+  grid-template-columns:minmax(0,1fr);
   gap:24px 30px;
   align-items:center;
   border:1px solid rgba(116,241,183,.23);
@@ -60,8 +60,6 @@ body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible
   background:linear-gradient(135deg,rgba(35,76,70,.88),rgba(16,33,38,.94) 55%,rgba(18,47,42,.9));
   box-shadow:inset 0 1px rgba(255,255,255,.08),0 28px 70px rgba(0,0,0,.24),0 0 70px rgba(57,205,139,.07);
 }
-.pingr-vpn-icon{width:76px;height:76px;display:grid;place-items:center;border:1px solid rgba(127,255,193,.3);border-radius:20px;background:rgba(76,231,154,.1);box-shadow:inset 0 1px rgba(255,255,255,.08),0 0 34px rgba(69,231,154,.12)}
-.pingr-vpn-icon svg{width:42px;height:42px;fill:none;stroke:var(--pgl);stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
 .pingr-vpn-copy h2{margin:9px 0 12px;font-size:clamp(2.25rem,4.4vw,4rem);line-height:.95}
 .pingr-vpn-copy p{max-width:760px;margin:0;color:rgba(232,243,239,.73);font-size:1rem;line-height:1.75}
 .pingr-vpn-points{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);margin-top:10px;border-top:1px solid rgba(255,255,255,.09)}
@@ -84,9 +82,11 @@ body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible
   .pingr-proof{justify-content:center}
   .pingr-hero-visual,.pingr-library-visual{width:100%;margin-left:auto;margin-right:auto}
   .pingr-vpn{width:calc(100% - 30px);grid-template-columns:1fr;padding:28px 20px;text-align:center;border-radius:18px}
-  .pingr-vpn-icon{width:68px;height:68px;margin:auto}
   .pingr-vpn-copy p{font-size:.96rem;line-height:1.65}
   .pingr-vpn-points{grid-template-columns:1fr;margin-top:2px}
   .pingr-vpn-points span,.pingr-vpn-points span:first-child{padding:16px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
   .pingr-vpn-points span:last-child{border-bottom:0;padding-bottom:0}
 }
+
+/* Present the transparent UI assets without a simulated dark backdrop. */
+.pingr-hero-visual img,.pingr-library-visual img{filter:none!important}
