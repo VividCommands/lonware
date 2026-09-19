@@ -26,9 +26,9 @@ let navFrame = 0;
 function syncNavMetrics() {
   if (!navbar) return;
   const annH = announcementBar ? announcementBar.getBoundingClientRect().height : 0;
-  const navH = navbar.getBoundingClientRect().height;
+  const expandedNavH = window.matchMedia('(max-width: 768px)').matches ? 52 : 58;
   document.documentElement.style.setProperty('--announcement-height', annH + 'px');
-  document.body.style.paddingTop = (annH + navH) + 'px';
+  document.body.style.paddingTop = (annH + expandedNavH) + 'px';
   if (!isScrolled) navbar.style.top = annH + 'px';
 }
 function paintNavbarState() {
@@ -52,7 +52,7 @@ function queueNavbarUpdate() {
   });
 }
 if (announcementBar) {
-  announcementBar.style.transition = 'transform .34s cubic-bezier(.22,1,.36,1)';
+  announcementBar.style.transition = 'transform .62s cubic-bezier(.2,.8,.2,1)';
   announcementBar.style.willChange = 'transform';
 }
 if ('ResizeObserver' in window) {
@@ -236,32 +236,30 @@ if (planet && planet.tagName) {
 function isMobileDevice(){return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)||window.innerWidth<768;}
 if(!isMobileDevice()){document.querySelectorAll('.product-card').forEach(card=>{const video=card.querySelector('.product-media video');if(!video)return;card.addEventListener('mouseenter',()=>video.play());card.addEventListener('mouseleave',()=>{video.pause();video.currentTime=0;});});}
 
-/* Bloom card: intentional desktop hover, explicit mobile tap. */
+/* Bloom preview starts as it enters view on desktop; mobile keeps its tap control. */
 document.querySelectorAll('.bloom-preview-card').forEach(card=>{
   const frame=card.querySelector('.bloom-card-video');
   const trigger=card.querySelector('.bloom-mobile-preview');
   if(!frame)return;
-  let hoverTimer;
+  const coarse=window.matchMedia('(hover: none), (pointer: coarse)');
   const start=()=>{
-    clearTimeout(hoverTimer);
     if(frame.getAttribute('src')==='about:blank')frame.setAttribute('src',frame.dataset.previewSrc);
     card.classList.add('is-previewing');
   };
   const stop=()=>{
-    clearTimeout(hoverTimer);
     card.classList.remove('is-previewing');
     frame.setAttribute('src','about:blank');
   };
-  const coarse=window.matchMedia('(hover: none), (pointer: coarse)');
-  card.addEventListener('mouseenter',()=>{if(!coarse.matches)hoverTimer=setTimeout(start,180);});
-  card.addEventListener('mouseleave',()=>{if(!coarse.matches)stop();});
   if(trigger)trigger.addEventListener('click',event=>{
     event.preventDefault();
     event.stopPropagation();
     card.classList.contains('is-previewing')?stop():start();
     trigger.textContent=card.classList.contains('is-previewing')?'Stop':'Preview';
   });
-  const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stop();},{threshold:.15});
+  const observer=new IntersectionObserver(entries=>{
+    if(!coarse.matches && entries[0].intersectionRatio >= .35)start();
+    else if(!entries[0].isIntersecting)stop();
+  },{threshold:[0,.35]});
   observer.observe(card);
 });
 

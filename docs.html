@@ -15,7 +15,7 @@
 <meta name="twitter:description" content="Find system requirements, quick-start steps, product setup notes, and support information for Lonware tools." />
 <link rel="canonical" href="https://lonware.com/docs.html" />
 <link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="custom.css?v=nav20" />
+<link rel="stylesheet" href="custom.css?v=nav21" />
 <link rel="icon" href="favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -46,6 +46,8 @@
 .step-item:last-child{border-bottom:none;}
 .step-item:hover{background:rgba(0,229,255,.04);}
 .step-num{min-width:36px;width:36px;height:36px;border-radius:50%;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.25);color:#00e5ff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;letter-spacing:.5px;flex-shrink:0;margin-top:2px;}
+.product-guide-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;margin-top:1px;border:1px solid #36637e;border-radius:6px;background:#10263a;color:#9bd9ef;}
+.product-guide-icon svg{display:block;width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;}
 .step-body h4{font-size:.95rem;font-weight:700;color:#fff;margin:0 0 .3rem;font-family:'Rajdhani',sans-serif;text-transform:uppercase;letter-spacing:.5px;}
 .step-body p{font-size:.83rem;color:rgba(255,255,255,.55);margin:0;line-height:1.6;}
 .docs-cta-block{background:rgba(0,15,40,.5);border:1px solid rgba(0,229,255,.1);border-radius:20px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:3rem;text-align:center;margin-top:1.25rem;}
@@ -106,10 +108,10 @@
     <span class="ds-label">Product Guides</span>
     <h2>Per-Product Setup</h2>
     <div class="step-list">
-      <div class="step-item"><div class="step-num" style="font-size:.9rem;">PC</div><div class="step-body"><h4>Optii</h4><p>Review system health, hardware details, live workload, background services, and practical cleanup modules. Administrator access plus Windows 10/11 required.</p></div></div>
-      <div class="step-item"><div class="step-num" style="font-size:.9rem;">NET</div><div class="step-body"><h4>PingR</h4><p>Boost supported games, test server regions, and monitor live ping, jitter, range, and dropped data in one Windows app.</p></div></div>
-      <div class="step-item"><div class="step-num" style="font-size:.9rem;">MAC</div><div class="step-body"><h4>Macro.io</h4><p>Install as admin and configure via visual interface. Supports Xbox, PlayStation, and keyboard. Custom game profiles.</p></div></div>
-      <div class="step-item"><div class="step-num" style="font-size:.9rem;">AIM</div><div class="step-body"><h4>Bloom Reducer</h4><p>Install and run as admin. Configure via interface. Works with all major titles and other Lonware products.</p></div></div>
+      <div class="step-item"><div class="product-guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="14" rx="1.5"/><path d="M8 21h8m-4-3v3M5.5 12h2.5l1.6-2.5 2.2 5 1.8-2.5h4.8"/></svg></div><div class="step-body"><h4>Optii</h4><p>Review system health, hardware details, live workload, background services, and practical cleanup modules. Administrator access plus Windows 10/11 required.</p></div></div>
+      <div class="step-item"><div class="product-guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><circle cx="4.5" cy="17.5" r="2"/><circle cx="19.5" cy="17.5" r="2"/><path d="M10.9 6.3 5.6 15.7m7.5-9.4 5.3 9.4M6.5 17.5h11"/></svg></div><div class="step-body"><h4>PingR</h4><p>Boost supported games, test server regions, and monitor live ping, jitter, range, and dropped data in one Windows app.</p></div></div>
+      <div class="step-item"><div class="product-guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M5.5 9h1m3 0h1m3 0h1m3 0h1m-13 3h1m3 0h1m3 0h1m3 0h1M6 16h12"/></svg></div><div class="step-body"><h4>Macro.io</h4><p>Install as admin and configure via visual interface. Supports Xbox, PlayStation, and keyboard. Custom game profiles.</p></div></div>
+      <div class="step-item"><div class="product-guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="1.2"/></svg></div><div class="step-body"><h4>Bloom Reducer</h4><p>Install and run as admin. Configure via interface. Works with all major titles and other Lonware products.</p></div></div>
     </div>
   </div>
 
@@ -146,7 +148,7 @@
 </div>
 <p class="copyright">&copy; 2026 Lonware. All rights reserved.</p>
 </footer>
-<script src="script.js"></script>
+<script src="script.js?v=nav21"></script>
 <script>
 document.querySelectorAll('.docs-tab').forEach(tab => {
   tab.addEventListener('click', e => {

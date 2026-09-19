@@ -4560,3 +4560,37 @@ body.about-page-body .value-body h4 { font-size: 1.18rem !important; }
   background: #0d3657 !important;
   border-color: #37779e !important;
 }
+
+/* Animate the same centered layout from the wide to compact desktop bar. */
+@media (min-width: 769px) {
+  body .navbar,
+  body .navbar:not(.scrolled),
+  body .navbar.scrolled {
+    justify-content: space-between !important;
+    max-width: none !important;
+    transition: width .62s cubic-bezier(.2,.8,.2,1),
+                top .62s cubic-bezier(.2,.8,.2,1),
+                min-height .62s cubic-bezier(.2,.8,.2,1),
+                padding .62s cubic-bezier(.2,.8,.2,1),
+                border-radius .62s cubic-bezier(.2,.8,.2,1),
+                border-color .35s ease,
+                box-shadow .35s ease !important;
+  }
+  body .navbar:not(.scrolled) { width: 100% !important; }
+  body .navbar.scrolled { width: min(720px, calc(100% - 24px)) !important; }
+}
+
+/* A brighter edge and a restrained inner highlight define all four cards. */
+#products .product-grid-5 .product-card,
+#products .product-grid-5 .product-card-bundle {
+  border-color: #3b6680 !important;
+  border-top-color: #5c85a0 !important;
+  box-shadow: inset 0 1px rgba(194, 231, 247, .075),
+              0 10px 24px rgba(0, 0, 0, .18) !important;
+}
+#products .product-grid-5 > .product-card-link:hover .product-card,
+#products .product-grid-5 > .product-card-link:focus-visible .product-card {
+  border-color: #68b6d3 !important;
+  box-shadow: inset 0 1px rgba(212, 242, 250, .11),
+              0 12px 26px rgba(0, 0, 0, .2) !important;
+}
