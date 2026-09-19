@@ -91,92 +91,77 @@ body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible
 /* Present the transparent UI assets without a simulated dark backdrop. */
 .pingr-hero-visual img,.pingr-library-visual img{filter:none!important}
 
-/* PingR lives on Lonware's navy canvas; green identifies the product. */
+/* PingR color balance: Lonware navy carries the page; green marks product actions. */
 .pingr-page,
 .pingr-page main {
-  background: #081625;
+  background: #081827;
 }
 body.pingr-page {
-  background: #081625 !important;
+  background: #081827 !important;
 }
 .pingr-page h1 span {
+  color: #67d7a7;
   text-shadow: none;
 }
-.pingr-eyebrow i {
-  box-shadow: none;
-}
+.pingr-eyebrow i { box-shadow: none; }
 .pingr-eyebrow,
-.pingr-kicker,
-.pingr-plan-label {
-  color: #78d9b2;
-}
+.pingr-plan-label { color: #77deaf; }
+.pingr-kicker { color: #87c8dc; }
 .pingr-proof span {
-  background: #10283c;
-  border-color: #315571;
-  color: #d3e6ed;
-  border-radius: 5px;
+  background: #10273b;
+  border-color: #294c65;
+  border-radius: 6px;
+  color: #d7e7ec;
 }
-.pingr-signal-strip {
-  border-color: #34526a;
-}
-.pingr-signal-strip > div {
-  border-color: #263f55;
-}
-.pingr-signal-strip b,
-.pingr-vpn-points b {
-  color: #e6f4fa;
-}
-.pingr-signal-strip small {
-  color: #a8c2cc;
-}
+.pingr-signal-strip { border-color: #31516a; }
+.pingr-signal-strip > div { border-color: #28465e; }
+.pingr-signal-strip strong { color: #83c9da; }
+.pingr-signal-strip small { color: #a8c4d0; }
 .pingr-showcase li:before {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border: 0;
-  background: #5acda1;
+  background: #65d2a3;
   box-shadow: none;
 }
 .pingr-vpn {
-  border: 1px solid #315878;
-  border-top-color: #459e99;
-  border-radius: 10px;
-  background: #102b42;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, .18);
+  border: 1px solid #31566e;
+  border-top-color: #5acba9;
+  border-radius: 12px;
+  background: #102b41;
+  box-shadow: 0 18px 42px rgba(0,0,0,.18);
 }
-.pingr-vpn-points {
-  border-top-color: #34566d;
-}
-.pingr-vpn-points span {
-  border-right-color: #34566d;
-}
+.pingr-vpn-points { border-top-color: #35576f; }
+.pingr-vpn-points span { border-right-color: #35576f; }
+.pingr-vpn-points b { color: #e7f1f5; }
+.pingr-vpn-points small { color: #acc7d1; }
 .pingr-plan,
 .pingr-plan-featured {
-  border: 1px solid #35536a;
-  border-radius: 9px;
-  background: #0e2437;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, .16);
+  border: 1px solid #31516a;
+  border-radius: 10px;
+  background: #0e2539;
+  box-shadow: 0 14px 32px rgba(0,0,0,.18);
 }
-.pingr-plan-featured {
-  border-top-color: #55c398;
-}
+.pingr-plan-featured { border-top-color: #64d5a6; }
 .pingr-button-primary {
-  color: #061b2a;
-  background: #76dab5;
-  border-color: #76dab5;
+  color: #082132;
+  background: #79dfb2;
+  border-color: #79dfb2;
   box-shadow: none;
 }
 .pingr-button-secondary {
-  background: #14354e;
-  border-color: #406780;
+  color: #e2f1f5;
+  background: #173850;
+  border-color: #41677e;
   box-shadow: none;
 }
 .pingr-button-secondary:hover {
-  background: #1a435e;
-  border-color: #68a9c4;
+  background: #20445c;
+  border-color: #80bed0;
 }
 @media (max-width: 620px) {
   .pingr-page,
-  .pingr-page main { background: #081625; }
+  .pingr-page main { background: #081827; }
   .pingr-vpn { border-radius: 10px; }
-  .pingr-vpn-points span { border-bottom-color: #34566d; }
+  .pingr-vpn-points span { border-bottom-color: #35576f; }
 }
