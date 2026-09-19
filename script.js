@@ -242,19 +242,34 @@ document.querySelectorAll('.bloom-preview-card').forEach(card=>{
   const trigger=card.querySelector('.bloom-mobile-preview');
   if(!frame)return;
   const coarse=window.matchMedia('(hover: none), (pointer: coarse)');
+  let previewRequested=false;
+  const playerOrigin='https://www.youtube.com';
+  const playerCommand=(func)=>frame.contentWindow?.postMessage(JSON.stringify({event:'command',func,args:[]}),playerOrigin);
+  frame.addEventListener('load',()=>{
+    if(previewRequested)frame.contentWindow?.postMessage(JSON.stringify({event:'listening',id:'bloom-card'}),playerOrigin);
+  });
+  window.addEventListener('message',event=>{
+    if(event.origin!==playerOrigin||event.source!==frame.contentWindow||!previewRequested)return;
+    let data;
+    try{data=JSON.parse(event.data);}catch{return;}
+    if(data.event==='onReady')playerCommand('playVideo');
+    if(data.event==='onStateChange'&&data.info===1)card.classList.add('is-previewing');
+  });
   const start=()=>{
+    previewRequested=true;
     if(frame.getAttribute('src')==='about:blank')frame.setAttribute('src',frame.dataset.previewSrc);
-    card.classList.add('is-previewing');
+    if(coarse.matches)card.classList.add('is-previewing');
   };
   const stop=()=>{
+    previewRequested=false;
     card.classList.remove('is-previewing');
     frame.setAttribute('src','about:blank');
   };
   if(trigger)trigger.addEventListener('click',event=>{
     event.preventDefault();
     event.stopPropagation();
-    card.classList.contains('is-previewing')?stop():start();
-    trigger.textContent=card.classList.contains('is-previewing')?'Stop':'Preview';
+    previewRequested?stop():start();
+    trigger.textContent=previewRequested?'Stop':'Preview';
   });
   const observer=new IntersectionObserver(entries=>{
     if(!coarse.matches && entries[0].intersectionRatio >= .35)start();

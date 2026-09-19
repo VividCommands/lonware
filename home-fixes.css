@@ -120,9 +120,9 @@
   }
   #products .bloom-preview-card .bloom-card-video {
     inset: 50% auto auto 50% !important;
-    width: 116% !important;
+    width: 124% !important;
     max-width: none !important;
-    height: 116% !important;
+    height: 124% !important;
     transform: translate(-50%, -50%);
   }
   #products .bloom-preview-card.is-previewing .bloom-preview-media > img {
