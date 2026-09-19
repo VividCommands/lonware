@@ -90,3 +90,16 @@ body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible
 
 /* Present the transparent UI assets without a simulated dark backdrop. */
 .pingr-hero-visual img,.pingr-library-visual img{filter:none!important}
+
+/* Keep the original PingR canvas visible beneath the site's animated particles. */
+body.pingr-page {
+  background:
+    radial-gradient(circle at 78% 10%,rgba(57,205,139,.11),transparent 32%),
+    radial-gradient(circle at 15% 56%,rgba(66,126,133,.12),transparent 38%),
+    #0b1519 !important;
+}
+@media (max-width:620px) {
+  body.pingr-page {
+    background: radial-gradient(circle at 50% 12%,rgba(57,205,139,.1),transparent 28%),#0d191e !important;
+  }
+}
