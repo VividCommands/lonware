@@ -4021,6 +4021,43 @@ img{height:auto}
   border-color: #37779e !important;
 }
 
+/* Keep the desktop navigation text sharp in both scroll states. */
+@media (min-width: 769px) {
+  body .navbar,
+  body .navbar.scrolled {
+    left: 0 !important;
+    right: 0 !important;
+    margin-inline: auto !important;
+    transform: none !important;
+    contain: none !important;
+    will-change: auto !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #050d18 !important;
+  }
+
+  body .navbar:not(.scrolled) {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  body .navbar.scrolled {
+    width: min(720px, calc(100% - 24px)) !important;
+    max-width: none !important;
+  }
+
+  body .navbar .logo,
+  body .navbar .nav-links,
+  body .navbar .nav-discord-btn {
+    transform: none !important;
+  }
+
+  body .navbar .nav-discord-btn {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 /* September 2026 page polish */
 .hero .hero-title {
   max-width: 1040px;
