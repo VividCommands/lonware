@@ -175,3 +175,43 @@ body.pingr-page {
 @media (max-width: 900px) {
   .pingr-showcase { grid-template-columns: 1fr; }
 }
+
+/* Restore PingR's green atmosphere within Lonware's blue canvas. */
+.pingr-page main {
+  background:
+    radial-gradient(ellipse 680px 590px at 78% 11%, rgba(43, 218, 139, .27), transparent 76%),
+    radial-gradient(ellipse 690px 650px at 8% 31%, rgba(36, 133, 184, .19), transparent 76%),
+    radial-gradient(ellipse 610px 590px at 84% 53%, rgba(45, 198, 139, .17), transparent 76%),
+    radial-gradient(ellipse 620px 550px at 15% 82%, rgba(30, 156, 174, .17), transparent 76%),
+    linear-gradient(155deg, #091b29, #0a202c 49%, #081725) !important;
+}
+.pingr-page main::before {
+  display: block !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('img/pingr/pingr-particles.svg') center 80px / 1440px 960px repeat;
+  opacity: .8;
+  pointer-events: none;
+  animation: pingr-particles-drift 32s ease-in-out infinite alternate;
+}
+.pingr-page main > section {
+  position: relative;
+  z-index: 1;
+}
+@keyframes pingr-particles-drift {
+  from { background-position: center 80px; }
+  to { background-position: center 115px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pingr-page main::before { animation: none; }
+}
+@media (max-width: 620px) {
+  .pingr-page main {
+    background:
+      radial-gradient(ellipse 480px 490px at 65% 11%, rgba(43, 218, 139, .24), transparent 75%),
+      radial-gradient(ellipse 430px 480px at 15% 56%, rgba(37, 142, 183, .17), transparent 75%),
+      radial-gradient(ellipse 450px 490px at 75% 88%, rgba(43, 190, 139, .15), transparent 75%),
+      #091a27 !important;
+  }
+}
