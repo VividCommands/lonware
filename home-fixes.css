@@ -185,3 +185,31 @@
     letter-spacing: 0.25px;
   }
 }
+
+/* Let the headline and real product screens anchor the homepage. */
+#home::before {
+  display: none !important;
+  content: none !important;
+}
+#home .hero-title {
+  text-shadow: none !important;
+}
+#home #dynamic-word {
+  color: #75d5f4 !important;
+  animation: none !important;
+  text-shadow: none !important;
+}
+#home .progress-container {
+  display: none !important;
+}
+#home .scroll-indicator {
+  animation: none !important;
+  box-shadow: none !important;
+}
+#home .scroll-indicator svg {
+  filter: none !important;
+}
+#home .hero-ctas .cta-button {
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}

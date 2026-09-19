@@ -96,6 +96,9 @@ body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible
 .pingr-page main {
   background: #081625;
 }
+body.pingr-page {
+  background: #081625 !important;
+}
 .pingr-page h1 span {
   text-shadow: none;
 }
