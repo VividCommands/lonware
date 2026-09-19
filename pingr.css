@@ -107,6 +107,14 @@ body.pingr-page {
 .pingr-eyebrow,
 .pingr-plan-label { color: #77deaf; }
 .pingr-kicker { color: #87c8dc; }
+.pingr-showcase {
+  grid-template-columns: .85fr 1.15fr;
+  gap: clamp(32px, 4vw, 58px);
+}
+.pingr-showcase h2 {
+  font-size: clamp(2.35rem, 4vw, 3.75rem);
+  text-wrap: balance;
+}
 .pingr-proof span {
   background: #10273b;
   border-color: #294c65;
@@ -128,7 +136,7 @@ body.pingr-page {
   border: 1px solid #31566e;
   border-top-color: #5acba9;
   border-radius: 12px;
-  background: #102b41;
+  background: #102b41 !important;
   box-shadow: 0 18px 42px rgba(0,0,0,.18);
 }
 .pingr-vpn-points { border-top-color: #35576f; }
@@ -164,4 +172,7 @@ body.pingr-page {
   .pingr-page main { background: #081827; }
   .pingr-vpn { border-radius: 10px; }
   .pingr-vpn-points span { border-bottom-color: #35576f; }
+}
+@media (max-width: 900px) {
+  .pingr-showcase { grid-template-columns: 1fr; }
 }
