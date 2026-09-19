@@ -103,14 +103,29 @@
   justify-content: center;
 }
 
-/* Crop the rebuilt Optii cover to the application window itself. */
-#products .optii-grid-card .product-media > img[src*="optii-card-clean"] {
+/* Match all four media frames; keep the application's top bar in view. */
+#products .product-grid-5 .product-media,
+#products .product-grid-5 .bundle-media-custom {
+  height: auto !important;
+  aspect-ratio: 16 / 10 !important;
+}
+
+#products .optii-grid-card .product-media > img[src*="optii-card-clean"],
+#products .product-media > img[src*="pingr-dashboard-clean"] {
   width: 100% !important;
   height: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
-  object-fit: contain !important;
-  object-position: center !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+#products .product-grid-5 .product-card:hover .product-media > img[src*="optii-card-clean"],
+#products .product-grid-5 .product-card:hover .product-media > img[src*="pingr-dashboard-clean"] {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 @media (max-width: 900px) {

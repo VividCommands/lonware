@@ -4021,6 +4021,95 @@ img{height:auto}
   border-color: #37779e !important;
 }
 
+/* The compact navigation needs a solid, crisp surface during scroll. */
+@media (min-width: 769px) {
+  .navbar,
+  body .navbar:not(.scrolled),
+  .navbar.scrolled {
+    background: #071627 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    contain: none !important;
+    will-change: auto !important;
+  }
+  .navbar.scrolled {
+    border-color: #285572 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .24) !important;
+  }
+}
+
+/* Precise, consistent outlines for the four homepage product cards. */
+#products .product-grid-5 > .product-card-link,
+#products .product-grid-5 .product-card,
+#products .product-grid-5 .product-card-bundle {
+  border-radius: 9px !important;
+}
+#products .product-grid-5 .product-card,
+#products .product-grid-5 .product-card-bundle {
+  border: 1px solid #2b536e !important;
+  background: #091c31 !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .18) !important;
+  transition: transform .22s ease, border-color .22s ease, background-color .22s ease !important;
+}
+#products .product-grid-5 > .product-card-link:hover .product-card,
+#products .product-grid-5 > .product-card-link:focus-visible .product-card {
+  transform: translateY(-3px) !important;
+  border-color: #63b6d9 !important;
+  background: #0b223a !important;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .22) !important;
+}
+#products .product-grid-5 > .product-card-link:focus-visible {
+  outline: 2px solid #8cdaed;
+  outline-offset: 4px;
+}
+#products .product-grid-5 .product-media,
+#products .product-grid-5 .bundle-media-custom {
+  border-radius: 8px 8px 0 0 !important;
+  border-bottom: 1px solid #25465e;
+  background: #101d2a !important;
+}
+#products .product-grid-5 .bundle-icon-grid span {
+  border-radius: 5px !important;
+  border-color: #345c76 !important;
+  background: #102c45 !important;
+}
+#products .product-grid-5 .bundle-badge {
+  background: #173950 !important;
+  border-color: #477d99 !important;
+  color: #cdeefa !important;
+}
+
+/* Product screenshots and prices carry the catalog; decoration stays quiet. */
+.products-catalog::before,
+.products-catalog .package-card::before,
+.products-catalog .package-media::after {
+  display: none !important;
+}
+.products-catalog .package-card,
+.products-catalog .package-card:has(.bundle-package-media) {
+  border-radius: 10px !important;
+  background: #0b2540 !important;
+  box-shadow: none !important;
+}
+.products-catalog .package-media,
+.products-catalog .bundle-package-media {
+  border-radius: 6px !important;
+  background: #071728 !important;
+  box-shadow: none !important;
+}
+.products-catalog .package-tag,
+.products-catalog .package-card-bundle .package-tag {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+.packages-page-polish > h1 {
+  margin: 0 0 2.1rem;
+  color: #fff;
+  font: 700 clamp(3rem, 6vw, 5.1rem)/.92 'Rajdhani', 'Montserrat', sans-serif;
+  text-align: center;
+}
+
 /* Keep the desktop navigation text sharp in both scroll states. */
 @media (min-width: 769px) {
   body .navbar,

@@ -90,3 +90,90 @@ body.pingr-page{height:auto!important;min-height:100%!important;overflow:visible
 
 /* Present the transparent UI assets without a simulated dark backdrop. */
 .pingr-hero-visual img,.pingr-library-visual img{filter:none!important}
+
+/* PingR lives on Lonware's navy canvas; green identifies the product. */
+.pingr-page,
+.pingr-page main {
+  background: #081625;
+}
+.pingr-page h1 span {
+  text-shadow: none;
+}
+.pingr-eyebrow i {
+  box-shadow: none;
+}
+.pingr-eyebrow,
+.pingr-kicker,
+.pingr-plan-label {
+  color: #78d9b2;
+}
+.pingr-proof span {
+  background: #10283c;
+  border-color: #315571;
+  color: #d3e6ed;
+  border-radius: 5px;
+}
+.pingr-signal-strip {
+  border-color: #34526a;
+}
+.pingr-signal-strip > div {
+  border-color: #263f55;
+}
+.pingr-signal-strip b,
+.pingr-vpn-points b {
+  color: #e6f4fa;
+}
+.pingr-signal-strip small {
+  color: #a8c2cc;
+}
+.pingr-showcase li:before {
+  width: 5px;
+  height: 5px;
+  border: 0;
+  background: #5acda1;
+  box-shadow: none;
+}
+.pingr-vpn {
+  border: 1px solid #315878;
+  border-top-color: #459e99;
+  border-radius: 10px;
+  background: #102b42;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .18);
+}
+.pingr-vpn-points {
+  border-top-color: #34566d;
+}
+.pingr-vpn-points span {
+  border-right-color: #34566d;
+}
+.pingr-plan,
+.pingr-plan-featured {
+  border: 1px solid #35536a;
+  border-radius: 9px;
+  background: #0e2437;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .16);
+}
+.pingr-plan-featured {
+  border-top-color: #55c398;
+}
+.pingr-button-primary {
+  color: #061b2a;
+  background: #76dab5;
+  border-color: #76dab5;
+  box-shadow: none;
+}
+.pingr-button-secondary {
+  background: #14354e;
+  border-color: #406780;
+  box-shadow: none;
+}
+.pingr-button-secondary:hover {
+  background: #1a435e;
+  border-color: #68a9c4;
+}
+@media (max-width: 620px) {
+  .pingr-page,
+  .pingr-page main { background: #081625; }
+  .pingr-vpn { border-radius: 10px; }
+  .pingr-vpn-points span { border-bottom-color: #34566d; }
+}
